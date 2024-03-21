@@ -1,16 +1,31 @@
 import type { GatsbyConfig } from "gatsby";
 
+require("dotenv").config({
+  path: `.env.${process.env.NODE_ENV}`,
+});
+
+const strapiConfig = {
+  apiURL: process.env.STRAPI_API_URL,
+  accessToken: process.env.STRAPI_TOKEN,
+  collectionTypes: [
+    "tour",
+    "faq",
+    "testimonial",
+    "brand",
+    "imagegrab",
+    "attribute",
+    "rental-rate",
+    "event",
+  ],
+  singleTypes: ["topbar", "about", "experience", "shop", "south-lake-top-bar"],
+};
+
 const config: GatsbyConfig = {
   siteMetadata: {
-    title: `south-lake-kayak`,
-    siteUrl: `https://www.yourdomain.tld`,
+    title: `South Lake Tahoe Kayak and Paddleboard`,
   },
-  // More easily incorporate content into your pages through automatic TypeScript type generation and better GraphQL IntelliSense.
-  // If you use VSCode you can also use the GraphQL plugin
-  // Learn more at: https://gatsby.dev/graphql-typegen
   graphqlTypegen: true,
   plugins: [
-    "gatsby-plugin-postcss",
     "gatsby-plugin-image",
     "gatsby-plugin-sitemap",
     "gatsby-plugin-sharp",
@@ -30,6 +45,20 @@ const config: GatsbyConfig = {
         path: "./src/pages/",
       },
       __key: "pages",
+    },
+    {
+      resolve: `gatsby-source-strapi`,
+      options: strapiConfig,
+    },
+    {
+      resolve: `gatsby-plugin-postcss`,
+      options: {
+        postCssPlugins: [
+          require(`postcss-import`),
+          require("autoprefixer"),
+          require("postcss-nested"),
+        ],
+      },
     },
   ],
 };
