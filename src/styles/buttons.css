@@ -1,0 +1,136 @@
+button,
+.button,
+.button__mullen,
+.book-now {
+  background: none;
+  border-radius: 0.25rem;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-block-end: var(--baseline);
+  transition: 0.5s ease;
+  font-family: var(--heading_font);
+  display: block;
+  line-height: 1.5rem;
+  text-decoration: none;
+  width: max-content;
+
+  color: var(--mullen);
+  border: 1px solid var(--mullen);
+  box-shadow: var(--penumbra);
+}
+
+button:hover,
+.button:hover,
+/* below is for the storyboard showcase */
+.button__hover,
+.button__mullen:hover,
+.button__mullen--hover,
+/* this is a weird thing you maybe need */
+.button__mullen--hover:hover {
+  color: hsl(var(--mullen__base), var(--dim));
+  border-color: hsl(var(--mullen__base), var(--dim));
+  box-shadow: var(--penumbra); /* maybe we got the other way */
+  box-shadow: var(--antumbra);
+
+  /* TODO this doesnt do enough in dark to see the change */
+
+  @media (prefers-color-scheme: dark) {
+    color: var(--mullen);
+  }
+}
+
+.button__active,
+button:active,
+.button__mullen:active,
+.button__mullen--active {
+  /* background-color: hsl(var(--sand__base), var(--glow)); */
+  border-color: hsl(var(--mullen__base), var(--dull));
+  color: hsl(var(--mullen__base), var(--dull));
+  box-shadow: var(--antumbra);
+  box-shadow: var(--umbra);
+
+  @media (prefers-color-scheme: dark) {
+    background-color: hsl(var(--mullen__base), var(--dull));
+    color: var(--black-metal);
+  }
+}
+
+.button__mullen {
+  background-color: var(--mullen);
+  color: var(--brilliance);
+}
+
+.button__mullen:hover,
+.button__mullen--hover,
+/* this is a weird thing you maybe need */
+.button__mullen--hover:hover {
+  background-color: hsl(var(--mullen__base), var(--dull));
+  color: var(--tin-soldier);
+}
+
+.button__mullen:active,
+.button__mullen--active {
+  background-color: hsl(var(--mullen__base), var(--dark));
+  color: var(--industrial-revolution);
+}
+
+/*------------------*/
+/* #MENU */
+/*------------------*/
+
+menu button {
+  margin: 0;
+}
+
+/*------------------*/
+/* #BOOK NOW primary call to action */
+/*------------------*/
+
+.book-now {
+  margin-block-start: 0.75rem;
+  text-decoration: none;
+  text-align: center;
+  display: inline-block; /* same as a button */
+  background-color: var(--mullen);
+  color: var(--brilliance);
+
+  @media (prefers-color-scheme: dark) {
+    background-color: hsl(var(--mullen__base), var(--dim));
+    color: var(--kingly-cloud);
+  }
+}
+
+.book-now:hover,
+.book-now:active {
+  background-color: hsl(var(--mullen__base), var(--dim));
+  color: var(--kingly-cloud);
+
+  @media (prefers-color-scheme: dark) {
+    background-color: var(--mullen);
+    color: var(--brilliance);
+  }
+}
+
+footer .book-now {
+  margin-block-start: 0;
+  margin-block-end: var(--baseline);
+}
+
+.button__double {
+  display: flex;
+  /* justify-content: space-between; */
+  align-items: center;
+  gap: 2rem;
+}
+
+/*------------------*/
+/* #BUTTON GROUP */
+/*------------------*/
+
+.buttonGroup {
+  display: flex;
+  flex-flow: row wrap;
+  gap: 1rem;
+  margin-block-end: var(--baseline);
+}

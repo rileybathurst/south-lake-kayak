@@ -1,0 +1,17 @@
+.SEOcase {
+  position: absolute;
+  top: 1rem;
+  z-index: 1;
+  background-color: white;
+
+  width: calc(100% - 4rem);
+  margin-inline: 1rem;
+  padding: 1rem;
+  opacity: 0.95;
+  border-radius: 0.25rem;
+  border: 1px solid lightgrey;
+
+  @media (prefers-color-scheme: dark) {
+    background-color: black;
+  }
+}

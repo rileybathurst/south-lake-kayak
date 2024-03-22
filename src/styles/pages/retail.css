@@ -1,0 +1,44 @@
+/*------------------*/
+/* #RETAIL */
+/*------------------*/
+
+.retail {
+  max-width: var(--pelican);
+  display: grid;
+  column-gap: 0.75rem;
+  row-gap: var(--baseline);
+
+  grid-template-areas:
+    "title"
+    "hero"
+    "specs"
+    "features";
+
+  @media (min-width: 30rem) {
+    grid-template-areas:
+      "title hero"
+      "specs features";
+    grid-template-columns: 1fr 1fr;
+    column-gap: 1.5rem;
+  }
+
+  .hero {
+    grid-area: hero;
+  }
+
+  .title {
+    width: 100%;
+  }
+
+  .specs {
+    grid-area: specs;
+
+    @media (min-width: 30rem) {
+      width: calc(100% - 0.75rem);
+    }
+  }
+
+  .features {
+    grid-area: features;
+  }
+}

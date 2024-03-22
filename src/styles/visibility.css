@@ -1,0 +1,51 @@
+/*------------------*/
+/* #Visibility */
+/*------------------*/
+
+.sr-only {
+  width: 0;
+  height: 0;
+  overflow: hidden;
+  display: block;
+}
+
+.pricing-chart__false {
+  display: none;
+}
+
+.menu__large {
+  padding-inline: var(--baseline);
+
+  @media (max-width: 40rem) {
+    display: none;
+  }
+}
+
+@media (min-width: 40rem) {
+  .menu__small {
+    display: none;
+  }
+}
+
+.possibly-empty:empty {
+  display: none;
+}
+
+/* used in the compare tables */
+.show-below__vulture {
+  @media (min-width: 30rem) {
+    display: none;
+  }
+}
+
+.no-below-vulture {
+  @media (max-width: 30rem) {
+    display: none;
+  }
+}
+
+.only-below-vulture {
+  @media (min-width: 30rem) {
+    display: none;
+  }
+}

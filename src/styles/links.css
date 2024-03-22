@@ -1,0 +1,112 @@
+a {
+  color: var(--mullen);
+}
+
+a:where(:hover, :focus) {
+  color: hsl(var(--mullen__base), var(--dim));
+  text-decoration: none;
+}
+
+.link__subtle {
+  text-decoration: none;
+}
+
+.link__subtle:where(:hover, :focus) {
+  text-decoration: underline;
+}
+
+.link__subtle-svg svg {
+  fill: var(--black-out);
+}
+
+.link__subtle-svg svg:where(:hover, :focus) {
+  fill: var(--mullen);
+}
+
+.link__backed {
+  padding: 0.25rem;
+  border-radius: 0.25rem;
+  display: inline-block;
+  border: 1px solid transparent;
+  transition: 0.5s ease;
+  text-decoration: none;
+
+  @media (min-width: 40rem) {
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+  }
+}
+
+.link__backed--hover, /* testing */
+.link__backed:hover {
+  background-color: var(--sand);
+  box-shadow: var(--penumbra);
+  border: 1px solid whitesmoke;
+
+  @media (prefers-color-scheme: dark) {
+    color: hsl(var(--mullen__base), var(--light));
+    background-color: hsl(var(--mullen__base), var(--dark));
+    border: 1px solid hsl(var(--mullen__base), var(--dull));
+  }
+}
+
+/*------------------*/
+/* #MENU LIST */
+/*------------------*/
+
+.menu-list .active {
+  background-color: var(--sand);
+  box-shadow: var(--penumbra);
+  border: 1px solid whitesmoke;
+
+  @media (prefers-color-scheme: dark) {
+    color: hsl(var(--mullen__base), var(--light));
+    background-color: hsl(var(--mullen__base), var(--dark));
+    border: 1px solid hsl(var(--mullen__base), var(--dull));
+  }
+}
+
+a svg {
+  fill: var(--mullen);
+  transition: 0.2s ease;
+}
+
+a svg:where(:hover, :focus) {
+  fill: hsl(var(--mullen__base), var(--dull));
+}
+
+a:hover svg:not(.instagram) {
+  fill: hsl(var(--mullen__base), var(--dull));
+}
+
+/*------------------*/
+/* #FOOTER */
+/*------------------*/
+
+footer {
+  .link__backed {
+    border: 1px solid transparent;
+  }
+
+  /* TODO: dark */
+  .link__backed:hover {
+    background-color: whitesmoke;
+    box-shadow: var(--antumbra);
+    border-color: var(--brilliance);
+
+    @media (prefers-color-scheme: dark) {
+      background-color: hsl(var(--ink__h), 50%, 5%);
+      border-color: black;
+    }
+  }
+
+  .link__backed:focus {
+    background-color: var(--brilliance);
+    box-shadow: var(--umbra);
+
+    @media (prefers-color-scheme: dark) {
+      background-color: hsl(var(--ink__h), 50%, 5%);
+      border-color: black;
+    }
+  }
+}

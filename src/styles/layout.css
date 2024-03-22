@@ -1,0 +1,992 @@
+/*------------------*/
+/* #LAYOUT */
+/*------------------*/
+
+/*------------------*/
+/* #SINGLES */
+/*------------------*/
+
+.baseline-spacing {
+  padding-block: var(--baseline);
+}
+
+.stork-inline {
+  max-width: var(--stork);
+  margin-inline: auto;
+  padding-inline: 0.75rem;
+}
+
+.margin-start-0 {
+  margin-block-start: 0;
+}
+
+.align-self-start {
+  align-self: start;
+}
+
+/*------------------*/
+/* #DEFAULTS */
+/*------------------*/
+
+.passage {
+  max-width: var(--vulture);
+  margin-inline: auto;
+  padding-inline: 0.75rem;
+}
+
+.progression {
+  display: flex;
+  column-gap: 0.75rem;
+  max-width: var(--pelican);
+  margin-inline: auto;
+  flex-flow: row wrap;
+
+  > * {
+    flex: 1 1 calc(var(--vulture) - 2rem);
+  }
+}
+
+/*------------------*/
+/* #HEADER */
+/*------------------*/
+
+header {
+  h1 {
+    text-align: center;
+  }
+
+  h2 {
+    text-align: center;
+    max-width: var(--vulture);
+    margin-inline: auto;
+    font-size: 2rem;
+
+    a {
+      display: inline-block;
+    }
+  }
+
+  button:hover {
+    box-shadow: none; /* reset */
+  }
+}
+
+/*------------------*/
+/* #MAIN */
+/*------------------*/
+
+main {
+  max-width: var(--stork);
+  margin-inline: auto;
+  padding-inline: 0.75rem;
+  margin-block-end: 3rem;
+}
+
+.main__pelican {
+  max-width: var(--pelican);
+}
+
+/* TODO: rename this it's either a type selector or its not */
+.main__full {
+  max-width: var(--pelican);
+  margin-inline: auto;
+  padding-inline: 0.75rem;
+
+  display: flex;
+  gap: 1rem;
+
+  > * {
+    flex: 1;
+  }
+}
+
+/* TODO: rename this it's either a type selector or its not */
+.main__full--tour {
+  flex-flow: column-reverse;
+  margin-block-end: 0;
+
+  @media (min-width: 40rem) {
+    flex-flow: row wrap;
+  }
+
+  .tour-name {
+    /* https://developer.chrome.com/blog/css-text-wrap-balance/ */
+    text-wrap: balance; /* this is experimental */
+  }
+}
+
+/*------------------*/
+/* #SINGLES */
+/*------------------*/
+
+.single__description {
+  margin-block-start: var(--baseline);
+  padding-block: var(--baseline);
+  background-color: var(--sand);
+  box-shadow: 0 0 0 100vmax var(--sand);
+  clip-path: inset(0 -100vmax);
+  max-width: var(--pelican);
+  margin-inline: auto;
+
+  @media (prefers-color-scheme: dark) {
+    background-color: var(--ink);
+    box-shadow: 0 0 0 100vmax var(--ink);
+  }
+}
+
+.tin-soldier__wide {
+  background-color: var(--tin-soldier);
+  box-shadow: 0 0 0 100vmax var(--tin-soldier);
+  clip-path: inset(0 -100vmax);
+}
+
+.brand_blocks > * {
+  margin-block-end: var(--baseline);
+  padding-block-end: var(--baseline);
+}
+
+.brand_blocks > *:nth-child(odd) {
+  clip-path: inset(0 -100vmax);
+  background-color: var(--brilliance);
+  box-shadow: 0 0 0 100vmax var(--brilliance);
+
+  @media (prefers-color-scheme: dark) {
+    background-color: hsl(var(--sand__base), 5%);
+    box-shadow: 0 0 0 100vmax hsl(var(--sand__base), 5%);
+  }
+}
+
+/* Im double checking for other brands which are generally empty */
+.brand_blocks > *:empty {
+  display: none;
+}
+
+.none {
+  margin-block-start: 1.5rem;
+}
+
+.single__book {
+  max-width: var(--stork);
+  margin-inline: auto;
+  margin-block-end: calc(var(--baseline) * 2);
+  padding-block: 1.5rem;
+  clip-path: inset(0 -100vmax);
+  background-color: hsl(var(--sand__base), var(--bright));
+  box-shadow: 0 0 0 100vmax hsl(var(--sand__base), var(--bright));
+
+  @media (prefers-color-scheme: dark) {
+    background-color: hsl(var(--ink__h), 100%, 7.5%);
+    box-shadow: 0 0 0 100vmax hsl(var(--ink__h), 100%, 7.5%);
+  }
+
+  > * {
+    margin-inline: calc(var(--baseline) / 2);
+  }
+
+  button {
+    border-color: whitesmoke;
+    color: whitesmoke;
+  }
+
+  /* needs specificity */
+  a:where(:hover, :focus) {
+    background-color: hsl(
+      var(--mullen__base),
+      var(--dim)
+    ) !important; /* TODO: document why this needs important */
+    color: var(
+      --kingly-cloud
+    ) !important; /* TODO: document why this needs important */
+  }
+}
+
+.single__book--tour {
+  max-width: var(--pelican);
+}
+
+.single__other {
+  max-width: var(--pelican); /* TODO */
+  margin-inline: auto;
+
+  > h3,
+  > h4 {
+    margin-inline: calc(
+      var(--baseline) / 2
+    ); /* TODO inline shouldnt be baseline */
+  }
+}
+
+.hgroup__retail {
+  display: flex;
+  gap: 1rem;
+
+  .h_brand {
+    order: 1;
+  }
+
+  .h_title {
+    order: 2;
+  }
+}
+
+/*------------------*/
+/* #FOOTER */
+/*------------------*/
+
+footer {
+  max-width: var(--pelican);
+  margin-inline: auto;
+
+  display: flex;
+  flex-flow: row wrap;
+  gap: 1rem;
+
+  padding-block-start: 1.5rem;
+  padding-inline: var(--baseline);
+
+  > * {
+    flex: 1 1 5rem;
+    border-block-end: 1px solid var(--kingly-cloud);
+  }
+
+  .logo-link {
+    display: inline-block;
+    transition: var(--fade);
+
+    .gatsby-image-wrapper {
+      margin-block-end: var(--baseline);
+    }
+  }
+
+  .logo-link:where(:hover, :focus) {
+    filter: brightness(0.5);
+  }
+
+  svg {
+    flex: 0.5;
+  }
+
+  h3 {
+    font-size: 1.5rem;
+    line-height: 2rem;
+    margin-block-end: var(--baseline);
+  }
+
+  .copy {
+    font-size: 1rem;
+    margin-block-end: var(--baseline);
+  }
+
+  nav {
+    margin: 0;
+    padding: 0;
+
+    ul {
+      margin: 0;
+      padding-block-start: 0;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+  }
+
+  hr {
+    margin-block-end: var(--baseline);
+  }
+
+  .pricing-chart {
+    flex: 2;
+
+    /* TODO: */
+    /* im trying to line this up with an hr but theres a typography clamp above it */
+    /* margin-block-start: 0.6rem; */
+    /* margin-block-start: clamp(0rem, 1.25vw, 0.6rem); */
+  }
+
+  .book-now {
+    border-block-end: 1px solid var(--mullen);
+  }
+
+  .footer__contact {
+    p {
+      margin-block-end: var(--baseline);
+    }
+  }
+}
+
+.social {
+  display: flex;
+  gap: 1rem;
+  margin-block-end: var(--baseline);
+
+  @media (min-width: 40rem) {
+    margin-block-end: 2.5rem;
+  }
+
+  svg {
+    height: 2.5rem;
+    max-width: 2.5rem;
+  }
+}
+
+.footer__contact {
+}
+
+/*------------------*/
+/* #RETAIL */
+/*------------------*/
+
+#retail {
+  max-width: var(--pelican);
+
+  hgroup,
+  p {
+    max-width: var(--vulture);
+  }
+}
+
+.hgroup__retail {
+  display: flex;
+  flex-direction: column;
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--tin-soldier);
+
+  * {
+    margin-block: 0;
+  }
+
+  .h_brand {
+    order: 1;
+    margin-block-end: 0;
+    color: var(--cold-grey);
+  }
+
+  .h_title {
+    order: 2;
+    margin-block-end: 0;
+  }
+
+  .h_series {
+    order: 3;
+    margin-block-end: 0;
+    color: var(--industrial-revolution);
+  }
+}
+
+/*------------------*/
+/* #COLLAGE */
+/*------------------*/
+
+/* collages are used on the right of pages to detail the sport indicated */
+
+.collage {
+  display: grid;
+  /* grid-template-rows: 10rem auto auto; */
+
+  > * {
+    grid-row: 1;
+    grid-column: 1;
+  }
+
+  .cutout {
+    grid-row: 2/4;
+    max-width: 90%;
+    object-fit: contain;
+    place-self: center;
+  }
+
+  .texture {
+    grid-row: 1/3;
+    max-height: 20rem;
+  }
+
+  .tour_texture {
+    grid-row: 1/3;
+    /* grid-column: 1/3; */
+    max-height: 20rem;
+    margin-block-start: 4rem;
+    width: 80%;
+    aspect-ratio: 16/9;
+  }
+
+  .paddler {
+    /* this hits validator.w3.org but mdn shows it works */
+    aspect-ratio: 1;
+    border-radius: 50%;
+    object-fit: contain;
+    object-fit: cover;
+    box-shadow: var(--umbra);
+    margin-block-start: 2rem;
+    margin-inline-start: 2rem;
+    max-width: var(--swan);
+    border: 2px solid whitesmoke;
+
+    @media (prefers-color-scheme: dark) {
+      border-color: var(--black-metal);
+    }
+
+    img {
+      border-radius: 50%;
+    }
+  }
+}
+
+/*------------------*/
+/* #CARD COLLAGE */
+/*------------------*/
+
+/* This is the top of the cards */
+
+.card-collage {
+  display: grid;
+
+  > * {
+    grid-row: 1;
+    grid-column: 1;
+  }
+
+  .texture-slice {
+    align-self: start;
+    margin: calc(var(--baseline) / 2);
+    border-radius: 0.25rem;
+    box-shadow: var(--penumbra);
+    border: 1px solid whitesmoke;
+    stroke: whitesmoke;
+
+    @media (prefers-color-scheme: dark) {
+      border-color: var(--black-metal);
+      stroke: var(--black-metal);
+    }
+  }
+
+  .cutout {
+    object-fit: contain;
+    place-self: center;
+    /* box-shadow: var(--umbra); */
+    z-index: 2; /* TODO: variable */
+    grid-row: 1/1;
+    filter: drop-shadow(5px 5px 5px var(--black-out));
+    aspect-ratio: 16/9;
+    width: 100%;
+  }
+
+  .card__placeholder {
+    max-height: 20rem !important; /* I can probably get around this once its built out */
+  }
+
+  svg {
+    z-index: 1; /* TODO: variable */
+    max-height: 100%; /* overwrite the default */
+    margin: calc(var(--baseline) / 2);
+    width: calc(100% - var(--baseline));
+    stroke: whitesmoke;
+
+    @media (prefers-color-scheme: dark) {
+      stroke: var(--black-metal);
+    }
+  }
+}
+
+.brand__hgroup {
+  display: flex;
+  flex-flow: row wrap;
+  gap: 1rem;
+  align-items: baseline;
+
+  h2 {
+    color: var(--industrial-revolution);
+  }
+}
+
+/*------------------*/
+/* #MOVE THESE IF THEY WORK */
+/*------------------*/
+
+/* this is the right name */
+.location_card-wrapper {
+  max-width: var(--stork); /* 40rem */
+  margin-inline: auto;
+  /* padding-inline: 1rem; */
+  display: flex;
+  flex-flow: row wrap;
+  gap: 1rem;
+  align-items: flex-start;
+
+  > * {
+    flex: 2 1 20rem;
+  }
+
+  .here__card,
+  > .location_card {
+    /* TODO this is a bad name */
+    flex: 1 1 10rem;
+  }
+}
+
+/*------------------*/
+/* #COMPOSITION */
+/*------------------*/
+
+.composition {
+  grid-area: composition;
+  display: grid;
+  grid-template-columns: 5% 10% 70% 10% 5%;
+  grid-template-rows: 5% 90% 5%;
+  max-height: 23rem;
+
+  .paddler {
+    grid-column: 3;
+    grid-row: 2;
+    aspect-ratio: 1;
+    border: none;
+    box-shadow: none;
+    margin-block: 1rem;
+
+    img {
+      border-radius: 50%;
+      border: 2px solid whitesmoke;
+      width: calc(100% - 4px);
+      height: calc(100% - 4px);
+
+      @media (prefers-color-scheme: dark) {
+        border-color: var(--black-metal);
+      }
+    }
+  }
+
+  .t1 {
+    grid-column: 1/5;
+    grid-row: 1/3;
+    aspect-ratio: 16/9;
+  }
+
+  .t2 {
+    grid-column: 2/6;
+    grid-row: 2/4;
+    aspect-ratio: 16/9;
+    place-self: end;
+
+    img {
+      object-fit: cover !important;
+    }
+  }
+}
+
+/*------------------*/
+/* #LOCATION */
+/*------------------*/
+
+/* this is to not use the .location class */
+/* as sometimes we dont want to flow in a row */
+
+.locations__complete > * {
+  display: flex;
+  flex-flow: row wrap;
+  padding-block-end: calc(var(--baseline) / 2);
+  margin-block-end: var(--baseline);
+  gap: 0.75rem;
+
+  > * {
+    flex: 3.5 1; /* guess and check to get the parking on one row in the footer */
+  }
+
+  > *:first-child {
+    flex: 1 1;
+  }
+}
+
+/* TODO: fix the delivery location */
+.locations__complete > .delivery {
+  > *:nth-child(2) {
+    flex: 7 1; /* guess and check to get the parking on one row in the footer */
+  }
+}
+
+.locations__complete > *:not(:last-child) {
+  border-bottom: 1px solid var(--kingly-cloud); /* match the hr */
+}
+
+/*------------------*/
+/* #COMPARE TABLE */
+/*------------------*/
+
+/* * test this in chrome, it doesnt have subgrid yet */
+.comparesheet {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 1fr 1fr;
+
+  @media (min-width: 30rem) {
+    grid-template-columns: auto 1fr 1fr;
+  }
+
+  /* waiting on baseline */
+
+  @supports not (grid-template-rows: subgrid) {
+    grid-template-areas:
+      "grid__title--select grid__one--select grid__two--select"
+      "grid__title--name grid__one--name grid__two--name"
+      "grid__title--sport grid__one--sport grid__two--sport"
+      "grid__title--time grid__one--time grid__two--time"
+      "grid__title--fitness grid__one--fitness grid__two--fitness"
+      "grid__title--location grid__one--location grid__two--location"
+      "grid__title--about grid__one--about grid__two--about"
+      "grid__title--minimum grid__one--minimum grid__two--minimum"
+      "grid__title--price grid__one--price grid__two--price"
+      "grid__title--book grid__one--book grid__two--book";
+
+    .grid__title--select {
+      grid-area: grid__title--select;
+      @media (max-width: 30rem) {
+        display: none;
+      }
+    }
+    .grid__title--name {
+      grid-area: grid__title--name;
+      @media (max-width: 30rem) {
+        display: none;
+      }
+    }
+    .grid__title--sport {
+      grid-area: grid__title--sport;
+      @media (max-width: 30rem) {
+        display: none;
+      }
+    }
+    .grid__title--time {
+      grid-area: grid__title--time;
+      @media (max-width: 30rem) {
+        display: none;
+      }
+    }
+    .grid__title--fitness {
+      grid-area: grid__title--fitness;
+      @media (max-width: 30rem) {
+        display: none;
+      }
+    }
+    .grid__title--location {
+      grid-area: grid__title--location;
+      @media (max-width: 30rem) {
+        display: none;
+      }
+    }
+    .grid__title--about {
+      grid-area: grid__title--about;
+      @media (max-width: 30rem) {
+        display: none;
+      }
+    }
+    .grid__title--minimum {
+      grid-area: grid__title--minimum;
+      @media (max-width: 30rem) {
+        display: none;
+      }
+    }
+    .grid__title--price {
+      grid-area: grid__title--price;
+      @media (max-width: 30rem) {
+        display: none;
+      }
+    }
+    .grid__title--book {
+      grid-area: grid__title--book;
+      @media (max-width: 30rem) {
+        display: none;
+      }
+    }
+
+    .grid__one--select {
+      grid-area: grid__one--select;
+    }
+    .grid__one--name {
+      grid-area: grid__one--name;
+    }
+    .grid__one--sport {
+      grid-area: grid__one--sport;
+    }
+    .grid__one--time {
+      grid-area: grid__one--time;
+    }
+    .grid__one--fitness {
+      grid-area: grid__one--fitness;
+    }
+    .grid__one--location {
+      grid-area: grid__one--location;
+    }
+    .grid__one--about {
+      grid-area: grid__one--about;
+    }
+    .grid__one--minimum {
+      grid-area: grid__one--minimum;
+    }
+    .grid__one--price {
+      grid-area: grid__one--price;
+    }
+    .grid__one--book {
+      grid-area: grid__one--book;
+    }
+
+    .grid__two--select {
+      grid-area: grid__two--select;
+    }
+    .grid__two--name {
+      grid-area: grid__two--name;
+    }
+    .grid__two--sport {
+      grid-area: grid__two--sport;
+    }
+    .grid__two--time {
+      grid-area: grid__two--time;
+    }
+    .grid__two--fitness {
+      grid-area: grid__two--fitness;
+    }
+    .grid__two--location {
+      grid-area: grid__two--location;
+    }
+    .grid__two--about {
+      grid-area: grid__two--about;
+    }
+    .grid__two--minimum {
+      grid-area: grid__two--minimum;
+    }
+    .grid__two--price {
+      grid-area: grid__two--price;
+    }
+    .grid__two--book {
+      grid-area: grid__two--book;
+    }
+
+    .subgrid-passthrough {
+      display: contents !important; /* overrides things that are needed when I have subgrid */
+    }
+  }
+
+  > * {
+    grid-row: 1/11;
+    display: grid;
+    grid-template-rows: subgrid;
+    gap: 1rem;
+    /* border-inline-end: 1px solid var(--tin-soldier); */
+    padding-inline-end: 1rem;
+
+    > * {
+      align-self: stretch;
+      padding: 0.25rem;
+
+      @media (min-width: 30rem) {
+        padding: 0.5rem;
+      }
+    }
+
+    > *:nth-child(odd) {
+      border-radius: 0.25rem;
+      background-color: var(--brilliance);
+
+      @media (prefers-color-scheme: dark) {
+        background-color: var(--ink);
+        color: whitesmoke;
+      }
+    }
+
+    > *:first-child {
+      /* background-color: transparent; you cant do this due to dark mode */
+    }
+  }
+
+  > *:last-child {
+    border-inline-end: none;
+    padding-inline-end: 0;
+  }
+
+  .comparesheet_titles {
+    display: none;
+
+    @media (min-width: 30rem) {
+      display: grid;
+    }
+    padding-inline-end: 1rem;
+    text-align: end;
+  }
+
+  .comparesheet__title1 {
+    position: sticky;
+    top: -1px;
+    z-index: var(--understory);
+    background-color: var(--brilliance);
+    box-shadow: 0 0 0 100vmax var(--brilliance);
+    clip-path: inset(0 -100vmax);
+
+    @media (prefers-color-scheme: dark) {
+      background-color: var(--ink);
+      box-shadow: 0 0 0 100vmax var(--ink);
+    }
+  }
+
+  .comparesheet_freeze {
+    position: sticky;
+    top: -1px;
+    z-index: var(--canopy);
+  }
+
+  .comparesheet__title2 {
+    z-index: var(--canopy);
+    position: sticky;
+    top: -1px;
+  }
+
+  .comparesheet__transparent {
+    background-color: transparent;
+  }
+}
+
+/*------------------*/
+/* #EXTRAS */
+/*------------------*/
+
+.button-drop {
+  margin-block-start: 0.75rem;
+}
+
+.comparesheet_select {
+  z-index: var(--emergent);
+  max-width: calc(50vw - 2.25rem); /* guess and check */
+}
+
+/*------------------*/
+/* #CAP */
+/*------------------*/
+
+.cap {
+  background: var(--brilliance);
+  box-shadow: 0 0 0 100vmax var(--brilliance);
+  clip-path: inset(0 -100vmax);
+  display: flex;
+  justify-content: center;
+  padding-block-start: 0.25rem;
+  z-index: var(--emergent); /* over the small menu when it slides up */
+  position: relative;
+
+  @media (prefers-color-scheme: dark) {
+    background-color: var(--ink);
+    background-color: hsl(var(--ink__h), 50%, var(--dark));
+    box-shadow: 0 0 0 100vmax hsl(var(--ink__h), 50%, var(--dark));
+  }
+
+  p {
+    margin-block-end: 0.25rem;
+  }
+}
+
+/*------------------*/
+/* #MAP */
+/*------------------*/
+
+.map {
+  max-width: var(--pelican);
+  margin-inline: auto;
+  padding-inline: 0.75rem;
+  margin-block-end: calc(2 * var(--baseline));
+}
+
+/*------------------*/
+/* #SPECS */
+/*------------------*/
+
+.unit-place__before {
+  flex-direction: row-reverse;
+}
+
+.spec {
+  display: flex;
+  gap: 1rem;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  align-items: flex-start;
+  /* addding this border has to flip the margins */
+  border-bottom: 1px solid var(--tin-soldier);
+  text-transform: uppercase;
+
+  height: 2lh;
+  margin-block-start: 1lh;
+  @supports not (margin: 1lh) {
+    height: 2.5rem;
+    margin-block-start: 1.25rem;
+  }
+
+  h2,
+  h3 {
+    line-height: 2rem;
+  }
+
+  h2 {
+    /* starts with an @extend h4 in typography.scss */
+    color: grey;
+    margin-block-end: 0.25rem;
+  }
+
+  h3 {
+    margin-block-end: 0.25rem;
+  }
+
+  .spec__unit {
+    color: grey;
+  }
+
+  .spec-flex {
+    display: flex;
+  }
+}
+
+/* bug fix that maybe could be done with .sr-only being different but this works */
+.spec:has(.sr-only) {
+  align-items: center;
+}
+
+.spec:last-child {
+  border-bottom: none;
+}
+
+/*------------------*/
+/* #WIKI */
+/*------------------*/
+
+.wiki {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  margin-block-end: calc(2 * var(--baseline));
+
+  > *:first-child {
+    flex: 1;
+  }
+
+  > *:last-child {
+    flex: 1.67;
+  }
+
+  > nav {
+    padding-inline-start: 0; /* reset */
+
+    > ul {
+      display: flex;
+      flex-direction: column;
+      margin-inline-start: 0;
+      position: sticky;
+      top: 0;
+    }
+  }
+}
+
+/* keep the inception rule */
+.wiki > nav > ul {
+  > li {
+    line-height: calc(2 * var(--baseline));
+  }
+
+  > li.current {
+    font-weight: bold;
+    color: var(--mullen);
+  }
+}

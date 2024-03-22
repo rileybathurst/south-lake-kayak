@@ -1,0 +1,15 @@
+/*------------------*/
+/* #ABOUT */
+/*------------------*/
+
+.about__info {
+  max-width: var(--pelican);
+  margin-inline: auto;
+  display: flex;
+  flex-flow: row wrap;
+  padding: 1rem;
+
+  > * {
+    flex: 1 1 20rem;
+  }
+}

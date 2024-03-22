@@ -1,0 +1,169 @@
+/*------------------*/
+/* #COLOR */
+/*------------------*/
+
+footer,
+.sand_backed--wide {
+  background-color: var(--sand);
+  box-shadow: 0 0 0 100vmax var(--sand);
+  clip-path: inset(0 -100vmax);
+
+  @media (prefers-color-scheme: dark) {
+    background-color: var(--ink);
+    box-shadow: 0 0 0 100vmax var(--ink);
+  }
+
+  hr {
+    border-color: var(--tin-soldier);
+
+    @media (prefers-color-scheme: dark) {
+      border-color: var(--raven-black);
+    }
+  }
+}
+
+/* no longer a button so no longer mullen background */
+.top-wrapper {
+  /* background: var(--mullen); */
+  background: whitesmoke;
+  clip-path: inset(0 -100vmax);
+  border-end-end-radius: var(--border-radius);
+
+  .top-bar {
+    background: var(--mullen);
+    color: whitesmoke;
+  }
+
+  svg {
+    fill: var(--brilliance);
+  }
+}
+
+.logo a {
+  color: var(--black-metal);
+}
+
+footer {
+  .locations__complete > * {
+    border-color: var(--tin-soldier);
+
+    @media (prefers-color-scheme: dark) {
+      border-color: var(--raven-black);
+    }
+  }
+}
+
+/*------------------*/
+/* #SINGLE PAGES */
+/*------------------*/
+
+.home {
+  background-color: var(--sand);
+  box-shadow: 0 0 0 100vmax var(--sand);
+  clip-path: inset(0 -100vmax);
+
+  @media (prefers-color-scheme: dark) {
+    background-color: var(--ink);
+    box-shadow: 0 0 0 100vmax var(--ink);
+  }
+}
+
+.unit {
+  color: var(--industrial-revolution);
+
+  @media (prefers-color-scheme: dark) {
+    color: var(--cold-grey);
+  }
+}
+
+/*------------------*/
+/* #TYPOGRAPHY */
+/*------------------*/
+
+.typography__secondary {
+  color: var(--industrial-revolution);
+
+  @media (prefers-color-scheme: dark) {
+    color: var(--cold-grey);
+  }
+}
+
+.blocked {
+  padding-block-start: var(--baseline);
+  background-color: var(--sand);
+  box-shadow: 0 0 0 100vmax var(--sand);
+  clip-path: inset(0 -100vmax);
+
+  @media (prefers-color-scheme: dark) {
+    background-color: var(--ink);
+    box-shadow: 0 0 0 100vmax var(--ink);
+  }
+}
+
+/*------------------*/
+/* #SERIES */
+/*------------------*/
+
+.series section {
+  max-width: var(--pelican);
+}
+
+/* this isnt right as if a section is empty it still counts */
+.series section:nth-child(odd, :has(p)) {
+  background-color: var(--sand);
+  box-shadow: 0 0 0 100vmax var(--sand);
+  clip-path: inset(0 -100vmax);
+  padding-block: var(--baseline);
+  margin-block-end: var(--baseline);
+
+  @media (prefers-color-scheme: dark) {
+    background-color: var(--ink);
+    box-shadow: 0 0 0 100vmax var(--ink);
+  }
+}
+
+.series section:last-child {
+  margin-block-end: 0;
+}
+
+.series section:not(:has(p)) {
+  margin-block-start: -1.25rem;
+}
+
+/*------------------*/
+/* #BACKGROUNDS */
+/*------------------*/
+
+.background__1 {
+  background-color: var(--sand);
+  box-shadow: 0 0 0 100vmax var(--sand);
+  clip-path: inset(0 -100vmax);
+
+  @media (prefers-color-scheme: dark) {
+    background-color: var(--ink);
+    box-shadow: 0 0 0 100vmax var(--ink);
+  }
+}
+
+.background__2 {
+  background-color: var(--kingly-cloud);
+  box-shadow: 0 0 0 100vmax var(--kingly-cloud);
+  clip-path: inset(0 -100vmax);
+
+  @media (prefers-color-scheme: dark) {
+    background-color: var(--ink);
+    box-shadow: 0 0 0 100vmax var(--ink);
+  }
+}
+
+.background__3 {
+  background-color: hsl(var(--sand__base), var(--bright));
+  box-shadow: 0 0 0 100vmax hsl(var(--sand__base), var(--bright));
+  clip-path: inset(0 -100vmax);
+
+  @media (prefers-color-scheme: dark) {
+    background-color: hsl(var(--ink__h), 100%, var(--dark));
+    background-color: hsl(var(--ink__h), 100%, 7.5%);
+    box-shadow: 0 0 0 100vmax var(--ink__h);
+  }
+}

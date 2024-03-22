@@ -1,0 +1,69 @@
+/*------------------*/
+/* #JOBS */
+/*------------------*/
+
+/* ! wrong place and not working */
+
+.scroller {
+  display: flex;
+  flex-direction: row;
+
+  nav {
+    position: sticky;
+    top: 0;
+
+    /* this has to be wrapped I dont know why */
+    ul {
+      position: sticky;
+      top: 0;
+    }
+  }
+}
+
+.look-link {
+  border: none;
+  box-shadow: none;
+}
+
+.look-link:hover {
+  box-shadow: none;
+}
+
+/* ! fix this its cool but needs a lot */
+.wiki {
+  nav {
+    display: grid;
+    > * {
+      grid-row: 1;
+      grid-column: 1;
+      place-self: start;
+
+      button {
+        border: none;
+        box-shadow: none;
+      }
+    }
+  }
+}
+
+/* TODO: name */
+.slider-guy {
+  background-color: hsla(0, 0%, 50%, 0.5);
+  height: 1.5rem;
+  width: 100%;
+  position: sticky;
+  top: 0;
+  transition: 1s ease-in-out;
+  z-index: 0; /* TODO: variable */
+  border-radius: var(--card-radius);
+}
+
+/* TODO: name */
+.slider-guy.dress {
+  top: 1.5rem;
+}
+
+/* TODO: name */
+.slider-guy.weather {
+  top: 3.5rem;
+}

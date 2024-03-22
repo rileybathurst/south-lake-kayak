@@ -1,0 +1,227 @@
+/*------------------------------------*\
+    #Type Rythym
+/*------------------------------------*/
+
+body {
+  font-family: var(--body_font); /* Google font */
+  font-size: 16px;
+  line-height: 1.25rem; /* 20px */
+}
+
+p {
+  margin-block-start: 0;
+  margin-block-end: var(--baseline);
+  font-family: var(--body_font);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--heading_font); /* Google font */
+  margin-block-start: 0; /* reset */
+}
+
+h1 {
+  margin-top: 0; /* browser reset */
+  font-size: 3rem; /* 48px */
+  line-height: 3.75rem; /* 60px */
+  margin-bottom: 2.5rem; /* 40px */
+  /* single line 100px */
+  /* two lines 160px */
+  /* multi lines + 60px each */
+}
+
+h2,
+.aconcagua,
+.supra {
+  font-size: 2.5rem; /* 40px */
+  line-height: 3rem; /* 48px */
+  margin-block-end: 2rem; /* 32px */
+  /* single line 80px */
+  /* two lines 128px🚨 */
+  /* multi lines + 48px each🚨 */
+
+  /* what if i just do a slightly different base for two lines? as an extra class? */
+  /* 96 + x? */
+}
+
+h3,
+/* TODO: this should be the font mountains */
+.h3 {
+  font-size: 2rem; /* 32px */
+  line-height: 2.5rem; /* 40px */
+  margin-bottom: 1.875rem; /* 30px */
+  /* single line 70px */
+  /* two lines 110px */
+  /* multi lines + 40px each */
+}
+
+h4,
+.kilimanjaro,
+.h4,
+.brow,
+.page-title,
+.spec h2 {
+  font-size: 1.5rem; /* 24px */
+  line-height: 2rem; /* 32px */
+  margin-bottom: 1.75rem; /* 28px */
+  /* single line 60px */
+  /* two lines 92px🚨 */
+  /* multi lines + 32px🚨 each */
+}
+
+h5 {
+  font-size: 1.25rem; /* 20px */
+  line-height: 1.875rem; /* 30px */
+  margin-bottom: 0.625rem; /* 10px */
+  /* single line 40px */
+  /* two lines 70px */
+  /* multi lines + 30px each */
+}
+
+h6 {
+  font-size: 1rem; /* 16px */
+  line-height: 1.25rem; /* 20px this becomes the vertical rythym */
+  margin-bottom: 0.625rem; /* 10px skips some of the lines */
+  /* single line 30px */
+  /* two lines 50px */
+  /* multi lines + 20px each */
+}
+
+/* start the multi line problem here as itll be worst */
+small,
+.two-small-lines,
+.multiple-small-lines {
+  font-size: 0.75rem; /* 12px */
+  line-height: 1rem; /* 16px */
+  margin-bottom: 0.875rem; /* 14px */
+  /* single line 30px */
+  /* two lines 46px🚨 */
+  /* multi lines + 16px🚨 each */
+
+  /* options i want 20px if its smaller it can be 10 but thats unrealistic */
+  /* 4 is pretty small on a single line that doesnt work it'd have to go to 30 */
+  /* two is already fine */
+  /* anymore gets super complicated to get it right */
+}
+
+.two-small-lines {
+  margin-bottom: 0.5rem; /* 8px */
+  /* two lines 40px */
+}
+
+/*------------------*/
+/* #HR */
+/*------------------*/
+
+/* default use on whitesmoke background */
+hr {
+  border: none; /* reset */
+  border-bottom: 1px solid var(--kingly-cloud);
+
+  /* default useage on hsl(var(--ink__h), 50%, 5%); */
+  @media (prefers-color-scheme: dark) {
+    border-bottom: 1px solid var(--black-out);
+  }
+}
+
+/* for use on a sand background */
+/* name is hard */
+/* its only on sand on light */
+/* its darker on light only */
+/* maybe step 2 */
+/* rename it if I get a better idea */
+/* only use the class when needed try put it on the class with the background */
+.hr-step2 {
+  border-color: var(--tin-soldier);
+
+  @media (prefers-color-scheme: dark) {
+    border-color: var(--raven-black);
+  }
+}
+
+/* This is hard to search for its part of pricing sheet */
+hr.no {
+  display: none;
+}
+
+/*------------------*/
+/* #SINGLES */
+/*------------------*/
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+.capitalize {
+  text-transform: capitalize;
+}
+
+.condensed {
+  font-family: var(--heading_font);
+}
+
+.mullen {
+  color: var(--mullen);
+}
+
+/*------------------*/
+/* #HEADINGS */
+/*------------------*/
+
+hgroup {
+  display: flex;
+  flex-flow: row wrap;
+  column-gap: 1ch;
+  align-items: baseline;
+}
+
+/*------------------*/
+/* #DEL */
+/*------------------*/
+
+del {
+  color: hsl(var(--sand__base), var(--dim));
+  @media (prefers-color-scheme: dark) {
+    color: hsl(var(--sand__base), var(--dark));
+  }
+}
+
+/*------------------*/
+/* #CREST */
+/*------------------*/
+
+/* .crest, .brow, .supra all work as a set */
+.crest {
+  display: flex;
+  flex-direction: column;
+  gap: 0; /* resets the default hgroup */
+}
+
+.brow {
+  order: 1;
+  margin-block-end: 1rem;
+}
+
+.supra {
+  font-family: var(--heading_font);
+  order: 2;
+}
+
+/*------------------*/
+/* #SPECIFICS */
+/*------------------*/
+
+.single__description {
+  line-height: 1.5;
+}
+
+select {
+  font-size: 1rem;
+  font-family: var(--body_font);
+  margin-block-end: var(--baseline);
+  margin-block-end: 0;
+}
