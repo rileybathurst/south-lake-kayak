@@ -13,7 +13,6 @@ const BreadcrumbTwo = (props) => {
             "@type": "ListItem",
             "position": 1,
             "name": "${props.one}",
-            "item": "${useSiteMetadata().url}/${props.one}"
           },{
             "@type": "ListItem",
             "position": 2,

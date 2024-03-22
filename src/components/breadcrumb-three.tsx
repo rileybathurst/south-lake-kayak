@@ -1,6 +1,6 @@
 import React from 'react'
 import { Script } from 'gatsby'
-import { useSiteUrl } from "../hooks/use-site-url";
+// import { useSiteUrl } from "../hooks/use-site-url";
 
 const BreadcrumbThree = (props) => {
 
@@ -21,12 +21,10 @@ const BreadcrumbThree = (props) => {
             "@type": "ListItem",
             "position": 1,
             "name": "${OneCap}",
-            "item": "${useSiteMetadata().url}/${props.one}"
           },{
             "@type": "ListItem",
             "position": 2,
             "name": "${TwoCap}",
-            "item": "${useSiteMetadata().url}/${props.one}/${props.two}/"
           },{
             "@type": "ListItem",
             "position": 3,

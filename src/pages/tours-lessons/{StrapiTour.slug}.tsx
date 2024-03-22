@@ -82,7 +82,6 @@ export const Head = ({ data }) => {
                 "name": "Retail",
                 "item":
                 {
-                  "@id": "${useSiteMetadata().url}/tours-lessons",
                   "name": "Tours Lessons"
                 }
               },
@@ -91,7 +90,6 @@ export const Head = ({ data }) => {
                 "position": 2,
                 "item":
                 {
-                  "@id": "${useSiteMetadata().url}/tours-lessons/${data.strapiTour.slug}",
                   "name": "${data.strapiTour.name}"
                 }
               }

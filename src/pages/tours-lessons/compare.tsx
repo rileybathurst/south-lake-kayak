@@ -272,7 +272,6 @@ export const Head = () => {
             "@type": "ListItem",
             "position": 1,
             "name": "Tours & Lessons",
-            "item": "${useSiteMetadata().url}/tours-lessons"
           },{
             "@type": "ListItem",
             "position": 2,

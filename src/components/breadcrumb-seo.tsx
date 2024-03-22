@@ -15,12 +15,10 @@ const BreadcrumbSEO = (props) => {
             "@type": "ListItem",
             "position": 1,
             "name": "${props.one}",
-            "item": "${useSiteMetadata().url}/${props.one}"
           },{
             "@type": "ListItem",
             "position": 2,
             "name": "${props.two}",
-            "item": "${useSiteMetadata().url}/${props.one}/${props.two}/"
           },{
             "@type": "ListItem",
             "position": 3,

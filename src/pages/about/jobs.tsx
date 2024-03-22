@@ -87,7 +87,6 @@ export const Head = () => {
                 "@type": "ListItem",
                 "position": 1,
               "name": "About",
-              "item": "${useSiteMetadata().url}/about"
             },{
               "@type": "ListItem",
               "position": 2,
