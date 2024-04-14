@@ -1,5 +1,5 @@
 a {
-  color: var(--mullen);
+  color: var(--navy);
 }
 
 a:where(:hover, :focus) {
@@ -20,7 +20,7 @@ a:where(:hover, :focus) {
 }
 
 .link__subtle-svg svg:where(:hover, :focus) {
-  fill: var(--mullen);
+  fill: var(--navy);
 }
 
 .link__backed {
@@ -67,7 +67,7 @@ a:where(:hover, :focus) {
 }
 
 a svg {
-  fill: var(--mullen);
+  fill: var(--navy);
   transition: 0.2s ease;
 }
 

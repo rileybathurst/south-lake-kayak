@@ -303,7 +303,7 @@ footer {
   }
 
   .book-now {
-    border-block-end: 1px solid var(--mullen);
+    border-block-end: 1px solid var(--navy);
   }
 
   .footer__contact {
@@ -854,10 +854,10 @@ footer {
 }
 
 /*------------------*/
-/* #CAP */
+/* #TOP BAR */
 /*------------------*/
 
-.cap {
+.top-bar {
   background: var(--brilliance);
   box-shadow: 0 0 0 100vmax var(--brilliance);
   clip-path: inset(0 -100vmax);
@@ -987,6 +987,6 @@ footer {
 
   > li.current {
     font-weight: bold;
-    color: var(--mullen);
+    color: var(--navy);
   }
 }

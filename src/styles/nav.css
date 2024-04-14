@@ -14,7 +14,7 @@ header {
   /* width: calc(100% - 1rem); */
   width: 100%;
   margin-inline: auto;
-  background-color: var(--mullen);
+  background-color: var(--navy);
   color: whitesmoke;
   box-shadow: var(--penumbra);
 }

@@ -15,8 +15,8 @@ button,
   text-decoration: none;
   width: max-content;
 
-  color: var(--mullen);
-  border: 1px solid var(--mullen);
+  color: var(--navy);
+  border: 1px solid var(--navy);
   box-shadow: var(--penumbra);
 }
 
@@ -36,7 +36,7 @@ button:hover,
   /* TODO this doesnt do enough in dark to see the change */
 
   @media (prefers-color-scheme: dark) {
-    color: var(--mullen);
+    color: var(--navy);
   }
 }
 
@@ -57,7 +57,7 @@ button:active,
 }
 
 .button__mullen {
-  background-color: var(--mullen);
+  background-color: var(--navy);
   color: var(--brilliance);
 }
 
@@ -92,7 +92,7 @@ menu button {
   text-decoration: none;
   text-align: center;
   display: inline-block; /* same as a button */
-  background-color: var(--mullen);
+  background-color: var(--navy);
   color: var(--brilliance);
 
   @media (prefers-color-scheme: dark) {
@@ -107,7 +107,7 @@ menu button {
   color: var(--kingly-cloud);
 
   @media (prefers-color-scheme: dark) {
-    background-color: var(--mullen);
+    background-color: var(--navy);
     color: var(--brilliance);
   }
 }

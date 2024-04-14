@@ -182,7 +182,7 @@ ol {
   > li {
     flex: 1 1 10rem;
     border: 1px solid var(--tin-soldier);
-    background-color: var(--mullen);
+    background-color: var(--navy);
     border-radius: 0.25rem;
     margin-block-end: 0;
 
@@ -198,7 +198,7 @@ ol {
       text-align: center;
       width: 100%;
       height: 100%; /* this goes waaaay to big .. but it needs something */
-      background: var(--mullen);
+      background: var(--navy);
       color: whitesmoke;
       align-self: end;
       text-decoration: none;

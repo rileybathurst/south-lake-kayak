@@ -125,7 +125,7 @@
       }
 
       button {
-        background-color: var(--mullen);
+        background-color: var(--navy);
         color: var(--brilliance);
         line-height: 2rem;
       }
@@ -259,7 +259,7 @@
   }
 
   /* TODO this is a bad name */
-  background-color: var(--mullen);
+  background-color: var(--navy);
   /* border: 1px solid var(--tin-soldier); */
   padding: 0.5rem;
   color: whitesmoke;

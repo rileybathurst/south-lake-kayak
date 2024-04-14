@@ -20,7 +20,7 @@ const Footer = () => {
         <h3 className='sr-only'>
           <Link to="/">{useSiteMetadata().title}</Link>
         </h3>
-        <Link to="/" className="logo-link">South Lake Tahoe Kayak and Paddleboard</Link>
+        <Link to="/" className="logo-link"><Logo /></Link>
         <p>&copy; {new Date().getFullYear()}</p>
         <hr />
         <nav>

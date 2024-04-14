@@ -7,6 +7,7 @@
   transition: 0.5s ease;
   height: 0;
   opacity: 0;
+  font-family: var(--heading_font);
 }
 
 .shown .top-bar {
@@ -34,7 +35,7 @@
 
 .reseason {
   width: 100%;
-  background-color: var(--mullen);
+  background-color: var(--navy);
   transition: 0.5s ease;
   margin-block-end: 0;
 }
