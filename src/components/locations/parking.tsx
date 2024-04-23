@@ -1,26 +1,34 @@
 import * as React from "react"
+import { graphql, useStaticQuery } from "gatsby"
 
 import CarIcon from "../../images/car";
 
 const Parking = () => {
+
+  const { strapiSouthLakeLocation } = useStaticQuery(graphql`
+    query strapiSouthLakeLocationParkingQuery {
+      strapiSouthLakeLocation {
+        parking_location
+        parking_google_maps_link
+      }
+    }
+  `)
+
   return (
     <section className="location">
       {/* // TODO: needs a heading for a section */}
-      <a href="https://goo.gl/maps/KKnWemDFuiYUHsrn7" rel="noopener noreferrer" aria-label="free parking lot map icon">
+      <a href={strapiSouthLakeLocation.parking_google_maps_link} rel="noopener noreferrer" aria-label="free parking lot map icon">
         <span className='sr-only'>Google Maps Link</span>
         <CarIcon />
       </a>
-      <p><strong>Free Parking Lot</strong><br />
-        <a href="https://goo.gl/maps/KKnWemDFuiYUHsrn7" rel="noopener noreferrer">Commons Beach Rd,<br className="no-below-vulture" />
-          <span className="only-below-vulture">&nbsp;</span>
-          Tahoe City 96145
-        </a>
-      </p>
-      <p><strong>Free On-Street Parking</strong><br />
-        In front of the retail store<br className="no-below-vulture" />
-        <span className="only-below-vulture">&nbsp;</span>
-        North Lake Blvd
-      </p>
+      <div>
+        <h3 className="vinson_massif">Free Parking Lot</h3>
+        <p>
+          <a href={strapiSouthLakeLocation.parking_google_maps_link} rel="noopener noreferrer" aria-label="free parking lot location">
+            {strapiSouthLakeLocation.parking_location}
+          </a>
+        </p>
+      </div>
     </section>
   )
 }

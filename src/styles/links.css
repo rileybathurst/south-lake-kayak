@@ -1,9 +1,14 @@
 a {
   color: var(--navy);
+
+  @media (prefers-color-scheme: dark) {
+    color: oklch(75% var(--navy-c) var(--navy-h));
+  }
 }
 
-a:where(:hover, :focus) {
-  color: hsl(var(--mullen__base), var(--dim));
+a:where(:hover, :focus),
+a.hover {
+  color: oklch(62.5% var(--navy-c) var(--navy-h));
   text-decoration: none;
 }
 
@@ -69,14 +74,19 @@ a:where(:hover, :focus) {
 a svg {
   fill: var(--navy);
   transition: 0.2s ease;
+
+  @media (prefers-color-scheme: dark) {
+    fill: oklch(75% var(--navy-c) var(--navy-h));
+  }
 }
 
 a svg:where(:hover, :focus) {
-  fill: hsl(var(--mullen__base), var(--dull));
+  fill: oklch(62.5% var(--navy-c) var(--navy-h));
 }
 
-a:hover svg:not(.instagram) {
-  fill: hsl(var(--mullen__base), var(--dull));
+a:hover svg:not(.instagram),
+a.hover svg {
+  fill: oklch(62.5% var(--navy-c) var(--navy-h));
 }
 
 /*------------------*/

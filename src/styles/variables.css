@@ -2,7 +2,13 @@
   /*------------------------------------*/
   /* #COLOR */
   /*------------------------------------*/
-  --navy: oklch(55% 0.14 230);
+  --navy: oklch(50% 0.14 230);
+
+  --navy-c: 0.14;
+  --navy-h: 230;
+
+  /* : oklch(50% var(--navy-c) var(--navy-h)); */
+
   --sunshine: oklch(88% 0.2 95);
   /* I can test out using soft sunshine super soft */
 

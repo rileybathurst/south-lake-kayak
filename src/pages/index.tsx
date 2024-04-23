@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react"
-import { Link, useStaticQuery, graphql } from 'gatsby';
+import React from "react"
+import { Link } from 'gatsby';
 import { SEO } from "../components/seo";
 import { useSiteMetadata } from '../hooks/use-site-metadata';
 // import { useStrapiTopBar } from "../hooks/use-strapi-topbar";
@@ -15,9 +15,7 @@ import BookRental from "../components/peek/book-rental";
 import Complete from '../components/locations/complete';
 import AboutUs from "../content/about-us";
 import Shop from "../content/shop";
-import Card from "../components/card";
 import Experience from "../content/experience";
-import Ticket from "../components/ticket";
 
 const IndexPage = () => {
 
@@ -48,9 +46,7 @@ const IndexPage = () => {
             <AndyPaddling className="andy" />
           </div>
 
-          <hr />
-
-          <PricingChart book="no" />
+          <PricingChart book={false} />
         </div>
       </main>
 

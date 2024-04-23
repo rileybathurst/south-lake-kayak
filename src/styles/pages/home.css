@@ -44,6 +44,7 @@
 }
 
 .home__photo-grid {
+  margin-block-end: 3rem;
   display: grid;
   grid-template-rows: 4rem 1rem auto;
   grid-template-columns: 1fr 1fr;

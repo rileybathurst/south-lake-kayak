@@ -9,7 +9,6 @@ button,
   cursor: pointer;
   margin-block-end: var(--baseline);
   transition: 0.5s ease;
-  font-family: var(--heading_font);
   display: block;
   line-height: 1.5rem;
   text-decoration: none;
@@ -30,7 +29,6 @@ button:hover,
 .button__mullen--hover:hover {
   color: hsl(var(--mullen__base), var(--dim));
   border-color: hsl(var(--mullen__base), var(--dim));
-  box-shadow: var(--penumbra); /* maybe we got the other way */
   box-shadow: var(--antumbra);
 
   /* TODO this doesnt do enough in dark to see the change */
@@ -96,14 +94,14 @@ menu button {
   color: var(--brilliance);
 
   @media (prefers-color-scheme: dark) {
-    background-color: hsl(var(--mullen__base), var(--dim));
-    color: var(--kingly-cloud);
+    background-color: oklch(75% var(--navy-c) var(--navy-h));
+    color: black;
   }
 }
 
 .book-now:hover,
 .book-now:active {
-  background-color: hsl(var(--mullen__base), var(--dim));
+  background-color: oklch(62.5% var(--navy-c) var(--navy-h));
   color: var(--kingly-cloud);
 
   @media (prefers-color-scheme: dark) {

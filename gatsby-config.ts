@@ -17,7 +17,13 @@ const strapiConfig = {
     "rental-rate",
     "event",
   ],
-  singleTypes: ["about", "experience", "shop", "south-lake-top-bar"],
+  singleTypes: [
+    "about",
+    "experience",
+    "shop",
+    "south-lake-top-bar",
+    "south-lake-location",
+  ],
 };
 
 const config: GatsbyConfig = {

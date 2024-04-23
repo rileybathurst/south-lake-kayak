@@ -15,9 +15,9 @@ import PricingChart from "../components/pricing-chart";
 
 const RentalsPage = () => {
 
-  const { allStrapiRentalRate } = useStaticQuery(graphql`
+  const data = useStaticQuery(graphql`
   query RentalRateQuery {
-    allStrapiRentalRate(sort: {order: ASC}) {
+    rentals: allStrapiRentalRate(sort: {order: ASC}) {
       nodes {
         id
         oneHour
@@ -29,8 +29,28 @@ const RentalsPage = () => {
         }
       }
     }
-  }
-`)
+
+    location: strapiSouthLakeLocation {
+        open
+
+        on_water_location
+        on_water_google_map_link
+
+        daily_opening
+        daily_closing
+      }
+
+      string: strapiSouthLakeLocation {
+        season_start(formatString: "MMMM")
+        season_end(formatString: "MMMM")
+      }
+
+      number: strapiSouthLakeLocation {
+        season_start(formatString: "MM")
+        season_end(formatString: "MM")
+      }
+    }
+  `)
 
   return (
     <>
@@ -39,18 +59,18 @@ const RentalsPage = () => {
       <main className="rentals">
         <article className="info">
           {/* classes relate to grid area */}
-          <h1>Rentals</h1>
-          <h2>Season: May &ndash; October</h2>
+          <h1>Rentals - {data.location.open ? "Open Daily" : "Closed For The Season"}</h1>
+
+          <h2>Open: <time dateTime={`${new Date().getFullYear()}-${data.number.season_start}`}>
+            {data.string.season_start}
+          </time> &ndash; <time dateTime={data.number.season_end}>{data.string.season_end}</time></h2>
           <p>
-            Open Daily<br />
-            9:30am &ndash; 5:30pm<br />
+            <time dateTime={data.location.daily_opening}>{data.location.daily_opening.slice(0, 5)}</time> &ndash; <time dateTime={data.location.daily_closing}>{data.location.daily_closing.slice(0, 5)}</time><br />
             Weather Permitting
           </p>
 
           <p>Enjoy the majesty of Lake Tahoe while kayaking in one of our kayak and standup paddleboard rentals.</p>
           <p>You could also have your rental kayak or paddleboard delivered to a Tahoe destination of your choosing</p>
-
-          <p><Link to="/rentals/truckee-river">Learn about our Truckee River rentals</Link></p>
 
           {/* // TODO should this be a dropdown? */}
           <Link to="/about/faq">Frequently Asked Questions about getting out on the water</Link>
@@ -67,7 +87,7 @@ const RentalsPage = () => {
               <p><span>3 Hours</span></p>
               <p><span>Full Day</span></p>
             </div>
-            {allStrapiRentalRate.nodes.map((rate: {
+            {data.rentals.nodes.map((rate: {
               id: React.Key;
               item: string;
               oneHour: number;

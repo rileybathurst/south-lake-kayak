@@ -11,6 +11,39 @@ import Phone from "./phone";
 import Mail from "./mail";
 import { useSiteMetadata } from "../hooks/use-site-metadata"
 
+function Facebook() {
+  if (useSiteMetadata().social?.facebook) {
+    return (
+      <a
+        href={useSiteMetadata().social.facebook}
+        target='_blank' rel='noopener noreferrer'
+        aria-label={`${useSiteMetadata().title} facebook`}
+      >
+        <FacebookIcon />
+      </a>
+    )
+  } else {
+    return null
+  }
+}
+
+function Instagram() {
+  if (useSiteMetadata().social?.instagram) {
+    return (
+      <a
+        href={useSiteMetadata().social.instagram}
+        target='_blank' rel='noopener noreferrer'
+        aria-label={`${useSiteMetadata().title} instagram`}
+      >
+        <InstagramIcon />
+      </a>
+    )
+  } else {
+    return null
+  }
+}
+
+
 const Footer = () => {
 
   return (
@@ -26,26 +59,14 @@ const Footer = () => {
         <nav>
           <MenuList />
         </nav>
-        <hr />
+        {/* <hr /> */}
         <div className="footer__contact">
           <Phone />
           <Mail />
-          <hr />
+          {/* <hr /> */}
           <div className="social">
-            <a
-              // href={useSiteMetadata().social.facebook}
-              target='_blank' rel='noopener noreferrer'
-              aria-label={`${useSiteMetadata().title} facebook`}
-            >
-              <FacebookIcon />
-            </a>
-            <a
-              // href={useSiteMetadata().social.instagram}
-              target='_blank' rel='noopener noreferrer'
-              aria-label={`${useSiteMetadata().title} instagram`}
-            >
-              <InstagramIcon />
-            </a>
+            <Facebook />
+            <Instagram />
           </div>
         </div>
       </div>

@@ -1,17 +1,29 @@
-// ? should I combine this with map-store.tsx
-
 import * as React from "react"
+import { graphql, useStaticQuery } from "gatsby"
 
-// Commons Beach address
-const MapLink = (props) => {
+interface MapLinkClass {
+  children: React.ReactNode
+  className?: string;
+}
+
+const MapLink = (MapLink: MapLinkClass) => {
+
+  const { strapiSouthLakeLocation } = useStaticQuery(graphql`
+    query strapiSouthLakeLocationOnWaterGoogleMapLinkQuery {
+      strapiSouthLakeLocation {
+        on_water_google_map_link
+      }
+    }
+  `)
+
   return (
     <a
-      href="https://goo.gl/maps/atoK4oyJRbV3EKuK9"
+      href={strapiSouthLakeLocation.on_water_google_map_link}
       rel="noopener noreferrer"
-      className={props.className}
+      className={MapLink.className}
     >
       <span className='sr-only'>Google Maps Link</span>
-      {props.children}
+      {MapLink.children}
     </a>
   )
 }

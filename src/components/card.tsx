@@ -16,6 +16,7 @@ function Name(props) {
   )
 }
 
+// ? are these used in south lake?
 function Badges(props) {
 
   // TODO: deal with multiple
@@ -23,6 +24,7 @@ function Badges(props) {
   if (props.discount) {
     return (
       <div className="badge">
+        {/* // TODO: deal with color */}
         <h5 className="capitalize mullen">{props.discount}% off</h5>
       </div>
     )

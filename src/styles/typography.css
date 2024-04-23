@@ -82,13 +82,15 @@ h5 {
   /* multi lines + 30px each */
 }
 
-h6 {
+h6,
+.vinson_massif {
   font-size: 1rem; /* 16px */
   line-height: 1.25rem; /* 20px this becomes the vertical rythym */
   margin-bottom: 0.625rem; /* 10px skips some of the lines */
   /* single line 30px */
   /* two lines 50px */
   /* multi lines + 20px each */
+  font-family: var(--body_font);
 }
 
 /* start the multi line problem here as itll be worst */
@@ -108,6 +110,10 @@ small,
   /* anymore gets super complicated to get it right */
 }
 
+address {
+  font-style: normal;
+}
+
 .two-small-lines {
   margin-bottom: 0.5rem; /* 8px */
   /* two lines 40px */
@@ -120,7 +126,7 @@ small,
 /* default use on whitesmoke background */
 hr {
   border: none; /* reset */
-  border-bottom: 1px solid var(--kingly-cloud);
+  border-bottom: 1px solid var(--tin-soldier);
 
   /* default useage on hsl(var(--ink__h), 50%, 5%); */
   @media (prefers-color-scheme: dark) {

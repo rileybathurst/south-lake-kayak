@@ -11,7 +11,6 @@ const Complete = () => {
   return (
     <div className="locations__complete">
       <Rentals />
-      <Store />
       <Parking />
       <Delivery />
     </div>

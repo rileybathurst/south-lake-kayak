@@ -2,6 +2,16 @@
 /* #COLOR */
 /*------------------*/
 
+body {
+  background-color: whitesmoke;
+  color: var(--black-metal);
+
+  @media (prefers-color-scheme: dark) {
+    background-color: oklch(2.5% var(--navy-c) var(--navy-h));
+    color: var(--kingly-cloud);
+  }
+}
+
 footer,
 .sand_backed--wide {
   background-color: var(--sand);
@@ -22,34 +32,18 @@ footer,
   }
 }
 
-/* no longer a button so no longer mullen background */
-.top-wrapper {
-  /* background: var(--navy); */
-  background: whitesmoke;
+/*------------------------------------*/
+/* #TOP-BAR */
+/*------------------------------------*/
+
+.top-bar {
+  background: var(--brilliance);
+  box-shadow: 0 0 0 100vmax var(--brilliance);
   clip-path: inset(0 -100vmax);
-  border-end-end-radius: var(--border-radius);
 
-  .top-bar {
-    background: var(--navy);
-    color: whitesmoke;
-  }
-
-  svg {
-    fill: var(--brilliance);
-  }
-}
-
-.logo a {
-  color: var(--black-metal);
-}
-
-footer {
-  .locations__complete > * {
-    border-color: var(--tin-soldier);
-
-    @media (prefers-color-scheme: dark) {
-      border-color: var(--raven-black);
-    }
+  @media (prefers-color-scheme: dark) {
+    background-color: oklch(12.5% var(--navy-c) var(--navy-h));
+    box-shadow: 0 0 0 100vmax oklch(12.5% var(--navy-c) var(--navy-h));
   }
 }
 

@@ -141,7 +141,12 @@ const Header = () => {
       </div>
 
       <div className="logo-container" >
-        <Logo />
+        <Link
+          to="/"
+          className="link__subtle"
+        >
+          <Logo />
+        </Link>
         <h1 className='sr-only'>
           <Link to="/" className="link__subtle">
             {useSiteMetadata().title}

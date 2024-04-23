@@ -2,6 +2,7 @@
 /* #PRICING CHART */
 /*------------------*/
 
+/* ? is there a reason I did a flex not a grid */
 .pricing-chart {
   display: flex;
   text-align: center;
@@ -15,8 +16,8 @@
 
     /* rows */
     > * {
-      border-bottom: 0.5px solid var(--industrial-revolution);
-      border-right: 0.5px solid var(--industrial-revolution);
+      border-bottom: 0.5px solid var(--tin-soldier);
+      border-right: 0.5px solid var(--tin-soldier);
       /* border-left: none; */
       /* padding: var(--baseline); */
       padding: clamp(0.5rem, 1vw, 1rem);
@@ -28,7 +29,6 @@
 
     /* first row */
     > *:first-child {
-      margin: 0;
       border-top: none;
     }
 
@@ -37,6 +37,7 @@
     }
   }
 
+  h2,
   h4 {
     margin: 0.25px;
     font-size: clamp(0.75rem, 1.25vw, 1.5rem);

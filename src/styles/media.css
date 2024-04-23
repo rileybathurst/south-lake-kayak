@@ -23,12 +23,12 @@ svg {
 .logo-container {
   margin: 0 auto;
   display: flex;
-  gap: 1rem;
+  /* gap: 1rem; // dont run a gap as the sr-only h1 uses it */
   justify-content: center;
   background-color: whitesmoke;
   box-shadow: 0 0 0 100vmax whitesmoke;
   clip-path: inset(0 -100vmax);
-  z-index: 1; /* TODO: variable */
+  z-index: var(--understory);
   position: relative;
   max-width: calc(100% - 2rem); /* guess and check */
   padding-block: var(--baseline);
@@ -37,25 +37,36 @@ svg {
     margin-inline: auto;
   }
 
-  @media (min-width: 30rem) {
-    max-width: 32rem; /* guess and check */
-  }
+  /* @media (min-width: 30rem) {
+    max-width: 32rem; // guess and check
+  } */
 
   @media (prefers-color-scheme: dark) {
     background-color: var(--ink);
     box-shadow: 0 0 0 100vmax var(--ink);
   }
 
-  h1 {
-    margin-block-end: 0.5rem; /* needed for the drop on the "y" */
+  a {
+    width: max-content;
+    display: flex;
+    justify-content: center;
+    transition: var(--fade);
   }
 
-  .gatsby-image-wrapper {
+  .gatsby-image-wrapper,
+  svg {
     transition: var(--fade);
   }
 
   .gatsby-image-wrapper:where(:hover, :focus) {
     filter: brightness(0.5);
+  }
+
+  svg {
+    width: 100%;
+    max-height: 10rem;
+    /* the logo isnt symetrical */
+    padding-inline-start: 2rem; /* guess and check number */
   }
 }
 
@@ -64,8 +75,8 @@ footer {
     display: inline-block;
     transition: var(--fade);
 
-    .gatsby-image-wrapper {
-      margin-block-end: var(--baseline);
+    svg {
+      width: 100%;
     }
   }
 
@@ -108,20 +119,15 @@ footer {
 /* ! this still isnt right */
 
 .facebook {
-  transition: 0.5s ease;
+  transition: var(--fade);
 
   .facebook__blue {
-    fill: grey;
+    transition: var(--fade);
+    fill: black;
   }
 
-  @media (prefers-color-scheme: dark) {
-    .facebook__blue {
-      fill: grey;
-    }
-
-    .facebook__white {
-      fill: hsl(var(--sand__base), var(--dark));
-    }
+  .facebook__white {
+    fill: white;
   }
 }
 
@@ -136,6 +142,7 @@ footer {
 }
 
 .instagram {
+  transition: var(--fade);
   filter: grayscale(100%);
   mix-blend-mode: multiply;
   transition: 0.5s ease;
@@ -146,6 +153,7 @@ footer {
 }
 
 .instagram:hover {
+  fill: revert-layer;
   filter: grayscale(0%);
   mix-blend-mode: normal;
 
