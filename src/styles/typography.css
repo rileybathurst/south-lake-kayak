@@ -16,11 +16,16 @@ p {
 
 h1,
 h2,
+h3 {
+  font-family: var(--heading_font); /* Google font */
+}
+
+h1,
+h2,
 h3,
 h4,
 h5,
 h6 {
-  font-family: var(--heading_font); /* Google font */
   margin-block-start: 0; /* reset */
 }
 

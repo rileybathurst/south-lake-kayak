@@ -5,8 +5,6 @@ import { useSiteMetadata } from '../hooks/use-site-metadata';
 
 import Header from "../components/header";
 import Footer from "../components/footer";
-import MapSVG from "../images/map";
-import Complete from "../components/locations/complete";
 import AboutUs from "../content/about-us";
 
 import Composition from "../components/composition";
@@ -39,8 +37,7 @@ const AboutPage = () => {
       </div>
 
       <div className="about__info">
-        <Complete />
-        <MapSVG />
+
       </div>
 
       <Footer />

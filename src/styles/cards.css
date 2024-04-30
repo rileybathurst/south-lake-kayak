@@ -19,6 +19,7 @@
   }
 
   /* TODO: needs sub-grid */
+  /* this is always a Link */
   .card {
     padding: 0;
     display: flex;
@@ -28,6 +29,8 @@
     box-shadow: var(--penumbra);
     border: 1px solid transparent;
     border-radius: var(--card-radius);
+    /* needed to control nested elements */
+    text-decoration: none;
 
     @media (prefers-color-scheme: dark) {
       background-color: var(--ink);
@@ -91,6 +94,7 @@
 
     p {
       margin-inline: 0.75rem;
+      color: var(--black-metal);
     }
 
     hr {
@@ -152,8 +156,14 @@
         font-weight: normal;
       }
     }
-  } /* .card */
-} /* .deck */
+  }
+}
+
+.card:hover {
+  p {
+    text-decoration: underline;
+  }
+}
 
 .deck:empty {
   display: none;

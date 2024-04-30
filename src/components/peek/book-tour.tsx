@@ -10,7 +10,7 @@ const BookTour = () => {
       rel="noopener noreferrer"
       className="book-now"
     >
-      TOURS &amp; LESSONS<br />
+      TOURS<br />
       BOOK NOW
     </a>
   )

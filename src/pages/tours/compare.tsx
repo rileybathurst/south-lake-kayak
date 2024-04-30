@@ -118,8 +118,7 @@ function Compare(props) {
         <div className='comparesheet_titles subgrid-passthrough'>
 
           <div className='grid__title--select comparesheet__transparent'>{/* stay gold */}</div>
-          <h3 className='grid__title--name h4 comparesheet_freeze'>Tour or<br />
-            Lesson</h3>
+          <h3 className='grid__title--name h4 comparesheet_freeze'>Tour</h3>
           <p className='grid__title--sport'>Sport</p>
           <p className='grid__title--time'>Time</p>
           <p className='grid__title--fitness'>Fitness</p>
@@ -140,7 +139,7 @@ function Compare(props) {
           </select>
           <h2 className='grid__one--name h3 comparesheet__title1'>
 
-            <Link to={`/tours-lessons/${link1}`}>
+            <Link to={`/tours/${link1}`}>
               {tour1}
             </Link>
           </h2>
@@ -177,7 +176,7 @@ function Compare(props) {
             ))}
           </select>
           <h2 className='grid__two--name h3 comparesheet__title2'>
-            <Link to={`/tours-lessons/${link2}`}>
+            <Link to={`/tours/${link2}`}>
               {tour2}
             </Link></h2>
           <Details2 show={tour2} set={props.tours} />
@@ -244,7 +243,7 @@ const ComparePage = () => {
       >
         <ol>
           <li>
-            <Link to={`/tours-lessons`}>Tours and Lessons</Link>&nbsp;/&nbsp;
+            <Link to={`/tours`}>Tours</Link>&nbsp;/&nbsp;
           </li>
           <li aria-current="page">Compare</li>
         </ol>
@@ -271,7 +270,7 @@ export const Head = () => {
           "itemListElement": [{
             "@type": "ListItem",
             "position": 1,
-            "name": "Tours & Lessons",
+            "name": "Tours",
           },{
             "@type": "ListItem",
             "position": 2,

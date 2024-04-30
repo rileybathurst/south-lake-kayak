@@ -9,7 +9,7 @@ const BookRental = () => {
       rel="noopener noreferrer"
       className="book-now"
     >
-      RENTALS &amp; DEMOS<br />
+      RENTALS<br />
       BOOK NOW
     </a>
   )

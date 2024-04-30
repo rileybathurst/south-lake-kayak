@@ -13,7 +13,7 @@ function TourCatchAll({ params }) {
       <Header />
       <main className="measure">
         <h2 className="crest">
-          <Link to="/tours-lessons">Tours &amp; Lessons</Link> / {params.name}</h2>
+          <Link to="/tours">Tours</Link> / {params.name}</h2>
 
         {/* // TODO: this should be a component */}
         <h1 className="mixta">Looks like you&apos;ve paddled into uncharted waters!</h1>

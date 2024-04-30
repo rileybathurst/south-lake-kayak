@@ -82,7 +82,7 @@ export const Head = ({ data }) => {
                 "name": "Retail",
                 "item":
                 {
-                  "name": "Tours Lessons"
+                  "name": "Tours"
                 }
               },
               {

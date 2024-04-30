@@ -18,7 +18,7 @@ function LineBreaker(props: { text: string; }) {
 
 const PricingChart = (props: { book: boolean; }) => {
 
-  const { allStrapiRentalRate } = useStaticQuery(graphql`
+  const data = useStaticQuery(graphql`
     query PricingChartQuery {
       allStrapiRentalRate(filter: {favorite: {eq: true}}) {
         nodes {
@@ -29,38 +29,65 @@ const PricingChart = (props: { book: boolean; }) => {
           fullDay
         }
       }
+
+      strapiRentalAddon(name: {eq: "Pedal Drive"}) {
+        name
+        single
+        double
+        sup
+      }
+
+      allStrapiRentalAddon {
+        nodes {
+          name
+          single
+          double
+          sup
+        }
+      }
     }
   `)
 
   return (
     <>
-      <div className="pricing-chart">
-        <div className="row row-header">
-          <h2 className="kilimanjaro">
-            <Link to="/rentals">
+      <div className="charts">
+        <div className="pricing-chart">
+          <div className="row row-header">
+            <h2 className="kilimanjaro">
               <span>Rental<br />Rates</span>
-            </Link>
-          </h2>
-          <p>1 Hour</p>
-          <p><span>3 Hours</span></p>
-          <p><span>Full Day</span></p>
+            </h2>
+            <p>1 Hour</p>
+            <p><span>3 Hours</span></p>
+            <p><span>Full Day</span></p>
+          </div>
+
+          {data.allStrapiRentalRate.nodes.map((rate: {
+            id: React.Key;
+            item: string;
+            oneHour: number;
+            threeHour: number;
+            fullDay: number;
+          }) => (
+            <div key={rate.id} className="row">
+              {/* <h4>{rate.item}</h4> */}
+              <LineBreaker text={rate.item} />
+              <p>{rate.oneHour}</p>
+              <p>{rate.threeHour}</p>
+              <p>{rate.fullDay}</p>
+            </div>
+          ))}
         </div>
 
-        {allStrapiRentalRate.nodes.map((rate: {
-          id: React.Key;
-          item: string;
-          oneHour: number;
-          threeHour: number;
-          fullDay: number;
-        }) => (
-          <div key={rate.id} className="row">
-            {/* <h4>{rate.item}</h4> */}
-            <LineBreaker text={rate.item} />
-            <p>{rate.oneHour}</p>
-            <p>{rate.threeHour}</p>
-            <p>{rate.fullDay}</p>
-          </div>
-        ))}
+        <div className="pricing-chart">
+          {data.allStrapiRentalAddon.nodes.map((addon: { name: string; }) => (
+            <>
+              <p>{addon.name}</p>
+              <p>+{addon.single}</p>
+              <p>+{addon.double}</p>
+              <p>+{addon.sup}</p>
+            </>
+          ))}
+        </div>
       </div>
       <div className={`pricing-chart__${props.book}`}>
         <BookNow />

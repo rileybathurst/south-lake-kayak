@@ -572,22 +572,22 @@ footer {
 /* #LOCATION */
 /*------------------*/
 
-/* this is to not use the .location class */
-/* as sometimes we dont want to flow in a row */
+.location-stack {
+  margin-block-end: 1.5rem;
 
-.locations__complete > * {
-  display: grid;
-  padding-block-end: calc(var(--baseline) / 2);
-  margin-block-end: var(--baseline);
-  gap: 0.75rem;
+  .location {
+    display: flex;
+    flex-flow: row;
+    gap: 1rem;
 
-  grid-template-columns: 4rem auto auto;
-}
+    > * {
+      flex: 3.5 1; /* guess and check to get the parking on one row in the footer */
+    }
 
-.locations__complete > *:not(:last-child) {
-  border-bottom: 1px solid var(--tin-soldier);
-
-  /* TODO: dark */
+    > svg {
+      flex: 1 1;
+    }
+  }
 }
 
 /*------------------*/

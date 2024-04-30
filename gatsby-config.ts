@@ -8,27 +8,30 @@ const strapiConfig = {
   apiURL: process.env.STRAPI_API_URL,
   accessToken: process.env.STRAPI_TOKEN,
   collectionTypes: [
-    "tour",
-    "faq",
-    "testimonial",
-    "brand",
-    "imagegrab",
     "attribute",
+    "blog",
+    "faq",
+    "imagegrab",
+    "locale",
+    "location",
+    "paddle-info",
+    "rental-addon",
     "rental-rate",
+    "sport",
+    "testimonial",
+    "topbar",
+    "tour",
     "event",
   ],
-  singleTypes: [
-    "about",
-    "experience",
-    "shop",
-    "south-lake-top-bar",
-    "south-lake-location",
-  ],
+  singleTypes: ["about", "experience", "shop", "rental"],
 };
 
 const config: GatsbyConfig = {
   siteMetadata: {
     title: `South Lake Tahoe Kayak and Paddleboard`,
+    url: "https://southtahoekayak.com/",
+    logo: "/images/icon.png",
+    localeSlug: "south-lake",
   },
   graphqlTypegen: true,
   plugins: [

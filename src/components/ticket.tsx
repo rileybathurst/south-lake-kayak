@@ -1,4 +1,4 @@
-// * this is the tour lesson version of a card
+// * this is the tour version of a card
 // ? should this have a sport always displayed?
 
 import * as React from "react"
@@ -25,7 +25,7 @@ const Ticket = (tour: {
 
 
   return (
-    <article
+    <Link to={`/tours/${tour.tour.slug}`}
       className="card"
     >
       <GatsbyImage
@@ -34,9 +34,7 @@ const Ticket = (tour: {
         className="card__image"
       />
       <h4 className="card__title">
-        <Link to={`/tours-lessons/${tour.tour.slug}`}>
-          {tour.tour.name}
-        </Link>
+        {tour.tour.name}
       </h4>
       <div className="card__specs">
         <Time
@@ -58,7 +56,7 @@ const Ticket = (tour: {
           BOOK NOW
         </a>
       </div>
-    </article>
+    </Link>
   )
 }
 

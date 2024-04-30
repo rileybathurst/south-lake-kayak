@@ -10,7 +10,7 @@ import Experience from "../content/experience";
 import Ticket from "../components/ticket";
 import { CardType } from "../types/card";
 import MapIconSVG from "../images/map-icon";
-import MapLink from "../components/map-link";
+// import MapLink from "../components/map-link";
 import KayakIcon from "../images/kayak";
 import Sport from "../components/sport";
 
@@ -29,7 +29,7 @@ function Nested(props: { sport: string }) {
   }
 }
 
-const ToursLessonsPage = () => {
+const ToursPage = () => {
 
   const query = useStaticQuery(graphql`
     query ToursQuery {
@@ -67,23 +67,23 @@ const ToursLessonsPage = () => {
       <main>
         <div className="passage location_card-wrapper">
           <div>
-            <h1>Tours &amp; Lessons</h1>
+            <h1>Tours</h1>
             <Experience />
-            <h2><Link to="/tours-lessons/compare">Compare Tours</Link></h2>
+            <h2><Link to="/tours/compare">Compare Tours</Link></h2>
             <BookNow />
             <hr />
           </div>
 
           <div className="here__location here__card">
-            <MapLink>
-              <KayakIcon />
-              <p>
-                <strong>Tour Start Location</strong><br />
-                Commons Beach<br />
-                400 North Lake Blvd,<br />
-                Tahoe City 96145<br />
-              </p>
-            </MapLink>
+            {/* <MapLink> */}
+            <KayakIcon />
+            <p>
+              <strong>Tour Start Location</strong><br />
+              Commons Beach<br />
+              400 North Lake Blvd,<br />
+              Tahoe City 96145<br />
+            </p>
+            {/* </MapLink> */}
             <Link to="/map">
               <MapIconSVG />
               <p>
@@ -120,13 +120,13 @@ const ToursLessonsPage = () => {
   )
 }
 
-export default ToursLessonsPage
+export default ToursPage
 
 export const Head = () => {
   return (
     <SEO
-      title={`Tours and Lessons | ${useSiteMetadata().title}`}
-      description="We have many different Kayak Tours to offer, as well as Stand Up Paddleboard Lessons. Our tours leave from multiple locations around the lake."
+      title={`Tours | ${useSiteMetadata().title}`}
+      description="We have many different Kayak and Paddle board Tours to offer. Our tours leave from multiple locations around the lake."
     />
   )
 }

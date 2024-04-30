@@ -117,25 +117,29 @@ function SmallMenu() {
 
 const Header = () => {
 
-  const { strapiSouthLakeTopBar } = useStaticQuery(graphql`
-        query TopBarQuery {
-          strapiSouthLakeTopBar {
-          topbar {
+  const { strapiLocale } = useStaticQuery(graphql`
+    query TopBarQuery {
+      strapiLocale(slug: {eq: "south-lake"}) {
+        name
+
+        topbar {
           data {
-          topbar
-        }
+            topbar
+          }
         }
       }
     }
-        `)
+  `)
+
+  console.log(strapiLocale.name);
 
   return (
     <header>
 
       {/* // TODO: needs a date to remove after */}
       <div className="top-bar" >
-        < ReactMarkdown
-          children={strapiSouthLakeTopBar.topbar.data.topbar}
+        <ReactMarkdown
+          children={strapiLocale.topbar.data.topbar}
           remarkPlugins={[remarkGfm]}
         />
       </div>
@@ -149,7 +153,7 @@ const Header = () => {
         </Link>
         <h1 className='sr-only'>
           <Link to="/" className="link__subtle">
-            {useSiteMetadata().title}
+            {strapiLocale.title}
           </Link>
         </h1>
       </div>

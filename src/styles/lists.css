@@ -33,15 +33,6 @@ ol {
   margin-inline: auto; /* overwrite nav */
   padding-inline: 0.75rem; /* overwrite nav */
 
-  background-color: hsl(var(--sand__base), var(--bright));
-  box-shadow: 0 0 0 100vmax hsl(var(--sand__base), var(--bright));
-  clip-path: inset(0 -100vmax);
-
-  @media (prefers-color-scheme: dark) {
-    background-color: hsl(var(--ink__h), 100%, var(--dark));
-    box-shadow: 0 0 0 100vmax hsl(var(--ink__h), 100%, var(--dark));
-  }
-
   ol {
     list-style: none;
     display: flex;
@@ -58,11 +49,6 @@ ol {
 
     a {
       display: inline;
-      color: hsl(var(--mullen__base), var(--dim)); /* needed for contrast */
-
-      @media (prefers-color-scheme: dark) {
-        color: hsl(var(--mullen__base), var(--glow)); /* needed for contrast */
-      }
     }
   }
 }
@@ -136,7 +122,7 @@ ol {
 
   /* question */
   h2 {
-    font-size: 1.25rem;
+    font-size: var(--elbrus);
     line-height: 1.875rem;
     margin-block-end: 0.625rem;
   }

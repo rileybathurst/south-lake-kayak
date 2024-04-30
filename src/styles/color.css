@@ -12,10 +12,9 @@ body {
   }
 }
 
-footer,
-.sand_backed--wide {
-  background-color: var(--sand);
-  box-shadow: 0 0 0 100vmax var(--sand);
+footer {
+  background-color: oklch(97.5% 0.025 95);
+  box-shadow: 0 0 0 100vmax oklch(97.5% 0.025 95);
   clip-path: inset(0 -100vmax);
 
   @media (prefers-color-scheme: dark) {
@@ -29,6 +28,11 @@ footer,
     @media (prefers-color-scheme: dark) {
       border-color: var(--raven-black);
     }
+  }
+
+  button,
+  .button {
+    background-color: var(--brilliance);
   }
 }
 
@@ -160,4 +164,29 @@ footer,
     background-color: hsl(var(--ink__h), 100%, 7.5%);
     box-shadow: 0 0 0 100vmax var(--ink__h);
   }
+}
+
+/*------------------------------------*/
+
+.location {
+  /* css funtions are goning to help with this near a button */
+  background-color: var(--navy);
+  color: var(--brilliance);
+
+  @media (prefers-color-scheme: dark) {
+    background-color: oklch(75% var(--navy-c) var(--navy-h));
+    color: black;
+  }
+
+  svg {
+    fill: var(--brilliance);
+  }
+}
+
+/*------------------------------------*/
+
+.breadcrumbs {
+  background-color: oklch(97.5% 0.1 95);
+  box-shadow: 0 0 0 100vmax oklch(97.5% 0.1 95);
+  clip-path: inset(0 -100vmax);
 }

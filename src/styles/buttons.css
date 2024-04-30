@@ -132,3 +132,52 @@ footer .book-now {
   gap: 1rem;
   margin-block-end: var(--baseline);
 }
+
+/*------------------------------------*/
+
+.location-stack {
+  margin-block-end: 1.5rem;
+
+  .location {
+    display: flex;
+    flex-flow: row;
+    gap: 1rem;
+
+    > * {
+      flex: 3.5 1; /* guess and check to get the parking on one row in the footer */
+    }
+
+    > .svg {
+      flex: 1 1;
+    }
+  }
+}
+
+.location {
+  padding: 1rem;
+  width: 100%;
+  margin-block-start: 0.75rem;
+  text-decoration: none;
+  display: inline-block; /* same as a button */
+  border-radius: var(--card-radius);
+  box-shadow: var(--penumbra);
+}
+
+.location:hover {
+  box-shadow: var(--antumbra);
+  background-color: oklch(62.5% var(--navy-c) var(--navy-h));
+  color: var(--kingly-cloud);
+
+  svg {
+    fill: var(--kingly-cloud);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    background-color: var(--navy);
+    color: var(--brilliance);
+
+    svg {
+      fill: var(--brilliance);
+    }
+  }
+}

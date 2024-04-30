@@ -506,15 +506,15 @@ const KnowPage = () => {
 
 export default KnowPage
 
-export const Head = () => {
-  return (
-    <SEO
-      title={`Frequently Asked Questions | ${useSiteMetadata().title}`}
-      description="Get answers to your questions about kayaking and paddleboarding in Lake Tahoe with Tahoe City Kayak and Paddleboards’ frequently asked questions page. Learn about our kayak and paddleboard rentals, sales, lessons, tours, and storage options. Contact us at (530) 581-4336 for current hours and availability."
-    >
-      {/* <StrapiMap /> */}
-      <Script type="application/ld+json">
-        {`
+export const Head = () => (
+  <SEO
+    title={`Frequently Asked Questions | ${useSiteMetadata().title}`}
+    // TODO: theres a phone number in here to query
+    description="Get answers to your questions about kayaking and paddleboarding in Lake Tahoe with Tahoe City Kayak and Paddleboards’ frequently asked questions page. Learn about our kayak and paddleboard rentals and tours. Contact us at (530) 581-4336 for current hours and availability."
+  >
+    {/* <StrapiMap /> */}
+    <Script type="application/ld+json">
+      {`
           {
             "@context": "https://schema.org",
             "@type": "BreadcrumbList",
@@ -529,7 +529,6 @@ export const Head = () => {
             }]
           }
         `}
-      </Script>
-    </SEO>
-  )
-}
+    </Script>
+  </SEO>
+)

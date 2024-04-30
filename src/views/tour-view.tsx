@@ -8,7 +8,7 @@ import HourMin from "../components/hour-min"; // TODO check if this should be th
 import Sport from "../components/sport";
 import MapIconSVG from "../images/map-icon";
 import KayakIcon from "../images/kayak";
-import MapLink from "../components/map-link";
+// import MapLink from "../components/map-link";
 import Composition from "../components/composition";
 // import Balancer from 'react-wrap-balancer'
 import Ticket from "../components/ticket";
@@ -139,7 +139,7 @@ const TourView = ({ tour, other }) => {
           <div className="spec">
             <h2>Starts At</h2>
             {/* // TODO I dont have this querying its just hard coded and is like this multiple places */}
-            <MapLink><h3>Tahoe City</h3></MapLink>
+            {/* <MapLink><h3>Tahoe City</h3></MapLink> */}
           </div>
 
           <Spec name="Price" spec={tour.price} unit="$" unitPlace="before" />
@@ -159,15 +159,15 @@ const TourView = ({ tour, other }) => {
 
           {/* // TODO: why are these not variables? */}
           <div className="here__location here__card card--split">
-            <MapLink>
-              <KayakIcon />
-              <p>
-                <strong>Tour Start Location</strong><br />
-                Commons Beach<br />
-                400 North Lake Blvd,<br />
-                Tahoe City 96145<br />
-              </p>
-            </MapLink>
+            {/* <MapLink> */}
+            <KayakIcon />
+            <p>
+              <strong>Tour Start Location</strong><br />
+              Commons Beach<br />
+              400 North Lake Blvd,<br />
+              Tahoe City 96145<br />
+            </p>
+            {/* </MapLink> */}
             <Link to="/map">
               <MapIconSVG />
               <p>
@@ -193,8 +193,8 @@ const TourView = ({ tour, other }) => {
       </div>
 
       <div className="single__other">
-        <h3>Other Tours &amp; Lessons</h3>
-        <h4><Link to={`/tours-lessons/compare/?${tour.slug}`}>Compare the {tour.name} to another tour or lesson.</Link></h4>
+        <h3>Other Tours</h3>
+        <h4><Link to={`/tours/compare/?${tour.slug}`}>Compare the {tour.name} to another tour.</Link></h4>
 
         {/* // TODO: other card */}
         <section className="deck">
@@ -215,7 +215,7 @@ const TourView = ({ tour, other }) => {
       >
         <ol>
           <li>
-            <Link to={`/tours-lessons`}>Tours &amp; Lessons</Link>&nbsp;/&nbsp;
+            <Link to={`/tours`}>Tours</Link>&nbsp;/&nbsp;
           </li>
           <li aria-current="page">{tour.name}</li>
         </ol>

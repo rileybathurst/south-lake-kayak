@@ -6,7 +6,6 @@ import { useSiteMetadata } from '../hooks/use-site-metadata';
 import Header from "../components/header";
 import Footer from "../components/footer";
 import MapSVG from "../images/map";
-import Complete from "../components/locations/complete";
 
 const MapPage = () => {
 
@@ -20,7 +19,7 @@ const MapPage = () => {
 
       {/* // TODO: naming */}
       <div className="home__here">
-        <Complete />
+        {/* <Complete /> */}
         <MapSVG />
       </div>
 

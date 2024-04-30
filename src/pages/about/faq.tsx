@@ -63,7 +63,7 @@ export const Head = () => {
   return (
     <SEO
       title={`Frequently Asked Questions | ${useSiteMetadata().title}`}
-      description="Get answers to your questions about kayaking and paddleboarding in Lake Tahoe with Tahoe City Kayak and Paddleboards frequently asked questions page. Learn about our kayak and paddleboard rentals, sales, lessons, tours, and storage options."
+      description="Get answers to your questions about kayaking and paddleboarding in Lake Tahoe with Tahoe City Kayak and Paddleboards frequently asked questions page. Learn about our kayak and paddleboard, tours, and storage options."
     >
 
       <Script type="application/ld+json">
