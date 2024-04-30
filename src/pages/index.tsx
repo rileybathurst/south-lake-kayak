@@ -12,7 +12,7 @@ import WaterTexture from "../images/watertexture";
 import AndyPaddling from "../images/andypaddling";
 import BookTour from "../components/peek/book-tour";
 import BookRental from "../components/peek/book-rental";
-import Complete from '../components/locations/complete';
+import AllLocations from "../components/all-locations";
 import AboutUs from "../content/about-us";
 import Shop from "../content/shop";
 import Experience from "../content/experience";
@@ -81,6 +81,9 @@ const IndexPage = () => {
           </h2>
 
           <AboutUs />
+
+          <hr />
+          <AllLocations />
 
           <div className="button__double">
             <BookRental />

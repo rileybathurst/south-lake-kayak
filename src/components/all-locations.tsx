@@ -13,6 +13,45 @@ function DangerSVG({ svg }: { svg: string }) {
   )
 }
 
+function Location({ location }: { location: any }) {
+  if (location.link === "https://") {
+    return (
+      <a href={location.link}
+        key={location.id}
+        className="location"
+      >
+        <DangerSVG svg={location.svg} />
+        <div>
+          {location.name}
+        </div>
+        <div>
+          <ReactMarkdown
+            children={location.description.data.description}
+            remarkPlugins={[remarkGfm]}
+          />
+        </div>
+      </a>
+    )
+  } else {
+    <Link
+      key={location.id}
+      to={`/${location.link}`}
+      className="location"
+    >
+      <DangerSVG svg={location.svg} />
+      <div>
+        {location.name}
+      </div>
+      <div>
+        <ReactMarkdown
+          children={location.description.data.description}
+          remarkPlugins={[remarkGfm]}
+        />
+      </div>
+    </Link>
+  }
+}
+
 function AllLocations() {
 
   const { allStrapiLocation } = useStaticQuery(graphql`
@@ -21,6 +60,7 @@ function AllLocations() {
         nodes {
           id
           name
+          link
           svg
           description {
             data {
@@ -35,22 +75,7 @@ function AllLocations() {
   return (
     <section className="location-stack">
       {allStrapiLocation.nodes.map((location) => (
-        <Link
-          key={location.id}
-          // to={`/${location.locale.slug}/${location.name}`}
-          className="location"
-        >
-          <DangerSVG svg={location.svg} />
-          <div>
-            {location.name}
-          </div>
-          <div>
-            < ReactMarkdown
-              children={location.description.data.description}
-              remarkPlugins={[remarkGfm]}
-            />
-          </div>
-        </Link>
+        <Location location={location} />
       ))}
     </section>
   )

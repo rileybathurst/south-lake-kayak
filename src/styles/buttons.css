@@ -155,7 +155,7 @@ footer .book-now {
 
 .location {
   padding: 1rem;
-  width: 100%;
+  width: calc(100% - 2rem);
   margin-block-start: 0.75rem;
   text-decoration: none;
   display: inline-block; /* same as a button */
@@ -179,5 +179,17 @@ footer .book-now {
     svg {
       fill: var(--brilliance);
     }
+  }
+}
+
+.home .location {
+  background-color: var(--brilliance);
+  background-color: transparent;
+  box-shadow: none;
+  border-block-end: 1px solid var(--tin-soldier);
+  color: var(--navy);
+
+  svg {
+    fill: var(--navy);
   }
 }
