@@ -31,6 +31,8 @@ const Ticket = (tour: {
       <GatsbyImage
         image={tour.tour?.ogimage?.localFile?.childImageSharp?.gatsbyImageData}
         alt={tour.tour?.ogimage?.alternativeText}
+        // objectPosition="50% 50%"
+        objectFit="cover"
         className="card__image"
       />
       <h4 className="card__title">

@@ -33,22 +33,24 @@ function Location({ location }: { location: any }) {
       </a>
     )
   } else {
-    <Link
-      key={location.id}
-      to={`/${location.link}`}
-      className="location"
-    >
-      <DangerSVG svg={location.svg} />
-      <div>
-        {location.name}
-      </div>
-      <div>
-        <ReactMarkdown
-          children={location.description.data.description}
-          remarkPlugins={[remarkGfm]}
-        />
-      </div>
-    </Link>
+    return (
+      <Link
+        key={location.id}
+        to={`/${location.link}`}
+        className="location"
+      >
+        <DangerSVG svg={location.svg} />
+        <div>
+          {location.name}
+        </div>
+        <div>
+          <ReactMarkdown
+            children={location.description.data.description}
+            remarkPlugins={[remarkGfm]}
+          />
+        </div>
+      </Link>
+    )
   }
 }
 
