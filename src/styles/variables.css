@@ -12,6 +12,12 @@
   --sunshine: oklch(88% 0.2 95);
   /* I can test out using soft sunshine super soft */
 
+  --sunshine-100: oklch(97.5% 0.025 95);
+  --sunshine-200: oklch(95% 0.05 95);
+  --sunshine-300: oklch(92.5% 0.1 95);
+  --sunshine-400: oklch(90% 0.15 95);
+  --sunshine: oklch(87.5% 0.2 95);
+
   --beige: oklch(95% 0.02 120);
 
   /* louie neutrals */

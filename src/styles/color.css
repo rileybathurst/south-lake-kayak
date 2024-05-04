@@ -13,8 +13,8 @@ body {
 }
 
 footer {
-  background-color: oklch(97.5% 0.025 95);
-  box-shadow: 0 0 0 100vmax oklch(97.5% 0.025 95);
+  background-color: var(--sunshine-100);
+  box-shadow: 0 0 0 100vmax var(--sunshine-100);
   clip-path: inset(0 -100vmax);
 
   @media (prefers-color-scheme: dark) {
@@ -32,7 +32,13 @@ footer {
 
   button,
   .button {
-    background-color: var(--brilliance);
+    background-color: transparent;
+    /* background-color: var(--sunshine-200); */
+  }
+
+  button:hover,
+  .button:hover {
+    background-color: var(--sunshine-200);
   }
 }
 
