@@ -8,9 +8,7 @@ import Footer from "../components/footer"
 import BookNow from "../components/peek/book-now";
 import Ticket from "../components/ticket";
 import { CardType } from "../types/card";
-import MapIconSVG from "../images/map-icon";
-// import MapLink from "../components/map-link";
-import KayakIcon from "../images/kayak";
+import LocationDeck from "../components/location-deck";
 import Sport from "../components/sport";
 
 function Nested(props: { sport: string }) {
@@ -32,27 +30,55 @@ const ToursPage = () => {
 
   const query = useStaticQuery(graphql`
     query ToursQuery {
-      kayak: allStrapiTour
-        (filter: { sport: { eq: "kayak" } }, sort: {featured: ASC})
+      kayak: allStrapiTour(
+        filter: {
+          sport: { eq: "kayak" },
+          locale: {slug: {eq: "south-lake"}},
+        },
+        sort: {featured: ASC})
       {
         nodes {
           ...tourCard
         }
       }
   
-      sup: allStrapiTour
-        (filter: { sport: { eq: "sup" } } sort: {featured: ASC})
+      sup: allStrapiTour(
+        filter: {
+          sport: { eq: "sup" },
+          locale: {slug: {eq: "tahoe-city"}}
+        },
+        sort: {featured: ASC}
+        )
       {
         nodes {
           ...tourCard
         }
       }
+
+      strapiExperience: strapiExperience {
+        text {
+          data {
+            text
+          }
+        }
+      }
+
+      allStrapiLocation: allStrapiLocation(
+          filter: {
+            name: {in: ["On Water Rental", "Parking"]}
+            locale: {slug: {eq: "south-lake"}}
+          }
+        ) {
+          nodes {
+            ...locationCard
+          }
+        }
     }
   `)
 
   let sports = [
     query.kayak,
-    query.paddleboard,
+    query.sup,
   ]
 
   return (
@@ -71,28 +97,11 @@ const ToursPage = () => {
             <BookNow />
             <hr />
           </div>
-
-          <div className="here__location here__card">
-            {/* <MapLink> */}
-            <KayakIcon />
-            <p>
-              <strong>Tour Start Location</strong><br />
-              Commons Beach<br />
-              400 North Lake Blvd,<br />
-              Tahoe City 96145<br />
-            </p>
-            {/* </MapLink> */}
-            <Link to="/map">
-              <MapIconSVG />
-              <p>
-                View The Map<br />
-                For The Store,<br />
-                Tours, Rentals, Parking<br />
-                and Directions
-              </p>
-            </Link>
-          </div>
         </div>
+        <LocationDeck
+          locations={query.allStrapiLocation}
+          background={false}
+        />
       </main>
 
       {sports.map((sport: any) => (

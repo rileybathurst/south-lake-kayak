@@ -63,7 +63,7 @@ const Footer = () => {
 
       allStrapiLocation(
         filter: {
-          locale: {slug: {eq: "tahoe-city"}}
+          locale: {slug: {eq: "south-lake"}}
         },
         sort: {order: ASC}
       ) {
@@ -107,7 +107,7 @@ const Footer = () => {
           <ul>
             {data.allStrapiLocale.nodes.map((locale) => (
               <li key={locale.name}>
-                <Link to={`/${locale.name.toLowerCase()}`}>{locale.name}</Link>
+                <Link to={`https:tahoecitykayak.com`}>{locale.name}</Link>
               </li>
             ))}
           </ul>

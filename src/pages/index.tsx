@@ -28,23 +28,7 @@ const IndexPage = () => {
         sort: {order: ASC}
       ) {
         nodes {
-          name
-          link
-          svg
-          opening_time
-          closing_time
-
-          address {
-            data {
-              address
-            }
-          }
-
-          description {
-            data {
-              description
-            }
-          }
+          ...locationCard
         }
       }
 

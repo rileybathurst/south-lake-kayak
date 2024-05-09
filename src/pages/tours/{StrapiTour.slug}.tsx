@@ -37,7 +37,13 @@ export const query = graphql`
       }
     }
 
-    allStrapiTour(filter: {slug: {nin: [$slug] }}, sort: {featured: ASC},) {
+    allStrapiTour(
+        filter: {
+          slug: {nin: [$slug] },
+          locale: {slug: {eq: "south-lake"}}
+          },
+        sort: {featured: ASC},
+      ) {
       nodes {
         ...tourCard
       }

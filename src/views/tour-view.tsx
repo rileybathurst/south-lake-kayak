@@ -1,23 +1,18 @@
 import * as React from "react";
-import { Link } from "gatsby";
-import ReactMarkdown from "react-markdown";
-import remarkGfm from 'remark-gfm'
+import { Link, graphql, useStaticQuery } from "gatsby"; import ReactMarkdown from "react-markdown";
 import Header from "../components/header"
 import Footer from "../components/footer"
 import HourMin from "../components/hour-min"; // TODO check if this should be the time compoonent
 import Sport from "../components/sport";
-import MapIconSVG from "../images/map-icon";
-import KayakIcon from "../images/kayak";
-// import MapLink from "../components/map-link";
+import LocationCard from "../components/location-card";
 import Composition from "../components/composition";
-// import Balancer from 'react-wrap-balancer'
 import Ticket from "../components/ticket";
 
 function ReactMD(props: { raw: string; }) {
   return (
     <ReactMarkdown
       children={props.raw}
-      remarkPlugins={[remarkGfm]}
+      className="react-markdown"
     />
   );
 }
@@ -107,6 +102,21 @@ function TourName(props: { tour: string; }) {
 
 const TourView = ({ tour, other }) => {
 
+  const { strapiLocation } = useStaticQuery(graphql`
+  query TourViewQuery {
+    strapiLocation(
+      locale: {slug: {eq: "south-lake"}}
+      name: {eq: "On Water Rental"}
+    ) {
+      ...locationCard
+
+      locale {
+        name
+      }
+    }
+  }
+`);
+
   return (
     <>
       <Header />
@@ -157,27 +167,7 @@ const TourView = ({ tour, other }) => {
 
           <hr />
 
-          {/* // TODO: why are these not variables? */}
-          <div className="here__location here__card card--split">
-            {/* <MapLink> */}
-            <KayakIcon />
-            <p>
-              <strong>Tour Start Location</strong><br />
-              Commons Beach<br />
-              400 North Lake Blvd,<br />
-              Tahoe City 96145<br />
-            </p>
-            {/* </MapLink> */}
-            <Link to="/map">
-              <MapIconSVG />
-              <p>
-                View The Map<br />
-                For The Store,<br />
-                Tours, Rentals, Parking<br />
-                and Directions
-              </p>
-            </Link>
-          </div>
+          <LocationCard location={strapiLocation} />
         </section>
 
       </main>

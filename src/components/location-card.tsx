@@ -132,7 +132,7 @@ function LocationCard({ location, background }: LocationCardTypes) {
 
   // console.log(location);
 
-  if (location.link === "https://") {
+  if (location.link.includes('http')) {
     return (
       <a href={location.link}
         key={location.id}

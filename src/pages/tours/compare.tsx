@@ -76,8 +76,8 @@ function Compare(props) {
     return null;
   }
 
-  const [tour1, setTour1] = useState('Sunset Kayak Tour on Lake Tahoe');
-  const [tour2, setTour2] = useState('Historic West Shore Tour');
+  const [tour1, setTour1] = useState('Discover Tour');
+  const [tour2, setTour2] = useState('Sunset Tour');
 
   const [link1, setLink1] = useState('not set');
   const [link2, setLink2] = useState('not set');
@@ -209,7 +209,10 @@ const ComparePage = () => {
 
   const { allStrapiTour } = useStaticQuery(graphql`
     query TourCompareQuery {
-      allStrapiTour(sort: {featured: ASC},) {
+      allStrapiTour(
+        filter: {locale: {slug: {eq: "south-lake"}}}
+        sort: {featured: ASC}
+        ) {
         nodes {
           id
           fitness
