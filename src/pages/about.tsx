@@ -1,15 +1,28 @@
 import * as React from "react"
-import { Link } from "gatsby"
+import { Link, useStaticQuery, graphql } from 'gatsby';
 import { SEO } from "../components/seo";
 import { useSiteMetadata } from '../hooks/use-site-metadata';
-
+import Markdown from "react-markdown";
 import Header from "../components/header";
 import Footer from "../components/footer";
-import AboutUs from "../content/about-us";
 
 import Composition from "../components/composition";
 
 const AboutPage = () => {
+
+  const { strapiAbout } = useStaticQuery(graphql`
+    query AboutQuery {
+
+      strapiAbout {
+        text {
+          data {
+            text
+          }
+        }
+      }
+
+    }
+  `)
 
   return (
     <>
@@ -19,7 +32,10 @@ const AboutPage = () => {
         <main>
           <h1>About Us</h1>
           {/* // ? I might be able to query this its not the slogan but its almost the same maybe a single strapi */}
-          <AboutUs />
+          <Markdown
+            children={strapiAbout.text.data.text}
+            className="react-markdown"
+          />
 
           <ul>
             <li key="faq"><Link to="/about/faq">Frequently Asked Questions</Link></li>

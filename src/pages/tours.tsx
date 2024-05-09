@@ -1,12 +1,11 @@
 import * as React from "react"
 import { Link, useStaticQuery, graphql } from 'gatsby';
 import { SEO } from "../components/seo"
-
+import Markdown from "react-markdown";
 import { useSiteMetadata } from '../hooks/use-site-metadata';
 import Header from "../components/header"
 import Footer from "../components/footer"
 import BookNow from "../components/peek/book-now";
-import Experience from "../content/experience";
 import Ticket from "../components/ticket";
 import { CardType } from "../types/card";
 import MapIconSVG from "../images/map-icon";
@@ -36,28 +35,24 @@ const ToursPage = () => {
       kayak: allStrapiTour
         (filter: { sport: { eq: "kayak" } }, sort: {featured: ASC})
       {
-      nodes {
-        ...tourCard
-
+        nodes {
+          ...tourCard
+        }
       }
-  }
   
-  sup: allStrapiTour
-    (filter: { sport: { eq: "sup" } } sort: {featured: ASC})
-    {
-      nodes {
-        ...tourCard
+      sup: allStrapiTour
+        (filter: { sport: { eq: "sup" } } sort: {featured: ASC})
+      {
+        nodes {
+          ...tourCard
+        }
       }
     }
-}
-`)
-
-  let kayak = query.kayak;
-  let paddleboard = query.sup;
+  `)
 
   let sports = [
-    kayak,
-    paddleboard,
+    query.kayak,
+    query.paddleboard,
   ]
 
   return (
@@ -68,7 +63,10 @@ const ToursPage = () => {
         <div className="passage location_card-wrapper">
           <div>
             <h1>Tours</h1>
-            <Experience />
+            <Markdown
+              children={query.strapiExperience.text.data.text}
+              className="react-markdown"
+            />
             <h2><Link to="/tours/compare">Compare Tours</Link></h2>
             <BookNow />
             <hr />

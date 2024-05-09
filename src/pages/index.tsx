@@ -3,6 +3,7 @@ import { Link, useStaticQuery, graphql } from 'gatsby';
 import { SEO } from "../components/seo";
 import { useSiteMetadata } from '../hooks/use-site-metadata';
 // import { useStrapiTopBar } from "../hooks/use-strapi-topbar";
+import Markdown from "react-markdown";
 
 import Header from "../components/header"
 import Footer from "../components/footer"
@@ -12,32 +13,81 @@ import WaterTexture from "../images/watertexture";
 import AndyPaddling from "../images/andypaddling";
 import BookTour from "../components/peek/book-tour";
 import BookRental from "../components/peek/book-rental";
-import AllLocations from "../components/all-locations";
-import AboutUs from "../content/about-us";
-import Shop from "../content/shop";
-import Experience from "../content/experience";
 import Ticket from "../components/ticket";
+import LocationDeck from "../components/location-deck";
 
 const IndexPage = () => {
 
-  const { allStrapiTour } = useStaticQuery(graphql`
+  const data = useStaticQuery(graphql`
     query IndexQuery {
 
-      allStrapiTour(
-        filter: {locale: {slug: {eq: "south-lake"}}}
-        sort: {featured: ASC}
+      allStrapiLocation(
+        filter: {
+          locale: {slug: {eq: "south-lake"}}
+        },
+        sort: {order: ASC}
       ) {
         nodes {
-          ...tourCard
+          name
+          link
+          svg
+          opening_time
+          closing_time
+
+          address {
+            data {
+              address
+            }
+          }
+
+          description {
+            data {
+              description
+            }
+          }
         }
       }
-      
+
+      allStrapiTour(
+        sort: {featured: ASC},
+        filter: {location: {eq: "south lake"}}
+        ) {
+        nodes {
+          ...tourCard
+          id
+        }
+      }
+
+      strapiAbout {
+        text {
+          data {
+            text
+          }
+        }
+      }
+
+      strapiShop {
+        text {
+          data {
+            text
+          }
+        }
+      }
+
+      strapiExperience {
+        text {
+          data {
+            text
+          }
+        }
+      }
+
     }
   `)
 
   // ! I need to order the tours
 
-  let allTours = allStrapiTour.nodes
+  let allTours = data.allStrapiTour.nodes
   // console.log(allTours);
 
   // State for the list
@@ -83,10 +133,17 @@ const IndexPage = () => {
             North Lake Tahoe&apos;s Premier Kayak and Paddleboard Provider, offering Rentals and Tours
           </h2>
 
-          <AboutUs />
+          <div className="margin-block-end-aconcagua">
+            <Markdown
+              children={data.strapiAbout.text.data.text}
+              className="react-markdown"
+            />
+          </div>
 
-          <hr />
-          <AllLocations />
+          <LocationDeck
+            locations={data.allStrapiLocation}
+            background={false}
+          />
 
           <div className="button__double">
             <BookRental />
@@ -102,7 +159,7 @@ const IndexPage = () => {
             <AndyPaddling className="andy" />
           </div>
 
-          <PricingChart book={false} />
+          <PricingChart book={true} />
         </div>
       </main>
 
@@ -115,10 +172,10 @@ const IndexPage = () => {
             <h4 className="supra">Enjoy The Majesty Of Lake Tahoe</h4>
           </hgroup>
 
-
-          <Experience />
-
-
+          <Markdown
+            children={data.strapiExperience.text.data.text}
+            className="react-markdown"
+          />
 
           <h4>
             <Link to="/tours/compare">Compare Tours</Link>
@@ -142,18 +199,22 @@ const IndexPage = () => {
         )}
         <hr />
       </div>
-      {/* // TODO add this back inthis probably still needs more */}
-      {/* <MapSVG /> */}
 
       <section id="retail" className="passage">
-        {/* <h3><Link to="/retail" className="">Retail</Link></h3> */}
         {/* // TODO: only one h and then p */}
         <hgroup className="crest">
-          <h3 className="brow"><Link to="/retail">Retail Store</Link></h3>
+          <h3 className="brow">
+            <a href="https://tahoecitykayak.com/retail/">
+              Retail Store
+            </a>
+          </h3>
           <h4 className="supra">Kayaks and Paddleboards</h4>
         </hgroup>
 
-        <Shop />
+        <Markdown
+          children={data.strapiShop.text.data.text}
+          className="react-markdown"
+        />
         <hr />
       </section>
 

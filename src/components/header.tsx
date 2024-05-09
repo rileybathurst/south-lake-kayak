@@ -131,7 +131,7 @@ const Header = () => {
     }
   `)
 
-  console.log(strapiLocale.name);
+  // console.log(strapiLocale.name);
 
   return (
     <header>

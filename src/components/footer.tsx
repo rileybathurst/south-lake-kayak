@@ -7,9 +7,9 @@ import FacebookIcon from "../images/facebook";
 import MenuList from "./menu-list";
 import Logo from "../images/logo";
 import { useSiteMetadata } from "../hooks/use-site-metadata"
-import AllLocations from "./all-locations";
 import Phone from "./phone";
 import Mail from "./mail";
+import LocationDeck from "./location-deck";
 
 function Facebook() {
   if (useSiteMetadata().social?.facebook) {
@@ -43,27 +43,39 @@ function Instagram() {
   }
 }
 
-
 const Footer = () => {
 
   const data = useStaticQuery(graphql`
-  query FooterQuery {
-    strapiLocale(slug: {eq: "south-lake"}) {
-      phone
-      email
-    }
+    query FooterQuery {
+      strapiLocale(slug: {eq: "south-lake"}) {
+        email
+      }
 
-    allStrapiLocale(filter: {slug: {ne: "south-lake"}}) {
-      nodes {
-        name
+      allStrapiLocale(filter: {slug: {ne: "south-lake"}}) {
+        nodes {
+          name
+        }
+      }
+
+      strapiLocale(slug: {eq: "south-lake"}) {
+        email
+      }
+
+      allStrapiLocation(
+        filter: {
+          locale: {slug: {eq: "tahoe-city"}}
+        },
+        sort: {order: ASC}
+      ) {
+        nodes {
+          ...locationCard
+        }
       }
     }
-  }
-`)
+  `)
 
   return (
     <footer>
-      {/* holds together a flex */}
       <section>
         <h3 className='sr-only'>
           <Link to="/">{useSiteMetadata().title}</Link>
@@ -77,7 +89,13 @@ const Footer = () => {
         <hr />
         <div className="footer__contact">
           <Phone />
-          <Mail />
+          <a
+            href={`mailto:${data.strapiLocale.email}`}
+            rel="norel norefferer"
+            className="button"
+          >
+            {data.strapiLocale.email}
+          </a>
           <div className="social">
             <Facebook />
             <Instagram />
@@ -99,7 +117,10 @@ const Footer = () => {
         <PricingChart book={false} />
         <hr />
 
-        <AllLocations />
+        <LocationDeck
+          locations={data.allStrapiLocation}
+          background={false}
+        />
       </section>
 
     </footer >
