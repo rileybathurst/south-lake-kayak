@@ -20,21 +20,24 @@ import Ticket from "../components/ticket";
 
 const IndexPage = () => {
 
-  const { strapiLocale } = useStaticQuery(graphql`
+  const { allStrapiTour } = useStaticQuery(graphql`
     query IndexQuery {
-      strapiLocale(slug: {eq: "south-lake"}) {
-        name
 
-        tours {
+      allStrapiTour(
+        filter: {locale: {slug: {eq: "south-lake"}}}
+        sort: {featured: ASC}
+      ) {
+        nodes {
           ...tourCard
         }
       }
+      
     }
   `)
 
   // ! I need to order the tours
 
-  let allTours = strapiLocale.tours
+  let allTours = allStrapiTour.nodes
   // console.log(allTours);
 
   // State for the list

@@ -572,22 +572,30 @@ footer {
 /* #LOCATION */
 /*------------------*/
 
-.location-stack {
+.location-deck {
   margin-block-end: 1.5rem;
+}
 
-  .location {
-    display: flex;
-    flex-flow: row;
-    gap: 1rem;
+.location {
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+  gap: var(--elbrus);
+  padding: var(--elbrus);
+  border-radius: var(--card-radius);
 
-    > * {
-      flex: 3.5 1; /* guess and check to get the parking on one row in the footer */
-    }
-
-    > svg {
-      flex: 1 1;
-    }
+  > * {
+    flex: 3.5 1; /* guess and check to get the parking on one row in the footer */
   }
+
+  > svg,
+  .svg {
+    flex: 1 1;
+  }
+}
+
+.location.false {
+  border-radius: 0;
 }
 
 /*------------------*/

@@ -13,8 +13,8 @@ body {
 }
 
 footer {
-  background-color: var(--sunshine-100);
-  box-shadow: 0 0 0 100vmax var(--sunshine-100);
+  background-color: var(--brilliance);
+  box-shadow: 0 0 0 100vmax var(--brilliance);
   clip-path: inset(0 -100vmax);
 
   @media (prefers-color-scheme: dark) {
@@ -173,6 +173,8 @@ footer {
 }
 
 /*------------------------------------*/
+/* #LOCATION */
+/*------------------------------------*/
 
 .location {
   /* css funtions are goning to help with this near a button */
@@ -186,6 +188,17 @@ footer {
 
   svg {
     fill: var(--brilliance);
+  }
+}
+
+.location.false {
+  background-color: transparent;
+  border-block-end: 1px solid var(--tin-soldier);
+  box-shadow: none;
+
+  color: var(--navy);
+  svg {
+    fill: var(--navy);
   }
 }
 

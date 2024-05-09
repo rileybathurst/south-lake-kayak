@@ -1,21 +1,26 @@
 import * as React from "react"
-
-import { useSiteMetadata } from "../hooks/use-site-metadata"
+import { useStaticQuery, graphql } from "gatsby"
 
 const Mail = () => {
-  if (useSiteMetadata().email) {
-    return (
-      <a
-        href={`mailto:${useSiteMetadata().email}`}
-        rel="norel norefferer"
-        className="button"
-      >
-        {useSiteMetadata().email}
-      </a>
-    )
-  } else {
-    return null
-  }
+
+  const { strapiLocale } = useStaticQuery(graphql`
+    query PhoneQuery {
+      strapiLocale(slug: {eq: "south-lake"}) {
+        email
+      }
+    }
+  `)
+
+
+  return (
+    <a
+      href={`mailto:${strapiLocale.email}`}
+      rel="norel norefferer"
+      className="button"
+    >
+      {strapiLocale.email}
+    </a>
+  )
 }
 
 export default Mail

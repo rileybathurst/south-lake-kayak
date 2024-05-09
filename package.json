@@ -16,6 +16,9 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "@fontsource/barlow": "^5.0.12",
+    "@fontsource/barlow-condensed": "^5.0.12",
+    "@rileybathurst/paddle": "^0.0.0",
     "gatsby": "^5.13.3",
     "gatsby-plugin-image": "^3.13.1",
     "gatsby-plugin-postcss": "^6.13.1",
@@ -32,9 +35,7 @@
     "react-aria-components": "^1.1.1",
     "react-dom": "^18.2.0",
     "react-leaflet": "^4.2.1",
-    "react-markdown": "^9.0.1",
-    "@fontsource/barlow": "^5.0.12",
-    "@fontsource/barlow-condensed": "^5.0.12"
+    "react-markdown": "^9.0.1"
   },
   "devDependencies": {
     "@mdx-js/react": "^3.0.1",
