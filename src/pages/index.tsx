@@ -4,6 +4,7 @@ import { SEO } from "../components/seo";
 import { useSiteMetadata } from '../hooks/use-site-metadata';
 // import { useStrapiTopBar } from "../hooks/use-strapi-topbar";
 import Markdown from "react-markdown";
+import { faker } from '@faker-js/faker';
 
 import Header from "../components/header"
 import Footer from "../components/footer"
@@ -113,13 +114,13 @@ const IndexPage = () => {
       <main className="home">
         <section>
           <h2 className="page-title">
-            {/* // TODO: */}
-            North Lake Tahoe&apos;s Premier Kayak and Paddleboard Provider, offering Rentals and Tours
+            {faker.company.catchPhrase()}
           </h2>
 
           <div className="margin-block-end-aconcagua">
             <Markdown
-              children={data.strapiAbout.text.data.text}
+              // children={data.strapiAbout.text.data.text}
+              children={faker.lorem.paragraphs(3)}
               className="react-markdown"
             />
           </div>

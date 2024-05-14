@@ -18,7 +18,7 @@
   "dependencies": {
     "@fontsource/barlow": "^5.0.12",
     "@fontsource/barlow-condensed": "^5.0.12",
-    "@rileybathurst/paddle": "^0.0.0",
+    "@rileybathurst/paddle": "^0.0.1",
     "gatsby": "^5.13.3",
     "gatsby-plugin-image": "^3.13.1",
     "gatsby-plugin-postcss": "^6.13.1",
@@ -38,6 +38,7 @@
     "react-markdown": "^9.0.1"
   },
   "devDependencies": {
+    "@faker-js/faker": "^8.4.1",
     "@mdx-js/react": "^3.0.1",
     "@types/node": "^20.11.19",
     "@types/react": "^18.2.55",
