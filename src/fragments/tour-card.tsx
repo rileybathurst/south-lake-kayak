@@ -17,7 +17,7 @@ export const query = graphql`
     ogimage {
       localFile {
         childImageSharp {
-          gatsbyImageData(aspectRatio: 2)
+          gatsbyImageData(aspectRatio: 1.5)
         }
       }
       alternativeText

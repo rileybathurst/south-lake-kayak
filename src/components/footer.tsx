@@ -8,7 +8,6 @@ import MenuList from "./menu-list";
 import Logo from "../images/logo";
 import { useSiteMetadata } from "../hooks/use-site-metadata"
 import Phone from "./phone";
-import Mail from "./mail";
 import LocationDeck from "./location-deck";
 
 function Facebook() {
@@ -22,9 +21,9 @@ function Facebook() {
         <FacebookIcon />
       </a>
     )
-  } else {
-    return null
   }
+
+  return null
 }
 
 function Instagram() {
@@ -38,9 +37,9 @@ function Instagram() {
         <InstagramIcon />
       </a>
     )
-  } else {
-    return null
   }
+
+  return null
 }
 
 const Footer = () => {
@@ -54,11 +53,8 @@ const Footer = () => {
       allStrapiLocale(filter: {slug: {ne: "south-lake"}}) {
         nodes {
           name
+          url
         }
-      }
-
-      strapiLocale(slug: {eq: "south-lake"}) {
-        email
       }
 
       allStrapiLocation(
@@ -73,6 +69,11 @@ const Footer = () => {
       }
     }
   `)
+
+  interface LocaleTypes {
+    name: string,
+    url: string
+  }
 
   return (
     <footer>
@@ -105,9 +106,14 @@ const Footer = () => {
         <div className="footer__locations">
           <h3>Our Partner Locations</h3>
           <ul>
-            {data.allStrapiLocale.nodes.map((locale) => (
+            {data.allStrapiLocale.nodes.map((locale: LocaleTypes) => (
               <li key={locale.name}>
-                <Link to={`https:tahoecitykayak.com`}>{locale.name}</Link>
+                <a href={locale.url}
+                  target="_blank"
+                  rel='noopener noreferrer'
+                >
+                  {locale.name}
+                </a>
               </li>
             ))}
           </ul>

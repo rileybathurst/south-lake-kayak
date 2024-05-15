@@ -46,14 +46,10 @@
 .home__photo-grid {
   margin-block-end: 3rem;
   display: grid;
-  grid-template-rows: 4rem 1rem auto;
+  grid-template-rows: auto 3rem auto;
   grid-template-columns: 1fr 1fr;
 
-  @media (min-width: 40rem) {
-    grid-template-rows: 10rem 2rem auto;
-  }
-
-  .kayakers {
+  .hero {
     grid-row: 1/3;
     grid-column: 1/3;
     margin-inline-end: 1rem;
@@ -68,19 +64,21 @@
     z-index: -1; /* TODO: variable */
   }
 
-  .andy {
+  .inset {
     grid-row: 3;
-    grid-column: 2;
-    max-height: 6rem;
+    grid-column: 1/3;
+    place-self: end;
+    max-height: 10rem;
     margin-block-start: -2rem;
-    /* margin-inline-start: 4rem; */
+    margin-inline-end: 4rem;
     border-radius: 50%;
     aspect-ratio: 1;
+    border-width: 2px;
 
     @media (min-width: 40rem) {
-      max-height: 10rem;
-      margin-block-start: -4rem;
-      /* margin-inline-start: 8rem; */
+      grid-column: 2;
+      max-height: 20rem;
+      margin-block-start: -9rem;
     }
 
     img {

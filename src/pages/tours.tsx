@@ -7,23 +7,20 @@ import Header from "../components/header"
 import Footer from "../components/footer"
 import BookNow from "../components/peek/book-now";
 import Ticket from "../components/ticket";
-import { CardType } from "../types/card";
+import type { CardType } from "../types/card";
 import LocationDeck from "../components/location-deck";
 import Sport from "../components/sport";
 
 function Nested(props: { sport: string }) {
   if (props.sport) {
-    // console.log(props.sport);
-
     return (
       <h1 className="capitalize">
         <Sport sport={props.sport} />
       </h1>
     )
   }
-  else {
-    return null;
-  }
+
+  return null;
 }
 
 const ToursPage = () => {
@@ -45,7 +42,7 @@ const ToursPage = () => {
       sup: allStrapiTour(
         filter: {
           sport: { eq: "sup" },
-          locale: {slug: {eq: "tahoe-city"}}
+          locale: {slug: {eq: "south-lake"}}
         },
         sort: {featured: ASC}
         )

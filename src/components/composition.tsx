@@ -9,9 +9,9 @@ import { useStrapiTextures } from "../hooks/use-strapi-textures"
 function Paddler(props: { sport?: string; }) {
   if (props.sport === "sup") {
     return <Supper className="paddler" />
-  } else {
-    return <Kayaker className="paddler" />
   }
+
+  return <Kayaker className="paddler" />
 }
 
 function TopThree(props: { className: string; }) {

@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react"
 import { Link, useStaticQuery, graphql } from 'gatsby';
+import { GatsbyImage } from "gatsby-plugin-image"
 import { SEO } from "../components/seo";
-import { useSiteMetadata } from '../hooks/use-site-metadata';
-// import { useStrapiTopBar } from "../hooks/use-strapi-topbar";
 import Markdown from "react-markdown";
 import { faker } from '@faker-js/faker';
 
@@ -67,12 +66,38 @@ const IndexPage = () => {
         }
       }
 
+      strapiLocale(slug: {eq: "tahoe-city"}) {
+        url
+      }
+
+      southlakefriends: strapiImagegrab(title: {eq: "south-lake-friends"}) {
+        title
+        image {
+          localFile {
+            childImageSharp {
+              gatsbyImageData
+            }
+          }
+        }
+      }
+
+      goldshed: strapiImagegrab(title: {eq: "gold-shed"}) {
+        title
+        image {
+          localFile {
+            childImageSharp {
+              gatsbyImageData
+            }
+          }
+        }
+      }
+
     }
   `)
 
   // ! I need to order the tours
 
-  let allTours = data.allStrapiTour.nodes
+  const allTours = data.allStrapiTour.nodes
   // console.log(allTours);
 
   // State for the list
@@ -139,9 +164,17 @@ const IndexPage = () => {
 
         <div>
           <div className="home__photo-grid">
-            <TwoKayakers className="kayakers" />
+            <GatsbyImage
+              image={data.southlakefriends.image.localFile.childImageSharp.gatsbyImageData}
+              alt={data.southlakefriends.title}
+              className='img__wrapped hero'
+            />
             <WaterTexture className="texture" />
-            <AndyPaddling className="andy" />
+            <GatsbyImage
+              image={data.goldshed.image.localFile.childImageSharp.gatsbyImageData}
+              alt={data.southlakefriends.title}
+              className='img__wrapped inset'
+            />
           </div>
 
           <PricingChart book={true} />
@@ -178,7 +211,7 @@ const IndexPage = () => {
       </div>
       <div className="deck__more">
         {hasMore ? (
-          <button onClick={handleLoadMore} className=''>VIEW MORE TOURS</button>
+          <button type="button" onClick={handleLoadMore}>VIEW MORE TOURS</button>
         ) : (
           <p>Thats all the tours</p>
         )}
@@ -189,7 +222,10 @@ const IndexPage = () => {
         {/* // TODO: only one h and then p */}
         <hgroup className="crest">
           <h3 className="brow">
-            <a href="https://tahoecitykayak.com/retail/">
+            <a href={data.strapiLocale.url}
+              target="_blank"
+              rel='noopener noreferrer'
+            >
               Retail Store
             </a>
           </h3>
