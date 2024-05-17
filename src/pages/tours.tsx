@@ -11,18 +11,6 @@ import type { CardType } from "../types/card";
 import LocationDeck from "../components/location-deck";
 import Sport from "../components/sport";
 
-function Nested(props: { sport: string }) {
-  if (props.sport) {
-    return (
-      <h1 className="capitalize">
-        <Sport sport={props.sport} />
-      </h1>
-    )
-  }
-
-  return null;
-}
-
 const ToursPage = () => {
 
   const query = useStaticQuery(graphql`
@@ -82,30 +70,29 @@ const ToursPage = () => {
     <>
       <Header />
 
-      <main>
-        <div className="passage location_card-wrapper">
-          <div>
-            <h1>Tours</h1>
-            <Markdown
-              children={query.strapiExperience.text.data.text}
-              className="react-markdown"
-            />
-            <h2><Link to="/tours/compare">Compare Tours</Link></h2>
-            <BookNow />
-            <hr />
-          </div>
-        </div>
+      <main className="condor">
+        <h1>Tours</h1>
+        <Markdown
+          children={query.strapiExperience.text.data.text}
+          className="react-markdown"
+        />
+        <h2><Link to="/tours/compare">Compare Tours</Link></h2>
+        <BookNow />
+        <hr />
+      </main>
+      <section className="pelican">
         <LocationDeck
           locations={query.allStrapiLocation}
           background={false}
         />
-      </main>
+      </section>
 
       {sports.map((sport: any) => (
         <section key={sport.nodes[0].id}>
-          <hgroup className="passage">
-            {/* naming this is weird */}
-            <Nested sport={sport.nodes[0].sport} />
+          <hgroup className="pelican">
+            <h1 className="capitalize">
+              <Sport sport={sport.nodes[0].sport} />
+            </h1>
             <p className="aconcagua">Tours &amp; Lessions</p>
           </hgroup>
 

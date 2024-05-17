@@ -1,30 +1,27 @@
+// TODO: This is now broken with emerald bay being a mega tour
+// https://developer.mozilla.org/en-US/docs/Web/HTML/Element/time#a_valid_time_string
 import * as React from "react"
 import HourMin from "./hour-min";
 
-const Time = (props: {
-  start?: Date;
-  finish?: Date;
-  duration?: Date;
-}) => {
-  if (props.start) {
+interface TimeTypes {
+  start?: string | null;
+  finish?: string | null;
+  duration?: number | null;
+}
+const Time = ({ start, finish, duration }: TimeTypes) => {
+  if (start && finish) {
     return (
-      <h4>
-        {/* https://developer.mozilla.org/en-US/docs/Web/HTML/Element/time */}
-        <time dateTime={props.start}>
-          <HourMin time={props.start} /> - <HourMin time={props.finish} />
-        </time>
-      </h4>
-    )
-  } else {
-    return (
-      <h4>
-        {/* This JSX tag's children prop expects single child of type Element, but multiple children were provided */}
-        <>
-          {props.duration} mins
-        </>
-      </h4>
+      <time dateTime={start}>
+        <HourMin time={start} /> - <HourMin time={finish} />
+      </time>
     )
   }
+
+  return (
+    <h4>
+      {duration} mins
+    </h4>
+  )
 }
 
 export default Time

@@ -6,8 +6,8 @@ import Kayaker from "../images/kayaker";
 import Supper from "../images/supper";
 import { useStrapiTextures } from "../hooks/use-strapi-textures"
 
-function Paddler(props: { sport?: string; }) {
-  if (props.sport === "sup") {
+function Paddler({ sport }: CompositionTypes) {
+  if (sport === "paddleboard") {
     return <Supper className="paddler" />
   }
 
@@ -27,12 +27,16 @@ function TopThree(props: { className: string; }) {
   />
 }
 
-const Composition = (props: { sport?: string; }) => {
+interface CompositionTypes {
+  sport?: string;
+  tour?: string;
+}
+const Composition = ({ sport, tour }: CompositionTypes) => {
   return (
     <div className="composition">
-      <WaterTexture className="t1" />
-      <TopThree className="t2 img__wrapped" />
-      <Paddler sport={props.sport} />
+      <WaterTexture className="texture-1" />
+      <TopThree className="texture-2 img__wrapped" />
+      <Paddler sport={sport} tour={tour} />
     </div>
   )
 }

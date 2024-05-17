@@ -10,38 +10,6 @@ import { useSiteMetadata } from "../hooks/use-site-metadata"
 import Phone from "./phone";
 import LocationDeck from "./location-deck";
 
-function Facebook() {
-  if (useSiteMetadata().social?.facebook) {
-    return (
-      <a
-        href={useSiteMetadata().social.facebook}
-        target='_blank' rel='noopener noreferrer'
-        aria-label={`${useSiteMetadata().title} facebook`}
-      >
-        <FacebookIcon />
-      </a>
-    )
-  }
-
-  return null
-}
-
-function Instagram() {
-  if (useSiteMetadata().social?.instagram) {
-    return (
-      <a
-        href={useSiteMetadata().social.instagram}
-        target='_blank' rel='noopener noreferrer'
-        aria-label={`${useSiteMetadata().title} instagram`}
-      >
-        <InstagramIcon />
-      </a>
-    )
-  }
-
-  return null
-}
-
 const Footer = () => {
 
   const data = useStaticQuery(graphql`
@@ -98,8 +66,25 @@ const Footer = () => {
             {data.strapiLocale.email}
           </a>
           <div className="social">
-            <Facebook />
-            <Instagram />
+            {useSiteMetadata().social?.facebook ?
+              <a
+                href={useSiteMetadata().social.facebook}
+                target='_blank' rel='noopener noreferrer'
+                aria-label={`${useSiteMetadata().title} facebook`}
+              >
+                <FacebookIcon />
+              </a>
+              : null
+            }
+            {useSiteMetadata().social?.instagram ?
+              <a href={useSiteMetadata().social.instagram}
+                target='_blank'
+                rel='noopener noreferrer'
+                aria-label={`${useSiteMetadata().title} instagram`}
+              >
+                <InstagramIcon />
+              </a>
+              : null}
           </div>
         </div>
         <hr />

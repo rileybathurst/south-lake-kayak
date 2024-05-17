@@ -1,64 +1,49 @@
-// * this is the tour version of a card
 // ? should this have a sport always displayed?
 
 import * as React from "react"
 import { Link } from "gatsby"
-import { GatsbyImage, IGatsbyImageData } from "gatsby-plugin-image"
+import { GatsbyImage } from "gatsby-plugin-image"
 import Time from "./time"
-import Fitness from "./fitness"
+import type { TicketTypes } from "../types/ticket-types"
 
-const Ticket = (tour: {
-  tour: {
-    id: React.Key;
-    ogimage: { localFile: { childImageSharp: { gatsbyImageData: IGatsbyImageData; }; }; alternativeText: string; };
-    slug: string;
-    name: string;
-    start: Date;
-    finish: Date;
-    duration: Date;
-    fitness: string;
-    excerpt: string;
-    price: string;
-    peek: string;
-  };
-}) => {
-
-
+const Ticket = ({ tour }: TicketTypes) => {
   return (
-    <Link to={`/tours/${tour.tour.slug}`}
-      className="card"
-    >
-      <GatsbyImage
-        image={tour.tour?.ogimage?.localFile?.childImageSharp?.gatsbyImageData}
-        alt={tour.tour?.ogimage?.alternativeText}
-        // objectPosition="50% 50%"
-        objectFit="cover"
-        className="card__image"
-      />
+    <section className="ticket">
+      <Link to={`/tours/${tour.slug}`}>
+        <GatsbyImage
+          image={tour?.ogimage?.localFile?.childImageSharp?.gatsbyImageData}
+          alt={`${tour?.ogimage?.alternativeText || tour.name} image`}
+          objectFit="cover"
+          className="card__image"
+        />
+      </Link>
       <h4 className="card__title">
-        {tour.tour.name}
+        <Link to={`/tours/${tour.slug}`}>
+          {tour.name}
+        </Link>
       </h4>
       <div className="card__specs">
         <Time
-          start={tour.tour.start}
-          finish={tour.tour.finish}
-          duration={tour.tour.duration}
+          start={tour.start}
+          finish={tour.finish}
+          duration={tour.duration}
         />
-        <Fitness fitness={tour.tour.fitness} />
+        {tour.fitness ? <h4 className="capitalize">{tour.fitness} <span>Fitness</span></h4> : null}
       </div>
       <hr />
-      <p>{tour.tour.excerpt}</p>
+      <p>{tour.excerpt}</p>
       <hr />
       <div className="card__details">
-        <h5>${tour.tour.price}</h5>
+        <h5>${tour.price}</h5>
         <a
-          href={tour.tour.peek}
+          href={tour.peek}
           className="book-now"
         >
           BOOK NOW
         </a>
       </div>
-    </Link>
+
+    </section>
   )
 }
 

@@ -222,7 +222,7 @@ a:hover .instagram {
     object-fit: contain;
     object-fit: cover;
     box-shadow: var(--umbra);
-    max-width: var(--swan);
+    max-width: var(--stork);
     border: 2px solid whitesmoke;
 
     @media (prefers-color-scheme: dark) {

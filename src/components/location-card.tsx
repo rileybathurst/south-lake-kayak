@@ -2,6 +2,7 @@ import * as React from "react"
 import { Link } from 'gatsby';
 import Markdown from "react-markdown";
 import HourMin from "./hour-min";
+import type { LocationCardTypes } from "../types/location-card-types";
 
 interface DangerSVGTypes {
   svg: string;
@@ -26,7 +27,9 @@ function Season({ season_start, season_end, opening_time, closing_time, name }: 
 
   if (name === "Free Parking Lot" || name === "Parking") {
     return null;
-  } else if (new Date(season_start) < new Date()) {
+  }
+
+  if (new Date(season_start) < new Date()) {
     return (
       <p>
         {opening_time ? "Open Daily: " : null}
@@ -35,16 +38,16 @@ function Season({ season_start, season_end, opening_time, closing_time, name }: 
         <HourMin time={closing_time} />
       </p>
     )
-  } else {
-    return (
-      <p>
-        We&apos;re closed for the season:<br />
-        We will reopen<br />
-        {season_start} - {season_end}<br />
-        Weather Permitting
-      </p>
-    )
   }
+
+  return (
+    <p>
+      We&apos;re closed for the season:<br />
+      We will reopen<br />
+      {season_start} - {season_end}<br />
+      Weather Permitting
+    </p>
+  )
 }
 
 interface ContentTypes {
@@ -101,38 +104,11 @@ function Content({ location }: ContentTypes) {
   )
 }
 
-interface LocationCardTypes {
-  location: {
-    id: string;
-    link: string;
-    svg: string;
-    name: string;
-    address: {
-      data: {
-        address: string;
-      }
-    };
-    description: {
-      data: {
-        description: string;
-      }
-    };
-    opening_time: string;
-    closing_time: string;
-
-    locale: {
-      season_start: string;
-      season_end: string;
-    };
-  };
-  background?: boolean;
-}
-
 function LocationCard({ location, background }: LocationCardTypes) {
 
   // console.log(location);
 
-  if (location.link.includes('http')) {
+  if (location?.link?.includes('http')) {
     return (
       <a href={location.link}
         key={location.id}
@@ -141,17 +117,17 @@ function LocationCard({ location, background }: LocationCardTypes) {
         <Content location={location} />
       </a>
     )
-  } else {
-    return (
-      <Link
-        key={location.id}
-        to={`/${location.link}`}
-        className={`location ${background}`}
-      >
-        <Content location={location} />
-      </Link>
-    )
   }
+
+  return (
+    <Link
+      key={location.id}
+      to={`/${location.link}`}
+      className={`location ${background}`}
+    >
+      <Content location={location} />
+    </Link>
+  )
 }
 
 export default LocationCard

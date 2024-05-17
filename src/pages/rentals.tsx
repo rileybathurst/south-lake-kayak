@@ -38,7 +38,6 @@ const RentalsPage = () => {
 
       allStrapiLocation(
         filter: {
-          name: {in: ["On Water Rental", "Parking"]}
           locale: {slug: {eq: "south-lake"}}
         }
       ) {
@@ -60,27 +59,29 @@ const RentalsPage = () => {
   return (
     <>
       <Header />
-      <main className="rentals">
-        <article className="info">
+      <main className="albatross split">
+        <article className="info condor">
           <h1>Rentals</h1>
-
-          <LocationDeck
-            locations={data.allStrapiLocation}
-            background={false}
-          />
 
           <Markdown
             children={data.strapiRental.text.data.text}
             className="react-markdown"
           />
-
           <Link to="/about/faq">Frequently Asked Questions about getting out on the water</Link>
+
+          <hr />
+          <LocationDeck
+            locations={data.allStrapiLocation}
+            background={false}
+          />
 
           <BookNow />
 
         </article>
 
-        <Composition />
+        <div className="condor">
+          <Composition />
+        </div>
 
       </main >
 

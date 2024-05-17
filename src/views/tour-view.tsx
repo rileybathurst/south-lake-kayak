@@ -2,105 +2,155 @@ import * as React from "react";
 import { Link, graphql, useStaticQuery } from "gatsby"; import ReactMarkdown from "react-markdown";
 import Header from "../components/header"
 import Footer from "../components/footer"
-import HourMin from "../components/hour-min"; // TODO check if this should be the time compoonent
-import Sport from "../components/sport";
+import Time from "../components/time";
 import LocationCard from "../components/location-card";
 import Composition from "../components/composition";
 import Ticket from "../components/ticket";
+import type { IGatsbyImageData } from 'gatsby-plugin-image';
+import type { CardType } from "../types/card";
+import { Breadcrumbs, Breadcrumb } from 'react-aria-components';
 
-function ReactMD(props: { raw: string; }) {
+interface TimingTypes {
+  start?: string;
+  finish?: string;
+  duration?: number;
+}
+function Timing({ start, finish, duration }: TimingTypes) {
+  if (start && finish) {
+    return (
+      <section className="spec attribute">
+        <h3 className="crest">Time</h3>
+        <Time start={start} finish={finish} />
+      </section>
+    )
+  }
+
   return (
-    <ReactMarkdown
-      children={props.raw}
-      className="react-markdown"
-    />
-  );
+    <section className="spec attribute">
+      <h3 className="crest">Duration</h3>
+      <h4 className="range">{duration} mins</h4>
+    </section>
+  )
 }
 
-function Spec(props: {
-  name: string;
-  spec: string;
-  unitPlace?: string;
-  unit?: string;
-}) {
-  if ((props.name === "Tour Completiion" || props.name === "Tour Start Time") && props.spec === null) {
-    return null;
-  }
-  else if (props.name === "Tour Completiion" || props.name === "Tour Start Time") {
-    return (
-      <div className="spec" >
-        <h2>{props.name}</h2>
-        <h3><HourMin time={props.spec} /></h3>
-      </div>
-    );
-  } else if (props.name === "Sport") {
-    return (
-      <div className="spec" >
-        <h2>Sport</h2>
-        <h3 className="spec-flex">
-          <span className="specification"><Sport sport={props.spec} /></span>
-        </h3>
-      </div>
-    );
-  } else if ((props.spec) && (props.unitPlace == "before")) {
-    return (
-      <div className="spec">
-        <h2>{props.name}</h2>
-        <h3 className="spec-flex unit-place__before">
-          <span className="specification">{props.spec}</span>
-          <span className="unit">{props.unit}</span>
-        </h3>
-      </div>
-    );
-  } else if (props.spec) {
-    return (
-      <div className="spec">
-        <h2>{props.name}</h2>
-        <h3 className="spec-flex">
-          <span className="specification">{props.spec}</span>
-          <span className="unit">{props.unit}</span>
-        </h3>
-      </div>
-    );
-  } else {
-    return null;
-  }
+interface AttributesProps {
+  sport?: string | null;
+  fitness?: string | null;
+  price?: number | null;
+  minimum?: number | null;
 }
+function Attributes(attributes: AttributesProps) {
 
-function Minimum(props: { minimum: number; }) {
-  if (props.minimum) {
+  const sections = Object.entries(attributes).map(([key, value]) => {
+    if (value) {
+      if (key === "duration") {
+        const unit = "mins";
+        return (
+          <section
+            key={key}
+            className="spec attribute"
+          >
+            <h3 className="crest">{key}</h3>
+            <h4 className="range">{value} {unit}</h4>
+          </section >
+        )
+      }
+
+      if (key === "price") {
+        const unit = "$";
+        return (
+          <section
+            key={key}
+            className="spec attribute"
+          >
+            <h3 className="crest">{key}</h3>
+            <h4 className="range">{unit}{value}</h4>
+          </section >
+        )
+      }
+
+      if (key === "start" || key === "finish") {
+        // const time = new Date(value);
+        return (
+          <section
+            key={key}
+            className="spec attribute"
+          >
+            <h3 className="crest">{key}</h3>
+            {/* <h4 className="range"><HourMin time={value} /></h4> */}
+            <Time start={attributes.start} finish={attributes.finish} />
+          </section >
+        )
+      }
+
+      return (
+        <section
+          key={key}
+          // TODO: I have both names tidy it up
+          className="spec attribute"
+        >
+          <h3 className="crest">{key}</h3>
+          <h4 className="range">{value}</h4>
+        </section >
+      )
+    }
+  })
+
+  return (
+    <div className="attributes">
+      {sections}
+    </div>
+  )
+}
+interface MinimumTypes {
+  minimum: number;
+}
+function Minimum({ minimum }: MinimumTypes) {
+  if (minimum) {
     return (
       <p>* Prices based on a<br />
-        {props.minimum} person minimum</p>
-    );
-  } else {
-    return null;
-  }
-}
-
-function TourName(props: { tour: string; }) {
-  {/* // * this will hopefully get replace with css text-wrap: balance */ }
-  let name = props.tour;
-  // console.log(name.length);
-  if (name.length > 20) {
-
-    return (
-      <>
-        {/* <Balancer> */}
-        {props.tour}
-        {/* </Balancer> */}
-      </>
-    );
-  } else {
-    return (
-      <>
-        {props.tour}
-      </>
+        {minimum} person minimum</p>
     );
   }
+
+  return null;
 }
 
-const TourView = ({ tour, other }) => {
+
+interface TourViewTypes {
+  tour: {
+    id: React.Key;
+    name: string;
+    information: {
+      data: {
+        information: string;
+      }
+    };
+    start: string;
+    finish: string;
+    duration: number;
+    minimum: number;
+    fitness: string;
+    peek: string;
+    sport: string;
+    excerpt: string;
+    price: number;
+    slug: string;
+    ogimage: {
+      localFile: {
+        childImageSharp: {
+          gatsbyImageData: IGatsbyImageData;
+        };
+      };
+      alternativeText: string;
+    };
+  }
+  locale: {
+    name: string;
+  }
+  other: CardType;
+}
+const TourView = ({ tour, other }: TourViewTypes) => {
 
   const { strapiLocation } = useStaticQuery(graphql`
   query TourViewQuery {
@@ -117,14 +167,17 @@ const TourView = ({ tour, other }) => {
   }
 `);
 
+  /*   console.log(typeof tour.start);
+    const dateStart = new Date(tour.start);
+    console.log(dateStart); */
+
   return (
     <>
       <Header />
 
-      <main className="main__full main__full--tour">
+      <main className="tour">
         <div>
-          <h1><TourName tour={tour.name} /></h1>
-          {/* <h1 className="tour-name">{tour.name}</h1> */}
+          <h1>{tour.name}</h1>
           <div className="tour__minimum">
             <a href={tour.peek}
               rel="noopener noreferrer"
@@ -135,81 +188,61 @@ const TourView = ({ tour, other }) => {
             <Minimum minimum={tour.minimum} />
           </div>
 
-          {/* // TODO: update to this https://gist.github.com/rileybathurst/2c3191a7714e1204b07c725104d4ab93 */}
-          <Spec name="Sport" spec={tour.sport} />
+          <Attributes
+            sport={tour.sport}
+            fitness={tour.fitness}
+            price={tour.price}
+          />
 
-          <Spec name="Tour Start Time" spec={tour.start} />
+          <Timing
+            start={tour.start}
+            finish={tour.finish}
+            duration={tour.duration}
+          />
 
-          <Spec name="Tour Completiion" spec={tour.finish} />
-
-          <Spec name="Duration" spec={tour.duration} unit="mins" />
-
-          <Spec name="Fitness Level" spec={tour.fitness} />
-
-          <div className="spec">
-            <h2>Starts At</h2>
-            {/* // TODO I dont have this querying its just hard coded and is like this multiple places */}
-            {/* <MapLink><h3>Tahoe City</h3></MapLink> */}
-          </div>
-
-          <Spec name="Price" spec={tour.price} unit="$" unitPlace="before" />
-
-          <article className="single__description">
-            <ReactMD
-              raw={tour.information?.data?.information}
-            />
-          </article>
+          <ReactMarkdown
+            children={tour.information?.data?.information}
+            className="react-markdown single__description"
+          />
 
         </div>
 
-        <section>
-          <Composition sport={tour.sport} />
-
-          <hr />
+        <aside>
+          <Composition
+            sport={tour.sport}
+          // hero={tour?.ogimage?.localFile?.childImageSharp?.gatsbyImageData}
+          // TODO: change the image on tours
+          />
 
           <LocationCard location={strapiLocation} />
-        </section>
+        </aside>
 
       </main>
 
-      <div className="single__book single__book--tour">
-        <a
-          href={tour.peek}
-          rel="noopener noreferrer"
-          className="book-now"
-        >
-          BOOK NOW
-        </a>
-      </div>
+      <hr className="albatross" />
 
-      <div className="single__other">
+      <div className="albatross">
         <h3>Other Tours</h3>
         <h4><Link to={`/tours/compare/?${tour.slug}`}>Compare the {tour.name} to another tour.</Link></h4>
-
-        {/* // TODO: other card */}
-        <section className="deck">
-          {other.nodes.map((tour) =>
-            <div
-              key={tour.id}
-            >
-              <Ticket tour={tour} />
-            </div>
-          )}
-        </section>
-
+        <hr />
       </div>
 
-      <nav
-        aria-label="Breadcrumb"
-        className="breadcrumbs"
-      >
-        <ol>
-          <li>
-            <Link to={`/tours`}>Tours</Link>&nbsp;/&nbsp;
-          </li>
-          <li aria-current="page">{tour.name}</li>
-        </ol>
-      </nav>
+      {/* // TODO: other card */}
+      <section className="deck">
+        {other.nodes.map((tour: TicketTypes) =>
+          <Ticket
+            key={tour.id}
+            tour={tour}
+          />
+        )}
+      </section>
+
+      {/* // ! I might have done this on tahoe city already */}
+      <Breadcrumbs className="breadcrumbs">
+        <Breadcrumb><Link to="tours">Tours</Link></Breadcrumb>
+        <Breadcrumb>{tour.name}</Breadcrumb>
+      </Breadcrumbs>
+
       <Footer />
     </>
   );

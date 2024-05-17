@@ -1,5 +1,5 @@
 import * as React from "react"
-import { Link, graphql, useStaticQuery } from "gatsby"
+import { graphql, useStaticQuery } from "gatsby"
 import BookNow from "./peek/book-now"
 
 function LineBreaker(props: { text: string; }) {
@@ -48,6 +48,21 @@ const PricingChart = (props: { book: boolean; }) => {
     }
   `)
 
+  interface RateTypes {
+    id: React.Key;
+    item: string;
+    oneHour: number;
+    threeHour: number;
+    fullDay: number;
+  }
+
+  interface AddonTypes {
+    name: string;
+    single: number;
+    double: number;
+    sup: number;
+  }
+
   return (
     <>
       <div className="charts">
@@ -61,13 +76,7 @@ const PricingChart = (props: { book: boolean; }) => {
             <p><span>Full Day</span></p>
           </div>
 
-          {data.allStrapiRentalRate.nodes.map((rate: {
-            id: React.Key;
-            item: string;
-            oneHour: number;
-            threeHour: number;
-            fullDay: number;
-          }) => (
+          {data.allStrapiRentalRate.nodes.map((rate: RateTypes) => (
             <div key={rate.id} className="row">
               {/* <h4>{rate.item}</h4> */}
               <LineBreaker text={rate.item} />
@@ -79,16 +88,17 @@ const PricingChart = (props: { book: boolean; }) => {
         </div>
 
         <div className="pricing-chart">
-          {data.allStrapiRentalAddon.nodes.map((addon: { name: string; }) => (
-            <>
+          {data.allStrapiRentalAddon.nodes.map((addon: AddonTypes) => (
+            <div key={addon.name}>
+              {/* // ! needs a key but broke the styling */}
               <p>{addon.name}</p>
               <p>+{addon.single}</p>
               <p>+{addon.double}</p>
               <p>+{addon.sup}</p>
-            </>
+            </div>
           ))}
         </div>
-      </div>
+      </div >
       <div className={`pricing-chart__${props.book}`}>
         <BookNow />
       </div>

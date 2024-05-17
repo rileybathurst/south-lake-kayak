@@ -35,6 +35,10 @@ export const query = graphql`
         }
         alternativeText
       }
+
+      locale {
+        name
+      }
     }
 
     allStrapiTour(

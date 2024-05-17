@@ -41,12 +41,12 @@
 
   /* 🏔 Mountain Names as Font Sizing Defaults */
   /* (Highest by Continent) */
-  --everest: 3rem; /* 29,035ft Asia */
+  --everest: 3.25rem; /* 29,035ft Asia */
   --aconcagua: 2.5rem; /* 22,840ft South America */
   --denali: 2rem; /* 20,320ft North America */
   --kilimanjaro: 1.5rem; /* 19,340ft Africa */
   --elbrus: 1.25rem; /* 18,510ft Europe / Russia */
-  --vinson_massif: 1rem; /* 16,050ft Antartica */
+  --vinson: 1rem; /* 16,050ft Antartica */
   --kosciuszko: 0.75rem; /* 7,310ft Australia */
 
   /*------------------*/
@@ -85,13 +85,14 @@
   /*------------------*/
   /*  #WIDTHS */
   /* https://en.wikipedia.org/wiki/Largest_living_flying_birds_by_wingspan */
+  /* golden ratio 1.618 */
   /*------------------*/
-  --swan: 20rem;
-  --vulture: 30rem;
-  --stork: 40rem;
-  --condor: 50rem;
-  --pelican: 60rem;
-  --albatross: 80rem;
+
+  --vulture: 10rem;
+  --stork: 18rem;
+  --condor: 30rem;
+  --pelican: 49rem;
+  --albatross: 79rem;
 
   /*------------------*/
   /*  #Z INDEX */
