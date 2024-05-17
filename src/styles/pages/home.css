@@ -87,34 +87,6 @@
   }
 }
 
-/* TODO: this can be nested in .home */
-.home__rentals {
-  max-width: var(--albatross);
-  margin-inline: auto;
-  display: flex;
-  flex-flow: row wrap;
-
-  > * {
-    flex: 1 1 20rem;
-  }
-}
-
-.home__tours {
-  max-width: var(--pelican);
-  margin-inline: auto;
-  padding-inline: 0.75rem;
-  display: flex;
-  padding-block-start: calc(var(--baseline) * 2);
-
-  @media (min-width: 40rem) {
-    display: flex;
-
-    > * {
-      flex: 1 1 20rem;
-    }
-  }
-}
-
 .home__retail {
   display: flex;
   flex-flow: row wrap;

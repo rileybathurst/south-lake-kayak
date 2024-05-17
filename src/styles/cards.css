@@ -34,9 +34,9 @@
   text-decoration: none;
 
   @media (prefers-color-scheme: dark) {
-    background-color: var(--ink);
-    border-color: hsl(var(--ink__h), 50%, var(--dull)); /* 1.75 contrast */
-    /* border-color: hsl(var(--ink__h), 50%, var(--dark)); 1.13 contrast too slim */
+    background-color: var(--navy-700);
+    border-color: var(--navy-500);
+    border-color: var(--navy-600);
   }
 
   .card__placeholder {
@@ -96,6 +96,10 @@
   p {
     margin-inline: 0.75rem;
     color: var(--black-metal);
+
+    @media (prefers-color-scheme: dark) {
+      color: var(--brilliance);
+    }
   }
 
   hr {

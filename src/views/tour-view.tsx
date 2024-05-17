@@ -239,8 +239,7 @@ const TourView = ({ tour, other }: TourViewTypes) => {
         )}
       </section>
 
-      {/* // ! I might have done this on tahoe city already */}
-      <Breadcrumbs className="breadcrumbs">
+      <Breadcrumbs>
         <Breadcrumb><Link to="tours">Tours</Link></Breadcrumb>
         <Breadcrumb>{tour.name}</Breadcrumb>
       </Breadcrumbs>

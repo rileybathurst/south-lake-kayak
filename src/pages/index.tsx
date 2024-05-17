@@ -34,7 +34,7 @@ const IndexPage = () => {
 
       allStrapiTour(
         sort: {featured: ASC},
-        filter: {locale: {slug: {eq: "south lake"}}}
+        filter: {locale: {slug: {eq: "south-lake"}}}
         ) {
         nodes {
           ...tourCard
@@ -181,7 +181,7 @@ const IndexPage = () => {
         </div>
       </main>
 
-      <section id="tours" className="home__tours">
+      <section id="tours" className="pelican water">
         <div>
           {/* // TODO: only one h and then p */}
           <hgroup className="crest">
@@ -218,25 +218,29 @@ const IndexPage = () => {
         <hr />
       </div>
 
-      <section id="retail" className="passage">
-        {/* // TODO: only one h and then p */}
-        <hgroup className="crest">
-          <h3 className="brow">
-            <a href={data.strapiLocale.url}
-              target="_blank"
-              rel='noopener noreferrer'
-            >
-              Retail Store
-            </a>
-          </h3>
-          <h4 className="supra">Kayaks and Paddleboards</h4>
-        </hgroup>
+      <section id="retail" className="pelican water">
+        <article>
+          {/* // TODO: only one h and then p */}
+          <hgroup className="crest">
+            <h3 className="brow">
+              <a href={data.strapiLocale.url}
+                target="_blank"
+                rel='noopener noreferrer'
+              >
+                Retail Store
+              </a>
+            </h3>
+            <h4 className="supra">Kayaks and Paddleboards</h4>
+          </hgroup>
 
-        <Markdown
-          children={data.strapiShop.text.data.text}
-          className="react-markdown"
-        />
-        <hr />
+          <Markdown
+            children={data.strapiShop.text.data.text}
+            className="react-markdown"
+          />
+        </article>
+        <div>
+          {/* stay gold */}
+        </div>
       </section>
 
       <Footer />

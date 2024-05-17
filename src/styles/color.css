@@ -18,8 +18,8 @@ footer {
   clip-path: inset(0 -100vmax);
 
   @media (prefers-color-scheme: dark) {
-    background-color: var(--ink);
-    box-shadow: 0 0 0 100vmax var(--ink);
+    background-color: var(--navy-600);
+    box-shadow: 0 0 0 100vmax var(--navy-600);
   }
 
   hr {
@@ -34,6 +34,11 @@ footer {
   .button {
     background-color: transparent;
     /* background-color: var(--sunshine-200); */
+
+    @media (prefers-color-scheme: dark) {
+      color: var(--brilliance);
+      border-color: var(--brilliance);
+    }
   }
 
   button:hover,
@@ -52,8 +57,8 @@ footer {
   clip-path: inset(0 -100vmax);
 
   @media (prefers-color-scheme: dark) {
-    background-color: oklch(12.5% var(--navy-c) var(--navy-h));
-    box-shadow: 0 0 0 100vmax oklch(12.5% var(--navy-c) var(--navy-h));
+    background-color: var(--navy-600);
+    box-shadow: 0 0 0 100vmax var(--navy-600);
   }
 }
 
@@ -182,12 +187,22 @@ footer {
   color: var(--brilliance);
 
   @media (prefers-color-scheme: dark) {
-    background-color: oklch(75% var(--navy-c) var(--navy-h));
+    background-color: var(--navy-400);
     color: black;
   }
 
   svg {
     fill: var(--brilliance);
+
+    @media (prefers-color-scheme: dark) {
+      fill: var(--navy-700);
+    }
+  }
+}
+
+.location:hover {
+  @media (prefers-color-scheme: dark) {
+    background-color: var(--navy-500);
   }
 }
 
@@ -195,11 +210,32 @@ footer {
   background-color: transparent;
   border-block-end: 1px solid var(--tin-soldier);
   box-shadow: none;
+  transition: var(--fade);
 
   color: var(--navy);
   svg {
     fill: var(--navy);
   }
+
+  @media (prefers-color-scheme: dark) {
+    color: var(--navy-200);
+    svg {
+      fill: var(--navy-200);
+    }
+  }
+}
+
+.location.false:hover {
+  @media (prefers-color-scheme: dark) {
+    color: var(--navy-400);
+    svg {
+      fill: var(--navy-400);
+    }
+  }
+}
+
+.home .location.false:hover {
+  background-color: var(--navy-700);
 }
 
 /*------------------------------------*/
@@ -208,4 +244,9 @@ footer {
   background-color: oklch(97.5% 0.1 95);
   box-shadow: 0 0 0 100vmax oklch(97.5% 0.1 95);
   clip-path: inset(0 -100vmax);
+
+  @media (prefers-color-scheme: dark) {
+    background-color: var(--navy-600);
+    box-shadow: 0 0 0 100vmax var(--navy-600);
+  }
 }

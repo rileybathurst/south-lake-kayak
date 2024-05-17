@@ -12,13 +12,22 @@
   --sunshine: oklch(88% 0.2 95);
   /* I can test out using soft sunshine super soft */
 
+  --beige: oklch(95% 0.02 120);
+
+  --navy-200: oklch(75% 0.12 230);
+  --navy-300: oklch(62.5% 0.14 230);
+  --navy-400: oklch(50% 0.14 230); /* base */
+  --navy: oklch(50% 0.14 230);
+  --navy-500: oklch(37.5% 0.14 230);
+  --navy-600: oklch(25% 0.12 230);
+  --navy-700: oklch(12.5% 0.12 230);
+
   --sunshine-100: oklch(97.5% 0.025 95);
   --sunshine-200: oklch(95% 0.05 95);
   --sunshine-300: oklch(92.5% 0.1 95);
   --sunshine-400: oklch(90% 0.15 95);
+  --sunshine-500: oklch(87.5% 0.2 95); /* base */
   --sunshine: oklch(87.5% 0.2 95);
-
-  --beige: oklch(95% 0.02 120);
 
   /* louie neutrals */
   --black-metal: hsl(0, 0%, 2.5%);
