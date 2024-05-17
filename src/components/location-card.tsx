@@ -29,16 +29,16 @@ function Season({ season_start, season_end, opening_time, closing_time, name }: 
     return null;
   }
 
-  if (new Date(season_start) < new Date()) {
-    return (
-      <p>
-        {opening_time ? "Open Daily: " : null}
-        <HourMin time={opening_time} />
-        {opening_time ? " - : " : null}
-        <HourMin time={closing_time} />
-      </p>
-    )
-  }
+  /*   if (new Date(season_start) < new Date()) {
+      return (
+        <p>
+          {opening_time ? "Open Daily: " : null}
+          <HourMin time={opening_time} />
+          {opening_time ? " - : " : null}
+          <HourMin time={closing_time} />
+        </p>
+      )
+    } */
 
   return (
     <p>
