@@ -34,7 +34,7 @@ const IndexPage = () => {
 
       allStrapiTour(
         sort: {featured: ASC},
-        filter: {location: {eq: "south lake"}}
+        filter: {locale: {slug: {eq: "south lake"}}}
         ) {
         nodes {
           ...tourCard

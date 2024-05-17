@@ -1,11 +1,23 @@
 import * as React from "react"
+import { graphql, useStaticQuery } from "gatsby"
 
 const BookNow = () => {
+
+  const { strapiLocale } = useStaticQuery(graphql`
+    query BookNowQuery {
+      strapiLocale(slug: {eq: "south-lake"}) {
+        name
+        peek_base
+      }
+    }
+  `);
+
   return (
     <a
-      href="https://book.peek.com/s/6477fc17-231d-4d85-9a8e-a46e835d5e3b/aE2XR"
+      href={strapiLocale.peek_base}
       rel="noopener noreferrer"
       className="book-now"
+      title={`Book now with ${strapiLocale.name} kayak and paddleboard`}
     >
       BOOK NOW
     </a>

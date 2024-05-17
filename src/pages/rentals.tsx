@@ -1,5 +1,5 @@
 import * as React from "react"
-import { Link, graphql, useStaticQuery } from 'gatsby';
+import { Link, graphql, useStaticQuery, Script } from 'gatsby';
 
 import { SEO } from "../components/seo";
 import { useSiteMetadata } from '../hooks/use-site-metadata';
@@ -53,14 +53,19 @@ const RentalsPage = () => {
           }
         }
       }
+
+      strapiLocale(slug: {eq: "south-lake"}) {
+        peek_rentals
+        name
+      }
     }
   `)
 
   return (
     <>
       <Header />
-      <main className="albatross split">
-        <article className="info condor">
+      <main className="albatross water">
+        <article>
           <h1>Rentals</h1>
 
           <Markdown
@@ -70,18 +75,48 @@ const RentalsPage = () => {
           <Link to="/about/faq">Frequently Asked Questions about getting out on the water</Link>
 
           <hr />
-          <LocationDeck
-            locations={data.allStrapiLocation}
-            background={false}
-          />
 
-          <BookNow />
+          <a
+            href={data.strapiLocale.peek_rentals}
+            rel="noopener noreferrer"
+            className="book-now"
+            // title={`Book rentals now with ${data.strapiLocale.name} kayak and paddleboard`}
+            type="button"
+          >
+            BOOK RENTALS NOW
+          </a>
+
+
+          {/*           <button
+            popovertarget="my-popover"
+          >
+            Open Popover
+          </button>
+
+          <div id="my-popover" popover='true'>
+            test
+            <iframe
+              id="inlineFrameExample"
+              title="Inline Frame Example"
+              // src={data.strapiLocale.peek_rentals}
+              // src='https://book.peek.com/s/e5c64ba3-ccc2-4873-9470-eff6624f74b7/l7ZBO'
+              src='https://peekpro.com'
+            >
+            </iframe>
+
+            <iframe
+              id="inlineFrameExample"
+              title="Inline Frame Example"
+              src="https://www.openstreetmap.org/export/embed.html?bbox=-0.004017949104309083%2C51.47612752641776%2C0.00030577182769775396%2C51.478569861898606&layer=mapnik">
+            </iframe>
+
+          </div> */}
+
 
         </article>
 
-        <div className="condor">
-          <Composition />
-        </div>
+
+        <Composition />
 
       </main >
 

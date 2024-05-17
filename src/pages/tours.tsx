@@ -49,19 +49,24 @@ const ToursPage = () => {
       }
 
       allStrapiLocation: allStrapiLocation(
-          filter: {
-            name: {in: ["On Water Rental", "Parking"]}
-            locale: {slug: {eq: "south-lake"}}
-          }
-        ) {
-          nodes {
-            ...locationCard
-          }
+        filter: {
+          name: {in: ["On Water Rental", "Parking"]}
+          locale: {slug: {eq: "south-lake"}}
         }
+      ) {
+        nodes {
+          ...locationCard
+        }
+      }
+
+      strapiLocale(slug: {eq: "south-lake"}) {
+        peek_tours
+        name
+      }
     }
   `)
 
-  let sports = [
+  const sports = [
     query.kayak,
     query.sup,
   ]
@@ -77,7 +82,16 @@ const ToursPage = () => {
           className="react-markdown"
         />
         <h2><Link to="/tours/compare">Compare Tours</Link></h2>
-        <BookNow />
+
+        <a
+          href={query.strapiLocale.peek_tours}
+          rel="noopener noreferrer"
+          className="book-now"
+          title={`Book tours now with ${query.strapiLocale.name} kayak and paddleboard`}
+        >
+          BOOK TOURS NOW
+        </a>
+
         <hr />
       </main>
       <section className="pelican">

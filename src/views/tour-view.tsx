@@ -171,6 +171,8 @@ const TourView = ({ tour, other }: TourViewTypes) => {
     const dateStart = new Date(tour.start);
     console.log(dateStart); */
 
+  console.log(tour.peek);
+
   return (
     <>
       <Header />

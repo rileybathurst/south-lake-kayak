@@ -15,6 +15,7 @@ function SmallMenu() {
   const CloseLoop = () => {
     return (
       <button
+        type="button"
         className="button-styles"
         onClick={() => setSlide('close')}
       >

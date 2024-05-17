@@ -28,7 +28,7 @@ const strapiConfig = {
 
 const config: GatsbyConfig = {
   siteMetadata: {
-    title: `South Lake Tahoe Kayak and Paddleboard`,
+    title: "South Lake Tahoe Kayak and Paddleboard",
     url: "https://southtahoekayak.com/",
     logo: "/images/icon.png",
     localeSlug: "south-lake",
@@ -56,17 +56,36 @@ const config: GatsbyConfig = {
       __key: "pages",
     },
     {
-      resolve: `gatsby-source-strapi`,
+      resolve: "gatsby-source-strapi",
       options: strapiConfig,
     },
     {
-      resolve: `gatsby-plugin-postcss`,
+      resolve: "gatsby-plugin-postcss",
       options: {
         postCssPlugins: [
-          require(`postcss-import`),
+          require("postcss-import"),
           require("autoprefixer"),
           require("postcss-nested"),
         ],
+      },
+    },
+    {
+      resolve: "gatsby-plugin-csp",
+      options: {
+        mergeSecurityHeaders: true, // ? testing may 2024 csp issue
+        mergeScriptHashes: false,
+        mergeStyleHashes: false,
+        directives: {
+          "script-src":
+            "'self' 'unsafe-inline'  www.google-analytics.com book.peek.com book12.freetls.fastly.net",
+          "frame-src": "'self' book.peek.com",
+          "style-src":
+            "'self' 'unsafe-inline' book12.freetls.fastly.net localhost:8000",
+          "font-src": "'self' 'unsafe-inline'",
+          "img-src": "'self' https://www.google-analytics.com data: about:", // ? I think  is a tracking pixel
+          "connect-src": "'self' data:  https://www.google-analytics.com/",
+          "media-src": "'self' data:",
+        },
       },
     },
   ],

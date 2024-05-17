@@ -42,18 +42,32 @@
   width: 100%;
 }
 
-/* ! this needs love as all the layout sizes need to skip the max-widths and padding and margin etc */
-.split {
+/*------------------------------------*/
+/* * I'm NOT 100% sure of the syntax below here */
+
+/* interesting metaphor but only a maybe so far */
+.water {
   display: flex;
   flex-flow: row wrap;
   gap: var(--vinson);
 
   > * {
-    flex-grow: 1;
-    flex-shrink: 1;
-    margin-inline: none;
-    padding-inline: 0;
+    flex: 1 1;
   }
+}
+
+.pelican.water > * {
+  flex: 1 1 calc(var(--pelican) / 2 - 1rem);
+  max-width: none;
+  margin-inline: 0;
+  padding-inline: 0;
+}
+
+.albatross.water > * {
+  flex: 1 1 calc(var(--albatross) / 2 - 1rem);
+  max-width: none;
+  margin-inline: 0;
+  padding-inline: 0;
 }
 
 /*------------------*/
@@ -276,7 +290,7 @@ main {
 /*------------------*/
 
 footer {
-  max-width: var(--pelican);
+  max-width: var(--albatross);
   margin-inline: auto;
 
   display: flex;

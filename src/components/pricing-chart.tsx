@@ -88,15 +88,17 @@ const PricingChart = (props: { book: boolean; }) => {
         </div>
 
         <div className="pricing-chart">
+          {/* // ! needs a key but broke the styling */}
+          {/* <div key={addon.name}> */}
           {data.allStrapiRentalAddon.nodes.map((addon: AddonTypes) => (
-            <div key={addon.name}>
-              {/* // ! needs a key but broke the styling */}
+            <>
               <p>{addon.name}</p>
               <p>+{addon.single}</p>
               <p>+{addon.double}</p>
               <p>+{addon.sup}</p>
-            </div>
+            </>
           ))}
+          {/* </div> */}
         </div>
       </div >
       <div className={`pricing-chart__${props.book}`}>
