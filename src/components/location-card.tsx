@@ -40,14 +40,21 @@ function Season({ season_start, season_end, opening_time, closing_time, name }: 
       )
     } */
 
-  return (
-    <p>
-      We&apos;re closed for the season:<br />
-      We will reopen<br />
-      {season_start} - {season_end}<br />
-      Weather Permitting
-    </p>
-  )
+  /*   return (
+      <p>
+        We&apos;re closed for the season:<br />
+        We will reopen<br />
+        {season_start} - {season_end}<br />
+        Weather Permitting
+      </p>
+    ) */
+
+  <p>
+    {opening_time ? "Open Daily: " : null}
+    <HourMin time={opening_time} />
+    {opening_time ? " - : " : null}
+    <HourMin time={closing_time} />
+  </p>
 }
 
 interface ContentTypes {
