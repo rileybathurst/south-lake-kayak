@@ -25,9 +25,11 @@ interface SeasonTypes {
 }
 function Season({ season_start, season_end, opening_time, closing_time, name }: SeasonTypes) {
 
-  if (name === "Free Parking Lot" || name === "Parking") {
+  if (name === "Free Parking Lot" || name === "Parking" || name === "Delivery") {
     return null;
   }
+
+  console.log(opening_time);
 
   /*   if (new Date(season_start) < new Date()) {
       return (
@@ -48,13 +50,15 @@ function Season({ season_start, season_end, opening_time, closing_time, name }: 
         Weather Permitting
       </p>
     ) */
-
-  <p>
-    {opening_time ? "Open Daily: " : null}
-    <HourMin time={opening_time} />
-    {opening_time ? " - : " : null}
-    <HourMin time={closing_time} />
-  </p>
+  return (
+    <p>
+      {/* {opening_time ? "Open Daily: " : null} */}
+      Open Daily 9:30am - 5:30pm
+      {/* <HourMin time={opening_time} /> */}
+      {/* {opening_time ? " - : " : null} */}
+      {/* <HourMin time={closing_time} /> */}
+    </p>
+  )
 }
 
 interface ContentTypes {
