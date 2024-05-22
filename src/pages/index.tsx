@@ -138,16 +138,15 @@ const IndexPage = () => {
       <Header />
       <main className="home">
         <section>
-          <h2 className="page-title">
+          {/* <h2 className="page-title">
             {faker.company.catchPhrase()}
-          </h2>
-
+  </h2> */}
           <div className="margin-block-end-aconcagua">
             <Markdown
-              // children={data.strapiAbout.text.data.text}
-              children={faker.lorem.paragraphs(3)}
               className="react-markdown"
-            />
+            >
+              {data.strapiAbout.text.data.text}
+            </Markdown>
           </div>
 
           <LocationDeck
