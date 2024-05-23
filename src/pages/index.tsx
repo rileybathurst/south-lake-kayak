@@ -3,14 +3,11 @@ import { Link, useStaticQuery, graphql } from 'gatsby';
 import { GatsbyImage } from "gatsby-plugin-image"
 import { SEO } from "../components/seo";
 import Markdown from "react-markdown";
-import { faker } from '@faker-js/faker';
 
 import Header from "../components/header"
 import Footer from "../components/footer"
 import PricingChart from "../components/pricing-chart"
-import TwoKayakers from "../images/twokayakers";
 import WaterTexture from "../images/watertexture";
-import AndyPaddling from "../images/andypaddling";
 import BookTour from "../components/peek/book-tour";
 import BookRental from "../components/peek/book-rental";
 import Ticket from "../components/ticket";
@@ -42,14 +39,6 @@ const IndexPage = () => {
         }
       }
 
-      strapiAbout {
-        text {
-          data {
-            text
-          }
-        }
-      }
-
       strapiShop {
         text {
           data {
@@ -66,7 +55,15 @@ const IndexPage = () => {
         }
       }
 
-      strapiLocale(slug: {eq: "tahoe-city"}) {
+      southLake: strapiLocale(slug: {eq: "south-lake"}) {
+        about {
+          data {
+            about
+          }
+        }
+      }
+
+      tahoeCity: strapiLocale(slug: {eq: "tahoe-city"}) {
         url
       }
 
@@ -95,44 +92,6 @@ const IndexPage = () => {
     }
   `)
 
-  // ! I need to order the tours
-
-  const allTours = data.allStrapiTour.nodes
-  // console.log(allTours);
-
-  // State for the list
-  const [list, setList] = useState([...allTours.slice(0, 2)])
-
-  // State to trigger oad more
-  const [loadMore, setLoadMore] = useState(false)
-
-  // State of whether there is more to load
-  const [hasMore, setHasMore] = useState(allTours.length > 2)
-
-  // Load more button click
-  const handleLoadMore = () => {
-    setLoadMore(true)
-  }
-
-  // Handle loading more articles
-  useEffect(() => {
-    if (loadMore && hasMore) {
-      const currentLength = list.length
-      const isMore = currentLength < allTours.length
-      const nextResults = isMore
-        ? allTours.slice(currentLength, currentLength + 2)
-        : []
-      setList([...list, ...nextResults])
-      setLoadMore(false)
-    }
-  }, [loadMore, hasMore])
-
-  //Check if there is more
-  useEffect(() => {
-    const isMore = list.length < allTours.length
-    setHasMore(isMore)
-  }, [list])
-
   return (
     <>
       <Header />
@@ -140,12 +99,10 @@ const IndexPage = () => {
         <section>
           {/* <h2 className="page-title">
             {faker.company.catchPhrase()}
-  </h2> */}
+          </h2> */}
           <div className="margin-block-end-aconcagua">
-            <Markdown
-              className="react-markdown"
-            >
-              {data.strapiAbout.text.data.text}
+            <Markdown className="react-markdown">
+              {data.southLake.about.data.about}
             </Markdown>
           </div>
 
@@ -189,10 +146,9 @@ const IndexPage = () => {
             <h4 className="supra">Enjoy The Majesty Of Lake Tahoe</h4>
           </hgroup>
 
-          <Markdown
-            children={data.strapiExperience.text.data.text}
-            className="react-markdown"
-          />
+          <Markdown className="react-markdown">
+            {data.strapiExperience.text.data.text}
+          </Markdown>
 
           <h4>
             <Link to="/tours/compare">Compare Tours</Link>
@@ -202,19 +158,11 @@ const IndexPage = () => {
       </section>
 
       <div className="deck">
-        {list.map((tour) => (
+        {data.allStrapiTour.nodes.map((tour) => (
           <div key={tour.id}>
             <Ticket tour={tour} />
           </div>
         ))}
-      </div>
-      <div className="deck__more">
-        {hasMore ? (
-          <button type="button" onClick={handleLoadMore}>VIEW MORE TOURS</button>
-        ) : (
-          <p>Thats all the tours</p>
-        )}
-        <hr />
       </div>
 
       <section id="retail" className="pelican water">
@@ -222,7 +170,7 @@ const IndexPage = () => {
           {/* // TODO: only one h and then p */}
           <hgroup className="crest">
             <h3 className="brow">
-              <a href={data.strapiLocale.url}
+              <a href={data.tahoeCity.url}
                 target="_blank"
                 rel='noopener noreferrer'
               >

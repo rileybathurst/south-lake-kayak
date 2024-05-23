@@ -1,53 +1,43 @@
 import * as React from "react"
-import { Script } from 'gatsby';
+import { Link, Script } from 'gatsby';
 import { SEO } from "../../components/seo";
-
+import { Breadcrumbs, Breadcrumb } from 'react-aria-components';
 import { useSiteMetadata } from "../../hooks/use-site-metadata";
 import { useStrapiFaq } from "../../hooks/use-strapi-faq";
-
 import Header from "../../components/header";
 import Footer from "../../components/footer";
 
-import ParentTitleBreadcrumb from "../../components/parent-title-breadcrumb";
-
-
 const FaqPage = () => {
 
-  let title = "Frequently Asked Questions";
-  let parent = "about";
+  interface FaqTypes {
+    id: string;
+    question: string;
+    answer: string;
+  }
 
   return (
     <>
       <Header />
 
-      <main>
-        <h1>{title}</h1>
+      <main className="pelican">
+        <h1>Frequently Asked Questions</h1>
 
         {/* // TODO links to delivery and demos */}
-
-        <ul className="faq">
-
-          {useStrapiFaq().nodes.map((faq:
-            {
-              id: string;
-              question: string;
-              answer: string;
-            }) => (
+        <ul className="faq condor">
+          {useStrapiFaq().nodes.map((faq: FaqTypes) => (
             <li key={faq.id}>
               <h2>{faq.question}</h2>
-              <p>
-                <span>{faq.answer}</span>
-              </p>
+              <p>{faq.answer}</p>
             </li>
           ))
           }
         </ul>
       </main>
 
-      <ParentTitleBreadcrumb
-        parent={parent}
-        title={title}
-      />
+      <Breadcrumbs>
+        <Breadcrumb><Link to="/about/">About</Link></Breadcrumb>
+        <Breadcrumb>Frequently Asked Questions</Breadcrumb>
+      </Breadcrumbs>
 
       <Footer />
     </>

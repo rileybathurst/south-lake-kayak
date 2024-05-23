@@ -1,3 +1,5 @@
+// TODO: styling
+
 import * as React from "react"
 import { useStaticQuery, graphql, Script } from 'gatsby';
 import { SEO } from "../../components/seo";
@@ -27,22 +29,24 @@ const FaqPage = () => {
   let title = "Testimonials";
   let parent = "about";
 
+  interface TestimonialTypes {
+    id: string;
+    customer: string;
+    testimonial: string;
+    sign: string;
+    location: string;
+  }
+
   return (
     <>
       <Header />
 
-      <main>
+      <main className="condor">
         <h1>{title}</h1>
 
         <ul className="testimonials">
           {
-            allStrapiTestimonial.nodes.map((testimonial: {
-              id: string;
-              customer: string;
-              testimonial: string;
-              sign: string;
-              location: string;
-            }) => (
+            allStrapiTestimonial.nodes.map((testimonial: TestimonialTypes) => (
               <li key={testimonial.id} >
                 <h2>{testimonial.customer}</h2>
                 <p>{testimonial.testimonial}</p>

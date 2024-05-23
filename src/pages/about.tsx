@@ -10,13 +10,13 @@ import Composition from "../components/composition";
 
 const AboutPage = () => {
 
-  const { strapiAbout } = useStaticQuery(graphql`
+  const { strapiLocale } = useStaticQuery(graphql`
     query AboutQuery {
 
-      strapiAbout {
-        text {
+      strapiLocale(slug: {eq: "south-lake"}) {
+        about {
           data {
-            text
+            about
           }
         }
       }
@@ -27,15 +27,13 @@ const AboutPage = () => {
   return (
     <>
       <Header />
-
-      <div className="progression">
-        <main>
+      <main className="pelican water">
+        <div>
           <h1>About Us</h1>
           {/* // ? I might be able to query this its not the slogan but its almost the same maybe a single strapi */}
-          <Markdown
-            children={strapiAbout.text.data.text}
-            className="react-markdown"
-          />
+          <Markdown className="react-markdown">
+            {strapiLocale.about.data.about}
+          </Markdown>
 
           <ul>
             <li key="faq"><Link to="/about/faq">Frequently Asked Questions</Link></li>
@@ -44,18 +42,12 @@ const AboutPage = () => {
             <li key="testimonials"><Link to="/about/testimonials">Testimonials</Link></li>
             <li key="jobs"><Link to="/about/jobs">Jobs</Link></li>
           </ul>
-          <hr />
-          {/* <h2>We are here</h2> */}
-        </main>
+        </div>
+        {/* <h2>We are here</h2> */}
 
 
         <Composition />
-      </div>
-
-      <div className="about__info">
-
-      </div>
-
+      </main>
       <Footer />
     </>
   )

@@ -1,4 +1,5 @@
 // TODO: some of the typographic sizing is really out
+// TODO: I think there is querying we can do here
 
 import * as React from "react"
 import { Script } from 'gatsby';
@@ -26,7 +27,7 @@ const JobsPage = () => {
             <h2 className="supra">Help Wanted</h2>
           </hgroup>
           <hr />
-          <p>Tahoe City Kayak is hiring for Summer <strong>May 1st to Oct 31</strong>.</p>
+          <p>South Tahoe Kayak is hiring for Summer <strong>May 1st to Oct 31</strong>.</p>
 
           <p>Housing options available!</p>
 
@@ -38,7 +39,7 @@ const JobsPage = () => {
           <p>
             please send a resume with references to
           </p>
-          <a href={useSiteMetadata().jobEmail} className="button">{useSiteMetadata().jobEmail}</a>
+          <a href='mailto:info@southtahoekayak.com' className="button">info@southtahoekayak.com</a>
         </section>
 
         <section>
@@ -53,9 +54,6 @@ const JobsPage = () => {
           <hr />
           <h3>Beach Rental Tech</h3>
           <p>Work on the local beach renting kayaks</p>
-          <hr />
-          <h3>Shuttle Van Driver</h3>
-          <p>Must have a clean driving record and the ability to pass a drug test and physical <strong>state requirements</strong>.</p>
         </section>
 
 

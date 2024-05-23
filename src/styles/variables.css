@@ -14,7 +14,8 @@
 
   --beige: oklch(95% 0.02 120);
 
-  --navy-200: oklch(75% 0.12 230);
+  --navy-100: oklch(87.5% 0.04 230);
+  --navy-200: oklch(75% 0.08 230);
   --navy-300: oklch(62.5% 0.14 230);
   --navy-400: oklch(50% 0.14 230); /* base */
   --navy: oklch(50% 0.14 230);

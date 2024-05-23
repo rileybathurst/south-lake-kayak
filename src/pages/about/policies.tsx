@@ -17,8 +17,8 @@ const PoliciesPage = () => {
 
       {/* // TODO composition */}
 
-      <main>
-        <h1>{title}</h1>
+      <main className="condor" >
+        <h1>Store Policies</h1>
 
         <article>
           <h2>Transportation</h2>
