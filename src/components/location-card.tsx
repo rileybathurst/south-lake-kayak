@@ -1,3 +1,5 @@
+// TODO: this is super broken but needs more work
+
 import * as React from "react"
 import { Link } from 'gatsby';
 import Markdown from "react-markdown";
