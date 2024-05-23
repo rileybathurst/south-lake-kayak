@@ -53,7 +53,8 @@ function Season({ season_start, season_end, opening_time, closing_time, name }: 
   return (
     <p>
       {/* {opening_time ? "Open Daily: " : null} */}
-      Open Daily 9:30am - 5:30pm
+      Open Daily 9:30am - 5:30pm<br />
+      Weather Permitting
       {/* <HourMin time={opening_time} /> */}
       {/* {opening_time ? " - : " : null} */}
       {/* <HourMin time={closing_time} /> */}
