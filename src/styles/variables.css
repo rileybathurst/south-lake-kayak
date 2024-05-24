@@ -2,33 +2,52 @@
   /*------------------------------------*/
   /* #COLOR */
   /*------------------------------------*/
-  --navy: oklch(50% 0.14 230);
 
-  --navy-c: 0.14;
-  --navy-h: 230;
+  /* OKLCH is baseline but im not seeing that in the netlify preview try fix that */
+  /* that problem also may be from p3 so fixing that as well */
 
-  /* : oklch(50% var(--navy-c) var(--navy-h)); */
+  /* TODO: add these into storybook beside the colors in a small way */
+  --navy-100: #bcdbeb;
+  --navy-200: #77b8d7;
+  --navy-300: #0094c4;
+  --navy-400: #006d91;
+  --navy-500: #004861;
+  --navy-600: #002635;
+  --navy-700: #00080e;
 
-  --sunshine: oklch(88% 0.2 95);
-  /* I can test out using soft sunshine super soft */
+  --sunshine-100: #fcf7e4;
+  --sunshine-200: #f9efc9;
+  --sunshine-300: #fbe698;
+  --sunshine-400: #fddc5b;
+  --sunshine-500: #fbd300;
+  --sunshine: #fbd300;
 
-  --beige: oklch(95% 0.02 120);
+  /* TODO: not all of these have p3 issues */
+  @media (color-gamut: p3) {
+    @supports (color: oklch(0% 0 0)) {
+      /* ! I have to get rid of these ASAP for fallback reasons */
+      --navy-c: 0.14;
+      --navy-h: 230;
 
-  --navy-100: oklch(87.5% 0.04 230);
-  --navy-200: oklch(75% 0.08 230);
-  --navy-300: oklch(62.5% 0.14 230);
-  --navy-400: oklch(50% 0.14 230); /* base */
-  --navy: oklch(50% 0.14 230);
-  --navy-500: oklch(37.5% 0.14 230);
-  --navy-600: oklch(25% 0.12 230);
-  --navy-700: oklch(12.5% 0.12 230);
+      /* : oklch(50% var(--navy-c) var(--navy-h)); */
 
-  --sunshine-100: oklch(97.5% 0.025 95);
-  --sunshine-200: oklch(95% 0.05 95);
-  --sunshine-300: oklch(92.5% 0.1 95);
-  --sunshine-400: oklch(90% 0.15 95);
-  --sunshine-500: oklch(87.5% 0.2 95); /* base */
-  --sunshine: oklch(87.5% 0.2 95);
+      --navy-100: oklch(87.5% 0.04 230);
+      --navy-200: oklch(75% 0.08 230);
+      --navy-300: oklch(62.5% 0.14 230);
+      --navy-400: oklch(50% 0.14 230); /* base */
+      --navy: oklch(50% 0.14 230);
+      --navy-500: oklch(37.5% 0.14 230);
+      --navy-600: oklch(25% 0.12 230);
+      --navy-700: oklch(12.5% 0.12 230);
+
+      --sunshine-100: oklch(97.5% 0.025 95);
+      --sunshine-200: oklch(95% 0.05 95);
+      --sunshine-300: oklch(92.5% 0.1 95);
+      --sunshine-400: oklch(90% 0.15 95);
+      --sunshine-500: oklch(87.5% 0.2 95); /* base */
+      --sunshine: oklch(87.5% 0.2 95);
+    }
+  }
 
   /* louie neutrals */
   --black-metal: hsl(0, 0%, 2.5%);
