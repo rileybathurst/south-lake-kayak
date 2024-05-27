@@ -68,10 +68,9 @@ const RentalsPage = () => {
         <article>
           <h1>Rentals</h1>
 
-          <Markdown
-            children={data.strapiRental.text.data.text}
-            className="react-markdown"
-          />
+          <Markdown className="react-markdown">
+            {data.strapiRental.text.data.text}
+          </Markdown>
           <Link to="/about/faq">Frequently Asked Questions about getting out on the water</Link>
 
           <hr />
@@ -85,41 +84,9 @@ const RentalsPage = () => {
           >
             BOOK RENTALS NOW
           </a>
-
-
-          {/*           <button
-            popovertarget="my-popover"
-          >
-            Open Popover
-          </button>
-
-          <div id="my-popover" popover='true'>
-            test
-            <iframe
-              id="inlineFrameExample"
-              title="Inline Frame Example"
-              // src={data.strapiLocale.peek_rentals}
-              // src='https://book.peek.com/s/e5c64ba3-ccc2-4873-9470-eff6624f74b7/l7ZBO'
-              src='https://peekpro.com'
-            >
-            </iframe>
-
-            <iframe
-              id="inlineFrameExample"
-              title="Inline Frame Example"
-              src="https://www.openstreetmap.org/export/embed.html?bbox=-0.004017949104309083%2C51.47612752641776%2C0.00030577182769775396%2C51.478569861898606&layer=mapnik">
-            </iframe>
-
-          </div> */}
-
-
         </article>
-
-
         <Composition />
-
       </main >
-
       <Footer />
     </>
   )

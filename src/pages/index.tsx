@@ -57,6 +57,9 @@ const IndexPage = () => {
       }
 
       southLake: strapiLocale(slug: {eq: "south-lake"}) {
+        name
+        peek_rentals
+        peek_tours
         about {
           data {
             about
@@ -113,13 +116,27 @@ const IndexPage = () => {
           />
 
           <div className="button__double">
-            {/* // ! qiock fix */}
-            <BookNow />
+            <a
+              href={data.southLake.peek_rentals}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="book-now"
+              title={`book rental kayaks and paddleboards with ${data.southLake.name}`}
+            >
+              RENTALS<br />
+              BOOK NOW
+            </a>
 
-
-            {/* <BookRental />
-
-            <BookTour /> */}
+            <a
+              href={data.southLake.peek_tours}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="book-now"
+              title={`book rental kayaks and paddleboards with ${data.southLake.name}`}
+            >
+              TOURS<br />
+              BOOK NOW
+            </a>
           </div>
 
         </section>

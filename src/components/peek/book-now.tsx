@@ -1,5 +1,6 @@
 import * as React from "react"
 import { graphql, useStaticQuery } from "gatsby"
+import { PaddleBookNow } from "@rileybathurst/paddle";
 
 const BookNow = () => {
 
@@ -13,14 +14,10 @@ const BookNow = () => {
   `);
 
   return (
-    <a
-      href={strapiLocale.peek_base}
-      rel="noopener noreferrer"
-      className="book-now"
-      title={`Book now with ${strapiLocale.name} kayak and paddleboard`}
-    >
-      BOOK NOW
-    </a>
+    <PaddleBookNow
+      peek_base={strapiLocale.peek_base}
+      strapiLocaleName={strapiLocale.name}
+    />
   )
 }
 
