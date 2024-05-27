@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Link, useStaticQuery, graphql } from "gatsby"
-import ReactMarkdown from "react-markdown";
+import Markdown from "react-markdown";
 import remarkGfm from 'remark-gfm'
 import LargeMenu from "./large-menu"
 import MenuList from './menu-list';
@@ -139,10 +139,9 @@ const Header = () => {
 
       {/* // TODO: needs a date to remove after */}
       <div className="top-bar" >
-        <ReactMarkdown
-          children={strapiLocale.topbar.data.topbar}
-          remarkPlugins={[remarkGfm]}
-        />
+        <Markdown className='react-markdown'>
+          {strapiLocale.topbar.data.topbar}
+        </Markdown>
       </div>
 
       <div className="logo-container" >
