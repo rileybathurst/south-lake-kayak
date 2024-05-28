@@ -17,7 +17,7 @@ const JobsPage = () => {
     <>
       <Header />
 
-      <main className="jobs progression">
+      <main className="albatross water">
 
         <section>
           <hgroup className="crest">

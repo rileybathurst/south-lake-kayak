@@ -11,7 +11,7 @@ function TourCatchAll({ params }) {
   return (
     <>
       <Header />
-      <main className="measure">
+      <main className="condor">
         <h2 className="crest">
           <Link to="/tours">Tours</Link> / {params.name}</h2>
 

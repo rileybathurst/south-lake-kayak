@@ -22,7 +22,7 @@ const DeliveryPage = () => {
     <>
       <Header />
 
-      <main className="progression">
+      <main className="albatross water">
         <article
         // className="info"
         >

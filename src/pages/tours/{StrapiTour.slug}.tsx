@@ -1,6 +1,10 @@
+// ? can I block this from creating north lake tours in south lake?
+
 import * as React from "react"
-import { graphql, Script } from "gatsby"
+import { graphql, Script, Link } from "gatsby"
 import { SEO } from "../../components/seo";
+import Header from "../../components/header";
+import Footer from "../../components/footer";
 
 import { useSiteMetadata } from "../../hooks/use-site-metadata";
 
@@ -8,7 +12,10 @@ import TourView from "../../views/tour-view"
 
 export const query = graphql`
   query TourQuery($slug: String!) {
-    strapiTour(slug: { eq: $slug }) {
+    strapiTour(
+      slug: { eq: $slug },
+      locale: {slug: {eq: "south-lake"}}
+      ) {
       id
       name
       information {
@@ -56,20 +63,43 @@ export const query = graphql`
 `
 
 const TourPage = ({ data }) => {
-  const tour = data.strapiTour;
-  const other = data.allStrapiTour;
+  console.log(data)
+
+  if (data.strapiTour) {
+    // console.log('south lake tour')
+    return (
+      <TourView
+        tour={data.strapiTour}
+        other={data.allStrapiTour}
+      />
+    );
+  }
+
+  // console.log('north lake only tour')
+  // ! having one inline and one on a template is a mess
   return (
-    <TourView
-      tour={tour}
-      other={other}
-    />
+    <>
+      <Header />
+      <main className="condor">
+        {/*         <h2 className="crest">
+          <Link to="/tours">Tours</Link> / {params.name}
+          </h2> */}
+
+        {/* // TODO: this should be a component */}
+        <h1 className="mixta">Looks like you&apos;ve paddled into uncharted waters!</h1>
+        <p>Don&apos;t worry, we&apos;ll help you navigate <Link to="/">back to our homepage.</Link></p>
+
+        {/* // TODO: this is a broken tour page add a set of tours it should be with cards */}
+      </main>
+      <Footer />
+    </>
   );
-};
+}
 
 export default TourPage;
 
 export const Head = ({ data }) => {
-  return (
+  if (data.strapiTour) {
     <SEO
       title={`${data.strapiTour.name} | ${useSiteMetadata().title}`}
       description={data.strapiTour.excerpt}
@@ -110,5 +140,5 @@ export const Head = ({ data }) => {
       </Script>
 
     </SEO>
-  )
+  }
 }

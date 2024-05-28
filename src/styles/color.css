@@ -2,16 +2,6 @@
 /* #COLOR */
 /*------------------*/
 
-body {
-  background-color: whitesmoke;
-  color: var(--black-metal);
-
-  @media (prefers-color-scheme: dark) {
-    background-color: oklch(2.5% var(--navy-c) var(--navy-h));
-    color: var(--kingly-cloud);
-  }
-}
-
 footer {
   background-color: var(--brilliance);
   box-shadow: 0 0 0 100vmax var(--brilliance);

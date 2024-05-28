@@ -244,8 +244,8 @@ const KnowPage = () => {
     <>
       <Header />
 
-
-      <main className="wiki">
+      {/* TODO: fix this styling */}
+      <main className="condor">
 
         <nav>
           <ul>

@@ -2,13 +2,13 @@ a {
   color: var(--navy);
 
   @media (prefers-color-scheme: dark) {
-    color: oklch(75% var(--navy-c) var(--navy-h));
+    color: var(--navy-200);
   }
 }
 
 a:where(:hover, :focus),
 a.hover {
-  color: oklch(62.5% var(--navy-c) var(--navy-h));
+  color: var(--navy-300);
   text-decoration: none;
 }
 
@@ -76,17 +76,17 @@ a svg {
   transition: 0.2s ease;
 
   @media (prefers-color-scheme: dark) {
-    fill: oklch(75% var(--navy-c) var(--navy-h));
+    fill: var(--navy-200);
   }
 }
 
 a svg:where(:hover, :focus) {
-  fill: oklch(62.5% var(--navy-c) var(--navy-h));
+  fill: var(--navy-300);
 }
 
 a:hover svg:not(.instagram),
 a.hover svg {
-  fill: oklch(62.5% var(--navy-c) var(--navy-h));
+  fill: var(--navy-300);
 }
 
 /*------------------*/

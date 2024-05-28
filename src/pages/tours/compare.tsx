@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useStaticQuery, graphql, Link, Script } from 'gatsby';
 import { SEO } from "../../components/seo";
+import { Breadcrumbs, Breadcrumb } from 'react-aria-components';
 
 import { useSiteMetadata } from "../../hooks/use-site-metadata";
 
@@ -17,15 +18,16 @@ function Compare(props) {
         <option selected key={props.key}>{props.name}</option>
       )
     }
-    else if (props.name === props.other) {
+
+    if (props.name === props.other) {
       return (
         <option disabled key={props.key}>{props.name}</option>
       )
-    } else {
-      return (
-        <option key={props.key}>{props.name}</option>
-      )
     }
+
+    return (
+      <option key={props.key}>{props.name}</option>
+    )
   }
 
   function first(e) {
@@ -117,6 +119,7 @@ function Compare(props) {
       <div className='comparesheet'>
         <div className='comparesheet_titles subgrid-passthrough'>
 
+          {/* // TODO: this is baseline I can remove a lot of it */}
           <div className='grid__title--select comparesheet__transparent'>{/* stay gold */}</div>
           <h3 className='grid__title--name h4 comparesheet_freeze'>Tour</h3>
           <p className='grid__title--sport'>Sport</p>
@@ -235,22 +238,15 @@ const ComparePage = () => {
     <>
       <Header />
 
-      <main className='main__pelican'>
+      <main className='pelican'>
         <h1>Compare</h1>
         <Compare tours={allStrapiTour.nodes} />
       </main>
 
-      <nav
-        aria-label="Breadcrumb"
-        className="breadcrumbs"
-      >
-        <ol>
-          <li>
-            <Link to={`/tours`}>Tours</Link>&nbsp;/&nbsp;
-          </li>
-          <li aria-current="page">Compare</li>
-        </ol>
-      </nav>
+      <Breadcrumbs>
+        <Breadcrumb><Link to="/tours/">Tours</Link></Breadcrumb>
+        <Breadcrumb>Compate</Breadcrumb>
+      </Breadcrumbs>
 
       <Footer />
     </>

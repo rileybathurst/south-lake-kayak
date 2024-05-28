@@ -94,14 +94,14 @@ menu button {
   color: var(--brilliance);
 
   @media (prefers-color-scheme: dark) {
-    background-color: oklch(75% var(--navy-c) var(--navy-h));
+    background-color: var(--navy-200);
     color: black;
   }
 }
 
 .book-now:hover,
 .book-now:active {
-  background-color: oklch(62.5% var(--navy-c) var(--navy-h));
+  background-color: var(--navy-300);
   color: var(--kingly-cloud);
 
   @media (prefers-color-scheme: dark) {

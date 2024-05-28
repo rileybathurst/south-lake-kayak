@@ -23,15 +23,14 @@
   --sunshine-500: #fbd300;
   --sunshine: #fbd300;
 
+  --ink: hsl(210, 50%, 12.5%); /* base */
+  --ink-100: hsl(210, 50%, 12.5%);
+  --ink-200: hsl(210, 50%, 7.5%);
+  --ink-300: hsl(210, 50%, 5%);
+
   /* TODO: not all of these have p3 issues */
   @media (color-gamut: p3) {
     @supports (color: oklch(0% 0 0)) {
-      /* ! I have to get rid of these ASAP for fallback reasons */
-      --navy-c: 0.14;
-      --navy-h: 230;
-
-      /* : oklch(50% var(--navy-c) var(--navy-h)); */
-
       --navy-100: oklch(87.5% 0.04 230);
       --navy-200: oklch(75% 0.08 230);
       --navy-300: oklch(62.5% 0.14 230);

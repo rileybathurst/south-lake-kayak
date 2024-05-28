@@ -1,3 +1,10 @@
 body {
   margin: 0; /* reset */
+  background-color: whitesmoke;
+  color: var(--black-metal);
+
+  @media (prefers-color-scheme: dark) {
+    background-color: var(--navy-700);
+    color: var(--kingly-cloud);
+  }
 }
