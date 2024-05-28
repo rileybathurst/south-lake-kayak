@@ -1,0 +1,10 @@
+# Netlify Redirects
+
+# Retail markdown
+/retail/kayak/hobie https:tahoecitykayak.com/retail/kayak/hobie
+/retail/kayak/eddyline https:tahoecitykayak.com/retail/kayak/eddyline
+/retail/kayak/bote https:tahoecitykayak.com/retail/kayak/bote
+/retail/sup/pauhana https:tahoecitykayak.com/retail/sup/pauhana
+/retail/kayak/wilderness-systems https:tahoecitykayak.com/retail/kayak/wilderness-systems
+/retail/kayak/perception https:tahoecitykayak.com/retail/kayak/perception
+/retail https:tahoecitykayak.com/retail

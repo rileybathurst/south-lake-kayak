@@ -203,10 +203,11 @@ const IndexPage = () => {
             <h4 className="supra">Kayaks and Paddleboards</h4>
           </hgroup>
 
-          <Markdown
-            children={data.strapiShop.text.data.text}
-            className="react-markdown"
-          />
+          {/* // ! there are markdown links in here that break in south tahoe */}
+          {/* fixing for now with redirect */}
+          <Markdown className="react-markdown">
+            {data.strapiShop.text.data.text}
+          </Markdown>
         </article>
         <div>
           {/* stay gold */}

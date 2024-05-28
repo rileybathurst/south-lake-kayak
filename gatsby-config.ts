@@ -81,7 +81,7 @@ const config: GatsbyConfig = {
           "frame-src": "'self' book.peek.com",
           "style-src":
             "'self' 'unsafe-inline' book12.freetls.fastly.net localhost:8000",
-          "font-src": "'self' 'unsafe-inline'",
+          "font-src": "'self' data: 'unsafe-inline'",
           "img-src": "'self' https://www.google-analytics.com data: about:", // ? I think  is a tracking pixel
           "connect-src": "'self' data:  https://www.google-analytics.com/",
           "media-src": "'self' data:",

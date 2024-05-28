@@ -10,9 +10,7 @@ const NotFoundPage = ({ location }) => {
   return (
     <>
       <Header />
-
-      <main className="measure">
-        {/* // TODO: add an eyebrow to this */}
+      <main className="pelican">
         <h2 className="crest">404 - {location.pathname}</h2>
 
         <h1 className="mixta">Looks like you&apos;ve paddled into uncharted waters!</h1>
