@@ -234,7 +234,7 @@ const TourView = ({ tour, other }: TourViewTypes) => {
       </section>
 
       <Breadcrumbs>
-        <Breadcrumb><Link to="tours">Tours</Link></Breadcrumb>
+        <Breadcrumb><Link to="/tours">Tours</Link></Breadcrumb>
         <Breadcrumb>{tour.name}</Breadcrumb>
       </Breadcrumbs>
 
