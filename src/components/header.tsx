@@ -1,7 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Link, useStaticQuery, graphql } from "gatsby"
 import Markdown from "react-markdown";
-import remarkGfm from 'remark-gfm'
 import LargeMenu from "./large-menu"
 import MenuList from './menu-list';
 import Logo from '../images/logo';
@@ -56,17 +55,19 @@ function SmallMenu() {
         <nav
           className='menu__small'
           style={{
-            transform: 'translateY(-' + amount + 'px)',
-            marginBottom: '-' + amount + 'px',
+            transform: `translateY(-${amount}px)`,
+            marginBottom: `-${amount}px`,
             visibility: "hidden",
           }}
           ref={ref}
         >
           <MenuList />
         </nav>
-      </div>
+      </div >
     );
-  } else if (slide === "menu") {
+  }
+
+  if (slide === "menu") {
     // console.log('menu');
     return (
       <div className='menu__small'>
@@ -74,38 +75,9 @@ function SmallMenu() {
         <nav
           className='menu__small'
           style={{
-            transform: 'translateY(-' + amount + 'px)',
-            marginBottom: '-' + amount + 'px',
+            transform: `translateY(-${amount}px)`,
+            marginBottom: `-${amount}px`,
             visibility: "hidden",
-          }}
-          ref={ref}
-        >
-          <MenuList />
-        </nav>
-      </div>
-    );
-  } else {
-    // console.log('else');
-    return (
-      <div className='menu__small'
-        style={{
-          height: '2rem',
-        }}
-      >
-        <button
-          className="button-styles"
-          onClick={() => setSlide('menu')}
-        >
-          <span
-            style={{ transform: 'translateY(0)' }}
-            className="span-styles"
-          >CLOSE<br />MENU
-          </span>
-        </button>
-        <nav
-          style={{
-            transform: 'translateY(0)',
-            marginBottom: '-' + amount + 'px',
           }}
           ref={ref}
         >
@@ -114,6 +86,35 @@ function SmallMenu() {
       </div>
     );
   }
+  // console.log('else');
+  return (
+    <div className='menu__small'
+      style={{
+        height: '2rem',
+      }}
+    >
+      <button
+        className="button-styles"
+        onClick={() => setSlide('menu')}
+        type='button'
+      >
+        <span
+          style={{ transform: 'translateY(0)' }}
+          className="span-styles"
+        >CLOSE<br />MENU
+        </span>
+      </button>
+      <nav
+        style={{
+          transform: 'translateY(0)',
+          marginBottom: `-${amount}px`,
+        }}
+        ref={ref}
+      >
+        <MenuList />
+      </nav>
+    </div>
+  );
 }
 
 const Header = () => {
@@ -153,7 +154,7 @@ const Header = () => {
         </Link>
         <h1 className='sr-only'>
           <Link to="/" className="link__subtle">
-            {strapiLocale.title}
+            {strapiLocale.name} &amp; Paddleboard
           </Link>
         </h1>
       </div>

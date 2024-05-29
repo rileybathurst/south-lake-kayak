@@ -31,7 +31,7 @@ function Season({ season_start, season_end, opening_time, closing_time, name }: 
     return null;
   }
 
-  console.log(opening_time);
+  // console.log(opening_time);
 
   /*   if (new Date(season_start) < new Date()) {
       return (

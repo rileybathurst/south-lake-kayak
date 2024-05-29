@@ -7,11 +7,7 @@ import Markdown from "react-markdown";
 
 import Header from "../components/header";
 import Footer from "../components/footer";
-import KayakIcon from "../images/kayak";
-import CarIcon from "../images/car";
-import BookNow from "../components/peek/book-now";
 import Composition from "../components/composition";
-import LocationDeck from "../components/location-deck";
 
 const RentalsPage = () => {
 
@@ -55,8 +51,8 @@ const RentalsPage = () => {
       }
 
       strapiLocale(slug: {eq: "south-lake"}) {
-        peek_rentals
         name
+        peek_rentals
       }
     }
   `)
@@ -79,7 +75,7 @@ const RentalsPage = () => {
             href={data.strapiLocale.peek_rentals}
             rel="noopener noreferrer"
             className="book-now"
-            // title={`Book rentals now with ${data.strapiLocale.name} kayak and paddleboard`}
+            title={`Book rentals now with ${data.strapiLocale.name} kayak and paddleboard`}
             type="button"
           >
             BOOK RENTALS NOW
@@ -97,8 +93,9 @@ export default RentalsPage
 export const Head = () => {
   return (
     <SEO
-      title={`Rentals | ${useSiteMetadata().title}`}
+      title='Rentals'
       description="Enjoy the majesty of paddling across the crystal clear waters of Lake Tahoe while kayaking in one of our demos."
+      url="/rentals"
     />
   )
 }

@@ -190,7 +190,8 @@ const IndexPage = () => {
           {/* // TODO: only one h and then p */}
           <hgroup className="crest">
             <h3 className="brow">
-              <a href={data.tahoeCity.url}
+              <a
+                href={data.tahoeCity.url}
                 target="_blank"
                 rel='noopener noreferrer'
               >
@@ -200,8 +201,6 @@ const IndexPage = () => {
             <h4 className="supra">Kayaks and Paddleboards</h4>
           </hgroup>
 
-          {/* // ! there are markdown links in here that break in south tahoe */}
-          {/* fixing for now with redirect */}
           <Markdown className="react-markdown">
             {data.strapiShop.text.data.text}
           </Markdown>
@@ -221,7 +220,7 @@ export default IndexPage
 export const Head = () => {
   return (
     <SEO
-      title="Home"
+    // title="Home"
     />
   )
 }
