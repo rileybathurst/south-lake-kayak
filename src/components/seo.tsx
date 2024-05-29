@@ -121,7 +121,7 @@ export const SEO = (SE0: SEO) => {
             "paymentAccepted": "${paymentAcceptedFormatted}",
             "telephone": "${data.strapiLocale.phone}",
             "numberOfEmployees": "10",
-            openingHours: "Mo, Tu, We, Th, Fr, Sa, Su ${data.strapiLocation.opening_time}-${data.strapiLocation.closing_time}",
+            "openingHours": "Mo, Tu, We, Th, Fr, Sa, Su ${data.strapiLocation.opening_time}-${data.strapiLocation.closing_time}",
             "priceRange": "$30-$375",
           }
         `}
