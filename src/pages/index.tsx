@@ -8,9 +8,6 @@ import Header from "../components/header"
 import Footer from "../components/footer"
 import PricingChart from "../components/pricing-chart"
 import WaterTexture from "../images/watertexture";
-import BookTour from "../components/peek/book-tour";
-import BookRental from "../components/peek/book-rental";
-import BookNow from "../components/peek/book-now";
 import Ticket from "../components/ticket";
 import LocationDeck from "../components/location-deck";
 
