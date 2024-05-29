@@ -10,7 +10,6 @@ interface SEO {
   children?: React.ReactNode;
 }
 
-// add types to the SEO const
 export const SEO = (SE0: SEO) => {
 
   const data = useStaticQuery(graphql`
@@ -68,7 +67,7 @@ export const SEO = (SE0: SEO) => {
 
   // console.log(data.strapiLocation.paymentAccepted);
   const paymentAcceptedQuery = data.strapiLocation.paymentAccepted;
-  const paymentAcceptedFormatted = paymentAcceptedQuery.split('\n').map((item) => item.trim().replace('- ', '')).join(', ');
+  const paymentAcceptedFormatted = paymentAcceptedQuery.split('\n').map((payment: string) => payment.trim().replace('- ', '')).join(', ');
   // console.log(paymentAcceptedFormatted);
 
   return (
@@ -85,7 +84,9 @@ export const SEO = (SE0: SEO) => {
 
       <meta name="theme-color" content={data.strapiLocale.themeColor} />
 
-      {/* TODO: logo */}
+      {/* // TODO: logo */}
+      {/* // ! test numberOfEmployees */}
+      {/* // ! test priceRange */}
 
       <Script type="application/ld+json">
         {`
@@ -119,35 +120,12 @@ export const SEO = (SE0: SEO) => {
             },
             "paymentAccepted": "${paymentAcceptedFormatted}",
             "telephone": "${data.strapiLocale.phone}",
-            "numberOfEmployees": "${data.strapiLocale.numberOfEmployees}",
-
-            "openingHoursSpecification": [
-              {
-                "@type": "OpeningHoursSpecification",
-                "dayOfWeek": [
-                  "Monday",
-                  "Tuesday",
-                  "Wednesday",
-                  "Thursday",
-                  "Friday",
-                  "Saturday",
-                  "Sunday"
-                ],
-                "opens": "${data.strapiLocation.opening_time}",
-                "closes": "${data.strapiLocation.closing_time}"
-              }
-            ]
-  
+            "numberOfEmployees": "10",
+            openingHours: "Mo, Tu, We, Th, Fr, Sa, Su ${data.strapiLocation.opening_time}-${data.strapiLocation.closing_time}",
+            "priceRange": "$30-$375",
           }
         `}
       </Script>
-
-      {/* TODO: openingHoursSpecification.validFrom */}
-      {/* https://developers.google.com/search/docs/appearance/structured-data/local-business */}
-
-      {/* ? this is on schema but google doesnt show it */}
-      {/* https://schema.org/openingHours */}
-
       {SE0.children}
     </>
   );
