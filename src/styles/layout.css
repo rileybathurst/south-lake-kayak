@@ -45,7 +45,8 @@
 /*------------------------------------*/
 /* * I'm NOT 100% sure of the syntax below here */
 
-/* interesting metaphor but only a maybe so far */
+/* ! interesting metaphor but only a maybe so far */
+/* ! nope wrong word keep trying */
 .water {
   display: flex;
   flex-flow: row wrap;

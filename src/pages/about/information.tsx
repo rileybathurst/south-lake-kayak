@@ -27,9 +27,13 @@ const InformationPage = () => {
   `);
 
   interface InfoTypes {
-    id: string;
+    id: React.Key;
     title: string;
-    answer: string;
+    info: {
+      data: {
+        info: string;
+      };
+    };
   }
 
   return (
@@ -42,7 +46,7 @@ const InformationPage = () => {
         <h1>Paddlesports Information</h1>
         <h2>Before you go!</h2>
 
-        <ul className="faq condor">
+        <ul className="condor">
           {allStrapiPaddleInfo.nodes.map((info: InfoTypes) => (
             <li key={info.id}>
               <h2>{info.title}</h2>
@@ -70,7 +74,8 @@ export default InformationPage
 export const Head = () => {
   return (
     <SEO
-      title={`Information | ${useSiteMetadata().title}`}
+      title='Information'
+      // TODO: this would be interesting to do with a map of the faq at the top question level
       description="Before you go. Dress for Success. Weather and Navigation. Basic Paddling Tips. Kayak Paddle Strokes. Tandem Kayaking – Its about communication. Safety on the Water. Stay Hydrated"
     >
 

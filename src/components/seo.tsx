@@ -7,10 +7,53 @@ interface SEO {
   url?: string;
   image?: string;
   imageAlt?: string;
+  breadcrumbs?: object;
   children?: React.ReactNode;
 }
 
 export const SEO = (SE0: SEO) => {
+
+  interface BreadcrumbsTypes {
+    breadcrumbs: {
+      one: {
+        name: string;
+        item: string;
+      };
+      two: {
+        name: string;
+        item: string;
+      };
+    };
+  }
+  function Breadcrumbs({ breadcrumbs }: BreadcrumbsTypes) {
+    if (!breadcrumbs) return null;
+
+    // console.log(breadcrumbs);
+    return (
+      <Script type="application/ld+json">
+        {`
+          {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "${breadcrumbs.one.name}",
+                "item": "/${breadcrumbs.one.item}"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "${breadcrumbs.two.name}",
+                "item": "/${breadcrumbs.one.item}/${breadcrumbs.two.item}"
+              }
+            ]
+          }
+        `}
+      </Script>
+    );
+  }
 
   const data = useStaticQuery(graphql`
     query SEOQuery {
@@ -59,6 +102,7 @@ export const SEO = (SE0: SEO) => {
     url: `${data.strapiLocale.url}${SE0.url}` || data.strapiLocale.url,
     image: data.strapiLocale.ogImage || SEO.image,
     imageAlt: data.strapiLocale.ogimagedescription || SEO.imageAlt,
+    breadcrumbs: SE0.breadcrumbs || null,
   };
 
   // const query = '- cash\n - credit card';
@@ -80,13 +124,18 @@ export const SEO = (SE0: SEO) => {
       <meta property="og:title" content={seo.title} />
       <meta property="og:description" content={seo.description} />
       <meta property="og:image" content={seo.image} />
+      {/* // TODO: og:image:alt was missing when tested */}
+      {/* https://developers.facebook.com/tools/debug/?q=southtahoekayak.com */}
       <meta property="og:image:alt" content={seo.imageAlt} />
 
       <meta name="theme-color" content={data.strapiLocale.themeColor} />
 
       {/* // TODO: logo */}
+      {/* // TODO: slogan */}
       {/* // ! test numberOfEmployees */}
       {/* // ! test priceRange */}
+
+      {/* // TODO: offerCatalog */}
 
       <Script type="application/ld+json">
         {`
@@ -122,15 +171,16 @@ export const SEO = (SE0: SEO) => {
             "telephone": "${data.strapiLocale.phone}",
             "numberOfEmployees": "10",
             "openingHours": "Mo, Tu, We, Th, Fr, Sa, Su ${data.strapiLocation.opening_time}-${data.strapiLocation.closing_time}",
-            "priceRange": "$30-$375",
+            "priceRange": "$30-$375"
           }
         `}
       </Script>
+
+      {/* // ? do I have anything but two levels deep? with this maybe */}
+      {/* this was being weird inline so i put it in a function i might not need to */}
+      {/* {seo?.breadcrumbs ?? */}
+      <Breadcrumbs breadcrumbs={seo.breadcrumbs} />
       {SE0.children}
     </>
   );
 };
-
-// priceRange
-// review
-// url

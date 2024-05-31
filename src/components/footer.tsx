@@ -15,7 +15,9 @@ const Footer = () => {
   const data = useStaticQuery(graphql`
     query FooterQuery {
       strapiLocale(slug: {eq: "south-lake"}) {
+        name
         email
+        instagram
       }
 
       allStrapiLocale(filter: {slug: {ne: "south-lake"}}) {
@@ -76,15 +78,16 @@ const Footer = () => {
               </a>
               : null
             }
-            {useSiteMetadata().social?.instagram ?
-              <a href={useSiteMetadata().social.instagram}
+            {data.strapiLocale.instagram ?
+              <a href={`https://instagram.com/${data.strapiLocale.instagram}`}
                 target='_blank'
                 rel='noopener noreferrer'
-                aria-label={`${useSiteMetadata().title} instagram`}
+                aria-label={`${data.strapiLocale.name} kayak and paddleboard instagram`}
               >
                 <InstagramIcon />
               </a>
-              : null}
+              : null
+            }
           </div>
         </div>
         <hr />

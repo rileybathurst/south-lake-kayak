@@ -9,6 +9,7 @@ import Header from "../../components/header";
 import Footer from "../../components/footer";
 
 import Time from "../../components/time";
+import BookNow from '../../components/peek/book-now';
 
 function Compare(props) {
 
@@ -158,16 +159,22 @@ function Compare(props) {
           <p className='grid__one--fitness capitalize'>{fitness1}
             <span className='show-below__vulture'>&nbsp;fitness</span>
           </p>
-          <p className='grid__one--location'><span className='show-below__vulture'>Starts at&nbsp;</span>Tahoe City</p>
+          <p className='grid__one--location'><span className='show-below__vulture'>Starts at&nbsp;</span>South Lake Tahoe</p>
           <p className='grid__one--about'>{excerpt1}</p>
           <p className='grid__one--minimum'>{minimum1}<span className='show-below__vulture'>&nbsp;people minimum</span></p>
           <p className='grid__one--price'>${price1}</p>
-          <p className='grid__one--book'><a href={peeks1}
-            rel="noopener noreferrer"
-            className="book-now"
-          >
-            BOOK NOW
-          </a></p>
+          <p className='grid__one--book'>
+            {peeks1 ?
+              <a href={peeks1}
+                rel="noopener noreferrer"
+                className="book-now"
+              >
+                BOOK NOW
+              </a>
+              :
+              <BookNow />
+            }
+          </p>
 
         </div>
 
@@ -192,16 +199,22 @@ function Compare(props) {
             />
           </div>
           <p className='grid__two--fitness capitalize'>{fitness2}<span className='show-below__vulture'>&nbsp;fitness</span></p>
-          <p className='grid__two--location'><span className='show-below__vulture'>Starts at&nbsp;</span>Tahoe City</p>
+          <p className='grid__two--location'><span className='show-below__vulture'>Starts at&nbsp;</span>South Lake Tahoe</p>
           <p className='grid__two--about'>{excerpt2}</p>
           <p className='grid__two--minimum'>{minimum2}<span className='show-below__vulture'>&nbsp;people minimum</span></p>
           <p className='grid__two--price'>${price2}</p>
-          <p className='grid__two--book'><a href={peeks2}
-            rel="noopener noreferrer"
-            className="book-now"
-          >
-            BOOK NOW
-          </a></p>
+          <p className='grid__two--book'>
+            {peeks2 ?
+              <a href={peeks2}
+                rel="noopener noreferrer"
+                className="book-now"
+              >
+                BOOK NOW
+              </a>
+              :
+              <BookNow />
+            }
+          </p>
         </div>
       </div >
     </>
@@ -245,7 +258,7 @@ const ComparePage = () => {
 
       <Breadcrumbs>
         <Breadcrumb><Link to="/tours/">Tours</Link></Breadcrumb>
-        <Breadcrumb>Compate</Breadcrumb>
+        <Breadcrumb>Compare</Breadcrumb>
       </Breadcrumbs>
 
       <Footer />
@@ -258,27 +271,12 @@ export default ComparePage
 export const Head = () => {
   return (
     <SEO
-      title={`Compare Tours | ${useSiteMetadata().title}`}
-    // TODO description and image
-    >
-      <Script type="application/ld+json">
-        {`
-        {
-          "@context": "https://schema.org",
-          "@type": "BreadcrumbList",
-          "itemListElement": [{
-            "@type": "ListItem",
-            "position": 1,
-            "name": "Tours",
-          },{
-            "@type": "ListItem",
-            "position": 2,
-            "name": "Compare",
-          }]
-        }
-      `}
-      </Script>
-
-    </SEO>
+      title='Compare Tours'
+      // TODO description and image
+      breadcrumbs={{
+        one: { name: 'Tours', url: 'tours' },
+        two: { name: 'Compare', url: 'compare' }
+      }}
+    />
   )
 }

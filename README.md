@@ -14,4 +14,6 @@ The South Lake Tahoe Kayak and Paddleboard project is a web application that pro
 
 These technologies work together to create a robust and user-friendly web application for the South Lake Tahoe Kayak and Paddleboard project.
 
-Don't run storybook here; keep that all on Tahoe City Kayak
+## Paddle Framework Documentation
+
+The Paddle Framework is a custom framework developed for Tahoe City and South Lake Kayak. It provides a set of reusable components and utilities that help streamline the development process and maintain consistency across the application. The framework is built on top of popular libraries like React and Tailwind CSS, offering a modern and flexible foundation for building web applications.

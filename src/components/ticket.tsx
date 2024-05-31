@@ -23,10 +23,13 @@ const Ticket = ({ tour }: TicketTypes) => {
         </Link>
       </h4>
       <div className="card__specs">
+
+        {/* TODO: hardcoded as this doesnt fit */}
         <Time
           start={tour.start}
           finish={tour.finish}
           duration={tour.duration}
+          name={tour.name}
         />
         {tour.fitness ? <h4 className="capitalize">{tour.fitness} <span>Fitness</span></h4> : null}
       </div>

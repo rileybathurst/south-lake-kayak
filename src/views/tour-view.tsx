@@ -1,5 +1,6 @@
 import * as React from "react";
-import { Link, graphql, useStaticQuery } from "gatsby"; import ReactMarkdown from "react-markdown";
+import { Link, graphql, useStaticQuery } from "gatsby";
+import Markdown from "react-markdown";
 import Header from "../components/header"
 import Footer from "../components/footer"
 import Time from "../components/time";
@@ -9,14 +10,35 @@ import Ticket from "../components/ticket";
 import type { IGatsbyImageData } from 'gatsby-plugin-image';
 import type { CardType } from "../types/card";
 import { Breadcrumbs, Breadcrumb } from 'react-aria-components';
+import BookNow from "../components/peek/book-now";
 
 interface TimingTypes {
   start?: string;
   finish?: string;
   duration?: number;
+  name?: string;
 }
-function Timing({ start, finish, duration }: TimingTypes) {
-  if (start && finish) {
+function Timing({ start, finish, duration, name }: TimingTypes) {
+
+  if (name === "Illuminated Full Moon Tour") {
+    return (
+      <section className="spec attribute">
+        <h3 className="crest">Time</h3>
+        <h4>Sunset</h4>
+      </section>
+    )
+  }
+
+  if (name === "Emerald Bay Boat Camp Overnight") {
+    return (
+      <section className="spec attribute">
+        <h3 className="crest">Time</h3>
+        <h4>Overnight</h4>
+      </section>
+    )
+  }
+
+  if (start && finish !== "Emerald Bay Boat Camp Overnight" && name !== "Illuminated Full Moon Tour") {
     return (
       <section className="spec attribute">
         <h3 className="crest">Time</h3>
@@ -175,12 +197,16 @@ const TourView = ({ tour, other }: TourViewTypes) => {
         <div>
           <h1>{tour.name}</h1>
           <div className="tour__minimum">
-            <a href={tour.peek}
-              rel="noopener noreferrer"
-              className="book-now"
-            >
-              BOOK NOW
-            </a>
+            {tour.peek ?
+              <a href={tour.peek}
+                rel="noopener noreferrer"
+                className="book-now"
+              >
+                BOOK NOW
+              </a>
+              :
+              <BookNow />
+            }
             <Minimum minimum={tour.minimum} />
           </div>
 
@@ -190,16 +216,23 @@ const TourView = ({ tour, other }: TourViewTypes) => {
             price={tour.price}
           />
 
-          <Timing
-            start={tour.start}
-            finish={tour.finish}
-            duration={tour.duration}
-          />
+          {tour.name === "Emerald Bay Boat Camp Overnight" ?
+            <section className="spec attribute">
+              <h3 className="crest">Time</h3>
+              <h4>Overnight</h4>
+            </section>
+            :
+            <Timing
+              start={tour.start}
+              finish={tour.finish}
+              duration={tour.duration}
+              name={tour.name}
+            />
+          }
 
-          <ReactMarkdown
-            children={tour.information?.data?.information}
-            className="react-markdown single__description"
-          />
+          <Markdown className="react-markdown single__description">
+            {tour.information?.data?.information}
+          </Markdown>
 
         </div>
 

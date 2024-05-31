@@ -7,13 +7,28 @@ interface TimeTypes {
   start?: string | null;
   finish?: string | null;
   duration?: number | null;
+  name?: string | null;
 }
-const Time = ({ start, finish, duration }: TimeTypes) => {
-  if (start && finish) {
+const Time = ({ start, finish, duration, name }: TimeTypes) => {
+  if (name === "Illuminated Full Moon Tour") {
     return (
-      <time dateTime={start}>
-        <HourMin time={start} /> - <HourMin time={finish} />
-      </time>
+      <h4>Sunset</h4>
+    )
+  }
+
+  if (name === "Emerald Bay Boat Camp Overnight") {
+    return (
+      <h4>Overnight</h4>
+    )
+  }
+
+  if (start && finish && name !== "Emerald Bay Boat Camp Overnight" && name !== "Illuminated Full Moon Tour") {
+    return (
+      <h4>
+        <time dateTime={start}>
+          <HourMin time={start} /> - <HourMin time={finish} />
+        </time>
+      </h4>
     )
   }
 

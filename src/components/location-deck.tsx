@@ -31,8 +31,8 @@ function LocationDeck({ locations, background }: LocationDeckTypes) {
           key={location.id}
           location={location}
           background={background}
-          map={location.map} // Add the 'map' property
-          svg={location.svg} // Add the 'svg' property
+          map={location.map} // ?
+          svg={location.svg} // ?
         />
       ))}
     </section>

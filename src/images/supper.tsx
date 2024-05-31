@@ -1,3 +1,5 @@
+// TODO: these are still in the composition but need to be done better through the CMS and have more options to randomize
+
 import * as React from "react";
 import { GatsbyImage } from "gatsby-plugin-image"
 

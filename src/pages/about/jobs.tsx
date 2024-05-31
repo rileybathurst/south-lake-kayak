@@ -1,68 +1,84 @@
 // TODO: some of the typographic sizing is really out
-// TODO: I think there is querying we can do here
+// ! this is in strapi use that
 
 import * as React from "react"
-import { Script } from 'gatsby';
+import { Link, Script, graphql, useStaticQuery } from 'gatsby';
 import { SEO } from "../../components/seo";
-import { useSiteMetadata } from "../../hooks/use-site-metadata";
-import ParentTitleBreadcrumb from "../../components/parent-title-breadcrumb";
+import { Breadcrumbs, Breadcrumb } from 'react-aria-components';
 import Header from "../../components/header";
 import Footer from "../../components/footer";
 
 const JobsPage = () => {
-  let title = "Jobs";
-  let parent = "about";
+
+  interface JobTypes {
+    title: string;
+    id: string;
+    description: {
+      data: string;
+    }
+  }
+
+  // * this is weird and wont query the other way
+  const { strapiLocale } = useStaticQuery(graphql`
+    query JobsQuery {
+      strapiLocale(slug: {eq: "south-lake"}) {
+        name
+        email
+        jobs {
+          title
+          id
+          description {
+            data
+          }
+        }
+      }
+    }
+  `)
 
   return (
     <>
       <Header />
 
-      <main className="albatross water">
+      <main className="condor">
 
         <section>
-          <hgroup className="crest">
-            {/* // TODO: only one h and then p */}
-
-            <h1 className="brow">{title}</h1>
-            <h2 className="supra">Help Wanted</h2>
-          </hgroup>
+          <h1>Jobs</h1>
           <hr />
-          <p>South Tahoe Kayak is hiring for Summer <strong>May 1st to Oct 31</strong>.</p>
+          <p>{strapiLocale.name} Kayak & Paddleboard is hiring for Summer <strong>May 1st to Oct 31</strong>.</p>
 
           <p>Housing options available!</p>
 
           <p>If you want a fun <strong>but also physical</strong> job with great views of the lake.</p>
-
-          {/* <p>We are hiring for the following:</p> */}
-
-          <h3>If Interested</h3>
-          <p>
-            please send a resume with references to
-          </p>
-          <a href='mailto:info@southtahoekayak.com' className="button">info@southtahoekayak.com</a>
+          <hr />
         </section>
 
         <section>
-          <h3>Kayak/Paddleboard Guide</h3>
-          <p>take people on guided paddling tours and entertain them with fun facts, dad jokes, etc. Full or part time. Training provided.</p>
-          <hr />
-          <h3>Operations Manager</h3>
-          <p>Work in our retail kayak shop while managing incoming reservations and assigning guides to kayak tours.</p>
-          <hr />
-          <h3>Sales Manager</h3>
-          <p>Manage our retail store, sell kayaks, order inventory, etc.</p>
-          <hr />
-          <h3>Beach Rental Tech</h3>
-          <p>Work on the local beach renting kayaks</p>
+          {strapiLocale.jobs.map((job: JobTypes) => {
+            return (
+              <div key={job.id}>
+                <h2 className="">{job.title}</h2>
+                <p>{job.description.data}</p>
+              </div>
+            )
+          })}
         </section>
 
+        <hr />
 
+        <h4>If Interested</h4>
+        <p>please send a resume with references to</p>
+        <a
+          href={`mailto:${strapiLocale.email}`}
+          className="button"
+        >
+          {strapiLocale.email}
+        </a>
       </main >
 
-      <ParentTitleBreadcrumb
-        parent={parent}
-        title={title}
-      />
+      <Breadcrumbs>
+        <Breadcrumb><Link to="/about/">About</Link></Breadcrumb>
+        <Breadcrumb>Jobs</Breadcrumb>
+      </Breadcrumbs>
 
       <Footer />
     </>
@@ -70,29 +86,16 @@ const JobsPage = () => {
 }
 export default JobsPage
 
+// TODO: SEO for jobs
 export const Head = () => {
   return (
     <SEO
-      title={`Jobs | ${useSiteMetadata().title}`}
-      description="“Are you looking for a job in kayaking or paddleboarding? Look no further than Tahoe City Kayak & Paddleboard! We’re currently hiring for several positions, including kayak rental staff, paddleboard instructors, and more. Apply today and join our team!"
-    >
-      <Script type="application/ld+json">
-        {`
-            {
-              "@context": "https://schema.org",
-              "@type": "BreadcrumbList",
-              "itemListElement": [{
-                "@type": "ListItem",
-                "position": 1,
-              "name": "About",
-            },{
-              "@type": "ListItem",
-              "position": 2,
-              "name": "Jobs"
-            }]
-          }
-        `}
-      </Script>
-    </SEO>
+      title='Jobs'
+      description='Are you looking for a job in kayaking or paddleboarding? Look no further. We&apos;re currently hiring for several positions. Apply today and join our team!'
+      breadcrumbs={{
+        one: { name: 'About', item: 'about' },
+        two: { name: 'Jobs', item: 'jobs' }
+      }}
+    />
   )
 }

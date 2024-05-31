@@ -71,6 +71,7 @@ const RentalsPage = () => {
 
           <hr />
 
+          {/* // ? maybe this is a component again */}
           <a
             href={data.strapiLocale.peek_rentals}
             rel="noopener noreferrer"

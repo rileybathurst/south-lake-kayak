@@ -55,7 +55,7 @@ export default DeliveryPage
 export const Head = () => {
   return (
     <SEO
-      title={`Delivery | ${useSiteMetadata().title}`}
+      title='Delivery'
       description="Whether you need retail kayaks or paddleboards, or our rental watercraft, we can deliver throughout the Tahoe Region and beyond &#40;Sacramento and Reno areas included&#41;"
 
     // todo service areas

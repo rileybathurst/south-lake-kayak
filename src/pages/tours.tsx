@@ -101,7 +101,7 @@ const ToursPage = () => {
         />
       </section>
 
-      {sports.map((sport: any) => (
+      {sports.map((sport) => (
         <section key={sport.nodes[0].id}>
           <hgroup className="pelican">
             <h1 className="capitalize">
@@ -130,7 +130,7 @@ export default ToursPage
 export const Head = () => {
   return (
     <SEO
-      title={`Tours | ${useSiteMetadata().title}`}
+      title='Tours'
       description="We have many different Kayak and Paddle board Tours to offer. Our tours leave from multiple locations around the lake."
     />
   )

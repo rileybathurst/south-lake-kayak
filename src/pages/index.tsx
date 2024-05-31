@@ -145,6 +145,7 @@ const IndexPage = () => {
               alt={data.southlakefriends.title}
               className='img__wrapped hero'
             />
+            {/* // ? this seems like every time it would have that classname */}
             <WaterTexture className="texture" />
             <GatsbyImage
               image={data.goldshed.image.localFile.childImageSharp.gatsbyImageData}
@@ -219,8 +220,6 @@ export default IndexPage
 
 export const Head = () => {
   return (
-    <SEO
-    // title="Home"
-    />
+    <SEO />
   )
 }

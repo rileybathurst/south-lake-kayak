@@ -101,42 +101,43 @@ export default TourPage;
 export const Head = ({ data }) => {
   if (data.strapiTour) {
     <SEO
-      title={`${data.strapiTour.name} | ${useSiteMetadata().title}`}
+      title={data.strapiTour.name}
       description={data.strapiTour.excerpt}
       // TODO image
       // github copilot gave me the extra
       image={data.strapiTour.ogimage.localFile.childImageSharp.gatsbyImageData.images.fallback.src}
       imageAlt={data.strapiTour.ogimage.alternativeText}
     >
+      {/* // TODO: new breadcrumbs */}
       <Script type="application/ld+json">
         {`
           {
             "@context": "https://schema.org",
-            "@type": "BreadcrumbList",
-            
-            "itemListElement":
-            [
-              {
-                "@type": "ListItem",
-                "position": 1,
-                "name": "Retail",
-                "item":
-                {
-                  "name": "Tours"
-                }
-              },
-              {
-                "@type": "ListItem",
-                "position": 2,
-                "item":
-                {
-                  "name": "${data.strapiTour.name}"
-                }
-              }
-            ]
+      "@type": "BreadcrumbList",
 
-          }
-        `}
+        "itemListElement":
+    [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Retail",
+        "item":
+        {
+          "name": "Tours"
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "item":
+        {
+          "name": "${data.strapiTour.name}"
+        }
+      }
+    ]
+
+  }
+  `}
       </Script>
 
     </SEO>

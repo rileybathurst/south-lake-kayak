@@ -15,6 +15,7 @@ const strapiConfig = {
     "locale",
     "location",
     "paddle-info",
+    "policy",
     "rental-addon",
     "rental-rate",
     "sport",

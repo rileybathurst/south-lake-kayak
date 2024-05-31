@@ -1,7 +1,6 @@
 import * as React from "react"
 import { Link, useStaticQuery, graphql } from 'gatsby';
 import { SEO } from "../components/seo";
-import { useSiteMetadata } from '../hooks/use-site-metadata';
 import Markdown from "react-markdown";
 import Header from "../components/header";
 import Footer from "../components/footer";
@@ -30,7 +29,6 @@ const AboutPage = () => {
       <main className="pelican water">
         <div>
           <h1>About Us</h1>
-          {/* // ? I might be able to query this its not the slogan but its almost the same maybe a single strapi */}
           <Markdown className="react-markdown">
             {strapiLocale.about.data.about}
           </Markdown>
@@ -59,8 +57,9 @@ export default AboutPage
 export const Head = () => {
   return (
     <SEO
-      title={`About Us | ${useSiteMetadata().title}`}
-      description="Our mission at Tahoe City Kayak is to provide you with unparalleled customer service. We strive to give you the best in kayak and padddleboard sales, rentals and tours."
+      title='About Us'
+    // TODO: this needs a query which maybe means it needs a hook
+    // description="Our mission at Tahoe City Kayak is to provide you with unparalleled customer service. We strive to give you the best in kayak and padddleboard sales, rentals and tours."
     />
   )
 }

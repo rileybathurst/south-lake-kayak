@@ -50,12 +50,21 @@ export const Head = () => {
 
   // console.log(useStrapiFaq);
 
+  // name: "About",
+  // something: "About",
+  // item: "about"
+
   return (
     <SEO
-      title={`Frequently Asked Questions | ${useSiteMetadata().title}`}
+      title='Frequently Asked Questions'
       description="Get answers to your questions about kayaking and paddleboarding in Lake Tahoe with Tahoe City Kayak and Paddleboards frequently asked questions page. Learn about our kayak and paddleboard, tours, and storage options."
+      breadcrumbs={{
+        one: { name: 'About', item: 'about' },
+        two: { name: 'Frequently Asked Questions', item: 'faq' }
+      }}
     >
 
+      {/* // TODO: move the types */}
       <Script type="application/ld+json">
         {`
           {
@@ -76,24 +85,6 @@ export const Head = () => {
           }
         `}
       </Script>
-
-      <Script type="application/ld+json">
-        {`
-          {
-            "@context": "https://schema.org",
-            "@type": "BreadcrumbList",
-            "itemListElement": [{
-              "@type": "ListItem",
-              "position": 1,
-              "name": "About",
-            },{
-              "@type": "ListItem",
-              "position": 2,
-              "name": "Frequently Asked Questions"
-            }]
-          }
-        `}
-      </Script>
-    </SEO>
+    </SEO >
   )
 }

@@ -1,14 +1,12 @@
 // TODO: styling
 
 import * as React from "react"
-import { useStaticQuery, graphql, Script } from 'gatsby';
+import { useStaticQuery, graphql, Script, Link } from 'gatsby';
+import { Breadcrumbs, Breadcrumb } from 'react-aria-components';
 import { SEO } from "../../components/seo";
 
-import { useSiteMetadata } from "../../hooks/use-site-metadata";
 import Header from "../../components/header";
 import Footer from "../../components/footer";
-// import { TestimoialSEO } from "../../seo/testimonial";
-import ParentTitleBreadcrumb from "../../components/parent-title-breadcrumb";
 
 const FaqPage = () => {
 
@@ -26,8 +24,8 @@ const FaqPage = () => {
     }
   `)
 
-  let title = "Testimonials";
-  let parent = "about";
+  const title = "Testimonials";
+  const parent = "about";
 
   interface TestimonialTypes {
     id: string;
@@ -45,24 +43,22 @@ const FaqPage = () => {
         <h1>{title}</h1>
 
         <ul className="testimonials">
-          {
-            allStrapiTestimonial.nodes.map((testimonial: TestimonialTypes) => (
-              <li key={testimonial.id} >
-                <h2>{testimonial.customer}</h2>
-                <p>{testimonial.testimonial}</p>
-                <p>{testimonial.sign}</p>
-                <p>{testimonial.location}</p>
-                <hr />
-              </li>
-            ))
-          }
+          {allStrapiTestimonial.nodes.map((testimonial: TestimonialTypes) => (
+            <li key={testimonial.id} >
+              <h2>{testimonial.customer}</h2>
+              <p>{testimonial.testimonial}</p>
+              <p>{testimonial.sign}</p>
+              <p>{testimonial.location}</p>
+              <hr />
+            </li>
+          ))}
         </ul>
       </main>
 
-      <ParentTitleBreadcrumb
-        parent={parent}
-        title={title}
-      />
+      <Breadcrumbs>
+        <Breadcrumb><Link to="/about/">About</Link></Breadcrumb>
+        <Breadcrumb>Testimonials</Breadcrumb>
+      </Breadcrumbs>
 
       <Footer />
     </>
@@ -74,27 +70,14 @@ export default FaqPage
 export const Head = () => {
   return (
     <SEO
-      title={`Testimonials | ${useSiteMetadata().title}`}
-      description="Testimonials from our customers."
+      title='Testimonials'
+      // ? should this description include business name or what we are working on
+      description="Testimonials our the customers."
+      breadcrumbs={{
+        one: { name: 'About', item: 'about' },
+        two: { name: 'Testimonials', item: 'testimonials' }
+      }}
     >
-      {/* <TestimoialSEO /> */}
-      <Script type="application/ld+json">
-        {`
-          {
-            "@context": "https://schema.org",
-            "@type": "BreadcrumbList",
-            "itemListElement": [{
-              "@type": "ListItem",
-              "position": 1,
-              "name": "About",
-            },{
-              "@type": "ListItem",
-              "position": 2,
-              "name": "Testimonials"
-            }]
-          }
-        `}
-      </Script>
     </SEO>
   )
 }

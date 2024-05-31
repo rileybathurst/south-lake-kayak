@@ -5,6 +5,7 @@ import { Link } from 'gatsby';
 import Markdown from "react-markdown";
 import HourMin from "./hour-min";
 import type { LocationCardTypes } from "../types/location-card-types";
+import Phone from "./phone";
 
 interface DangerSVGTypes {
   svg: string;
@@ -90,14 +91,15 @@ interface ContentTypes {
 function Content({ location }: ContentTypes) {
   return (
     <>
-      <DangerSVG svg={location.svg} />
+      <div
+        dangerouslySetInnerHTML={{ __html: location.svg }}
+      />
 
       <div>
         <h3 className="elbrus">{location.name}</h3>
-        <Markdown
-          children={location.address.data.address}
-          className="react-markdown"
-        />
+        <Markdown className="react-markdown">
+          {location.address.data.address}
+        </Markdown>
       </div>
 
       <div>
@@ -113,6 +115,7 @@ function Content({ location }: ContentTypes) {
           children={location.description.data.description}
           className="react-markdown"
         />
+        {location.name === "On Water Rental" ? <Phone /> : null}
       </div>
     </>
   )
