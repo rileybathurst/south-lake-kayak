@@ -89,6 +89,15 @@ const config: GatsbyConfig = {
         },
       },
     },
+    {
+      resolve: "gatsby-plugin-manifest",
+      options: {
+        name: "South Tahoe Kayak and Paddleboard",
+        short_name: "STK",
+        start_url: "/",
+        icon: "src/images/south-tahoe-favicon.svg",
+      },
+    },
   ],
 };
 
