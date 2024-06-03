@@ -57,10 +57,6 @@ footer {
 /*------------------*/
 
 .home {
-  background-color: var(--sand);
-  box-shadow: 0 0 0 100vmax var(--sand);
-  clip-path: inset(0 -100vmax);
-
   @media (prefers-color-scheme: dark) {
     background-color: var(--ink);
     box-shadow: 0 0 0 100vmax var(--ink);

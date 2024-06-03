@@ -2,7 +2,7 @@
 /* #HOME */
 /*------------------*/
 
-.home {
+/* .home {
   display: flex;
   max-width: var(--pelican);
   flex-flow: row wrap;
@@ -18,11 +18,11 @@
     padding-block-start: calc(var(--baseline) * 2);
   }
 
-  /* get to max width and hold there */
+  get to max width and hold there
   @media (min-width: 80rem) {
     max-width: var(--albatross);
   }
-}
+} */
 
 .home--season {
   display: flex;

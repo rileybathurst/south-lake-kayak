@@ -96,11 +96,10 @@ const IndexPage = () => {
   return (
     <>
       <Header />
-      <main className="home">
+      {/* // TODO: iPad width needs love */}
+      <main className="albatross wrap home">
         <section>
-          {/* <h2 className="page-title">
-            {faker.company.catchPhrase()}
-          </h2> */}
+          {/* // TODO: waiting on client <h2 className="page-title"></h2> */}
           <div className="margin-block-end-aconcagua">
             <Markdown className="react-markdown">
               {data.southLake.about.data.about}
