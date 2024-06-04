@@ -23,7 +23,7 @@ const IndexPage = () => {
         sort: {order: ASC}
       ) {
         nodes {
-          ...locationCard
+          ...locationCardFragment
         }
       }
 
@@ -32,7 +32,7 @@ const IndexPage = () => {
         filter: {locale: {slug: {eq: "south-lake"}}}
         ) {
         nodes {
-          ...tourCard
+          ...tourCardFragment
           id
         }
       }
@@ -107,8 +107,8 @@ const IndexPage = () => {
           </div>
 
           <LocationDeck
-            locations={data.allStrapiLocation}
             background={false}
+            {...data.allStrapiLocation}
           />
 
           <div className="button__double">
@@ -153,7 +153,7 @@ const IndexPage = () => {
             />
           </div>
 
-          <PricingChart book={true} />
+          {/* // ! testing <PricingChart book={true} /> */}
         </div>
       </main>
 
@@ -179,9 +179,10 @@ const IndexPage = () => {
 
       <div className="deck">
         {data.allStrapiTour.nodes.map((tour) => (
-          <div key={tour.id}>
-            <Ticket tour={tour} />
-          </div>
+          <Ticket
+            key={tour.id}
+            {...tour}
+          />
         ))}
       </div>
 

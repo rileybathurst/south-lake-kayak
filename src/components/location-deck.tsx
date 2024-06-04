@@ -1,38 +1,21 @@
 import * as React from "react"
-import LocationCard from "./location-card"
+import LocationCard from "./location-card";
 import type { LocationCardTypes } from "../types/location-card-types";
 
-// ? types break my brain sometimes
 interface LocationDeckTypes {
-  locations: {
-    nodes: LocationCardTypes;
-    background?: boolean;
-  };
-  background?: boolean;
+  background?: string;
+  nodes?: LocationCardTypes[];
 }
 
-function LocationDeck({ locations, background }: LocationDeckTypes) {
-
-  interface LocationTypes {
-    id: React.Key;
-    svg: string;
-    name: string;
-    address: { data: { address: string } };
-    description: { data: { description: string } };
-    opening_time: string;
-    closing_time: string;
-    locale: { season_start: string; season_end: string };
-  }
-
+function LocationDeck({ background, nodes }: LocationDeckTypes) {
+  if (!nodes) return null;
   return (
     <section className="location-deck">
-      {locations.nodes.map((location: LocationTypes) => (
+      {nodes.map((location: LocationCardTypes) => (
         <LocationCard
           key={location.id}
-          location={location}
           background={background}
-          map={location.map} // ?
-          svg={location.svg} // ?
+          {...location}
         />
       ))}
     </section>

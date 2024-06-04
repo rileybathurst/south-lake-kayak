@@ -7,7 +7,7 @@ const FacebookIcon = () => {
       viewBox="0 0 1024 1024"
       className="facebook"
     >
-      <title>tahoe city kayak and paddleboard facebook page</title>
+      <title>facebook page</title>
       <g>
         {/* the circle */}
         <path className="facebook__blue" d="M1024,512C1024,229.2,794.8,0,512,0S0,229.2,0,512c0,255.6,187.2,467.4,432,505.8V660H302V512h130V399.2

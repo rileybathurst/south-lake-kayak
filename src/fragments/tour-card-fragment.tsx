@@ -1,7 +1,7 @@
 import { graphql } from "gatsby"
 
 export const query = graphql`
-  fragment tourCard on STRAPI_TOUR {
+  fragment tourCardFragment on STRAPI_TOUR {
     id
     name
     slug

@@ -23,7 +23,7 @@ const ToursPage = () => {
         sort: {featured: ASC})
       {
         nodes {
-          ...tourCard
+          ...tourCardFragment
         }
       }
   
@@ -36,7 +36,7 @@ const ToursPage = () => {
         )
       {
         nodes {
-          ...tourCard
+          ...tourCardFragment
         }
       }
 
@@ -55,7 +55,7 @@ const ToursPage = () => {
         }
       ) {
         nodes {
-          ...locationCard
+          ...locationCardFragment
         }
       }
 
@@ -78,9 +78,10 @@ const ToursPage = () => {
       <main className="condor">
         <h1>Tours</h1>
         <Markdown
-          children={query.strapiExperience.text.data.text}
           className="react-markdown"
-        />
+        >
+          {query.strapiExperience.text.data.text}
+        </Markdown>
         <h2><Link to="/tours/compare">Compare Tours</Link></h2>
 
         <a
@@ -96,8 +97,8 @@ const ToursPage = () => {
       </main>
       <section className="pelican">
         <LocationDeck
-          locations={query.allStrapiLocation}
           background={false}
+          {...query.allStrapiLocation}
         />
       </section>
 
@@ -112,9 +113,10 @@ const ToursPage = () => {
 
           <div className="deck">
             {sport.nodes.map((tour: CardType) => (
-              <div key={tour.id}>
-                <Ticket tour={tour} />
-              </div>
+              <Ticket
+                key={tour.id}
+                {...tour}
+              />
             ))}
           </div>
         </section>
@@ -131,7 +133,7 @@ export const Head = () => {
   return (
     <SEO
       title='Tours'
-      description="We have many different Kayak and Paddle board Tours to offer. Our tours leave from multiple locations around the lake."
+      description="We have many different Kayak and Paddle board Tours to offer. From beginner to advanced, we have a tour for you. Book your tour today!"
     />
   )
 }

@@ -1,4 +1,4 @@
-// TODO: this is super broken but needs more work
+// TODO: Season is super broken
 
 import * as React from "react"
 import { Link } from 'gatsby';
@@ -6,18 +6,6 @@ import Markdown from "react-markdown";
 import HourMin from "./hour-min";
 import type { LocationCardTypes } from "../types/location-card-types";
 import Phone from "./phone";
-
-interface DangerSVGTypes {
-  svg: string;
-}
-function DangerSVG({ svg }: DangerSVGTypes) {
-  return (
-    <div
-      dangerouslySetInnerHTML={{ __html: svg }}
-      className="svg"
-    />
-  )
-}
 
 interface SeasonTypes {
   season_start: string;
@@ -66,83 +54,98 @@ function Season({ season_start, season_end, opening_time, closing_time, name }: 
 }
 
 interface ContentTypes {
-  location: {
-    svg: string;
-    name: string;
-    address: {
-      data: {
-        address: string;
-      }
-    };
-    description: {
-      data: {
-        description: string;
-      }
-    };
-    opening_time: string;
-    closing_time: string;
+  svg: string;
+  name: string;
+  address: {
+    data: {
+      address: string;
+    }
+  };
+  description: {
+    data: {
+      description: string;
+    }
+  };
+  opening_time: string;
+  closing_time: string;
 
-    locale: {
-      season_start: string;
-      season_end: string;
-    };
+  locale: {
+    season_start: string;
+    season_end: string;
   };
 }
-function Content({ location }: ContentTypes) {
+function Content({ svg, name, address, description, opening_time, closing_time, locale }: ContentTypes) {
   return (
     <>
+
       <div
-        dangerouslySetInnerHTML={{ __html: location.svg }}
+        className="svg"
+        dangerouslySetInnerHTML={{ __html: svg }}
       />
 
       <div>
-        <h3 className="elbrus">{location.name}</h3>
+        <h3 className="elbrus">{name}</h3>
         <Markdown className="react-markdown">
-          {location.address.data.address}
+          {address.data.address}
         </Markdown>
       </div>
 
       <div>
         <Season
-          season_start={location.locale.season_start}
-          season_end={location.locale.season_end}
-          opening_time={location.opening_time}
-          closing_time={location.closing_time}
-          name={location.name}
+          season_start={locale.season_start}
+          season_end={locale.season_end}
+          opening_time={opening_time}
+          closing_time={closing_time}
+          name={name}
         />
         <br />
         <Markdown
-          children={location.description.data.description}
           className="react-markdown"
-        />
-        {location.name === "On Water Rental" ? <Phone /> : null}
+        >
+          {description.data.description}
+        </Markdown>
+        {/* // TODO: add phone but dont break the link on link rule {name === "On Water Rental" ? <Phone /> : null} */}
       </div>
     </>
   )
 }
 
-function LocationCard({ location, background }: LocationCardTypes) {
+function LocationCard({ svg, name, link, address, description, opening_time, closing_time, locale, background }: LocationCardTypes) {
 
-  // console.log(location);
-
-  if (location?.link?.includes('http')) {
+  if (link.includes('http')) {
     return (
-      <a href={location.link}
-        key={location.id}
+      <a
+        href={link}
         className={`location ${background}`}
+        title={name}
       >
-        <Content location={location} />
+        <Content
+          svg={svg}
+          name={name}
+          address={address}
+          description={description}
+          opening_time={opening_time}
+          closing_time={closing_time}
+          locale={locale}
+        />
       </a>
     )
   }
 
   return (
     <Link
-      key={location.id}
-      to={`/${location.link}`}
+      to={`/${link}`}
       className={`location ${background}`}
     >
-      <Content location={location} />
+      <Content
+        svg={svg}
+        name={name}
+        address={address}
+        description={description}
+        opening_time={opening_time}
+        closing_time={closing_time}
+        locale={locale}
+      />
     </Link>
   )
 }

@@ -1,17 +1,51 @@
 import * as React from "react"
+import { graphql, useStaticQuery } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
 
 import WaterTexture from "../images/watertexture";
-import Kayaker from "../images/kayaker";
-import Supper from "../images/supper";
 import { useStrapiTextures } from "../hooks/use-strapi-textures"
 
 function Paddler({ sport }: CompositionTypes) {
+
+  const data = useStaticQuery(graphql`
+  query {
+    kayaker: strapiImagegrab(title: {eq: "kayaker"}) {
+      title
+      image {
+        localFile {
+          childImageSharp {
+            gatsbyImageData
+          }
+        }
+      }
+    }
+
+    supper: strapiImagegrab(title: {eq: "supper"}) {
+        title
+        image {
+          localFile {
+            childImageSharp {
+              gatsbyImageData
+            }
+          }
+        }
+      }
+    }
+  `)
+
   if (sport === "paddleboard") {
-    return <Supper className="paddler" />
+    return <GatsbyImage
+      image={data.supper.image.localFile.childImageSharp.gatsbyImageData}
+      alt={data.supper.title}
+      className='img__wrapped paddler'
+    />
   }
 
-  return <Kayaker className="paddler" />
+  return <GatsbyImage
+    image={data.kayaker.image.localFile.childImageSharp.gatsbyImageData}
+    alt={data.kayaker.title}
+    className='img__wrapped paddler'
+  />
 }
 
 function TopThree(props: { className: string; }) {

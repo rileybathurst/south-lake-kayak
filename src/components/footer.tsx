@@ -34,7 +34,7 @@ const Footer = () => {
         sort: {order: ASC}
       ) {
         nodes {
-          ...locationCard
+          ...locationCardFragment
         }
       }
     }
@@ -108,12 +108,13 @@ const Footer = () => {
         </div>
       </section>
       <section>
-        <PricingChart book={false} />
+        {/* // ! testing <PricingChart book={false} /> */}
         <hr />
 
+
         <LocationDeck
-          locations={data.allStrapiLocation}
           background={false}
+          {...data.allStrapiLocation}
         />
       </section>
 

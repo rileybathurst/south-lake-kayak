@@ -5,8 +5,10 @@ import Header from "../components/header"
 import Footer from "../components/footer"
 import Time from "../components/time";
 import LocationCard from "../components/location-card";
+import LocationDeck from "../components/location-deck";
 import Composition from "../components/composition";
 import Ticket from "../components/ticket";
+import type { TicketTypes } from "../types/ticket-types";
 import type { IGatsbyImageData } from 'gatsby-plugin-image';
 import type { CardType } from "../types/card";
 import { Breadcrumbs, Breadcrumb } from 'react-aria-components';
@@ -19,7 +21,7 @@ interface TimingTypes {
   name?: string;
 }
 function Timing({ start, finish, duration, name }: TimingTypes) {
-
+  // TODO: remove hardcoding
   if (name === "Illuminated Full Moon Tour") {
     return (
       <section className="spec attribute">
@@ -29,6 +31,7 @@ function Timing({ start, finish, duration, name }: TimingTypes) {
     )
   }
 
+  // TODO: remove hardcoding
   if (name === "Emerald Bay Boat Camp Overnight") {
     return (
       <section className="spec attribute">
@@ -38,6 +41,7 @@ function Timing({ start, finish, duration, name }: TimingTypes) {
     )
   }
 
+  // TODO: remove hardcoding
   if (start && finish !== "Emerald Bay Boat Camp Overnight" && name !== "Illuminated Full Moon Tour") {
     return (
       <section className="spec attribute">
@@ -47,6 +51,7 @@ function Timing({ start, finish, duration, name }: TimingTypes) {
     )
   }
 
+  // TODO: if over 100 mins
   return (
     <section className="spec attribute">
       <h3 className="crest">Duration</h3>
@@ -140,65 +145,119 @@ function Minimum({ minimum }: MinimumTypes) {
 
 
 interface TourViewTypes {
-  tour: {
-    id: React.Key;
-    name: string;
-    information: {
-      data: {
-        information: string;
-      }
-    };
-    start: string;
-    finish: string;
-    duration: number;
-    minimum: number;
-    fitness: string;
-    peek: string;
-    sport: string;
-    excerpt: string;
-    price: number;
-    slug: string;
-    ogimage: {
-      localFile: {
-        childImageSharp: {
-          gatsbyImageData: IGatsbyImageData;
-        };
+  data: {
+    strapiTour: {
+      id: React.Key;
+      name: string;
+      information: {
+        data: {
+          information: string;
+        }
       };
-      alternativeText: string;
-    };
-  }
-  locale: {
-    name: string;
-  }
-  other: CardType;
-}
-const TourView = ({ tour, other }: TourViewTypes) => {
+      start: string;
+      finish: string;
+      duration: number;
+      minimum: number;
+      fitness: string;
+      peek: string;
+      sport: string;
+      excerpt: string;
+      price: number;
+      slug: string;
+      ogimage: {
+        localFile: {
+          childImageSharp: {
+            gatsbyImageData: IGatsbyImageData;
+          };
+        };
+        alternativeText: string;
+      };
+    }
+    locale: {
+      name: string;
+    }
+    allStrapiTour: {
+      nodes: TicketTypes;
+    }
 
-  const { strapiLocation } = useStaticQuery(graphql`
-  query TourViewQuery {
+    strapiLocation: CardType;
+  }
+}
+
+export const query = graphql`
+  query TourQuery($slug: String!) {
+    strapiTour(
+      slug: { eq: $slug },
+      locale: {slug: {eq: "south-lake"}}
+      ) {
+      id
+      name
+      information {
+        data {
+          information
+        }
+      }
+      start
+      finish
+      duration
+      minimum
+      fitness
+      peek
+      sport
+      excerpt
+      price
+      slug
+
+      ogimage {
+        localFile {
+          childImageSharp {
+            gatsbyImageData
+          }
+        }
+        alternativeText
+      }
+
+      locale {
+        name
+      }
+    }
+
+    allStrapiTour(
+        filter: {
+          slug: {nin: [$slug] },
+          locale: {slug: {eq: "south-lake"}}
+          },
+        sort: {featured: ASC},
+      ) {
+      nodes {
+        ...tourCardFragment
+      }
+    }
+
     strapiLocation(
       locale: {slug: {eq: "south-lake"}}
       name: {eq: "On Water Rental"}
     ) {
-      ...locationCard
+      ...locationCardFragment
 
       locale {
         name
       }
     }
   }
-`);
+`
 
+const TourView = ({ data }: TourViewTypes) => {
   return (
     <>
       <Header />
 
       <main className="tour">
         <div>
-          <h1>{tour.name}</h1>
+          <h1>{data.strapiTour.name}</h1>
           <div className="tour__minimum">
-            {tour.peek ?
-              <a href={tour.peek}
+            {data.strapiTour.peek ?
+              <a href={data.strapiTour.peek}
                 rel="noopener noreferrer"
                 className="book-now"
               >
@@ -207,43 +266,42 @@ const TourView = ({ tour, other }: TourViewTypes) => {
               :
               <BookNow />
             }
-            <Minimum minimum={tour.minimum} />
+            <Minimum minimum={data.strapiTour.minimum} />
           </div>
 
           <Attributes
-            sport={tour.sport}
-            fitness={tour.fitness}
-            price={tour.price}
+            sport={data.strapiTour.sport}
+            fitness={data.strapiTour.fitness}
+            price={data.strapiTour.price}
           />
 
-          {tour.name === "Emerald Bay Boat Camp Overnight" ?
+          {data.strapiTour.name === "Emerald Bay Boat Camp Overnight" ?
             <section className="spec attribute">
               <h3 className="crest">Time</h3>
               <h4>Overnight</h4>
             </section>
             :
             <Timing
-              start={tour.start}
-              finish={tour.finish}
-              duration={tour.duration}
-              name={tour.name}
+              start={data.strapiTour.start}
+              finish={data.strapiTour.finish}
+              duration={data.strapiTour.duration}
+              name={data.strapiTour.name}
             />
           }
 
           <Markdown className="react-markdown single__description">
-            {tour.information?.data?.information}
+            {data.strapiTour.information?.data?.information}
           </Markdown>
 
         </div>
 
         <aside>
           <Composition
-            sport={tour.sport}
-          // hero={tour?.ogimage?.localFile?.childImageSharp?.gatsbyImageData}
+            sport={data.strapiTour.sport}
           // TODO: change the image on tours
           />
 
-          <LocationCard location={strapiLocation} />
+          <LocationCard {...data.strapiLocation} />
         </aside>
 
       </main>
@@ -252,23 +310,26 @@ const TourView = ({ tour, other }: TourViewTypes) => {
 
       <div className="albatross">
         <h3>Other Tours</h3>
-        <h4><Link to={`/tours/compare/?${tour.slug}`}>Compare the {tour.name} to another tour.</Link></h4>
+        <h4>
+          <Link to={`/tours/compare/?${data.strapiTour.slug}`}>
+            Compare the {data.strapiTour.name} to another tour.
+          </Link>
+        </h4>
         <hr />
       </div>
 
-      {/* // TODO: other card */}
       <section className="deck">
-        {other.nodes.map((tour: TicketTypes) =>
+        {data.allStrapiTour.nodes.map((tour: TicketTypes) =>
           <Ticket
             key={tour.id}
-            tour={tour}
+            {...tour}
           />
         )}
       </section>
 
       <Breadcrumbs>
         <Breadcrumb><Link to="/tours">Tours</Link></Breadcrumb>
-        <Breadcrumb>{tour.name}</Breadcrumb>
+        <Breadcrumb>{data.strapiTour.name}</Breadcrumb>
       </Breadcrumbs>
 
       <Footer />
@@ -277,3 +338,5 @@ const TourView = ({ tour, other }: TourViewTypes) => {
 };
 
 export default TourView;
+
+// ! SEO breadcrumbs is now removed

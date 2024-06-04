@@ -593,12 +593,12 @@ footer {
   border-radius: var(--card-radius);
 
   > * {
-    flex: 3.5 1; /* guess and check to get the parking on one row in the footer */
+    flex: 7.5 1; /* guess and check to get the parking on one row in the footer */
   }
 
   > svg,
   .svg {
-    flex: 1 1;
+    flex: 1 1 max-content;
   }
 }
 
@@ -620,6 +620,7 @@ footer {
     grid-template-columns: auto 1fr 1fr;
   }
 
+  /* TODO: I have baseline now */
   /* waiting on baseline */
 
   @supports not (grid-template-rows: subgrid) {

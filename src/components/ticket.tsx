@@ -6,40 +6,40 @@ import { GatsbyImage } from "gatsby-plugin-image"
 import Time from "./time"
 import type { TicketTypes } from "../types/ticket-types"
 
-const Ticket = ({ tour }: TicketTypes) => {
+const Ticket = ({ id, ogimage, slug, name, start, finish, duration, fitness, excerpt, price, peek }: TicketTypes) => {
   return (
     <section className="ticket">
-      <Link to={`/tours/${tour.slug}`}>
+      <Link to={`/tours/${slug}`}>
         <GatsbyImage
-          image={tour?.ogimage?.localFile?.childImageSharp?.gatsbyImageData}
-          alt={`${tour?.ogimage?.alternativeText || tour.name} image`}
+          image={ogimage?.localFile?.childImageSharp?.gatsbyImageData}
+          alt={`${ogimage?.alternativeText || name} image`}
           objectFit="cover"
           className="card__image"
         />
       </Link>
       <h4 className="card__title">
-        <Link to={`/tours/${tour.slug}`}>
-          {tour.name}
+        <Link to={`/tours/${slug}`}>
+          {name}
         </Link>
       </h4>
       <div className="card__specs">
 
         {/* TODO: hardcoded as this doesnt fit */}
         <Time
-          start={tour.start}
-          finish={tour.finish}
-          duration={tour.duration}
-          name={tour.name}
+          start={start}
+          finish={finish}
+          duration={duration}
+          name={name}
         />
-        {tour.fitness ? <h4 className="capitalize">{tour.fitness} <span>Fitness</span></h4> : null}
+        {fitness ? <h4 className="capitalize">{fitness} <span>Fitness</span></h4> : null}
       </div>
       <hr />
-      <p>{tour.excerpt}</p>
+      <p>{excerpt}</p>
       <hr />
       <div className="card__details">
-        <h5>${tour.price}</h5>
+        <h5>${price}</h5>
         <a
-          href={tour.peek}
+          href={peek}
           className="book-now"
         >
           BOOK NOW
