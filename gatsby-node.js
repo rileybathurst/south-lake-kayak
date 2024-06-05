@@ -7,7 +7,7 @@ const path = require("node:path");
     info: (message: string) => void;
   };
 } */
-exports.onPostBuild = ({ reporter }: ReporterTypes) => {
+exports.onPostBuild = ({ reporter }) => {
   reporter.info("Your Gatsby site has been built!");
   /* interface CreatePagesTypes {
   graphql: (query: string) => Promise<GraphQLResult>;
@@ -26,7 +26,7 @@ exports.onPostBuild = ({ reporter }: ReporterTypes) => {
     };
   };
 } */
-exports.createPages = async ({ graphql, actions }: CreatePagesTypes) => {
+exports.createPages = async ({ graphql, actions }) => {
   /*   interface Actions {
     createTour: (tour: Tour) => void;
   } */
