@@ -32,11 +32,22 @@ const Time = ({ start, finish, duration, name }: TimeTypes) => {
     )
   }
 
-  return (
-    <h4>
-      {duration} mins
-    </h4>
-  )
+  if (duration) {
+    if (duration > 90) {
+      const hours = Math.floor(duration / 60);
+      const mins = duration % 60;
+
+      return (
+        <h4>{hours} hrs {mins > 0 ? `${mins}mins` : null}</h4>
+      )
+    }
+
+    return (
+      <h4>
+        {duration} mins
+      </h4>
+    )
+  }
 }
 
 export default Time

@@ -5,7 +5,6 @@ import Header from "../components/header"
 import Footer from "../components/footer"
 import Time from "../components/time";
 import LocationCard from "../components/location-card";
-import LocationDeck from "../components/location-deck";
 import Composition from "../components/composition";
 import Ticket from "../components/ticket";
 import type { TicketTypes } from "../types/ticket-types";
@@ -14,6 +13,7 @@ import type { CardType } from "../types/card";
 import { Breadcrumbs, Breadcrumb } from 'react-aria-components';
 import BookNow from "../components/peek/book-now";
 
+// ? Can I use the time component here?
 interface TimingTypes {
   start?: string;
   finish?: string;
@@ -51,13 +51,28 @@ function Timing({ start, finish, duration, name }: TimingTypes) {
     )
   }
 
-  // TODO: if over 100 mins
-  return (
-    <section className="spec attribute">
-      <h3 className="crest">Duration</h3>
-      <h4 className="range">{duration} mins</h4>
-    </section>
-  )
+  if (duration) {
+    if (duration > 90) {
+      const hours = Math.floor(duration / 60);
+      const mins = duration % 60;
+
+      return (
+        <section className="spec attribute">
+          <h3 className="crest">Duration</h3>
+          <h4>{hours} hrs {mins > 0 ? `${mins}mins` : null}</h4>
+        </section>
+      )
+    }
+
+    return (
+      <section className="spec attribute">
+        <h3 className="crest">Duration</h3>
+        <h4 className="range">
+          {duration} mins
+        </h4>
+      </section>
+    )
+  }
 }
 
 interface AttributesProps {
