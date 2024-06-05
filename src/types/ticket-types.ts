@@ -8,10 +8,11 @@ export interface TicketTypes {
   };
   slug: string;
   name: string;
-  start?: Date | string | null;
-  finish?: Date | string | null;
+  start?: string | null;
+  finish?: string | null;
   duration?: number | null;
-  fitness: string;
+  timeframe?: string | null;
+  fitness?: string | null;
   excerpt: string;
   price: string;
   peek: string;

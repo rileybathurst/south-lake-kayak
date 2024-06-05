@@ -11,6 +11,7 @@ export const query = graphql`
     start
     finish
     duration
+    timeframe
     fitness
     sport
 

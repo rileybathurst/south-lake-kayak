@@ -3,10 +3,18 @@
 import * as React from "react"
 import { Link } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
-import Time from "./time"
 import type { TicketTypes } from "../types/ticket-types"
+import { PaddleTime } from "@rileybathurst/paddle";
 
-const Ticket = ({ id, ogimage, slug, name, start, finish, duration, fitness, excerpt, price, peek }: TicketTypes) => {
+const Ticket = ({ ogimage, slug, name, start, finish, duration, timeframe, fitness, excerpt, price, peek }: TicketTypes) => {
+
+  const time = PaddleTime({
+    start: start,
+    finish: finish,
+    duration: duration,
+    timeframe: timeframe,
+  });
+
   return (
     <section className="ticket">
       <Link to={`/tours/${slug}`}>
@@ -23,14 +31,7 @@ const Ticket = ({ id, ogimage, slug, name, start, finish, duration, fitness, exc
         </Link>
       </h4>
       <div className="card__specs">
-
-        {/* TODO: hardcoded as this doesnt fit */}
-        <Time
-          start={start}
-          finish={finish}
-          duration={duration}
-          name={name}
-        />
+        <h4>{time.entry}</h4>
         {fitness ? <h4 className="capitalize">{fitness} <span>Fitness</span></h4> : null}
       </div>
       <hr />

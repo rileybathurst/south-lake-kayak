@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Link, graphql, useStaticQuery } from "gatsby";
+import { Link, graphql } from "gatsby";
 import Markdown from "react-markdown";
 import Header from "../components/header"
 import Footer from "../components/footer"
@@ -12,79 +12,38 @@ import type { IGatsbyImageData } from 'gatsby-plugin-image';
 import type { CardType } from "../types/card";
 import { Breadcrumbs, Breadcrumb } from 'react-aria-components';
 import BookNow from "../components/peek/book-now";
-
-// ? Can I use the time component here?
-interface TimingTypes {
-  start?: string;
-  finish?: string;
-  duration?: number;
-  name?: string;
-}
-function Timing({ start, finish, duration, name }: TimingTypes) {
-  // TODO: remove hardcoding
-  if (name === "Illuminated Full Moon Tour") {
-    return (
-      <section className="spec attribute">
-        <h3 className="crest">Time</h3>
-        <h4>Sunset</h4>
-      </section>
-    )
-  }
-
-  // TODO: remove hardcoding
-  if (name === "Emerald Bay Boat Camp Overnight") {
-    return (
-      <section className="spec attribute">
-        <h3 className="crest">Time</h3>
-        <h4>Overnight</h4>
-      </section>
-    )
-  }
-
-  // TODO: remove hardcoding
-  if (start && finish !== "Emerald Bay Boat Camp Overnight" && name !== "Illuminated Full Moon Tour") {
-    return (
-      <section className="spec attribute">
-        <h3 className="crest">Time</h3>
-        <Time start={start} finish={finish} />
-      </section>
-    )
-  }
-
-  if (duration) {
-    if (duration > 90) {
-      const hours = Math.floor(duration / 60);
-      const mins = duration % 60;
-
-      return (
-        <section className="spec attribute">
-          <h3 className="crest">Duration</h3>
-          <h4>{hours} hrs {mins > 0 ? `${mins}mins` : null}</h4>
-        </section>
-      )
-    }
-
-    return (
-      <section className="spec attribute">
-        <h3 className="crest">Duration</h3>
-        <h4 className="range">
-          {duration} mins
-        </h4>
-      </section>
-    )
-  }
-}
+import { PaddleTime } from "@rileybathurst/paddle";
 
 interface AttributesProps {
   sport?: string | null;
   fitness?: string | null;
   price?: number | null;
   minimum?: number | null;
+  start?: string | null;
+  finish?: string | null;
+  duration?: number | null;
+  timeEntry?: string | null;
+  timeValue?: string | null;
 }
 function Attributes(attributes: AttributesProps) {
-
   const sections = Object.entries(attributes).map(([key, value]) => {
     if (value) {
+      if (key === "timeValue") {
+        return null;
+      }
+
+      if (key === "timeEntry") {
+        return (
+          <section
+            key={key}
+            className="spec attribute"
+          >
+            <h3 className="crest">{attributes.timeValue}</h3>
+            <h4>{value}</h4>
+          </section>
+        )
+      }
+
       if (key === "duration") {
         const unit = "mins";
         return (
@@ -112,7 +71,6 @@ function Attributes(attributes: AttributesProps) {
       }
 
       if (key === "start" || key === "finish") {
-        // const time = new Date(value);
         return (
           <section
             key={key}
@@ -128,7 +86,6 @@ function Attributes(attributes: AttributesProps) {
       return (
         <section
           key={key}
-          // TODO: I have both names tidy it up
           className="spec attribute"
         >
           <h3 className="crest">{key}</h3>
@@ -172,6 +129,7 @@ interface TourViewTypes {
       start: string;
       finish: string;
       duration: number;
+      timeframe: string | null;
       minimum: number;
       fitness: string;
       peek: string;
@@ -215,6 +173,7 @@ export const query = graphql`
       start
       finish
       duration
+      timeframe
       minimum
       fitness
       peek
@@ -263,6 +222,14 @@ export const query = graphql`
 `
 
 const TourView = ({ data }: TourViewTypes) => {
+
+  const time = PaddleTime({
+    start: data.strapiTour.start,
+    finish: data.strapiTour.finish,
+    duration: data.strapiTour.duration,
+    timeframe: data.strapiTour.timeframe,
+  });
+
   return (
     <>
       <Header />
@@ -288,21 +255,9 @@ const TourView = ({ data }: TourViewTypes) => {
             sport={data.strapiTour.sport}
             fitness={data.strapiTour.fitness}
             price={data.strapiTour.price}
+            timeEntry={time.entry}
+            timeValue={time.value}
           />
-
-          {data.strapiTour.name === "Emerald Bay Boat Camp Overnight" ?
-            <section className="spec attribute">
-              <h3 className="crest">Time</h3>
-              <h4>Overnight</h4>
-            </section>
-            :
-            <Timing
-              start={data.strapiTour.start}
-              finish={data.strapiTour.finish}
-              duration={data.strapiTour.duration}
-              name={data.strapiTour.name}
-            />
-          }
 
           <Markdown className="react-markdown single__description">
             {data.strapiTour.information?.data?.information}
