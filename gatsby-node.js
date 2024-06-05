@@ -1,3 +1,5 @@
+// building this as .ts without types means it didnt build
+
 const path = require("node:path");
 // import type { Actions } from "gatsby";
 
