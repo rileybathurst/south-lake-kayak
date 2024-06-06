@@ -1,5 +1,5 @@
-// ! shit this puts red things in but being off might be breaking things
-// import "@rileybathurst/paddle/src/styles/app.css";
+// TODO: am I ready yet?
+import "@rileybathurst/paddle/src/styles/app.css";
 
 import "./src/styles/app.css";
 

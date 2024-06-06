@@ -70,6 +70,13 @@
   padding-inline: 0;
 }
 
+/*------------------------------------*/
+
+/* ! conflict with paddle */
+header {
+  max-width: none;
+}
+
 /*------------------*/
 /* #SINGLES */
 /*------------------*/

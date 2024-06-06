@@ -59,13 +59,13 @@ ol {
   margin-inline: auto; /* overwrite nav */
   padding-inline: 0.75rem; /* overwrite nav */
 
-  background-color: var(--sand-200);
-  box-shadow: 0 0 0 100vmax var(--sand-200);
+  /* background-color: var(--sand-200); */
+  /* box-shadow: 0 0 0 100vmax var(--sand-200); */
   clip-path: inset(0 -100vmax);
 
   @media (prefers-color-scheme: dark) {
-    background-color: var(--navy-500);
-    box-shadow: 0 0 0 100vmax var(--navy-500);
+    /* background-color: var(--navy-500); */
+    /* box-shadow: 0 0 0 100vmax var(--navy-500); */
   }
 
   list-style: none;
@@ -80,10 +80,10 @@ ol {
     display: inline;
 
     a {
-      color: var(--mullen-200); /* needed for contrast */
+      /* color: var(--mullen-200); needed for contrast */
 
       @media (prefers-color-scheme: dark) {
-        color: var(--mullen); /* TODO: contrast */
+        /* color: var(--mullen); TODO: contrast */
       }
     }
   }
