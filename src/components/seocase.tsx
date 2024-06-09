@@ -1,30 +1,35 @@
 import * as React from "react"
 
-function Breadcrumbs(props) {
-  if (props.breadcrumbs) {
+interface BreadcrumbsTypes {
+  breadcrumbs?: string | null;
+}
+function Breadcrumbs({ breadcrumbs }: BreadcrumbsTypes) {
+  if (breadcrumbs) {
     return (
       <div className="breadcrumbs">
         <p>breadcrumbs</p>
       </div>
     )
-  } else {
-    return null
   }
+  return null
 }
 
-const SEOcase = (props) => {
+interface SEOcaseTypes {
+  title: string;
+  description: string;
+  image: string;
+}
+const SEOcase = ({ title, description, image }: SEOcaseTypes) => {
   return (
-    <>
-      {process.env.NODE_ENV === "development" ? (
-        <section className="SEOcase">
-          <p>title = {props.title}</p>
-          <p>description = {props.description}</p>
-          <p>image = {props.image}</p>
+    process.env.NODE_ENV === "development" ? (
+      <section className="SEOcase">
+        <p>title = {title}</p>
+        <p>description = {description}</p>
+        <p>image = {image}</p>
 
-          <Breadcrumbs />
-        </section>
-      ) : null}
-    </>
+        <Breadcrumbs />
+      </section>
+    ) : null
   )
 }
 

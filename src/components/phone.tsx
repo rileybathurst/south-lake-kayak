@@ -1,7 +1,10 @@
 import * as React from "react"
 import { useStaticQuery, graphql } from "gatsby"
 
-function FormatPhoneNumber({ phoneNumberString }: { phoneNumberString: number }) {
+interface FormatPhoneNumberTypes {
+  phoneNumberString: number;
+}
+function FormatPhoneNumber({ phoneNumberString }: FormatPhoneNumberTypes) {
   const cleaned = `${phoneNumberString}`.replace(/\D/g, '');
   const match = cleaned.match(/^(\d{3})(\d{3})(\d{4})$/);
   if (match) {

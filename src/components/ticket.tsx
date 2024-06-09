@@ -1,7 +1,7 @@
 // ? should this have a sport always displayed?
 
 import * as React from "react"
-import { Link } from "gatsby"
+import { Link, useStaticQuery, graphql } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
 import type { TicketTypes } from "../types/ticket-types"
 import { PaddleTime } from "@rileybathurst/paddle";
@@ -15,11 +15,21 @@ const Ticket = ({ ogimage, slug, name, start, finish, duration, timeframe, fitne
     timeframe: timeframe,
   });
 
+  const { strapiLocale } = useStaticQuery(graphql`
+    query {
+      strapiLocale(slug: {eq: "south-lake"}) {
+        peek_tours
+      }
+    }
+  `);
+
+
   return (
     <section className="ticket">
       <Link to={`/tours/${slug}`}>
         <GatsbyImage
           image={ogimage?.localFile?.childImageSharp?.gatsbyImageData}
+          // ? are these brackets in the right spot?
           alt={`${ogimage?.alternativeText || name} image`}
           objectFit="cover"
           className="card__image"
@@ -40,7 +50,7 @@ const Ticket = ({ ogimage, slug, name, start, finish, duration, timeframe, fitne
       <div className="card__details">
         <h5>${price}</h5>
         <a
-          href={peek}
+          href={peek ? peek : strapiLocale.peek_tours}
           className="book-now"
         >
           BOOK NOW

@@ -2,14 +2,12 @@ import * as React from "react"
 import { Link, useStaticQuery, graphql } from 'gatsby';
 import { SEO } from "../components/seo"
 import Markdown from "react-markdown";
-import { useSiteMetadata } from '../hooks/use-site-metadata';
 import Header from "../components/header"
 import Footer from "../components/footer"
-import BookNow from "../components/peek/book-now";
 import Ticket from "../components/ticket";
-import type { CardType } from "../types/card";
 import LocationDeck from "../components/location-deck";
 import Sport from "../components/sport";
+import type { TicketTypes } from "../types/ticket-types";
 
 const ToursPage = () => {
 
@@ -105,14 +103,14 @@ const ToursPage = () => {
       {sports.map((sport) => (
         <section key={sport.nodes[0].id}>
           <hgroup className="pelican">
-            <h1 className="capitalize">
+            <h2 className="capitalize">
               <Sport sport={sport.nodes[0].sport} />
-            </h1>
+            </h2>
             <p className="aconcagua">Tours &amp; Lessions</p>
           </hgroup>
 
           <div className="deck">
-            {sport.nodes.map((tour: CardType) => (
+            {sport.nodes.map((tour: TicketTypes) => (
               <Ticket
                 key={tour.id}
                 {...tour}

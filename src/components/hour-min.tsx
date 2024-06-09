@@ -1,9 +1,9 @@
 import * as React from "react"
 
 interface HourMinTypes {
-  time: string | Date | null;
+  time?: string | null;
 }
-const HourMin = ({ time }) => {
+const HourMin = ({ time }: HourMinTypes) => {
   if (time) {
     let hours = time.split(':')[0];
     const mins = time.split(':')[1];
