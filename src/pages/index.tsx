@@ -10,6 +10,7 @@ import PricingChart from "../components/pricing-chart"
 import WaterTexture from "../images/watertexture";
 import Ticket from "../components/ticket";
 import LocationDeck from "../components/location-deck";
+import { PaddleTestimonials } from "@rileybathurst/paddle";
 
 const IndexPage = () => {
 
@@ -87,6 +88,16 @@ const IndexPage = () => {
               gatsbyImageData
             }
           }
+        }
+      }
+
+      allStrapiTestimonial(filter: {locale: {slug: {eq: "south-lake"}}}) {
+        nodes {
+          id
+          testimonial
+          customer
+          sign
+          location
         }
       }
 
@@ -209,6 +220,16 @@ const IndexPage = () => {
         <div>
           {/* stay gold */}
         </div>
+      </section>
+
+      <section>
+        <hr className="pelican" />
+        <h2 className="condor">
+          <Link to="/about/testimonials">
+            Testimonials
+          </Link>
+        </h2>
+        <PaddleTestimonials {...data.allStrapiTestimonial} />
       </section>
 
       <Footer />

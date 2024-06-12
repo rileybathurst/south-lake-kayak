@@ -236,3 +236,9 @@ select {
   margin-block-end: var(--baseline);
   margin-block-end: 0;
 }
+
+/*------------------*/
+
+.react-markdown {
+  white-space: pre-wrap;
+}
