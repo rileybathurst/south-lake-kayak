@@ -9,6 +9,9 @@
 svg {
   min-width: 2rem; /* safari needs default mins */
   max-height: 5rem;
+}
+
+*:not(.social) > a svg {
   fill: var(--black-metal);
 
   @media (prefers-color-scheme: dark) {
@@ -23,7 +26,6 @@ svg {
 .logo-container {
   margin: 0 auto;
   display: flex;
-  /* gap: 1rem; // dont run a gap as the sr-only h1 uses it */
   justify-content: center;
   background-color: whitesmoke;
   box-shadow: 0 0 0 100vmax whitesmoke;
@@ -36,10 +38,6 @@ svg {
   @supports not (margin-inline: auto) {
     margin-inline: auto;
   }
-
-  /* @media (min-width: 30rem) {
-    max-width: 32rem; // guess and check
-  } */
 
   @media (prefers-color-scheme: dark) {
     background-color: var(--ink);
@@ -65,6 +63,7 @@ svg {
   svg {
     width: 100%;
     max-height: 10rem;
+    max-width: fit-content;
     /* the logo isnt symetrical */
     padding-inline-start: 2rem; /* guess and check number */
   }
@@ -110,61 +109,6 @@ footer {
 .map-svg {
   max-width: 100%;
   max-height: 100%;
-}
-
-/*------------------*/
-/* #SOCIAL */
-/*------------------*/
-
-/* ! this still isnt right */
-
-.facebook {
-  transition: var(--fade);
-
-  .facebook__blue {
-    transition: var(--fade);
-    fill: black;
-  }
-
-  .facebook__white {
-    fill: white;
-  }
-}
-
-.facebook__white {
-  fill: var(--sand);
-}
-
-.facebook:hover {
-  .facebook__blue {
-    fill: #1877f2;
-  }
-}
-
-.instagram {
-  transition: var(--fade);
-  filter: grayscale(100%);
-  mix-blend-mode: multiply;
-  transition: 0.5s ease;
-
-  @media (prefers-color-scheme: dark) {
-    mix-blend-mode: screen;
-  }
-}
-
-.instagram:hover {
-  fill: revert-layer;
-  filter: grayscale(0%);
-  mix-blend-mode: normal;
-
-  @media (prefers-color-scheme: dark) {
-    fill: currentColor;
-  }
-}
-
-a:hover .instagram {
-  filter: grayscale(0%);
-  mix-blend-mode: normal;
 }
 
 /*------------------*/

@@ -367,21 +367,6 @@ footer {
   }
 }
 
-.social {
-  display: flex;
-  gap: 1rem;
-  margin-block-end: var(--baseline);
-
-  @media (min-width: 40rem) {
-    margin-block-end: 2.5rem;
-  }
-
-  svg {
-    height: 2.5rem;
-    max-width: 2.5rem;
-  }
-}
-
 /*------------------*/
 /* #COLLAGE */
 /*------------------*/

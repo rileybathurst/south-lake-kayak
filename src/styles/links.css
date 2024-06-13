@@ -71,22 +71,24 @@ a.hover {
   }
 }
 
-a svg {
-  fill: var(--navy);
-  transition: 0.2s ease;
+/* ? is *:not expensive? */
+*:not(.social) > a {
+  svg {
+    fill: var(--navy);
+    transition: 0.2s ease;
 
-  @media (prefers-color-scheme: dark) {
-    fill: var(--navy-200);
+    @media (prefers-color-scheme: dark) {
+      fill: var(--navy-200);
+    }
   }
-}
 
-a svg:where(:hover, :focus) {
-  fill: var(--navy-300);
-}
+  a svg:where(:hover, :focus) {
+    fill: var(--navy-300);
+  }
 
-a:hover svg:not(.instagram),
-a.hover svg {
-  fill: var(--navy-300);
+  a.hover svg {
+    fill: var(--navy-300);
+  }
 }
 
 /*------------------*/

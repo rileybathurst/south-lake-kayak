@@ -9,6 +9,7 @@ import Logo from "../images/logo";
 import { useSiteMetadata } from "../hooks/use-site-metadata"
 import Phone from "./phone";
 import LocationDeck from "./location-deck";
+import { PaddleSocials } from "@rileybathurst/paddle";
 
 const Footer = () => {
 
@@ -18,6 +19,8 @@ const Footer = () => {
         name
         email
         instagram
+        facebook
+        tripadvisor
       }
 
       allStrapiLocale(filter: {slug: {ne: "south-lake"}}) {
@@ -67,28 +70,11 @@ const Footer = () => {
           >
             {data.strapiLocale.email}
           </a>
-          <div className="social">
-            {useSiteMetadata().social?.facebook ?
-              <a
-                href={useSiteMetadata().social.facebook}
-                target='_blank' rel='noopener noreferrer'
-                aria-label={`${useSiteMetadata().title} facebook`}
-              >
-                <FacebookIcon />
-              </a>
-              : null
-            }
-            {data.strapiLocale.instagram ?
-              <a href={`https://instagram.com/${data.strapiLocale.instagram}`}
-                target='_blank'
-                rel='noopener noreferrer'
-                aria-label={`${data.strapiLocale.name} kayak and paddleboard instagram`}
-              >
-                <InstagramIcon />
-              </a>
-              : null
-            }
-          </div>
+          <PaddleSocials
+            instagram={data.strapiLocale.instagram}
+            facebook={data.strapiLocale.facebook}
+            tripadvisor={data.strapiLocale.tripadvisor}
+          />
         </div>
         <hr />
         <div className="footer__locations">
