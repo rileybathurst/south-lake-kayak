@@ -1,10 +1,14 @@
 import * as React from "react";
 import { Link, graphql } from "gatsby";
+
+// Paddle
+import { PaddleTime } from "@rileybathurst/paddle";
+import { PaddleLocationCard } from "@rileybathurst/paddle";
+
 import Markdown from "react-markdown";
 import Header from "../components/header"
 import Footer from "../components/footer"
 import Time from "../components/time";
-import LocationCard from "../components/location-card";
 import Composition from "../components/composition";
 import Ticket from "../components/ticket";
 import type { TicketTypes } from "../types/ticket-types";
@@ -12,18 +16,18 @@ import type { IGatsbyImageData } from 'gatsby-plugin-image';
 import type { CardType } from "../types/card";
 import { Breadcrumbs, Breadcrumb } from 'react-aria-components';
 import BookNow from "../components/peek/book-now";
-import { PaddleTime } from "@rileybathurst/paddle";
+
 
 interface AttributesProps {
-  sport?: string | null;
-  fitness?: string | null;
-  price?: number | null;
-  minimum?: number | null;
-  start?: string | null;
-  finish?: string | null;
-  duration?: number | null;
-  timeEntry?: string | null;
-  timeValue?: string | null;
+  sport?: string;
+  fitness?: string;
+  price?: number;
+  minimum?: number;
+  start?: string;
+  finish?: string;
+  duration?: number;
+  timeEntry?: string;
+  timeValue?: string;
 }
 function Attributes(attributes: AttributesProps) {
   const sections = Object.entries(attributes).map(([key, value]) => {
@@ -129,7 +133,7 @@ interface TourViewTypes {
       start: string;
       finish: string;
       duration: number;
-      timeframe: string | null;
+      timeframe: string;
       minimum: number;
       fitness: string;
       peek: string;
@@ -157,7 +161,7 @@ interface TourViewTypes {
   }
 }
 
-export const query = graphql`
+export const data = graphql`
   query TourQuery($slug: String!) {
     strapiTour(
       slug: { eq: $slug },
@@ -267,11 +271,14 @@ const TourView = ({ data }: TourViewTypes) => {
 
         <aside>
           <Composition
-            sport={data.strapiTour.sport}
+            sport={data.strapiTour.ogimage || data.strapiTour.sport}
           // TODO: change the image on tours
           />
 
-          <LocationCard {...data.strapiLocation} />
+          <PaddleLocationCard
+            key={data.strapiLocation.id}
+            {...data.strapiLocation}
+          />
         </aside>
 
       </main>

@@ -1,5 +1,9 @@
 import React, { useState, useEffect } from "react"
 import { Link, useStaticQuery, graphql } from 'gatsby';
+
+// Paddle
+import { PaddleLocationDeck } from "@rileybathurst/paddle";
+
 import { GatsbyImage } from "gatsby-plugin-image"
 import { SEO } from "../components/seo";
 import Markdown from "react-markdown";
@@ -9,7 +13,6 @@ import Footer from "../components/footer"
 import PricingChart from "../components/pricing-chart"
 import WaterTexture from "../images/watertexture";
 import Ticket from "../components/ticket";
-import LocationDeck from "../components/location-deck";
 import { PaddleTestimonials } from "@rileybathurst/paddle";
 
 const IndexPage = () => {
@@ -117,7 +120,7 @@ const IndexPage = () => {
             </Markdown>
           </div>
 
-          <LocationDeck
+          <PaddleLocationDeck
             background={false}
             {...data.allStrapiLocation}
           />

@@ -1,11 +1,14 @@
 import * as React from "react"
 import { Link, useStaticQuery, graphql } from 'gatsby';
+
+// Paddle
+import { PaddleLocationDeck } from "@rileybathurst/paddle";
+
 import { SEO } from "../components/seo"
 import Markdown from "react-markdown";
 import Header from "../components/header"
 import Footer from "../components/footer"
 import Ticket from "../components/ticket";
-import LocationDeck from "../components/location-deck";
 import Sport from "../components/sport";
 import type { TicketTypes } from "../types/ticket-types";
 
@@ -94,7 +97,7 @@ const ToursPage = () => {
         <hr />
       </main>
       <section className="pelican">
-        <LocationDeck
+        <PaddleLocationDeck
           background={false}
           {...query.allStrapiLocation}
         />
