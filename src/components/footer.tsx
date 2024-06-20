@@ -96,7 +96,6 @@ const Footer = () => {
         {/* // ! testing <PricingChart book={false} /> */}
         <hr />
 
-
         <PaddleLocationDeck
           background={false}
           {...data.allStrapiLocation}
