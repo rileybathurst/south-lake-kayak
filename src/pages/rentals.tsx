@@ -60,27 +60,29 @@ const RentalsPage = () => {
   return (
     <>
       <Header />
-      <main className="albatross water">
+      <main className="albatross wrap">
         <article>
-          <h1>Rentals</h1>
+          <div className="pelican">
+            <h1>Rentals</h1>
 
-          <Markdown className="react-markdown">
-            {data.strapiRental.text.data.text}
-          </Markdown>
-          <Link to="/about/faq">Frequently Asked Questions about getting out on the water</Link>
+            <Markdown className="react-markdown">
+              {data.strapiRental.text.data.text}
+            </Markdown>
+            <Link to="/about/faq">Frequently Asked Questions about getting out on the water</Link>
 
-          <hr />
+            <hr />
 
-          {/* // ? maybe this is a component again */}
-          <a
-            href={data.strapiLocale.peek_rentals}
-            rel="noopener noreferrer"
-            className="book-now"
-            title={`Book rentals now with ${data.strapiLocale.name} kayak and paddleboard`}
-            type="button"
-          >
-            BOOK RENTALS NOW
-          </a>
+            {/* // ? maybe this is a component again */}
+            <a
+              href={data.strapiLocale.peek_rentals}
+              rel="noopener noreferrer"
+              className="book-now"
+              title={`Book rentals now with ${data.strapiLocale.name} kayak and paddleboard`}
+              type="button"
+            >
+              BOOK RENTALS NOW
+            </a>
+          </div>
         </article>
         <Composition />
       </main >

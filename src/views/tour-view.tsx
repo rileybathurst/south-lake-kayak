@@ -1,10 +1,8 @@
 import * as React from "react";
 import { Link, graphql } from "gatsby";
+import { PaddleTime, PaddleLocationCard } from "@rileybathurst/paddle";
 
-// Paddle
-import { PaddleTime } from "@rileybathurst/paddle";
-import { PaddleLocationCard } from "@rileybathurst/paddle";
-
+import { SEO } from "../components/seo";
 import Markdown from "react-markdown";
 import Header from "../components/header"
 import Footer from "../components/footer"
@@ -136,6 +134,7 @@ interface TourViewTypes {
       timeframe: string;
       minimum: number;
       fitness: string;
+      experience: string;
       peek: string;
       sport: string;
       excerpt: string;
@@ -180,6 +179,7 @@ export const data = graphql`
       timeframe
       minimum
       fitness
+      experience
       peek
       sport
       excerpt
@@ -258,6 +258,7 @@ const TourView = ({ data }: TourViewTypes) => {
           <Attributes
             sport={data.strapiTour.sport}
             fitness={data.strapiTour.fitness}
+            experience={data.strapiTour.experience}
             price={data.strapiTour.price}
             timeEntry={time.entry}
             timeValue={time.value}
@@ -316,4 +317,15 @@ const TourView = ({ data }: TourViewTypes) => {
 
 export default TourView;
 
-// ! SEO breadcrumbs is now removed
+export const Head = ({ data }) => {
+  return (
+    <SEO
+      title={data.strapiTour.name}
+      description={data.strapiTour.excerpt}
+      breadcrumbs={{
+        one: { name: 'tours', item: 'tours' },
+        two: { name: data.strapiTour.name, item: data.strapiTour.name }
+      }}
+    />
+  );
+}

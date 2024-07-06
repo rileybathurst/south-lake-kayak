@@ -111,6 +111,7 @@ const IndexPage = () => {
     <>
       <Header />
       {/* // TODO: iPad width needs love */}
+      {/* // ! paddle 0.36 has a fix that */}
       <main className="albatross wrap home">
         <section>
           {/* // TODO: waiting on client <h2 className="page-title"></h2> */}

@@ -83,6 +83,7 @@ header {
 /* #MAIN */
 /*------------------*/
 
+/* ! this should be in paddle */
 main {
   max-width: var(--condor);
   margin-inline: auto;
@@ -91,8 +92,8 @@ main {
   margin-block-end: var(--everest);
 }
 
+/* ! this should be in paddle */
 /* ? check this */
-
 .tour {
   max-width: var(--albatross);
   display: flex;
@@ -119,6 +120,7 @@ main {
 /*------------------*/
 
 .single__description {
+  /* ? always note a top margin */
   margin-block-start: var(--baseline);
   padding-block: var(--baseline);
   background-color: var(--sand);

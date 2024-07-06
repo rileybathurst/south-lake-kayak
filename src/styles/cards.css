@@ -3,7 +3,7 @@
 /*------------------*/
 
 .deck {
-  max-width: var(--albatross);
+  max-width: var(--pelican);
   margin-inline: auto;
   /* margin-block: 3rem; */
   margin-block-end: calc(var(--baseline) * 2);
