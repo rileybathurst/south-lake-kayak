@@ -93,7 +93,7 @@ const Footer = () => {
         </div>
       </section>
       <section>
-        {/* // ! testing <PricingChart book={false} /> */}
+        <PricingChart book={false} />
         <hr />
 
         <PaddleLocationDeck

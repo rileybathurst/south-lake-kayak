@@ -110,66 +110,70 @@ const IndexPage = () => {
   return (
     <>
       <Header />
-      {/* // TODO: iPad width needs love */}
-      {/* // ! paddle 0.36 has a fix that */}
       <main className="albatross wrap home">
-        <section>
-          {/* // TODO: waiting on client <h2 className="page-title"></h2> */}
-          <div className="margin-block-end-aconcagua">
-            <Markdown className="react-markdown">
-              {data.southLake.about.data.about}
-            </Markdown>
-          </div>
+        <div>
+          <section className="pelican">
 
-          <PaddleLocationDeck
-            background={false}
-            {...data.allStrapiLocation}
-          />
+            {/* // TODO: waiting on client <h2 className="page-title"></h2> */}
+            <div className="margin-block-end-aconcagua">
+              <Markdown className="react-markdown">
+                {data.southLake.about.data.about}
+              </Markdown>
+            </div>
 
-          <div className="button__double">
-            <a
-              href={data.southLake.peek_rentals}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="book-now"
-              title={`book rental kayaks and paddleboards with ${data.southLake.name}`}
-            >
-              RENTALS<br />
-              BOOK NOW
-            </a>
+            <PaddleLocationDeck
+              background={false}
+              {...data.allStrapiLocation}
+            />
 
-            <a
-              href={data.southLake.peek_tours}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="book-now"
-              title={`book rental kayaks and paddleboards with ${data.southLake.name}`}
-            >
-              TOURS<br />
-              BOOK NOW
-            </a>
-          </div>
+            <div className="button__double">
+              <a
+                href={data.southLake.peek_rentals}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="book-now"
+                title={`book rental kayaks and paddleboards with ${data.southLake.name}`}
+              >
+                RENTALS<br />
+                BOOK NOW
+              </a>
 
-        </section>
+              <a
+                href={data.southLake.peek_tours}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="book-now"
+                title={`book rental kayaks and paddleboards with ${data.southLake.name}`}
+              >
+                TOURS<br />
+                BOOK NOW
+              </a>
+            </div>
+
+          </section>
+        </div>
 
         <div>
-          <div className="home__photo-grid">
-            <GatsbyImage
-              image={data.southlakefriends.image.localFile.childImageSharp.gatsbyImageData}
-              alt={data.southlakefriends.title}
-              className='img__wrapped hero'
-            />
-            {/* // ? this seems like every time it would have that classname */}
-            <WaterTexture className="texture" />
-            <GatsbyImage
-              image={data.goldshed.image.localFile.childImageSharp.gatsbyImageData}
-              alt={data.southlakefriends.title}
-              className='img__wrapped inset'
-            />
-          </div>
+          <section className="pelican">
+            <div className="home__photo-grid">
+              <GatsbyImage
+                image={data.southlakefriends.image.localFile.childImageSharp.gatsbyImageData}
+                alt={data.southlakefriends.title}
+                className='img__wrapped hero'
+              />
+              {/* // ? this seems like every time it would have that classname */}
+              <WaterTexture className="texture" />
+              <GatsbyImage
+                image={data.goldshed.image.localFile.childImageSharp.gatsbyImageData}
+                alt={data.southlakefriends.title}
+                className='img__wrapped inset'
+              />
+            </div>
 
-          {/* // ! testing <PricingChart book={true} /> */}
+            {/* // ! testing <PricingChart book={true} /> */}
+          </section>
         </div>
+
       </main>
 
       <section id="tours" className="pelican water">

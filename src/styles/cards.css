@@ -2,99 +2,23 @@
 /* #CARD */
 /*------------------*/
 
-.deck {
-  max-width: var(--pelican);
-  margin-inline: auto;
-  /* margin-block: 3rem; */
-  margin-block-end: calc(var(--baseline) * 2);
-
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1rem;
-
-  padding-inline: 0.75rem;
-
-  @media (min-width: 40rem) {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-
 /* TODO: needs sub-grid */
 .card,
 .ticket {
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
   background-color: var(--sand);
   box-shadow: var(--penumbra);
   border: 1px solid transparent;
-  border-radius: var(--card-radius);
-  /* needed to control nested elements */
-  text-decoration: none;
 
   @media (prefers-color-scheme: dark) {
     background-color: var(--navy-700);
-    border-color: var(--navy-500);
     border-color: var(--navy-600);
   }
 
-  .card__placeholder {
-    max-height: 5rem;
-    border: none;
-    border-radius: 0;
-    margin-block-end: 1.5rem;
-  }
-
-  .image-link {
-    transition: var(--fade);
-    transform: scale(1);
-    z-index: var(--floor);
-  }
-
-  .image-link:where(:hover, :focus) {
-    transform: scale(1.05);
-  }
-
-  .card__image {
-    margin-block-end: 1.5rem;
-    transition: var(--fade);
-  }
-
-  .card__image:where(:hover, :focus) {
-    /* opacity: 0.8; */
-    filter: brightness(80%);
-  }
-
-  .card__title {
-    font-size: 2rem; /* h3 */
-    margin-inline: 0.75rem;
-    line-height: calc(var(--baseline) * 2.5);
-  }
-
-  .card__specs {
-    width: calc(100% - 1.5rem);
-    display: flex;
-    flex-flow: row wrap;
-    align-items: baseline;
-    justify-content: space-between;
-    margin-inline: 0.75rem;
-    margin-block-end: var(--baseline);
-
-    > * {
-      margin: 0; /* reset */
-    }
-  }
-
   .card__span {
-    /* color: var(hsl(var(--sand__base), var(--dim))); I dont think its quite there */
     color: var(--industrial-revolution);
-    font-size: 1rem;
-    text-transform: uppercase;
   }
 
   p {
-    margin-inline: 0.75rem;
     color: var(--black-metal);
 
     @media (prefers-color-scheme: dark) {
@@ -102,30 +26,12 @@
     }
   }
 
-  hr {
-    margin-inline: 0.75rem;
-  }
-
   .card__details {
-    display: flex;
-    width: calc(100% - 1.5rem);
-    margin-inline: 0.75rem;
-    margin-block-end: var(--baseline);
-    justify-content: space-between;
-
-    > * {
-      margin: 0;
-    }
-
     h2,
     h3,
     h4,
     h5,
     h6 {
-      font-size: 2rem;
-      font-size: clamp(1rem, 1.667vw, 2rem);
-      font-weight: normal;
-      line-height: 3rem;
       color: var(--black-out);
 
       @media (prefers-color-scheme: dark) {
@@ -136,56 +42,68 @@
     button {
       background-color: var(--navy);
       color: var(--brilliance);
-      line-height: 2rem;
     }
 
     button:where(:hover, :focus) {
-      background-color: hsl(var(--mullen__base), var(--dim));
+      color: var(--kingly-cloud);
+    } /* .button */
+  }
+}
+
+/* TODO: needs sub-grid */
+.card,
+.ticket {
+  background-color: var(--sand);
+  box-shadow: var(--penumbra);
+
+  @media (prefers-color-scheme: dark) {
+    background-color: var(--navy-700);
+    border-color: var(--navy-600);
+  }
+
+  .card__span {
+    color: var(--industrial-revolution);
+  }
+
+  p {
+    color: var(--black-metal);
+
+    @media (prefers-color-scheme: dark) {
+      color: var(--brilliance);
+    }
+  }
+
+  .card__details {
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      color: var(--black-out);
+
+      @media (prefers-color-scheme: dark) {
+        color: var(--brilliance);
+      }
+    }
+
+    button {
+      background-color: var(--navy);
+      color: var(--brilliance);
+    }
+
+    button:where(:hover, :focus) {
       color: var(--kingly-cloud);
     } /* .button */
   }
 
   .badge {
-    z-index: var(--floor);
     background-color: var(--brilliance);
-    place-self: start;
-    padding: 0.5rem;
-    margin: 0.5rem;
-    border-radius: var(--card-radius);
     box-shadow: var(--penumbra);
-    opacity: 0.9;
-
-    h5 {
-      margin: 0;
-      opacity: 1;
-      font-weight: normal;
-    }
   }
-}
-
-.card:hover {
-  p {
-    text-decoration: underline;
-  }
-}
-
-.deck:empty {
-  display: none;
-}
-
-.deck__column {
-  grid-template-columns: 1fr;
 }
 
 .deck__more {
   max-width: var(--pelican);
-  margin-inline: auto;
-  padding-inline: 0.75rem;
-
-  button {
-    margin-block-start: 1.5rem;
-    margin-inline: auto;
-  }
 }
 
 .sand_backed--wide {
@@ -199,87 +117,32 @@
   }
 }
 
-.card--split {
-  flex-direction: row !important; /* TODO can I increase the specificity */
-  > * {
-    flex: 1 1 50%;
-  }
-}
-
 /*------------------*/
 /* #RETAIL LOGO */
 /*------------------*/
-
-.brand-logo {
-  display: flex;
-  flex-flow: row wrap;
-  gap: var(--baseline);
-  max-width: max-content;
-  /* border: 1px solid var(--tin-soldier); im not sure yet */
-  margin-block-end: 1.5rem;
-  padding-block: 1.5rem;
-  padding-inline: 0.75rem;
-  align-items: center;
-  font-size: 2rem; /* grabs any h level */
-
-  > * {
-    margin-block-end: 0;
-  }
-
-  svg {
-    width: 10rem; /* guess and check */
-    margin-block-end: 0.75rem;
-  }
-}
 
 .brand__header {
   background-color: var(--kingly-cloud);
   box-shadow: 0 0 0 100vmax var(--kingly-cloud);
   clip-path: inset(0 -100vmax);
-
-  hr {
-    margin-block-end: var(--baseline);
-  }
 }
 
 /*------------------*/
 /* #LOCATION DECK AND CARDS */
 /*------------------*/
 
-.home__here, /* TODO rename this to .location__multiple everywhere */
-.location__deck {
-  max-width: var(--pelican);
-  margin-inline: auto;
-  display: flex;
-  flex-flow: row wrap;
-
-  > * {
-    flex: 1 1 20rem;
-  }
-}
-
 .here__location, /* TODO rename this to .location everywhere */
 .location_card {
-  display: flex;
-  flex-flow: column;
-  gap: 1rem;
-  justify-content: space-between;
-  margin-block-end: 1.5rem;
-  padding-block-end: 1.5rem;
   border-block-end: 1px solid var(--kingly-cloud);
 
   @media (prefers-color-scheme: dark) {
     border-block-end: 1px solid var(--black-out);
   }
 
-  /* TODO this is a bad name */
   background-color: var(--navy);
-  /* border: 1px solid var(--tin-soldier); */
-  padding: 0.5rem;
   color: whitesmoke;
-  border-radius: 0.5rem;
-  font-weight: 600;
 
+  /* TODO: this defintley isnt right */
   @media (prefers-color-scheme: dark) {
     background-color: hsl(var(--mullen__base), var(--dim));
   }
