@@ -9,6 +9,7 @@ import MenuList from "./menu-list";
 import Logo from "../images/logo";
 import { useSiteMetadata } from "../hooks/use-site-metadata"
 import Phone from "./phone";
+import PricingChart from "./pricing-chart";
 
 const Footer = () => {
 

@@ -16,7 +16,10 @@ function LineBreaker(props: { text: string; }) {
   );
 }
 
-const PricingChart = (props: { book: boolean; }) => {
+interface PricingTypes {
+  book: boolean;
+}
+function PricingChart({ book }: PricingTypes) {
 
   const data = useStaticQuery(graphql`
     query PricingChartQuery {
@@ -88,20 +91,18 @@ const PricingChart = (props: { book: boolean; }) => {
         </div>
 
         <div className="pricing-chart">
-          {/* // ! needs a key but broke the styling */}
-          {/* <div key={addon.name}> */}
+          {/* // TODO: needs a key but broke the styling */}
           {data.allStrapiRentalAddon.nodes.map((addon: AddonTypes) => (
             <>
-              <p>{addon.name}</p>
-              <p>+{addon.single}</p>
-              <p>+{addon.double}</p>
-              <p>+{addon.sup}</p>
+              <p key={addon.name}>{addon.name}</p>
+              <p key={addon.single}>+{addon.single}</p>
+              <p key={addon.double}>+{addon.double}</p>
+              <p key={addon.sup}>+{addon.sup}</p>
             </>
           ))}
-          {/* </div> */}
         </div>
-      </div >
-      <div className={`pricing-chart__${props.book}`}>
+      </div>
+      <div className={`pricing-chart__${book}`}>
         <BookNow />
       </div>
     </>
