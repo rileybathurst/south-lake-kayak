@@ -55,4 +55,30 @@ exports.createPages = async ({ graphql, actions }) => {
       },
     });
   }
+
+  const getStrapiTeam = await graphql(`
+    query {
+      allStrapiTeam(
+        filter: { locales: { elemMatch: { slug: { eq: "south-lake" } } } }
+      ) {
+        edges {
+          node {
+            slug
+          }
+        }
+      }
+    }
+  `);
+
+  for (const { node } of getStrapiTeam.data.allStrapiTeam.edges) {
+    createPage({
+      path: `/about/team/${node.slug}`,
+      component: path.resolve("src/views/team-view.tsx"),
+      context: {
+        slug: node.slug,
+      },
+    });
+  }
+
+
 };

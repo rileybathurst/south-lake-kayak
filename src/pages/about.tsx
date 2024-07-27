@@ -38,6 +38,7 @@ const AboutPage = () => {
             <li key="info"><Link to="/about/information">Paddlesports Information</Link></li>
             <li key="policies"><Link to="/about/policies">Store Policies</Link></li>
             <li key="testimonials"><Link to="/about/testimonials">Testimonials</Link></li>
+            <li key="team"><Link to="/about/team">Team</Link></li>
             <li key="jobs"><Link to="/about/jobs">Jobs</Link></li>
           </ul>
         </div>
