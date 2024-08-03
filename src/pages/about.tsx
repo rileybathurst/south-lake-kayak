@@ -26,26 +26,30 @@ const AboutPage = () => {
   return (
     <>
       <Header />
-      <main className="pelican water">
+      <main className="albatross wrap">
         <div>
-          <h1>About Us</h1>
-          <Markdown className="react-markdown">
-            {strapiLocale.about.data.about}
-          </Markdown>
+          <div className="condor">
+            <h1>About Us</h1>
+            <Markdown className="react-markdown">
+              {strapiLocale.about.data.about}
+            </Markdown>
 
-          <ul>
-            <li key="faq"><Link to="/about/faq">Frequently Asked Questions</Link></li>
-            <li key="info"><Link to="/about/information">Paddlesports Information</Link></li>
-            <li key="policies"><Link to="/about/policies">Store Policies</Link></li>
-            <li key="testimonials"><Link to="/about/testimonials">Testimonials</Link></li>
-            <li key="team"><Link to="/about/team">Team</Link></li>
-            <li key="jobs"><Link to="/about/jobs">Jobs</Link></li>
-          </ul>
+            <ul>
+              <li key="faq"><Link to="/about/faq">Frequently Asked Questions</Link></li>
+              <li key="info"><Link to="/about/information">Paddlesports Information</Link></li>
+              <li key="policies"><Link to="/about/policies">Store Policies</Link></li>
+              <li key="testimonials"><Link to="/about/testimonials">Testimonials</Link></li>
+              <li key="team"><Link to="/about/team">Team</Link></li>
+              <li key="jobs"><Link to="/about/jobs">Jobs</Link></li>
+            </ul>
+          </div>
         </div>
-        {/* <h2>We are here</h2> */}
 
-
-        <Composition />
+        <div>
+          <div className="condor">
+            <Composition />
+          </div>
+        </div>
       </main>
       <Footer />
     </>

@@ -1,4 +1,3 @@
-// TODO: am I ready yet?
 import "@rileybathurst/paddle/src/styles/app.css";
 
 import "./src/styles/app.css";

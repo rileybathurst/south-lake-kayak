@@ -7,7 +7,7 @@ import { Breadcrumbs, Breadcrumb } from 'react-aria-components';
 import Header from "../../components/header";
 import Footer from "../../components/footer";
 
-import { BlocksRenderer, type BlocksContent } from '@strapi/blocks-react-renderer';
+import ReactMarkdown from 'react-markdown';
 
 const PoliciesPage = () => {
 
@@ -17,15 +17,9 @@ const PoliciesPage = () => {
         nodes {
           id
           title
-          description {
-            type
-            children {
-              type
-              text
-              children {
-                type
-                text
-              }
+          markdown {
+            data {
+              markdown
             }
           }
         }
@@ -36,7 +30,11 @@ const PoliciesPage = () => {
   interface PolicyTypes {
     id: string,
     title: string,
-    description: BlocksContent
+    markdown: {
+      data: {
+        markdown: string
+      }
+    }
   }
 
   return (
@@ -47,7 +45,11 @@ const PoliciesPage = () => {
         {allStrapiPolicy.nodes.map((policy: PolicyTypes) => (
           <article key={policy.id}>
             <h2>{policy.title}</h2>
-            <BlocksRenderer content={policy.description} />
+            {policy.markdown ?
+              <ReactMarkdown>
+                {policy.markdown.data.markdown}
+              </ReactMarkdown>
+              : null}
             <hr />
           </article>
         ))}
