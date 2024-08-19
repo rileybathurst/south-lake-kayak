@@ -5,7 +5,6 @@ import { Link, Script, graphql, useStaticQuery } from "gatsby"
 import { SEO } from "../../components/seo";
 import { Breadcrumbs, Breadcrumb } from 'react-aria-components';
 import Markdown from "react-markdown";
-import { useSiteMetadata } from "../../hooks/use-site-metadata";
 import Header from "../../components/header";
 import Footer from "../../components/footer";
 

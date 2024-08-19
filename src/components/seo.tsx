@@ -1,3 +1,5 @@
+// TODO: Paddle SEO
+
 import React from "react";
 import { Script, useStaticQuery, graphql } from "gatsby";
 
@@ -61,7 +63,7 @@ export const SEO = (SE0: SEO) => {
         name
         url
         ogImage
-        ogimagedescription
+        ogImageDescription
         latitude
         longitude
         geoRadius
@@ -98,10 +100,10 @@ export const SEO = (SE0: SEO) => {
   const seo = {
     title: SE0.title ? `${SE0.title} | ${businessName}` : `${businessName} | ${data.strapiLocale.topbar.data.topbar} `,
     // TODO: tagline would be a better fallback description
-    description: SE0.description || data.strapiLocale.name,
+    description: SE0.description || businessName,
     url: `${data.strapiLocale.url}${SE0.url}` || data.strapiLocale.url,
     image: data.strapiLocale.ogImage || SEO.image,
-    imageAlt: data.strapiLocale.ogimagedescription || SEO.imageAlt,
+    imageAlt: data.strapiLocale.ogImageDescription || SEO.imageAlt,
     breadcrumbs: SE0.breadcrumbs || null,
   };
 

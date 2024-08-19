@@ -4,7 +4,6 @@ import Markdown from "react-markdown";
 import LargeMenu from "./large-menu"
 import MenuList from './menu-list';
 import Logo from '../images/logo';
-import { useSiteMetadata } from "../hooks/use-site-metadata"
 
 // * I was doing something about if the top banner should close
 // * but never finished it

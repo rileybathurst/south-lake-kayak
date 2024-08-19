@@ -1,9 +1,8 @@
 import * as React from "react"
 import { useStaticQuery, graphql, Link } from 'gatsby';
-import { GatsbyImage, IGatsbyImageData } from 'gatsby-plugin-image';
+import { GatsbyImage, type IGatsbyImageData } from 'gatsby-plugin-image';
 
 import { SEO } from "../../components/seo"
-import { useSiteMetadata } from '../../hooks/use-site-metadata';
 import Header from "../../components/header"
 import Footer from "../../components/footer"
 import ReactMarkdown from "react-markdown"
@@ -107,7 +106,7 @@ export default TeamPage
 export const Head = () => {
   return (
     <SEO
-      title={`Team | ${useSiteMetadata().title}`}
+      title='Team'
     // description="We have many different Kayak Tours to offer, as well as Stand Up Paddleboard Lessons. Our tours leave from multiple locations around the lake."
     />
   )

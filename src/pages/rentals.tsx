@@ -2,7 +2,6 @@ import * as React from "react"
 import { Link, graphql, useStaticQuery, Script } from 'gatsby';
 
 import { SEO } from "../components/seo";
-import { useSiteMetadata } from '../hooks/use-site-metadata';
 import Markdown from "react-markdown";
 
 import Header from "../components/header";

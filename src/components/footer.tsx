@@ -7,7 +7,6 @@ import { PaddleSocials } from "@rileybathurst/paddle";
 
 import MenuList from "./menu-list";
 import Logo from "../images/logo";
-import { useSiteMetadata } from "../hooks/use-site-metadata"
 import Phone from "./phone";
 import PricingChart from "./pricing-chart";
 
@@ -52,7 +51,7 @@ const Footer = () => {
     <footer>
       <section>
         <h3 className='sr-only'>
-          <Link to="/">{useSiteMetadata().title}</Link>
+          <Link to="/">{data.strapiLocale.name}</Link>
         </h3>
         <Link to="/" className="logo-link"><Logo /></Link>
         <p>&copy; {new Date().getFullYear()}</p>
