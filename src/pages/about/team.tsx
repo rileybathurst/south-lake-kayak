@@ -107,7 +107,11 @@ export const Head = () => {
   return (
     <SEO
       title='Team'
-    // description="We have many different Kayak Tours to offer, as well as Stand Up Paddleboard Lessons. Our tours leave from multiple locations around the lake."
+      // description="We have many different Kayak Tours to offer, as well as Stand Up Paddleboard Lessons. Our tours leave from multiple locations around the lake."
+      breadcrumbs={[
+        { name: 'About', item: 'about' },
+        { name: 'Team', item: 'about/team' }
+      ]}
     />
   )
 }

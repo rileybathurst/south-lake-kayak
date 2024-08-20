@@ -271,10 +271,10 @@ export const Head = () => {
     <SEO
       title='Compare Tours'
       // TODO description and image
-      breadcrumbs={{
-        one: { name: 'Tours', url: 'tours' },
-        two: { name: 'Compare', url: 'compare' }
-      }}
+      breadcrumbs={[
+        { name: 'Tours', item: 'tours' },
+        { name: 'Compare', item: 'tours/compare' }
+      ]}
     />
   )
 }

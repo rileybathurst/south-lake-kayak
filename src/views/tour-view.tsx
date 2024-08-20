@@ -322,10 +322,10 @@ export const Head = ({ data }) => {
     <SEO
       title={data.strapiTour.name}
       description={data.strapiTour.excerpt}
-      breadcrumbs={{
-        one: { name: 'tours', item: 'tours' },
-        two: { name: data.strapiTour.name, item: data.strapiTour.name }
-      }}
+      breadcrumbs={[
+        { name: 'tours', item: 'tours' },
+        { name: data.strapiTour.name, item: `tours/${data.strapiTour.name}` }
+      ]}
     />
   );
 }

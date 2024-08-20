@@ -76,6 +76,10 @@ export const Head = () => {
       title='Information'
       // TODO: this would be interesting to do with a map of the faq at the top question level
       description="Before you go. Dress for Success. Weather and Navigation. Basic Paddling Tips. Kayak Paddle Strokes. Tandem Kayaking – Its about communication. Safety on the Water. Stay Hydrated"
+      breadcrumbs={[
+        { name: 'About', item: 'about' },
+        { name: 'Paddlesports Information', item: 'about/information' }
+      ]}
     >
 
       <Script type="application/ld+json">

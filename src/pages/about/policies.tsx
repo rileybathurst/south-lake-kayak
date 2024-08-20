@@ -72,10 +72,10 @@ export const Head = () => {
     <SEO
       title='Policies'
       description="Transportation, Tour Booking Procedure and Cancellation Policy."
-      breadcrumbs={{
-        one: { name: "About", path: "about" },
-        two: { name: "Policies", path: "policies" }
-      }}
+      breadcrumbs={[
+        { name: "About", item: "about" },
+        { name: "Policies", item: "about/policies" }
+      ]}
     />
   )
 }

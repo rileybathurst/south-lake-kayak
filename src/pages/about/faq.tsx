@@ -47,20 +47,18 @@ export default FaqPage
 
 export const Head = () => {
 
-  // console.log(useStrapiFaq);
-
-  // name: "About",
-  // something: "About",
-  // item: "about"
-
+  type FaqTypes = {
+    question: string;
+    answer: string;
+  }
   return (
     <SEO
       title='Frequently Asked Questions'
       description="Get answers to your questions about kayaking and paddleboarding in Lake Tahoe with Tahoe City Kayak and Paddleboards frequently asked questions page. Learn about our kayak and paddleboard, tours, and storage options."
-      breadcrumbs={{
-        one: { name: 'About', item: 'about' },
-        two: { name: 'Frequently Asked Questions', item: 'faq' }
-      }}
+      breadcrumbs={[
+        { name: 'About', item: 'about' },
+        { name: 'Frequently Asked Questions', item: 'about/faq' }
+      ]}
     >
 
       {/* // TODO: move the types */}
@@ -70,7 +68,7 @@ export const Head = () => {
             "@context": "https://schema.org",
             "@type": "FAQPage",
             "mainEntity": [
-              ${useStrapiFaq().nodes.map((faq: { question: string; answer: string; }) => (
+              ${useStrapiFaq().nodes.map((faq: FaqTypes) => (
           `{
                   "@type": "Question",
                   "name": "${faq.question}",

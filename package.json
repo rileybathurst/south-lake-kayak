@@ -16,9 +16,9 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@fontsource/barlow": "^5.0.12",
-    "@fontsource/barlow-condensed": "^5.0.12",
-    "@rileybathurst/paddle": "^0.0.72",
+    "@fontsource/barlow": "^5.0.14",
+    "@fontsource/barlow-condensed": "^5.0.14",
+    "@rileybathurst/paddle": "^0.0.75",
     "@strapi/blocks-react-renderer": "^1.0.1",
     "gatsby": "^5.13.3",
     "gatsby-plugin-csp": "^1.1.4",

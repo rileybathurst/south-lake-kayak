@@ -53,10 +53,10 @@ export const Head = () => {
       title='Testimonials'
       // ? should this description include business name or what we are working on
       description="Testimonials our the customers."
-      breadcrumbs={{
-        one: { name: 'About', item: 'about' },
-        two: { name: 'Testimonials', item: 'testimonials' }
-      }}
+      breadcrumbs={[
+        { name: 'About', item: 'about' },
+        { name: 'Testimonials', item: 'about/testimonials' }
+      ]}
     >
     </SEO>
   )

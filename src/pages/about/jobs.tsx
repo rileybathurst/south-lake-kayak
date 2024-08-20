@@ -92,10 +92,10 @@ export const Head = () => {
     <SEO
       title='Jobs'
       description='Are you looking for a job in kayaking or paddleboarding? Look no further. We&apos;re currently hiring for several positions. Apply today and join our team!'
-      breadcrumbs={{
-        one: { name: 'About', item: 'about' },
-        two: { name: 'Jobs', item: 'jobs' }
-      }}
+      breadcrumbs={[
+        { name: 'About', item: 'about' },
+        { name: 'Jobs', item: 'about/jobs' }
+      ]}
     />
   )
 }

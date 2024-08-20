@@ -59,16 +59,3 @@ const TeamView = ({ data }) => {
 };
 
 export default TeamView;
-
-/* export const Head = ({ data }) => {
-  return (
-    <SEO
-      title={data.strapiTour.name}
-      description={data.strapiTour.excerpt}
-    breadcrumbs={[
-            { name: "Tours & Lessons", path: "/tours-lessons" },
-            { name: data.strapiTour.name, path: `/tours-lessons/${data.strapiTour.slug}` }
-          ]}
-    />
-  );
-} */
