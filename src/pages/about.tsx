@@ -41,6 +41,7 @@ const AboutPage = () => {
               <li key="testimonials"><Link to="/about/testimonials">Testimonials</Link></li>
               <li key="team"><Link to="/about/team">Team</Link></li>
               <li key="jobs"><Link to="/about/jobs">Jobs</Link></li>
+              <li key="protect"><Link to="/about/protect">Protect Lake Tahoe</Link></li>
             </ul>
           </div>
         </div>
