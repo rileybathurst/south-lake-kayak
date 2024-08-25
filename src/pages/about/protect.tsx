@@ -35,7 +35,7 @@ const ProtectPage = () => {
 
       <Breadcrumbs>
         <Breadcrumb><Link to="/about/">About</Link></Breadcrumb>
-        <Breadcrumb>Protect</Breadcrumb>
+        <Breadcrumb>Protect Lake Tahoe</Breadcrumb>
       </Breadcrumbs>
 
       <Footer />
@@ -49,9 +49,8 @@ export const Head = () => {
 
   return (
     <SEO
-      title='Frequently Asked Questions'
-      description="Get answers to your questions about kayaking and paddleboarding in Lake Tahoe with Tahoe City Kayak and Paddleboards frequently asked questions page. Learn about our kayak and paddleboard rentals, sales, lessons, tours, and storage options."
-      // * 2024 version of breadcrumbs
+      title='Protect Lake Tahoe'
+      description="Lake Tahoe is a unique and special environment. Our alpine lake is one of the cleanest and clearest in the world, and we'd like to preserve this place for future generations."
       breadcrumbs={[
         {
           name: "About",

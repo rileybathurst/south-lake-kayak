@@ -5,8 +5,7 @@ import { PaddleTime, PaddleLocationCard } from "@rileybathurst/paddle";
 import { SEO } from "../components/seo";
 import Markdown from "react-markdown";
 import Header from "../components/header"
-import Footer from "../components/footer"
-import Time from "../components/time";
+import Footer from "../components/footer";
 import Composition from "../components/composition";
 import Ticket from "../components/ticket";
 import type { TicketTypes } from "../types/ticket-types";
@@ -14,109 +13,7 @@ import type { IGatsbyImageData } from 'gatsby-plugin-image';
 import type { CardType } from "../types/card";
 import { Breadcrumbs, Breadcrumb } from 'react-aria-components';
 import BookNow from "../components/peek/book-now";
-
-
-interface AttributesProps {
-  sport?: string;
-  fitness?: string;
-  price?: number;
-  minimum?: number;
-  start?: string;
-  finish?: string;
-  duration?: number;
-  timeEntry?: string;
-  timeValue?: string;
-}
-function Attributes(attributes: AttributesProps) {
-  const sections = Object.entries(attributes).map(([key, value]) => {
-    if (value) {
-      if (key === "timeValue") {
-        return null;
-      }
-
-      if (key === "timeEntry") {
-        return (
-          <section
-            key={key}
-            className="spec attribute"
-          >
-            <h3 className="crest">{attributes.timeValue}</h3>
-            <h4>{value}</h4>
-          </section>
-        )
-      }
-
-      if (key === "duration") {
-        const unit = "mins";
-        return (
-          <section
-            key={key}
-            className="spec attribute"
-          >
-            <h3 className="crest">{key}</h3>
-            <h4 className="range">{value} {unit}</h4>
-          </section >
-        )
-      }
-
-      if (key === "price") {
-        const unit = "$";
-        return (
-          <section
-            key={key}
-            className="spec attribute"
-          >
-            <h3 className="crest">{key}</h3>
-            <h4 className="range">{unit}{value}</h4>
-          </section >
-        )
-      }
-
-      if (key === "start" || key === "finish") {
-        return (
-          <section
-            key={key}
-            className="spec attribute"
-          >
-            <h3 className="crest">{key}</h3>
-            {/* <h4 className="range"><HourMin time={value} /></h4> */}
-            <Time start={attributes.start} finish={attributes.finish} />
-          </section >
-        )
-      }
-
-      return (
-        <section
-          key={key}
-          className="spec attribute"
-        >
-          <h3 className="crest">{key}</h3>
-          <h4 className="range">{value}</h4>
-        </section >
-      )
-    }
-  })
-
-  return (
-    <div className="attributes">
-      {sections}
-    </div>
-  )
-}
-interface MinimumTypes {
-  minimum: number;
-}
-function Minimum({ minimum }: MinimumTypes) {
-  if (minimum) {
-    return (
-      <p>* Prices based on a<br />
-        {minimum} person minimum</p>
-    );
-  }
-
-  return null;
-}
-
+import { PaddleSpecs } from "@rileybathurst/paddle";
 
 interface TourViewTypes {
   data: {
@@ -252,16 +149,15 @@ const TourView = ({ data }: TourViewTypes) => {
               :
               <BookNow />
             }
-            <Minimum minimum={data.strapiTour.minimum} />
+            {data.strapiTour.minimum ? <p>* Prices based on a<br /> {data.strapiTour.minimum} person minimum</p> : null}
           </div>
 
-          <Attributes
+          <PaddleSpecs
             sport={data.strapiTour.sport}
             fitness={data.strapiTour.fitness}
             experience={data.strapiTour.experience}
             price={data.strapiTour.price}
-            timeEntry={time.entry}
-            timeValue={time.value}
+            time={time}
           />
 
           <Markdown className="react-markdown single__description">
