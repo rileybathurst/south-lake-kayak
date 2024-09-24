@@ -736,6 +736,7 @@ footer {
   margin-block-end: calc(2 * var(--baseline));
 }
 
+/* TODO: I think a lot of this is in paddle or not needed */
 /*------------------*/
 /* #SPECS */
 /*------------------*/

@@ -15,6 +15,12 @@ export const query = graphql`
       }
     }
 
+    streetAddress
+    addressLocality
+    addressRegion
+    postalCode
+    commonName
+
     description {
       data {
         description

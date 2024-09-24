@@ -20,6 +20,8 @@ const Footer = () => {
         instagram
         facebook
         tripadvisor
+        season_start
+        season_end
       }
 
       allStrapiLocale(filter: {slug: {ne: "south-lake"}}) {
@@ -98,6 +100,8 @@ const Footer = () => {
 
         <PaddleLocationDeck
           background={false}
+          season_start={data.strapiLocale.season_start}
+          season_end={data.strapiLocale.season_end}
           {...data.allStrapiLocation}
         />
       </section>

@@ -194,7 +194,7 @@ footer {
 
 .location.false {
   background-color: transparent;
-  border-block-end: 1px solid var(--tin-soldier);
+
   box-shadow: none;
   transition: var(--fade);
 
@@ -220,8 +220,12 @@ footer {
   }
 }
 
-.home .location.false:hover {
+/* .home .location.false:hover {
   background-color: var(--sunshine-100);
+} */
+
+.location-wrapper:not(:last-child) {
+  border-block-end: 1px solid var(--tin-soldier);
 }
 
 /*------------------------------------*/

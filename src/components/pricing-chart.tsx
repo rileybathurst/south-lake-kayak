@@ -42,6 +42,7 @@ function PricingChart({ book }: PricingTypes) {
 
       allStrapiRentalAddon {
         nodes {
+          id
           name
           single
           double
@@ -60,6 +61,7 @@ function PricingChart({ book }: PricingTypes) {
   }
 
   interface AddonTypes {
+    id: React.Key;
     name: string;
     single: number;
     double: number;
@@ -91,17 +93,16 @@ function PricingChart({ book }: PricingTypes) {
         </div>
 
         <div className="pricing-chart">
-          {/* // TODO: needs a key but broke the styling */}
           {data.allStrapiRentalAddon.nodes.map((addon: AddonTypes) => (
-            <>
-              <p key={addon.name}>{addon.name}</p>
-              <p key={addon.single}>+{addon.single}</p>
-              <p key={addon.double}>+{addon.double}</p>
-              <p key={addon.sup}>+{addon.sup}</p>
-            </>
+            <React.Fragment key={addon.id}>
+              <p>{addon.name}</p>
+              <p>+{addon.single}</p>
+              <p>+{addon.double}</p>
+              <p>+{addon.sup}</p>
+            </React.Fragment>
           ))}
         </div>
-      </div>
+      </div >
       <div className={`pricing-chart__${book}`}>
         <BookNow />
       </div>

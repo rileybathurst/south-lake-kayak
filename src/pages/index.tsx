@@ -66,6 +66,9 @@ const IndexPage = () => {
             about
           }
         }
+        season_start
+        season_end
+        phone
       }
 
       tahoeCity: strapiLocale(slug: {eq: "tahoe-city"}) {
@@ -123,6 +126,10 @@ const IndexPage = () => {
 
             <PaddleLocationDeck
               background={false}
+              season_start={data.southLake.season_start}
+              season_end={data.southLake.season_end}
+              phone={data.southLake.phone}
+
               {...data.allStrapiLocation}
             />
 
