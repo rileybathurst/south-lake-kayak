@@ -7,15 +7,15 @@ button,
   padding: 0.5rem 1rem;
   font-size: 1rem;
   cursor: pointer;
-  margin-block-end: var(--baseline);
+  margin-block-end: var(--elbrus);
   transition: 0.5s ease;
   display: block;
   line-height: 1.5rem;
   text-decoration: none;
   width: max-content;
 
-  color: var(--navy);
-  border: 1px solid var(--navy);
+  color: var(--navy-100);
+  border: 1px solid var(--navy-100);
   box-shadow: var(--penumbra);
 }
 
@@ -34,7 +34,7 @@ button:hover,
   /* TODO this doesnt do enough in dark to see the change */
 
   @media (prefers-color-scheme: dark) {
-    color: var(--navy);
+    color: var(--navy-100);
   }
 }
 
@@ -55,7 +55,7 @@ button:active,
 }
 
 .button__mullen {
-  background-color: var(--navy);
+  background-color: var(--navy-100);
   color: var(--brilliance);
 }
 
@@ -90,7 +90,7 @@ menu button {
   text-decoration: none;
   text-align: center;
   display: inline-block; /* same as a button */
-  background-color: var(--navy);
+  background-color: var(--navy-100);
   color: var(--brilliance);
 
   @media (prefers-color-scheme: dark) {
@@ -105,14 +105,14 @@ menu button {
   color: var(--kingly-cloud);
 
   @media (prefers-color-scheme: dark) {
-    background-color: var(--navy);
+    background-color: var(--navy-100);
     color: var(--brilliance);
   }
 }
 
 footer .book-now {
   margin-block-start: 0;
-  margin-block-end: var(--baseline);
+  margin-block-end: var(--elbrus);
 }
 
 .button__double {
@@ -130,7 +130,7 @@ footer .book-now {
   display: flex;
   flex-flow: row wrap;
   gap: 1rem;
-  margin-block-end: var(--baseline);
+  margin-block-end: var(--elbrus);
 }
 
 /*------------------------------------*/

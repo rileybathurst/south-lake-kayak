@@ -8,8 +8,8 @@ footer {
   clip-path: inset(0 -100vmax);
 
   @media (prefers-color-scheme: dark) {
-    background-color: var(--navy-600);
-    box-shadow: 0 0 0 100vmax var(--navy-600);
+    background-color: var(--navy-200);
+    box-shadow: 0 0 0 100vmax var(--navy-200);
   }
 
   hr {
@@ -23,7 +23,6 @@ footer {
   button,
   .button {
     background-color: transparent;
-    /* background-color: var(--sunshine-200); */
 
     @media (prefers-color-scheme: dark) {
       color: var(--brilliance);
@@ -47,8 +46,8 @@ footer {
   clip-path: inset(0 -100vmax);
 
   @media (prefers-color-scheme: dark) {
-    background-color: var(--navy-600);
-    box-shadow: 0 0 0 100vmax var(--navy-600);
+    background-color: var(--navy-200);
+    box-shadow: 0 0 0 100vmax var(--navy-200);
   }
 }
 
@@ -84,7 +83,7 @@ footer {
 }
 
 .blocked {
-  padding-block-start: var(--baseline);
+  padding-block-start: var(--elbrus);
   background-color: var(--sand);
   box-shadow: 0 0 0 100vmax var(--sand);
   clip-path: inset(0 -100vmax);
@@ -108,8 +107,8 @@ footer {
   background-color: var(--sand);
   box-shadow: 0 0 0 100vmax var(--sand);
   clip-path: inset(0 -100vmax);
-  padding-block: var(--baseline);
-  margin-block-end: var(--baseline);
+  padding-block: var(--elbrus);
+  margin-block-end: var(--elbrus);
 
   @media (prefers-color-scheme: dark) {
     background-color: var(--ink);
@@ -169,11 +168,11 @@ footer {
 
 .location {
   /* css funtions are goning to help with this near a button */
-  background-color: var(--navy);
+  background-color: var(--navy-100);
   color: var(--brilliance);
 
   @media (prefers-color-scheme: dark) {
-    background-color: var(--navy-400);
+    background-color: var(--navy-100);
     color: black;
   }
 
@@ -181,14 +180,14 @@ footer {
     fill: var(--brilliance);
 
     @media (prefers-color-scheme: dark) {
-      fill: var(--navy-700);
+      fill: var(--navy-300);
     }
   }
 }
 
 .location:hover {
   @media (prefers-color-scheme: dark) {
-    background-color: var(--navy-500);
+    background-color: var(--navy-200);
   }
 }
 
@@ -198,9 +197,9 @@ footer {
   box-shadow: none;
   transition: var(--fade);
 
-  color: var(--navy);
+  color: var(--navy-100);
   svg {
-    fill: var(--navy);
+    fill: var(--navy-100);
   }
 
   @media (prefers-color-scheme: dark) {
@@ -213,16 +212,12 @@ footer {
 
 .location.false:hover {
   @media (prefers-color-scheme: dark) {
-    color: var(--navy-400);
+    color: var(--navy-100);
     svg {
-      fill: var(--navy-400);
+      fill: var(--navy-100);
     }
   }
 }
-
-/* .home .location.false:hover {
-  background-color: var(--sunshine-100);
-} */
 
 .location-wrapper:not(:last-child) {
   border-block-end: 1px solid var(--tin-soldier);
@@ -236,7 +231,7 @@ footer {
   clip-path: inset(0 -100vmax);
 
   @media (prefers-color-scheme: dark) {
-    background-color: var(--navy-600);
-    box-shadow: 0 0 0 100vmax var(--navy-600);
+    background-color: var(--navy-200);
+    box-shadow: 0 0 0 100vmax var(--navy-200);
   }
 }

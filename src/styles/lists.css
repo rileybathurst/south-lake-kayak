@@ -13,14 +13,14 @@ ul {
 
   li {
     display: block;
-    margin-block-end: var(--baseline);
+    margin-block-end: var(--elbrus);
   }
 }
 
 ol {
   li {
     display: inline flow-root list-item;
-    margin-block-end: var(--baseline);
+    margin-block-end: var(--elbrus);
   }
 }
 
@@ -44,7 +44,7 @@ ol {
     padding-block-start: 1.5rem;
     margin-block-end: 0;
     /* padding-block-end: 1.5rem; */
-    /* padding-inline: calc(var(--baseline) / 2); deprecated but still checking */
+    /* padding-inline: calc(var(--elbrus) / 2); deprecated but still checking */
     padding-inline: 0;
     text-transform: capitalize;
 
@@ -64,8 +64,8 @@ ol {
   clip-path: inset(0 -100vmax);
 
   @media (prefers-color-scheme: dark) {
-    /* background-color: var(--navy-500); */
-    /* box-shadow: 0 0 0 100vmax var(--navy-500); */
+    /* background-color: var(--navy-200); */
+    /* box-shadow: 0 0 0 100vmax var(--navy-200); */
   }
 
   list-style: none;
@@ -111,7 +111,7 @@ ol {
 
 .paragraph-list {
   li {
-    margin-block-end: var(--baseline);
+    margin-block-end: var(--elbrus);
   }
 
   a {
@@ -209,7 +209,7 @@ ol {
   > li {
     flex: 1 1 10rem;
     border: 1px solid var(--tin-soldier);
-    background-color: var(--navy);
+    background-color: var(--navy-100);
     border-radius: 0.25rem;
     margin-block-end: 0;
 
@@ -225,7 +225,7 @@ ol {
       text-align: center;
       width: 100%;
       height: 100%; /* this goes waaaay to big .. but it needs something */
-      background: var(--navy);
+      background: var(--navy-100);
       color: whitesmoke;
       align-self: end;
       text-decoration: none;
@@ -243,7 +243,7 @@ ol {
 
     svg {
       transition: var(--fade);
-      margin: var(--baseline);
+      margin: var(--elbrus);
       fill: whitesmoke;
       min-width: 3rem; /* guess and check */
 
@@ -290,7 +290,7 @@ ol {
   flex-flow: row wrap;
   padding-inline-start: 0;
   list-style: none;
-  gap: var(--baseline);
+  gap: var(--elbrus);
   align-items: baseline;
   /* justify-content: space-between; */
   justify-content: start;

@@ -49,8 +49,8 @@ main {
 
 .single__description {
   /* ? always note a top margin */
-  margin-block-start: var(--baseline);
-  padding-block: var(--baseline);
+  margin-block-start: var(--elbrus);
+  padding-block: var(--elbrus);
   background-color: var(--sand);
   box-shadow: 0 0 0 100vmax var(--sand);
   clip-path: inset(0 -100vmax);
@@ -70,8 +70,8 @@ main {
 }
 
 .brand_blocks > * {
-  margin-block-end: var(--baseline);
-  padding-block-end: var(--baseline);
+  margin-block-end: var(--elbrus);
+  padding-block-end: var(--elbrus);
 }
 
 .brand_blocks > *:nth-child(odd) {
@@ -97,7 +97,7 @@ main {
 .single__book {
   max-width: var(--stork);
   margin-inline: auto;
-  margin-block-end: calc(var(--baseline) * 2);
+  margin-block-end: calc(var(--elbrus) * 2);
   padding-block: 1.5rem;
   clip-path: inset(0 -100vmax);
   background-color: hsl(var(--sand__base), var(--bright));
@@ -109,7 +109,7 @@ main {
   }
 
   > * {
-    margin-inline: calc(var(--baseline) / 2);
+    margin-inline: calc(var(--elbrus) / 2);
   }
 
   button {
@@ -140,7 +140,7 @@ main {
   > h3,
   > h4 {
     margin-inline: calc(
-      var(--baseline) / 2
+      var(--elbrus) / 2
     ); /* TODO inline shouldnt be baseline */
   }
 }
@@ -158,7 +158,7 @@ footer {
   gap: 1rem;
 
   padding-block-start: 1.5rem;
-  padding-inline: var(--baseline);
+  padding-inline: var(--elbrus);
 
   > * {
     flex: 1 1 5rem;
@@ -170,7 +170,7 @@ footer {
     transition: var(--fade);
 
     .gatsby-image-wrapper {
-      margin-block-end: var(--baseline);
+      margin-block-end: var(--elbrus);
     }
   }
 
@@ -185,12 +185,12 @@ footer {
   h3 {
     font-size: 1.5rem;
     line-height: 2rem;
-    margin-block-end: var(--baseline);
+    margin-block-end: var(--elbrus);
   }
 
   .copy {
     font-size: 1rem;
-    margin-block-end: var(--baseline);
+    margin-block-end: var(--elbrus);
   }
 
   nav {
@@ -206,7 +206,7 @@ footer {
   }
 
   hr {
-    margin-block-end: var(--baseline);
+    margin-block-end: var(--elbrus);
   }
 
   .pricing-chart {
@@ -219,12 +219,12 @@ footer {
   }
 
   .book-now {
-    border-block-end: 1px solid var(--navy);
+    border-block-end: 1px solid var(--navy-100);
   }
 
   .footer__contact {
     p {
-      margin-block-end: var(--baseline);
+      margin-block-end: var(--elbrus);
     }
   }
 }
@@ -303,7 +303,7 @@ footer {
 
   .texture-slice {
     align-self: start;
-    margin: calc(var(--baseline) / 2);
+    margin: calc(var(--elbrus) / 2);
     border-radius: 0.25rem;
     box-shadow: var(--penumbra);
     border: 1px solid whitesmoke;
@@ -333,8 +333,8 @@ footer {
   svg {
     z-index: 1; /* TODO: variable */
     max-height: 100%; /* overwrite the default */
-    margin: calc(var(--baseline) / 2);
-    width: calc(100% - var(--baseline));
+    margin: calc(var(--elbrus) / 2);
+    width: calc(100% - var(--elbrus));
     stroke: whitesmoke;
 
     @media (prefers-color-scheme: dark) {
@@ -733,7 +733,7 @@ footer {
   max-width: var(--pelican);
   margin-inline: auto;
   padding-inline: 0.75rem;
-  margin-block-end: calc(2 * var(--baseline));
+  margin-block-end: calc(2 * var(--elbrus));
 }
 
 /* TODO: I think a lot of this is in paddle or not needed */
@@ -804,7 +804,7 @@ footer {
   display: flex;
   flex-direction: row;
   gap: 1rem;
-  margin-block-end: calc(2 * var(--baseline));
+  margin-block-end: calc(2 * var(--elbrus));
 
   > *:first-child {
     flex: 1;
@@ -830,11 +830,11 @@ footer {
 /* keep the inception rule */
 .wiki > nav > ul {
   > li {
-    line-height: calc(2 * var(--baseline));
+    line-height: calc(2 * var(--elbrus));
   }
 
   > li.current {
     font-weight: bold;
-    color: var(--navy);
+    color: var(--navy-100);
   }
 }

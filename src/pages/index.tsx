@@ -10,7 +10,7 @@ import Markdown from "react-markdown";
 
 import Header from "../components/header"
 import Footer from "../components/footer"
-import PricingChart from "../components/pricing-chart"
+// import PricingChart from "../components/pricing-chart"
 import WaterTexture from "../images/watertexture";
 import Ticket from "../components/ticket";
 import { PaddleTestimonials } from "@rileybathurst/paddle";

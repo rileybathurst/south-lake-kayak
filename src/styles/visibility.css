@@ -15,7 +15,7 @@
 
 .menu__large {
   /* TODO: why is this here */
-  padding-inline: var(--baseline);
+  padding-inline: var(--elbrus);
 
   @media (max-width: 40rem) {
     display: none;

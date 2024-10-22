@@ -10,8 +10,8 @@
   border: 1px solid transparent;
 
   @media (prefers-color-scheme: dark) {
-    background-color: var(--navy-700);
-    border-color: var(--navy-600);
+    background-color: var(--navy-300);
+    border-color: var(--navy-200);
   }
 
   .card__span {
@@ -40,7 +40,7 @@
     }
 
     button {
-      background-color: var(--navy);
+      background-color: var(--navy-100);
       color: var(--brilliance);
     }
 

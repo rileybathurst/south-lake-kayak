@@ -3,7 +3,7 @@
 /*------------------*/
 
 .demo__kayak {
-  padding-block: var(--baseline);
+  padding-block: var(--elbrus);
   background-color: var(--sand);
   box-shadow: 0 0 0 100vmax var(--sand);
   clip-path: inset(0 -100vmax);

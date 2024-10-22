@@ -33,7 +33,7 @@ svg {
   z-index: var(--understory);
   position: relative;
   max-width: calc(100% - 2rem); /* guess and check */
-  padding-block: var(--baseline);
+  padding-block: var(--elbrus);
 
   @supports not (margin-inline: auto) {
     margin-inline: auto;

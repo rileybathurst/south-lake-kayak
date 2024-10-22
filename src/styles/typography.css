@@ -10,7 +10,7 @@ body {
 
 p {
   margin-block-start: 0;
-  margin-block-end: var(--baseline);
+  margin-block-end: var(--elbrus);
   font-family: var(--body_font);
 }
 
@@ -176,7 +176,7 @@ hr.no {
 }
 
 .mullen {
-  color: var(--navy);
+  color: var(--navy-100);
 }
 
 /*------------------*/
@@ -233,7 +233,7 @@ del {
 select {
   font-size: 1rem;
   font-family: var(--body_font);
-  margin-block-end: var(--baseline);
+  margin-block-end: var(--elbrus);
   margin-block-end: 0;
 }
 

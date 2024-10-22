@@ -1,5 +1,5 @@
 a {
-  color: var(--navy);
+  color: var(--navy-100);
 
   @media (prefers-color-scheme: dark) {
     color: var(--navy-200);
@@ -25,7 +25,7 @@ a.hover {
 }
 
 .link__subtle-svg svg:where(:hover, :focus) {
-  fill: var(--navy);
+  fill: var(--navy-100);
 }
 
 .link__backed {
@@ -74,7 +74,7 @@ a.hover {
 /* ? is *:not expensive? */
 *:not(.social) > a {
   svg {
-    fill: var(--navy);
+    fill: var(--navy-100);
     transition: 0.2s ease;
 
     @media (prefers-color-scheme: dark) {

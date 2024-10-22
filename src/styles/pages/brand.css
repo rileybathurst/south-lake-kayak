@@ -3,13 +3,13 @@
 /*------------------*/
 
 .brand-page {
-  margin-block-start: calc(var(--baseline) * 2);
+  margin-block-start: calc(var(--elbrus) * 2);
   max-width: var(--pelican); /* 40rem */
   margin-inline: auto;
   display: flex;
   flex-direction: row;
   flex-flow: row wrap;
-  gap: var(--baseline);
+  gap: var(--elbrus);
   justify-content: space-between;
   width: 100%;
 
@@ -28,7 +28,7 @@
     .logo-wrapper {
       display: grid;
       place-items: center;
-      margin-block-end: calc(var(--baseline) / 2);
+      margin-block-end: calc(var(--elbrus) / 2);
 
       svg {
         width: 100%;
