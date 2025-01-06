@@ -203,9 +203,9 @@ footer {
   }
 
   @media (prefers-color-scheme: dark) {
-    color: var(--navy-200);
+    color: var(--sand-200);
     svg {
-      fill: var(--navy-200);
+      fill: var(--sand-200);
     }
   }
 }
