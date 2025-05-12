@@ -117,7 +117,6 @@ const IndexPage = () => {
         <div>
           <section className="pelican">
 
-            {/* // TODO: waiting on client <h2 className="page-title"></h2> */}
             <div className="margin-block-end-aconcagua">
               <Markdown className="react-markdown">
                 {data.southLake.about.data.about}
