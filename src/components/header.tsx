@@ -1,9 +1,9 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Link, useStaticQuery, graphql } from "gatsby"
-import Markdown from "react-markdown";
 import LargeMenu from "./large-menu"
 import MenuList from './menu-list';
 import Logo from '../images/logo';
+import { PaddleTopBar } from '@rileybathurst/paddle';
 
 // * I was doing something about if the top banner should close
 // * but never finished it
@@ -118,7 +118,7 @@ function SmallMenu() {
 
 const Header = () => {
 
-  const { strapiLocale } = useStaticQuery(graphql`
+  const data = useStaticQuery(graphql`
     query TopBarQuery {
       strapiLocale(slug: {eq: "south-lake"}) {
         name
@@ -128,6 +128,8 @@ const Header = () => {
             topbar
           }
         }
+        RainCheck
+        RainCheckReason
       }
     }
   `)
@@ -138,11 +140,7 @@ const Header = () => {
     <header>
 
       {/* // TODO: needs a date to remove after */}
-      <div className="top-bar" >
-        <Markdown className='react-markdown'>
-          {strapiLocale.topbar.data.topbar}
-        </Markdown>
-      </div>
+      <PaddleTopBar {...data} />
 
       <div className="logo-container" >
         <Link
@@ -153,7 +151,7 @@ const Header = () => {
         </Link>
         <h1 className='sr-only'>
           <Link to="/" className="link__subtle">
-            {strapiLocale.name} &amp; Paddleboard
+            {data.strapiLocale.name} &amp; Paddleboard
           </Link>
         </h1>
       </div>
