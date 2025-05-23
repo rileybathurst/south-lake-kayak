@@ -33,7 +33,7 @@ const RentalsPage = () => {
 
       allStrapiLocation(
         filter: {
-          locale: {slug: {eq: "south-lake"}}
+          local: {slug: {eq: "south-lake"}}
         }
       ) {
         nodes {

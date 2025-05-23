@@ -19,7 +19,7 @@ const ToursPage = () => {
       kayak: allStrapiTour(
         filter: {
           sport: { eq: "kayak" },
-          locale: {slug: {eq: "south-lake"}},
+          local: {slug: {eq: "south-lake"}},
         },
         sort: {featured: ASC})
       {
@@ -31,7 +31,7 @@ const ToursPage = () => {
       sup: allStrapiTour(
         filter: {
           sport: { eq: "sup" },
-          locale: {slug: {eq: "south-lake"}}
+          local: {slug: {eq: "south-lake"}}
         },
         sort: {featured: ASC}
         )
@@ -52,7 +52,7 @@ const ToursPage = () => {
       allStrapiLocation: allStrapiLocation(
         filter: {
           name: {in: ["On Water Rental", "Parking"]}
-          locale: {slug: {eq: "south-lake"}}
+          local: {slug: {eq: "south-lake"}}
         }
       ) {
         nodes {

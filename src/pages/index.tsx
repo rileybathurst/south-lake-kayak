@@ -22,7 +22,7 @@ const IndexPage = () => {
 
       allStrapiLocation(
         filter: {
-          locale: {slug: {eq: "south-lake"}}
+          local: {slug: {eq: "south-lake"}}
         },
         sort: {order: ASC}
       ) {
@@ -33,7 +33,7 @@ const IndexPage = () => {
 
       allStrapiTour(
         sort: {featured: ASC},
-        filter: {locale: {slug: {eq: "south-lake"}}}
+        filter: {local: {slug: {eq: "south-lake"}}}
         ) {
         nodes {
           ...tourCardFragment
@@ -97,7 +97,7 @@ const IndexPage = () => {
         }
       }
 
-      allStrapiTestimonial(filter: {locale: {slug: {eq: "south-lake"}}}) {
+      allStrapiTestimonial(filter: {local: {slug: {eq: "south-lake"}}}) {
         nodes {
           id
           testimonial

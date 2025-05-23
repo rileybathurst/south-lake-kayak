@@ -46,7 +46,7 @@ interface TourViewTypes {
         alternativeText: string;
       };
     }
-    locale: {
+    local: {
       name: string;
     }
     allStrapiTour: {
@@ -61,7 +61,7 @@ export const data = graphql`
   query TourQuery($slug: String!) {
     strapiTour(
       slug: { eq: $slug },
-      locale: {slug: {eq: "south-lake"}}
+      local: {slug: {eq: "south-lake"}}
       ) {
       id
       name
@@ -92,7 +92,7 @@ export const data = graphql`
         alternativeText
       }
 
-      locale {
+      local {
         name
       }
     }
@@ -100,7 +100,7 @@ export const data = graphql`
     allStrapiTour(
         filter: {
           slug: {nin: [$slug] },
-          locale: {slug: {eq: "south-lake"}}
+          local: {slug: {eq: "south-lake"}}
           },
         sort: {featured: ASC},
       ) {
@@ -110,12 +110,12 @@ export const data = graphql`
     }
 
     strapiLocation(
-      locale: {slug: {eq: "south-lake"}}
+      local: {slug: {eq: "south-lake"}}
       name: {eq: "On Water Rental"}
     ) {
       ...locationCardFragment
 
-      locale {
+      local {
         name
       }
     }

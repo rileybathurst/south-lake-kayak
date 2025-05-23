@@ -16,7 +16,7 @@ export interface LocationCardTypes {
   opening_time: string;
   closing_time: string;
 
-  locale: {
+  local: {
     season_start: string;
     season_end: string;
   };

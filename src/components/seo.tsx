@@ -40,7 +40,7 @@ export const SEO = ({ title, description, ogImage, ogImageDescription, breadcrum
       }
 
       strapiLocation(
-        locale: {slug: {eq: "south-lake"}}
+        local: {slug: {eq: "south-lake"}}
         name: {eq: "On Water Rental"}
       ) {
         opening_time

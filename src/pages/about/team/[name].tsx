@@ -9,7 +9,7 @@ function TeamCatchAll({ params }) {
 
   const { allStrapiTeam } = useStaticQuery(graphql`
     query TeamCatchAllQuery {
-      allStrapiTeam(filter: {locales: {elemMatch: {slug: {eq: "south-lake"}}}}) {
+      allStrapiTeam(filter: {local: {elemMatch: {slug: {eq: "south-lake"}}}}) {
         nodes {
           name
           slug
