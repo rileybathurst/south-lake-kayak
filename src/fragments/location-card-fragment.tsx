@@ -28,8 +28,8 @@ export const query = graphql`
     }
     
     local {
-      season_start(formatString: "MMMM DD")
-      season_end(formatString: "MMMM")
+      season_start(formatString: "MMMM DD, YYYY")
+      season_end(formatString: "MMMM DD, YYYY")
     }
 
   }

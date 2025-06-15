@@ -74,14 +74,6 @@ footer {
 /* #TYPOGRAPHY */
 /*------------------*/
 
-.typography__secondary {
-  color: var(--industrial-revolution);
-
-  @media (prefers-color-scheme: dark) {
-    color: var(--cold-grey);
-  }
-}
-
 .blocked {
   padding-block-start: var(--elbrus);
   background-color: var(--sand);

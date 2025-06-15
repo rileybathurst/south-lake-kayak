@@ -29,23 +29,6 @@
   box-shadow: none;
 }
 
-/* ! fix this its cool but needs a lot */
-.wiki {
-  nav {
-    display: grid;
-    > * {
-      grid-row: 1;
-      grid-column: 1;
-      place-self: start;
-
-      button {
-        border: none;
-        box-shadow: none;
-      }
-    }
-  }
-}
-
 /* TODO: name */
 .slider-guy {
   background-color: hsla(0, 0%, 50%, 0.5);

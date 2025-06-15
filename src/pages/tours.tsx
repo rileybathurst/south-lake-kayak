@@ -63,6 +63,8 @@ const ToursPage = () => {
       strapiLocale(slug: {eq: "south-lake"}) {
         peek_tours
         name
+        season_start
+        season_end
       }
     }
   `)
@@ -99,6 +101,8 @@ const ToursPage = () => {
       <section className="pelican">
         <PaddleLocationDeck
           background={false}
+          season_start={query.strapiLocale.season_start}
+          season_end={query.strapiLocale.season_end}
           {...query.allStrapiLocation}
         />
       </section>

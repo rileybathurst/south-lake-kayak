@@ -54,6 +54,11 @@ interface TourViewTypes {
     }
 
     strapiLocation: CardType;
+
+    strapiLocale: {
+      season_start: string;
+      season_end: string;
+    }
   }
 }
 
@@ -119,6 +124,11 @@ export const data = graphql`
         name
       }
     }
+
+    strapiLocale(slug: {eq: "south-lake"}) {
+      season_start
+      season_end
+    }
   }
 `
 
@@ -174,6 +184,8 @@ const TourView = ({ data }: TourViewTypes) => {
 
           <PaddleLocationCard
             key={data.strapiLocation.id}
+            season_start={data.strapiLocale.season_start}
+            season_end={data.strapiLocale.season_end}
             {...data.strapiLocation}
           />
         </aside>
