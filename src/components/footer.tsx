@@ -12,6 +12,8 @@ import PricingChart from "./pricing-chart";
 
 const Footer = () => {
 
+  // TODO: allStrapiLocale is pulling an additional result from somewhere I dont understand
+
   const data = useStaticQuery(graphql`
     query FooterQuery {
       strapiLocale(slug: {eq: "south-lake"}) {
@@ -24,7 +26,7 @@ const Footer = () => {
         season_end
       }
 
-      allStrapiLocale(filter: {slug: {ne: "south-lake"}}) {
+      allStrapiLocale(filter: {slug: {nin: ["south-lake", null]}}) {
         nodes {
           name
           url
