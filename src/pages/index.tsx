@@ -118,10 +118,9 @@ const IndexPage = () => {
           <section className="pelican">
 
             <div className="margin-block-end-aconcagua">
-              <Markdown className="react-markdown">
-                {data.southLake.about.data.about}
-              </Markdown>
-            </div>
+              <div className="react-markdown">
+                <Markdown>{data.southLake.about.data.about}</Markdown>
+              </div>            </div>
 
             <PaddleLocationDeck
               background={false}
@@ -191,10 +190,9 @@ const IndexPage = () => {
             <h4 className="supra">Enjoy The Majesty Of Lake Tahoe</h4>
           </hgroup>
 
-          <Markdown className="react-markdown">
-            {data.strapiExperience.text.data.text}
-          </Markdown>
-
+          <div className="react-markdown">
+            <Markdown>{data.strapiExperience.text.data.text}</Markdown>
+          </div>
           <h4>
             <Link to="/tours/compare">Compare Tours</Link>
           </h4>
@@ -227,10 +225,9 @@ const IndexPage = () => {
             <h4 className="supra">Kayaks and Paddleboards</h4>
           </hgroup>
 
-          <Markdown className="react-markdown">
-            {data.strapiShop.text.data.text}
-          </Markdown>
-        </article>
+          <div className="react-markdown">
+            <Markdown>{data.strapiShop.text.data.text}</Markdown>
+          </div>        </article>
         <div>
           {/* stay gold */}
         </div>

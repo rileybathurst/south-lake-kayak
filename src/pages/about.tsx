@@ -30,10 +30,9 @@ const AboutPage = () => {
         <div>
           <div className="condor">
             <h1>About Us</h1>
-            <Markdown className="react-markdown">
-              {strapiLocale.about.data.about}
-            </Markdown>
-
+            <div className="react-markdown">
+              <Markdown>{strapiLocale.about.data.about}</Markdown>
+            </div>
             <ul>
               <li key="faq"><Link to="/about/faq">Frequently Asked Questions</Link></li>
               <li key="info"><Link to="/about/information">Paddlesports Information</Link></li>

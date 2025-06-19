@@ -64,10 +64,9 @@ const RentalsPage = () => {
           <div className="pelican">
             <h1>Rentals</h1>
 
-            <Markdown className="react-markdown">
-              {data.strapiRental.text.data.text}
-            </Markdown>
-            <Link to="/about/faq">Frequently Asked Questions about getting out on the water</Link>
+            <div className="react-markdown">
+              <Markdown>{data.strapiRental.text.data.text}</Markdown>
+            </div>            <Link to="/about/faq">Frequently Asked Questions about getting out on the water</Link>
 
             <hr />
 
