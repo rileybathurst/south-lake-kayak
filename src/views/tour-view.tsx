@@ -10,7 +10,6 @@ import Composition from "../components/composition";
 import Ticket from "../components/ticket";
 import type { TicketTypes } from "../types/ticket-types";
 import type { IGatsbyImageData } from 'gatsby-plugin-image';
-import type { CardType } from "../types/card";
 import { Breadcrumbs, Breadcrumb } from 'react-aria-components';
 import BookNow from "../components/peek/book-now";
 import { PaddleSpecs } from "@rileybathurst/paddle";
@@ -173,6 +172,8 @@ const TourView = ({ data }: TourViewTypes) => {
           <Markdown className="react-markdown single__description">
             {data.strapiTour.information?.data?.information}
           </Markdown>
+
+          {/* // ! move MoonlightTourDatesTimes from tahoe city to paddle add a current date and add it here */}
 
         </div>
 

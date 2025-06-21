@@ -15,9 +15,8 @@ const NotFoundPage = ({ location }: LocationTypes) => {
     <>
       <Header />
       <main className="pelican">
-        <h2 className="crest">404 - {location.pathname}</h2>
-
-        <h1 className="mixta">Looks like you&apos;ve paddled into uncharted waters!</h1>
+        <h1 className="crest">404 - {location.pathname}</h1>
+        <h2>Looks like you&apos;ve paddled into uncharted waters!</h2>
         <p>Don&apos;t worry, we&apos;ll help you navigate <Link to="/">back to our homepage.</Link>
         </p>
       </main>

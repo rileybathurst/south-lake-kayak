@@ -1,8 +1,5 @@
-import React, { useState, useEffect } from "react"
+import React from "react"
 import { Link, useStaticQuery, graphql } from 'gatsby';
-
-// Paddle
-import { PaddleLocationDeck } from "@rileybathurst/paddle";
 
 import { GatsbyImage } from "gatsby-plugin-image"
 import { SEO } from "../components/seo";
@@ -10,10 +7,13 @@ import Markdown from "react-markdown";
 
 import Header from "../components/header"
 import Footer from "../components/footer"
-// import PricingChart from "../components/pricing-chart"
+import PricingChart from "../components/pricing-chart"
 import WaterTexture from "../images/watertexture";
-import Ticket from "../components/ticket";
-import { PaddleTestimonials } from "@rileybathurst/paddle";
+import { PaddleLocationDeck, PaddleTestimonial, PaddleTicket, type PaddleTicketTypes } from "@rileybathurst/paddle";
+
+// ? 1.0.3 should find this?
+// import { PaddleBrandList } from "@rileybathurst/paddle";
+import PaddleBrandList from "@rileybathurst/paddle/src/PaddleBrandList";
 
 const IndexPage = () => {
 
@@ -97,13 +97,27 @@ const IndexPage = () => {
         }
       }
 
-      allStrapiTestimonial(filter: {local: {slug: {eq: "south-lake"}}}) {
-        nodes {
+      strapiTestimonial(local: {slug: {eq: "south-lake"}}) {
           id
           testimonial
           customer
           sign
           location
+      }
+
+      allStrapiBrand {
+        nodes {
+          id
+          name
+          slug
+          svg
+          retail {
+            title
+            slug
+            sport {
+              slug
+            }
+          }
         }
       }
 
@@ -175,7 +189,7 @@ const IndexPage = () => {
               />
             </div>
 
-            {/* // ! testing <PricingChart book={true} /> */}
+            <PricingChart book={true} />
           </section>
         </div>
 
@@ -201,13 +215,23 @@ const IndexPage = () => {
       </section>
 
       <div className="deck">
-        {data.allStrapiTour.nodes.map((tour) => (
-          <Ticket
+        {data.allStrapiTour.nodes.map((tour: PaddleTicketTypes) => (
+          <PaddleTicket
             key={tour.id}
+            peek={data.southLake.peek_tours}
+            strapiLocaleName={data.southLake.name}
             {...tour}
           />
         ))}
       </div>
+
+
+
+
+
+
+
+
 
       <section id="retail" className="pelican water">
         <article>
@@ -227,21 +251,30 @@ const IndexPage = () => {
 
           <div className="react-markdown">
             <Markdown>{data.strapiShop.text.data.text}</Markdown>
-          </div>        </article>
-        <div>
-          {/* stay gold */}
-        </div>
+          </div>
+        </article>
+
+        {/* // ! finish implementing */}
+        <PaddleBrandList
+          // * no sport throws empty results so for now we just use kayak
+          sport='kayak'
+          {...data.allStrapiBrand}
+        />
+        <hr className='aconcagua-margin-block-start aconcagua-margin-block-end' />
       </section>
 
-      <section>
-        <hr className="pelican" />
-        <h2 className="condor">
-          <Link to="/about/testimonials">
-            Testimonials
-          </Link>
-        </h2>
-        <PaddleTestimonials {...data.allStrapiTestimonial} />
-      </section>
+
+
+
+
+
+
+
+
+      {/* specifically using a single here */}
+      <ul className='pelican aconcagua-margin-block-end'>
+        <PaddleTestimonial {...data.strapiTestimonial} />
+      </ul>
 
       <Footer />
     </>

@@ -1,8 +1,7 @@
 // TODO: some of the typographic sizing is really out
-// ! this is in strapi use that
 
 import * as React from "react"
-import { Link, Script, graphql, useStaticQuery } from 'gatsby';
+import { Link, graphql, useStaticQuery } from 'gatsby';
 import { SEO } from "../../components/seo";
 import { Breadcrumbs, Breadcrumb } from 'react-aria-components';
 import Header from "../../components/header";

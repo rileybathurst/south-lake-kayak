@@ -57,15 +57,19 @@ export const SEO = ({ title, description, ogImage, ogImageDescription, breadcrum
   `);
 
   return (
-    <PaddleSEO
-      title={title || null}
-      description={description || null}
-      breadcrumbs={breadcrumbs || null}
-      // ogImage={ogImage || null}
-      // ogimagedescription={ogImagedescription || null}
-      {...data}
-    >
-      {children}
-    </PaddleSEO>
+    <>
+      <html lang="en" />
+      <body className="south-tahoe" />
+      <PaddleSEO
+        title={title || null}
+        description={description || null}
+        breadcrumbs={breadcrumbs || null}
+        // ogImage={ogImage || null}
+        // ogimagedescription={ogImagedescription || null}
+        {...data}
+      >
+        {children}
+      </PaddleSEO>
+    </>
   );
 };

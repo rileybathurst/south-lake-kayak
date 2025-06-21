@@ -9,6 +9,7 @@ const strapiConfig = {
   accessToken: process.env.STRAPI_TOKEN,
   collectionTypes: [
     "attribute",
+    "brand",
     "blog",
     "faq",
     "imagegrab",
@@ -18,6 +19,7 @@ const strapiConfig = {
     "policy",
     "rental-addon",
     "rental-rate",
+    "retail",
     "sport",
     "team",
     "testimonial",

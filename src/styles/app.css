@@ -2,9 +2,6 @@
 /* South Lake Kayak */
 /*------------------*/
 
-@import "body";
-@import "typography";
-@import "nav";
 @import "layout";
 @import "color";
 @import "links";

@@ -80,11 +80,11 @@ const ToursPage = () => {
 
       <main className="condor">
         <h1>Tours</h1>
-        <Markdown
-          className="react-markdown"
-        >
-          {query.strapiExperience.text.data.text}
-        </Markdown>
+        <div className="react-markdown">
+          <Markdown>
+            {query.strapiExperience.text.data.text}
+          </Markdown>
+        </div>
         <h2><Link to="/tours/compare">Compare Tours</Link></h2>
 
         <a
