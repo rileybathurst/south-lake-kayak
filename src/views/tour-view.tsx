@@ -148,16 +148,7 @@ const TourView = ({ data }: TourViewTypes) => {
         <div>
           <h1>{data.strapiTour.name}</h1>
           <div className="tour__minimum">
-            {data.strapiTour.peek ?
-              <a href={data.strapiTour.peek}
-                rel="noopener noreferrer"
-                className="book-now"
-              >
-                BOOK NOW
-              </a>
-              :
-              <BookNow />
-            }
+            <BookNow />
             {data.strapiTour.minimum ? <p>* Prices based on a<br /> {data.strapiTour.minimum} person minimum</p> : null}
           </div>
 
@@ -169,9 +160,11 @@ const TourView = ({ data }: TourViewTypes) => {
             time={time}
           />
 
-          <Markdown className="react-markdown single__description">
-            {data.strapiTour.information?.data?.information}
-          </Markdown>
+          <div className="react-markdown single__description">
+            <Markdown>
+              {data.strapiTour.information?.data?.information}
+            </Markdown>
+          </div>
 
           {/* // ! move MoonlightTourDatesTimes from tahoe city to paddle add a current date and add it here */}
 

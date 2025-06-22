@@ -212,6 +212,7 @@ const IndexPage = () => {
             key={tour.id}
             peek={data.southLake.peek_tours}
             strapiLocaleName={data.southLake.name}
+            tour_page="tours"
             {...tour}
           />
         ))}
