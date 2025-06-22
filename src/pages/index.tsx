@@ -13,7 +13,7 @@ import { PaddleLocationDeck, PaddleTestimonial, PaddleTicket, type PaddleTicketT
 
 // ? 1.0.3 should find this?
 // import { PaddleBrandList } from "@rileybathurst/paddle";
-import PaddleBrandList from "@rileybathurst/paddle/src/PaddleBrandList";
+// import PaddleBrandList from "@rileybathurst/paddle/src/PaddleBrandList";
 
 const IndexPage = () => {
 
@@ -196,22 +196,14 @@ const IndexPage = () => {
       </main>
 
       <section id="tours" className="pelican water">
-        <div>
-          {/* // TODO: only one h and then p */}
-          <hgroup className="crest">
-            <h3 className="brow"><Link to="/tours">Tours</Link></h3>
-            {/* think about capitalization here */}
-            <h4 className="supra">Enjoy The Majesty Of Lake Tahoe</h4>
-          </hgroup>
+        <h3><Link to="/tours">Tours</Link></h3>
 
-          <div className="react-markdown">
-            <Markdown>{data.strapiExperience.text.data.text}</Markdown>
-          </div>
-          <h4>
-            <Link to="/tours/compare">Compare Tours</Link>
-          </h4>
+        <div className="react-markdown">
+          <Markdown>{data.strapiExperience.text.data.text}</Markdown>
         </div>
-        <div>{/* stay gold */}</div>
+        <h4>
+          <Link to="/tours/compare">Compare Tours</Link>
+        </h4>
       </section>
 
       <div className="deck">
@@ -225,19 +217,9 @@ const IndexPage = () => {
         ))}
       </div>
 
-
-
-
-
-
-
-
-
-      <section id="retail" className="pelican water">
+      {/* <section id="retail" className="pelican water">
         <article>
-          {/* // TODO: only one h and then p */}
-          <hgroup className="crest">
-            <h3 className="brow">
+            <h3>
               <a
                 href={data.tahoeCity.url}
                 target="_blank"
@@ -246,22 +228,21 @@ const IndexPage = () => {
                 Retail Store
               </a>
             </h3>
-            <h4 className="supra">Kayaks and Paddleboards</h4>
           </hgroup>
 
           <div className="react-markdown">
             <Markdown>{data.strapiShop.text.data.text}</Markdown>
           </div>
-        </article>
+        </article> */}
 
-        {/* // ! finish implementing */}
-        <PaddleBrandList
+      {/* // TODO: v1.2 finish implementing */}
+      {/* <PaddleBrandList
           // * no sport throws empty results so for now we just use kayak
           sport='kayak'
           {...data.allStrapiBrand}
         />
         <hr className='aconcagua-margin-block-start aconcagua-margin-block-end' />
-      </section>
+      </section> */}
 
 
 

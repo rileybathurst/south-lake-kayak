@@ -1,5 +1,5 @@
 import * as React from "react"
-import { Link, graphql, useStaticQuery, Script } from 'gatsby';
+import { Link } from 'gatsby';
 
 import { SEO } from "../components/seo";
 import Markdown from "react-markdown";
@@ -8,53 +8,49 @@ import Header from "../components/header";
 import Footer from "../components/footer";
 import Composition from "../components/composition";
 
+import { useStrapiRental } from "../hooks/use-strapi-rental";
+import BookNow from "../components/peek/book-now";
+
 const RentalsPage = () => {
 
-  const data = useStaticQuery(graphql`
-    query RentalRateQuery {
-      allStrapiRentalRate(sort: {order: ASC}) {
-        nodes {
-          id
-          oneHour
-          item
-          threeHour
-          fullDay
-        }
-      }
-
-      allStrapiRentalAddon {
-        nodes {
-          name
-          single
-          double
-          sup
-        }
-      }
-
-      allStrapiLocation(
-        filter: {
-          local: {slug: {eq: "south-lake"}}
-        }
-      ) {
-        nodes {
-          ...locationCardFragment
-        }
-      }
-
-      strapiRental {
-        text {
-          data {
-            text
+  // TODO: is this content needed?
+  /*   const data = useStaticQuery(graphql`
+      query RentalRateQuery {
+        allStrapiRentalRate(sort: {order: ASC}) {
+          nodes {
+            id
+            oneHour
+            item
+            threeHour
+            fullDay
           }
         }
+  
+        allStrapiRentalAddon {
+          nodes {
+            name
+            single
+            double
+            sup
+          }
+        }
+  
+        allStrapiLocation(
+          filter: {
+            local: {slug: {eq: "south-lake"}}
+          }
+        ) {
+          nodes {
+            ...locationCardFragment
+          }
+        }
+  
+        strapiLocale(slug: {eq: "south-lake"}) {
+          name
+          peek_rentals
+        }
       }
-
-      strapiLocale(slug: {eq: "south-lake"}) {
-        name
-        peek_rentals
-      }
-    }
-  `)
+    `) */
 
   return (
     <>
@@ -65,21 +61,14 @@ const RentalsPage = () => {
             <h1>Rentals</h1>
 
             <div className="react-markdown">
-              <Markdown>{data.strapiRental.text.data.text}</Markdown>
-            </div>            <Link to="/about/faq">Frequently Asked Questions about getting out on the water</Link>
+              {/* // TODO: this is now tahoe city text */}
+              <Markdown>{useStrapiRental().text.data.text}</Markdown>
+            </div>
+            <Link to="/about/faq">Frequently Asked Questions about getting out on the water</Link>
 
-            <hr />
+            <br /><br />
 
-            {/* // ? maybe this is a component again */}
-            <a
-              href={data.strapiLocale.peek_rentals}
-              rel="noopener noreferrer"
-              className="book-now"
-              title={`Book rentals now with ${data.strapiLocale.name} kayak and paddleboard`}
-              type="button"
-            >
-              BOOK RENTALS NOW
-            </a>
+            <BookNow />
           </div>
         </article>
         <Composition />
@@ -95,7 +84,7 @@ export const Head = () => {
   return (
     <SEO
       title='Rentals'
-      description="Enjoy the majesty of paddling across the crystal clear waters of Lake Tahoe while kayaking in one of our demos."
+      description={useStrapiRental().excerpt}
       url="/rentals"
     />
   )
