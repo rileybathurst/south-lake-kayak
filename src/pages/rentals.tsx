@@ -62,7 +62,8 @@ const RentalsPage = () => {
 
             <div className="react-markdown">
               {/* // TODO: this is now tahoe city text */}
-              <Markdown>{useStrapiRental().text.data.text}</Markdown>
+              {/* <Markdown>{useStrapiRental().text.data.text}</Markdown> */}
+              <p>Our rental tent/kiosk is conveniently located on South Lake Tahoe's Lakeview Commons Beach, and operates 7 days a week (during the summer months) with beach-front rentals and guided tours.</p>
             </div>
             <Link to="/about/faq">Frequently Asked Questions about getting out on the water</Link>
 
@@ -84,7 +85,9 @@ export const Head = () => {
   return (
     <SEO
       title='Rentals'
-      description={useStrapiRental().excerpt}
+      // description={useStrapiRental().excerpt}
+      // TODO: this is now tahoe city text
+      description='Enjoy the majesty of paddling across the crystal clear waters of Lake Tahoe while kayaking in one of our rentals.'
       url="/rentals"
     />
   )
