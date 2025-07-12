@@ -1,18 +1,18 @@
 import * as React from "react";
 import { Link, graphql } from "gatsby";
-import { PaddleTime, PaddleLocationCard } from "@rileybathurst/paddle";
+import { PaddleTime, PaddleTicket } from "@rileybathurst/paddle";
 
 import { SEO } from "../components/seo";
 import Markdown from "react-markdown";
 import Header from "../components/header"
 import Footer from "../components/footer";
 import Composition from "../components/composition";
-import Ticket from "../components/ticket";
 import type { TicketTypes } from "../types/ticket-types";
 import type { IGatsbyImageData } from 'gatsby-plugin-image';
 import { Breadcrumbs, Breadcrumb } from 'react-aria-components';
 import BookNow from "../components/peek/book-now";
 import { PaddleSpecs } from "@rileybathurst/paddle";
+import LocationDeck from "../components/location-deck";
 
 interface TourViewTypes {
   data: {
@@ -52,7 +52,8 @@ interface TourViewTypes {
       nodes: TicketTypes;
     }
 
-    strapiLocation: CardType;
+    // TODOL
+    allStrapiLocation: CardType[];
 
     strapiLocale: {
       season_start: string;
@@ -96,6 +97,15 @@ export const data = graphql`
         alternativeText
       }
 
+      compositionImage {
+        localFile {
+          childImageSharp {
+            gatsbyImageData(aspectRatio: 1, layout: CONSTRAINED)
+          }
+        }
+        alternativeText
+      }
+
       local {
         name
       }
@@ -109,24 +119,26 @@ export const data = graphql`
         sort: {featured: ASC},
       ) {
       nodes {
-        ...tourCardFragment
+        ...ticketFragment
       }
     }
 
-    strapiLocation(
-      local: {slug: {eq: "south-lake"}}
-      name: {eq: "On Water Rental"}
+    allStrapiLocation(
+      filter: {
+        local: {slug: {eq: "south-lake"}},
+        name: {in: ["On Water Rental", "Free Parking Lot"]}
+      },
+      sort: {order: ASC}
     ) {
-      ...locationCardFragment
-
-      local {
-        name
+      nodes {
+        ...locationCardFragment
       }
     }
 
     strapiLocale(slug: {eq: "south-lake"}) {
       season_start
       season_end
+      peek_tours
     }
   }
 `
@@ -172,15 +184,12 @@ const TourView = ({ data }: TourViewTypes) => {
 
         <aside>
           <Composition
-            sport={data.strapiTour.ogimage || data.strapiTour.sport}
-          // TODO: change the image on tours
+            sport={data.strapiTour.sport}
+            image={data.strapiTour?.compositionImage}
           />
 
-          <PaddleLocationCard
-            key={data.strapiLocation.id}
-            season_start={data.strapiLocale.season_start}
-            season_end={data.strapiLocale.season_end}
-            {...data.strapiLocation}
+          <LocationDeck
+            allStrapiLocation={data.allStrapiLocation}
           />
         </aside>
 
@@ -200,9 +209,12 @@ const TourView = ({ data }: TourViewTypes) => {
 
       <section className="deck">
         {data.allStrapiTour.nodes.map((tour: TicketTypes) =>
-          <Ticket
+          <PaddleTicket
             key={tour.id}
             {...tour}
+            tour_page="tours-lessons"
+            peek_tours_fall_back={data.strapiLocale.peek_tours}
+          // allStrapiSunsetTourTime={data.allStrapiSunsetTourTime}
           />
         )}
       </section>

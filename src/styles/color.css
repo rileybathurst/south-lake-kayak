@@ -2,74 +2,7 @@
 /* #COLOR */
 /*------------------*/
 
-footer {
-  background-color: var(--brilliance);
-  box-shadow: 0 0 0 100vmax var(--brilliance);
-  clip-path: inset(0 -100vmax);
-
-  @media (prefers-color-scheme: dark) {
-    background-color: var(--navy-200);
-    box-shadow: 0 0 0 100vmax var(--navy-200);
-  }
-
-  hr {
-    border-color: var(--tin-soldier);
-
-    @media (prefers-color-scheme: dark) {
-      border-color: var(--raven-black);
-    }
-  }
-
-  button,
-  .button {
-    background-color: transparent;
-
-    @media (prefers-color-scheme: dark) {
-      color: var(--brilliance);
-      border-color: var(--brilliance);
-    }
-  }
-
-  button:hover,
-  .button:hover {
-    background-color: var(--sunshine-200);
-  }
-}
-
-/*------------------*/
-/* #SINGLE PAGES */
-/*------------------*/
-
-.home {
-  @media (prefers-color-scheme: dark) {
-    background-color: var(--ink);
-    box-shadow: 0 0 0 100vmax var(--ink);
-  }
-}
-
-.unit {
-  color: var(--industrial-revolution);
-
-  @media (prefers-color-scheme: dark) {
-    color: var(--cold-grey);
-  }
-}
-
-/*------------------*/
-/* #TYPOGRAPHY */
-/*------------------*/
-
-.blocked {
-  padding-block-start: var(--elbrus);
-  background-color: var(--sand);
-  box-shadow: 0 0 0 100vmax var(--sand);
-  clip-path: inset(0 -100vmax);
-
-  @media (prefers-color-scheme: dark) {
-    background-color: var(--ink);
-    box-shadow: 0 0 0 100vmax var(--ink);
-  }
-}
+/* TODO: some of this is not color clean it up and get rid of the file */
 
 /*------------------*/
 /* #SERIES */
@@ -81,16 +14,8 @@ footer {
 
 /* this isnt right as if a section is empty it still counts */
 .series section:nth-child(odd, :has(p)) {
-  background-color: var(--sand);
-  box-shadow: 0 0 0 100vmax var(--sand);
-  clip-path: inset(0 -100vmax);
   padding-block: var(--elbrus);
   margin-block-end: var(--elbrus);
-
-  @media (prefers-color-scheme: dark) {
-    background-color: var(--ink);
-    box-shadow: 0 0 0 100vmax var(--ink);
-  }
 }
 
 .series section:last-child {
@@ -99,42 +24,4 @@ footer {
 
 .series section:not(:has(p)) {
   margin-block-start: -1.25rem;
-}
-
-/*------------------*/
-/* #BACKGROUNDS */
-/*------------------*/
-
-.background__1 {
-  background-color: var(--sand);
-  box-shadow: 0 0 0 100vmax var(--sand);
-  clip-path: inset(0 -100vmax);
-
-  @media (prefers-color-scheme: dark) {
-    background-color: var(--ink);
-    box-shadow: 0 0 0 100vmax var(--ink);
-  }
-}
-
-.background__2 {
-  background-color: var(--kingly-cloud);
-  box-shadow: 0 0 0 100vmax var(--kingly-cloud);
-  clip-path: inset(0 -100vmax);
-
-  @media (prefers-color-scheme: dark) {
-    background-color: var(--ink);
-    box-shadow: 0 0 0 100vmax var(--ink);
-  }
-}
-
-.background__3 {
-  background-color: hsl(var(--sand__base), var(--bright));
-  box-shadow: 0 0 0 100vmax hsl(var(--sand__base), var(--bright));
-  clip-path: inset(0 -100vmax);
-
-  @media (prefers-color-scheme: dark) {
-    background-color: hsl(var(--ink__h), 100%, var(--dark));
-    background-color: hsl(var(--ink__h), 100%, 7.5%);
-    box-shadow: 0 0 0 100vmax var(--ink__h);
-  }
 }

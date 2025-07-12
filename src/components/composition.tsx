@@ -1,26 +1,55 @@
+// * this takes the default queries I would have to pull way too many times without
+
 import * as React from "react"
+
 import { graphql, useStaticQuery } from "gatsby"
-import { GatsbyImage } from "gatsby-plugin-image"
+import { PaddleComposition, type GatsbyImageType } from "@rileybathurst/paddle";
 
-import WaterTexture from "../images/watertexture";
-import { useStrapiTextures } from "../hooks/use-strapi-textures"
-
-function Paddler({ sport }: CompositionTypes) {
+type compositionTypes = {
+  sport?: string;
+  image?: GatsbyImageType;
+}
+const Composition = ({ sport, image }: compositionTypes) => {
 
   const data = useStaticQuery(graphql`
-  query {
-    kayaker: strapiImagegrab(title: {eq: "kayaker"}) {
-      title
-      image {
-        localFile {
-          childImageSharp {
-            gatsbyImageData
+    query {
+      paddleboarder: strapiImagegrab(title: {eq: "supper"}) {
+        title
+        image {
+          localFile {
+            childImageSharp {
+              gatsbyImageData(aspectRatio: 1)
+            }
           }
+          alternativeText
         }
       }
-    }
+      
+      kayaker: strapiImagegrab(title: {eq: "casualKayak"}) {
+        title
+        image {
+          localFile {
+            childImageSharp {
+              gatsbyImageData(aspectRatio: 1)
+            }
+          }
+          alternativeText
+        }
+      }
 
-    supper: strapiImagegrab(title: {eq: "supper"}) {
+      sand: strapiImagegrab(title: {eq: "TopThree"}) {
+        title
+        image {
+          localFile {
+            childImageSharp {
+              gatsbyImageData
+            }
+          }
+          alternativeText
+        }
+      }
+
+      water: strapiImagegrab(title: {eq: "WaterTexture"}) {
         title
         image {
           localFile {
@@ -30,48 +59,19 @@ function Paddler({ sport }: CompositionTypes) {
           }
         }
       }
+
     }
   `)
 
-  if (sport === "paddleboard") {
-    return <GatsbyImage
-      image={data.supper.image.localFile.childImageSharp.gatsbyImageData}
-      alt={data.supper.title}
-      className='img__wrapped paddler'
-    />
-  }
-
-  return <GatsbyImage
-    image={data.kayaker.image.localFile.childImageSharp.gatsbyImageData}
-    alt={data.kayaker.title}
-    className='img__wrapped paddler'
-  />
-}
-
-function TopThree(props: { className: string; }) {
-
-  const { query } = useStrapiTextures()
-  // console.log(query.baseone);
-
-  return <GatsbyImage
-    image={query.topthree.image.localFile.childImageSharp.gatsbyImageData}
-    alt="deepwater texture"
-    className={`texture-slice crops ${props.className}`}
-    objectFit="contain"
-  />
-}
-
-interface CompositionTypes {
-  sport?: string;
-  tour?: string;
-}
-const Composition = ({ sport, tour }: CompositionTypes) => {
   return (
-    <div className="composition">
-      <WaterTexture className="texture-1" />
-      <TopThree className="texture-2 img__wrapped" />
-      <Paddler sport={sport} tour={tour} />
-    </div>
+    <PaddleComposition
+      sport={sport}
+      image={image}
+      defaultPaddleboarder={data.paddleboarder}
+      defaultKayaker={data.kayaker}
+      sandTexture={data.sand}
+      waterTexture={data.water}
+    />
   )
 }
 

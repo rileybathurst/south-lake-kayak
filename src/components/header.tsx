@@ -139,8 +139,10 @@ const Header = () => {
   return (
     <header>
 
-      {/* // TODO: needs a date to remove after */}
       <PaddleTopBar {...data} />
+      <p className='sr-only'>
+        {data.strapiLocale.name} Kayak & Paddleboard rentals and tours
+      </p>
 
       <div className="logo-container" >
         <Link

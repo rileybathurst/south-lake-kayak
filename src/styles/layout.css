@@ -51,38 +51,14 @@ main {
   /* ? always note a top margin */
   margin-block-start: var(--elbrus);
   padding-block: var(--elbrus);
-  background-color: var(--sand);
-  box-shadow: 0 0 0 100vmax var(--sand);
   clip-path: inset(0 -100vmax);
   max-width: var(--pelican);
   margin-inline: auto;
-
-  @media (prefers-color-scheme: dark) {
-    background-color: var(--ink);
-    box-shadow: 0 0 0 100vmax var(--ink);
-  }
-}
-
-.tin-soldier__wide {
-  background-color: var(--tin-soldier);
-  box-shadow: 0 0 0 100vmax var(--tin-soldier);
-  clip-path: inset(0 -100vmax);
 }
 
 .brand_blocks > * {
   margin-block-end: var(--elbrus);
   padding-block-end: var(--elbrus);
-}
-
-.brand_blocks > *:nth-child(odd) {
-  clip-path: inset(0 -100vmax);
-  background-color: var(--brilliance);
-  box-shadow: 0 0 0 100vmax var(--brilliance);
-
-  @media (prefers-color-scheme: dark) {
-    background-color: hsl(var(--sand__base), 5%);
-    box-shadow: 0 0 0 100vmax hsl(var(--sand__base), 5%);
-  }
 }
 
 /* Im double checking for other brands which are generally empty */
@@ -99,33 +75,9 @@ main {
   margin-inline: auto;
   margin-block-end: calc(var(--elbrus) * 2);
   padding-block: 1.5rem;
-  clip-path: inset(0 -100vmax);
-  background-color: hsl(var(--sand__base), var(--bright));
-  box-shadow: 0 0 0 100vmax hsl(var(--sand__base), var(--bright));
-
-  @media (prefers-color-scheme: dark) {
-    background-color: hsl(var(--ink__h), 100%, 7.5%);
-    box-shadow: 0 0 0 100vmax hsl(var(--ink__h), 100%, 7.5%);
-  }
 
   > * {
     margin-inline: calc(var(--elbrus) / 2);
-  }
-
-  button {
-    border-color: whitesmoke;
-    color: whitesmoke;
-  }
-
-  /* needs specificity */
-  a:where(:hover, :focus) {
-    background-color: hsl(
-      var(--mullen__base),
-      var(--dim)
-    ) !important; /* TODO: document why this needs important */
-    color: var(
-      --kingly-cloud
-    ) !important; /* TODO: document why this needs important */
   }
 }
 
@@ -637,16 +589,6 @@ footer {
 
     > *:nth-child(odd) {
       border-radius: 0.25rem;
-      background-color: var(--brilliance);
-
-      @media (prefers-color-scheme: dark) {
-        background-color: var(--ink);
-        color: whitesmoke;
-      }
-    }
-
-    > *:first-child {
-      /* background-color: transparent; you cant do this due to dark mode */
     }
   }
 
@@ -669,14 +611,7 @@ footer {
     position: sticky;
     top: -1px;
     z-index: var(--understory);
-    background-color: var(--brilliance);
-    box-shadow: 0 0 0 100vmax var(--brilliance);
     clip-path: inset(0 -100vmax);
-
-    @media (prefers-color-scheme: dark) {
-      background-color: var(--ink);
-      box-shadow: 0 0 0 100vmax var(--ink);
-    }
   }
 
   .comparesheet_freeze {
@@ -727,55 +662,4 @@ footer {
 
 .unit-place__before {
   flex-direction: row-reverse;
-}
-
-.spec {
-  display: flex;
-  gap: 1rem;
-  flex-flow: row wrap;
-  justify-content: space-between;
-  align-items: baseline;
-  align-items: flex-start;
-  /* addding this border has to flip the margins */
-  border-bottom: 1px solid var(--tin-soldier);
-  text-transform: uppercase;
-
-  height: 2lh;
-  margin-block-start: 1lh;
-  @supports not (margin: 1lh) {
-    height: 2.5rem;
-    margin-block-start: 1.25rem;
-  }
-
-  h2,
-  h3 {
-    line-height: 2rem;
-  }
-
-  h2 {
-    /* starts with an @extend h4 in typography.scss */
-    color: grey;
-    margin-block-end: 0.25rem;
-  }
-
-  h3 {
-    margin-block-end: 0.25rem;
-  }
-
-  .spec__unit {
-    color: grey;
-  }
-
-  .spec-flex {
-    display: flex;
-  }
-}
-
-/* bug fix that maybe could be done with .sr-only being different but this works */
-.spec:has(.sr-only) {
-  align-items: center;
-}
-
-.spec:last-child {
-  border-bottom: none;
 }

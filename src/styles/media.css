@@ -27,9 +27,6 @@ svg {
   margin: 0 auto;
   display: flex;
   justify-content: center;
-  background-color: whitesmoke;
-  box-shadow: 0 0 0 100vmax whitesmoke;
-  clip-path: inset(0 -100vmax);
   z-index: var(--understory);
   position: relative;
   max-width: calc(100% - 2rem); /* guess and check */
@@ -37,11 +34,6 @@ svg {
 
   @supports not (margin-inline: auto) {
     margin-inline: auto;
-  }
-
-  @media (prefers-color-scheme: dark) {
-    background-color: var(--ink);
-    box-shadow: 0 0 0 100vmax var(--ink);
   }
 
   a {
