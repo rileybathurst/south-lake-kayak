@@ -207,7 +207,7 @@ const TourView = ({ data }: TourViewTypes) => {
         <hr />
       </div>
 
-      <section className="deck">
+      <section className="flight">
         {data.allStrapiTour.nodes.map((tour: TicketTypes) =>
           <PaddleTicket
             key={tour.id}

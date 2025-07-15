@@ -116,7 +116,7 @@ const ToursPage = () => {
             <p className="aconcagua">Tours &amp; Lessions</p>
           </hgroup>
 
-          <div className="deck">
+          <div className="flight">
             {sport.nodes.map((tour: TicketTypes) => (
               <Ticket
                 key={tour.id}

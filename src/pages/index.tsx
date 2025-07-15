@@ -206,7 +206,7 @@ const IndexPage = () => {
         </h4>
       </section>
 
-      <div className="deck">
+      <div className="flight">
         {data.allStrapiTour.nodes.map((tour: PaddleTicketTypes) => (
           <PaddleTicket
             key={tour.id}
