@@ -13,45 +13,6 @@ import BookNow from "../components/peek/book-now";
 
 const RentalsPage = () => {
 
-  // TODO: is this content needed?
-  /*   const data = useStaticQuery(graphql`
-      query RentalRateQuery {
-        allStrapiRentalRate(sort: {order: ASC}) {
-          nodes {
-            id
-            oneHour
-            item
-            threeHour
-            fullDay
-          }
-        }
-  
-        allStrapiRentalAddon {
-          nodes {
-            name
-            single
-            double
-            sup
-          }
-        }
-  
-        allStrapiLocation(
-          filter: {
-            local: {slug: {eq: "south-lake"}}
-          }
-        ) {
-          nodes {
-            ...locationCardFragment
-          }
-        }
-  
-        strapiLocale(slug: {eq: "south-lake"}) {
-          name
-          peek_rentals
-        }
-      }
-    `) */
-
   return (
     <>
       <Header />
@@ -67,7 +28,8 @@ const RentalsPage = () => {
             </div>
             <Link to="/about/faq">Frequently Asked Questions about getting out on the water</Link>
 
-            <br /><br />
+            {/* // * the book now button wants to get inline with the link */}
+            <br />
 
             <BookNow />
           </div>

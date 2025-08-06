@@ -25,7 +25,7 @@ const Composition = ({ sport, image }: compositionTypes) => {
         }
       }
       
-      kayaker: strapiImagegrab(title: {eq: "casualKayak"}) {
+      kayaker: strapiImagegrab(title: {eq: "hero2025"}) {
         title
         image {
           localFile {
