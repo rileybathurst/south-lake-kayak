@@ -17,7 +17,6 @@ const strapiConfig = {
     "location",
     "paddle-info",
     "policy",
-    "rental-addon",
     "rental-rate",
     "retail",
     "sport",
@@ -35,7 +34,6 @@ const config: GatsbyConfig = {
     title: "South Lake Tahoe Kayak and Paddleboard",
     url: "https://southtahoekayak.com/",
     logo: "/images/icon.png",
-    localeSlug: "south-lake",
   },
   graphqlTypegen: true,
   plugins: [
