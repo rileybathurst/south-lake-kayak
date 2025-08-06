@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useStaticQuery, graphql, Link, Script } from 'gatsby';
+import { useStaticQuery, graphql, Link } from 'gatsby';
 import { SEO } from "../../components/seo";
 import { Breadcrumbs, Breadcrumb } from 'react-aria-components';
 
@@ -241,7 +241,7 @@ const ComparePage = () => {
           excerpt
           duration
         }
-    }
+      }
   }
 `)
 
@@ -252,6 +252,11 @@ const ComparePage = () => {
       <main className='pelican'>
         <h1>Compare</h1>
         <Compare tours={allStrapiTour.nodes} />
+
+        {/* // TODO: not ready yet
+        <PaddleCompare
+          tours={data.allStrapiTour.nodes}
+        /> */}
       </main>
 
       <Breadcrumbs>
