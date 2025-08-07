@@ -9,7 +9,7 @@ import Header from "../components/header"
 import Footer from "../components/footer"
 import PricingChart from "../components/pricing-chart"
 import WaterTexture from "../images/watertexture";
-import { PaddleLocationDeck, PaddleTestimonial, PaddleTicket, type PaddleTicketTypes } from "@rileybathurst/paddle";
+import { PaddleLocationDeck, PaddleTestimonial, PaddleTicket, PaddleFeaturedSort, type PaddleTicketTypes } from "@rileybathurst/paddle";
 
 // ? 1.0.3 should find this?
 // import { PaddleBrandList } from "@rileybathurst/paddle";
@@ -36,7 +36,7 @@ const IndexPage = () => {
         filter: {local: {slug: {eq: "south-lake"}}}
         ) {
         nodes {
-          ...tourCardFragment
+          ...ticketFragment
           id
         }
       }
@@ -123,6 +123,9 @@ const IndexPage = () => {
 
     }
   `)
+
+  const sortedTourNodes = data.allStrapiTour.nodes;
+  PaddleFeaturedSort(sortedTourNodes);
 
   return (
     <>

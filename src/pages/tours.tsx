@@ -2,7 +2,7 @@ import * as React from "react"
 import { Link, useStaticQuery, graphql } from 'gatsby';
 
 // Paddle
-import { PaddleLocationDeck } from "@rileybathurst/paddle";
+import { PaddleLocationDeck, PaddleFeaturedSort, PaddleTicketTypes, PaddleTicket } from "@rileybathurst/paddle";
 
 import { SEO } from "../components/seo"
 import Markdown from "react-markdown";
@@ -10,7 +10,6 @@ import Header from "../components/header"
 import Footer from "../components/footer"
 import Ticket from "../components/ticket";
 import Sport from "../components/sport";
-import type { TicketTypes } from "../types/ticket-types";
 
 const ToursPage = () => {
 
@@ -24,7 +23,7 @@ const ToursPage = () => {
         sort: {featured: ASC})
       {
         nodes {
-          ...tourCardFragment
+          ...ticketFragment
         }
       }
   
@@ -37,7 +36,7 @@ const ToursPage = () => {
         )
       {
         nodes {
-          ...tourCardFragment
+          ...ticketFragment
         }
       }
 
@@ -69,9 +68,15 @@ const ToursPage = () => {
     }
   `)
 
+  const sortedKayakTourNodes = query.kayak.nodes;
+  PaddleFeaturedSort(sortedKayakTourNodes);
+
+  const sortedSupTourNodes = query.sup.nodes;
+  PaddleFeaturedSort(sortedSupTourNodes);
+
   const sports = [
-    query.kayak,
-    query.sup,
+    sortedKayakTourNodes,
+    sortedSupTourNodes,
   ]
 
   return (
@@ -85,7 +90,9 @@ const ToursPage = () => {
             {query.strapiExperience.text.data.text}
           </Markdown>
         </div>
-        <h2><Link to="/tours/compare">Compare Tours</Link></h2>
+        <h2>
+          <Link to="/tours/compare">Compare Tours</Link>
+        </h2>
 
         <a
           href={query.strapiLocale.peek_tours}
@@ -117,8 +124,8 @@ const ToursPage = () => {
           </hgroup>
 
           <div className="flight">
-            {sport.nodes.map((tour: TicketTypes) => (
-              <Ticket
+            {sport.nodes.map((tour: PaddleTicketTypes) => (
+              <PaddleTicket
                 key={tour.id}
                 {...tour}
               />

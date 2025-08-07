@@ -8,6 +8,7 @@ import Footer from "../../components/footer";
 
 import Time from "../../components/time";
 import BookNow from '../../components/peek/book-now';
+import { PaddleFeaturedSort } from "@rileybathurst/paddle/src/paddle-featured-sort";
 
 function Compare(props) {
 
@@ -245,13 +246,16 @@ const ComparePage = () => {
   }
 `)
 
+  const sortedTourNodes = allStrapiTour.nodes;
+  PaddleFeaturedSort(sortedTourNodes);
+
   return (
     <>
       <Header />
 
       <main className='pelican'>
         <h1>Compare</h1>
-        <Compare tours={allStrapiTour.nodes} />
+        <Compare tours={sortedTourNodes} />
 
         {/* // TODO: not ready yet
         <PaddleCompare

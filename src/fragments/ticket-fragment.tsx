@@ -14,7 +14,6 @@ export const query = graphql`
     timeframe
     fitness
     sport
-    featured
 
     ogimage {
       localFile {
@@ -24,5 +23,9 @@ export const query = graphql`
       }
       alternativeText
     }
+
+    featured
   }
 `;
+
+// TODO: remove featured using it to test sort

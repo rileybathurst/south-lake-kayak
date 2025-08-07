@@ -1,14 +1,12 @@
 import * as React from "react";
 import { Link, graphql } from "gatsby";
-import { PaddleTime, PaddleTicket } from "@rileybathurst/paddle";
+import { PaddleTime, PaddleTicket, PaddleFeaturedSort, type PaddleTicketTypes, type PaddleLocationCardTypes, type PaddleGatsbyImageType } from "@rileybathurst/paddle";
 
 import { SEO } from "../components/seo";
 import Markdown from "react-markdown";
 import Header from "../components/header"
 import Footer from "../components/footer";
 import Composition from "../components/composition";
-import type { TicketTypes } from "../types/ticket-types";
-import type { IGatsbyImageData } from 'gatsby-plugin-image';
 import { Breadcrumbs, Breadcrumb } from 'react-aria-components';
 import BookNow from "../components/peek/book-now";
 import { PaddleSpecs } from "@rileybathurst/paddle";
@@ -36,31 +34,27 @@ interface TourViewTypes {
       excerpt: string;
       price: number;
       slug: string;
-      ogimage: {
-        localFile: {
-          childImageSharp: {
-            gatsbyImageData: IGatsbyImageData;
-          };
-        };
-        alternativeText: string;
-      };
+      ogimage: PaddleGatsbyImageType;
+      compositionImage: PaddleGatsbyImageType;
     }
+
     local: {
       name: string;
     }
     allStrapiTour: {
-      nodes: TicketTypes;
+      nodes: PaddleTicketTypes[];
     }
 
-    // TODOL
-    allStrapiLocation: CardType[];
+    allStrapiLocation: PaddleLocationCardTypes[];
 
     strapiLocale: {
       season_start: string;
       season_end: string;
+      peek_tours: string;
     }
   }
 }
+
 
 export const data = graphql`
   query TourQuery($slug: String!) {
@@ -145,6 +139,9 @@ export const data = graphql`
 
 const TourView = ({ data }: TourViewTypes) => {
 
+  const sortedTourNodes = data.allStrapiTour.nodes;
+  PaddleFeaturedSort(sortedTourNodes);
+
   const time = PaddleTime({
     start: data.strapiTour.start,
     finish: data.strapiTour.finish,
@@ -208,13 +205,12 @@ const TourView = ({ data }: TourViewTypes) => {
       </div>
 
       <section className="flight">
-        {data.allStrapiTour.nodes.map((tour: TicketTypes) =>
+        {sortedTourNodes.map((tour: PaddleTicketTypes) =>
           <PaddleTicket
             key={tour.id}
             {...tour}
-            tour_page="tours-lessons"
+            tour_page="tours"
             peek_tours_fall_back={data.strapiLocale.peek_tours}
-          // allStrapiSunsetTourTime={data.allStrapiSunsetTourTime}
           />
         )}
       </section>
@@ -231,7 +227,15 @@ const TourView = ({ data }: TourViewTypes) => {
 
 export default TourView;
 
-export const Head = ({ data }) => {
+type TourViewHeadTypes = {
+  data: {
+    strapiTour: {
+      name: string;
+      excerpt: string;
+    }
+  }
+}
+export const Head = ({ data }: TourViewHeadTypes) => {
   return (
     <SEO
       title={data.strapiTour.name}
