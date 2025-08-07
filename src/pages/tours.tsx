@@ -83,48 +83,51 @@ const ToursPage = () => {
     <>
       <Header />
 
-      <main className="condor">
-        <h1>Tours</h1>
-        <div className="react-markdown">
-          <Markdown>
-            {query.strapiExperience.text.data.text}
-          </Markdown>
-        </div>
-        <h2>
-          <Link to="/tours/compare">Compare Tours</Link>
-        </h2>
+      <div className="pelican wrap">
+        <main className="condor">
+          <h1>Tours</h1>
+          <div className="react-markdown">
+            <Markdown>
+              {query.strapiExperience.text.data.text}
+            </Markdown>
+          </div>
+          <h2>
+            <Link to="/tours/compare">Compare Tours</Link>
+          </h2>
 
-        <a
-          href={query.strapiLocale.peek_tours}
-          rel="noopener noreferrer"
-          className="book-now"
-          title={`Book tours now with ${query.strapiLocale.name} kayak and paddleboard`}
-        >
-          BOOK TOURS NOW
-        </a>
+          <a
+            href={query.strapiLocale.peek_tours}
+            rel="noopener noreferrer"
+            className="book-now"
+            title={`Book tours now with ${query.strapiLocale.name} kayak and paddleboard`}
+          >
+            BOOK TOURS NOW
+          </a>
 
-        <hr />
-      </main>
-      <section className="pelican">
-        <PaddleLocationDeck
-          background={false}
-          season_start={query.strapiLocale.season_start}
-          season_end={query.strapiLocale.season_end}
-          {...query.allStrapiLocation}
-        />
-      </section>
+          <hr />
+        </main>
+
+        <section className="pelican">
+          <PaddleLocationDeck
+            background={false}
+            season_start={query.strapiLocale.season_start}
+            season_end={query.strapiLocale.season_end}
+            {...query.allStrapiLocation}
+          />
+        </section>
+      </div>
 
       {sports.map((sport) => (
-        <section key={sport.nodes[0].id}>
+        <section key={sport[0].id}>
           <hgroup className="pelican">
             <h2 className="capitalize">
-              <Sport sport={sport.nodes[0].sport} />
+              <Sport sport={sport[0].sport} />
             </h2>
             <p className="aconcagua">Tours &amp; Lessions</p>
           </hgroup>
 
           <div className="flight">
-            {sport.nodes.map((tour: PaddleTicketTypes) => (
+            {sport.map((tour: PaddleTicketTypes) => (
               <PaddleTicket
                 key={tour.id}
                 {...tour}
