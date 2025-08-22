@@ -8,7 +8,7 @@ import { SEO } from "../components/seo"
 import Markdown from "react-markdown";
 import Header from "../components/header"
 import Footer from "../components/footer"
-import Ticket from "../components/ticket";
+// import Ticket from "../components/ticket";
 import Sport from "../components/sport";
 
 const ToursPage = () => {
@@ -65,9 +65,23 @@ const ToursPage = () => {
         season_start
         season_end
       }
+
+      
+
     }
   `)
 
+  /* // TODO: is this the same in south lake?
+  allStrapiSunsetTourTime {
+          nodes {
+        startDate
+        endDate
+        startTime
+        endTime
+      }
+    } */
+
+  // TODO: rename sup
   const sortedKayakTourNodes = query.kayak.nodes;
   PaddleFeaturedSort(sortedKayakTourNodes);
 
@@ -95,6 +109,7 @@ const ToursPage = () => {
             <Link to="/tours/compare">Compare Tours</Link>
           </h2>
 
+          {/* // ! Book now component */}
           <a
             href={query.strapiLocale.peek_tours}
             rel="noopener noreferrer"
@@ -126,11 +141,15 @@ const ToursPage = () => {
             <p className="aconcagua">Tours &amp; Lessions</p>
           </hgroup>
 
+          {/* // ! this is now wrong it should go through a component here and other places */}
           <div className="flight">
             {sport.map((tour: PaddleTicketTypes) => (
               <PaddleTicket
                 key={tour.id}
                 {...tour}
+                peek={query.strapiLocale.peek_tours}
+                strapiLocaleName={query.strapiLocale.name}
+                tour_page="tours"
               />
             ))}
           </div>
@@ -144,6 +163,7 @@ const ToursPage = () => {
 
 export default ToursPage
 
+// TODO: strapi description
 export const Head = () => {
   return (
     <SEO

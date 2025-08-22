@@ -137,7 +137,8 @@ const IndexPage = () => {
             <div className="margin-block-end-aconcagua">
               <div className="react-markdown">
                 <Markdown>{data.southLake.about.data.about}</Markdown>
-              </div>            </div>
+              </div>
+            </div>
 
             <PaddleLocationDeck
               background={false}
@@ -148,6 +149,7 @@ const IndexPage = () => {
               {...data.allStrapiLocation}
             />
 
+            {/* // ? is there any reason these are no PaddleBookNow components? */}
             <div className="button__double">
               <a
                 href={data.southLake.peek_rentals}
@@ -209,6 +211,7 @@ const IndexPage = () => {
         </h4>
       </section>
 
+      {/* // ! this is now wrong it should go through a component here and other places */}
       <div className="flight">
         {data.allStrapiTour.nodes.map((tour: PaddleTicketTypes) => (
           <PaddleTicket
