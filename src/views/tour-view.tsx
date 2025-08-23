@@ -194,9 +194,11 @@ const TourView = ({ data }: TourViewTypes) => {
             </Markdown>
           </div>
 
+          {data.strapiTour.slug === "full-moon" ? (
           <PaddleMoonlightDatesTimes
             nodes={data.allStrapiMoonlightTourDateTime.nodes}
           />
+          ): null}
 
         </div>
 
