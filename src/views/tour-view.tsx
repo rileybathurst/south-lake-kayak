@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Link, graphql } from "gatsby";
-import { PaddleTime, PaddleTicket, PaddleFeaturedSort, type PaddleTicketTypes, type PaddleLocationCardTypes, type PaddleGatsbyImageType } from "@rileybathurst/paddle";
+import { PaddleTime, PaddleTicket, PaddleFeaturedSort, type PaddleTicketTypes, type PaddleLocationCardTypes, type PaddleGatsbyImageType, PaddleMoonlightDatesTimes } from "@rileybathurst/paddle";
 
 import { SEO } from "../components/seo";
 import Markdown from "react-markdown";
@@ -41,6 +41,16 @@ interface TourViewTypes {
     local: {
       name: string;
     }
+
+    allStrapiMoonlightTourDateTime: {
+      nodes: {
+        id: React.Key;
+        date: string;
+        start: string;
+        finish: string;
+      }[];
+    }
+
     allStrapiTour: {
       nodes: PaddleTicketTypes[];
     }
@@ -102,6 +112,15 @@ export const data = graphql`
 
       local {
         name
+      }
+    }
+
+    allStrapiMoonlightTourDateTime(sort: {date: ASC}) {
+      nodes {
+        id
+        date
+        start
+        finish
       }
     }
 
@@ -175,7 +194,9 @@ const TourView = ({ data }: TourViewTypes) => {
             </Markdown>
           </div>
 
-          {/* // ! move MoonlightTourDatesTimes from tahoe city to paddle add a current date and add it here */}
+          <PaddleMoonlightDatesTimes
+            nodes={data.allStrapiMoonlightTourDateTime.nodes}
+          />
 
         </div>
 
