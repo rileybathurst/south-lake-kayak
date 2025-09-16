@@ -4,9 +4,9 @@ import { PaddleBookNow } from "@rileybathurst/paddle";
 
 const BookNow = () => {
 
-  const { strapiLocale } = useStaticQuery(graphql`
+  const { strapiBranch } = useStaticQuery(graphql`
     query BookNowQuery {
-      strapiLocale(slug: {eq: "south-tahoe"}) {
+      strapiBranch(slug: {eq: "south-tahoe"}) {
         name
         peek_base
       }
@@ -15,8 +15,8 @@ const BookNow = () => {
 
   return (
     <PaddleBookNow
-      peek_base={strapiLocale.peek_base}
-      strapiLocaleName={strapiLocale.name}
+      peek_base={strapiBranch.peek_base}
+      strapiBranchName={strapiBranch.name}
     />
   )
 }

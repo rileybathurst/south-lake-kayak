@@ -22,7 +22,7 @@ const IndexPage = () => {
 
       allStrapiLocation(
         filter: {
-          local: {slug: {eq: "south-tahoe"}}
+          branch: {slug: {eq: "south-tahoe"}}
         },
         sort: {order: ASC}
       ) {
@@ -33,7 +33,7 @@ const IndexPage = () => {
 
       allStrapiTour(
         sort: {featured: ASC},
-        filter: {local: {slug: {eq: "south-tahoe"}}}
+        filter: {branch: {slug: {eq: "south-tahoe"}}}
         ) {
         nodes {
           ...ticketFragment
@@ -57,7 +57,7 @@ const IndexPage = () => {
         }
       }
 
-      southLake: strapiLocale(slug: {eq: "south-tahoe"}) {
+      southLake: strapiBranch(slug: {eq: "south-tahoe"}) {
         name
         peek_rentals
         peek_tours
@@ -71,7 +71,7 @@ const IndexPage = () => {
         phone
       }
 
-      tahoeCity: strapiLocale(slug: {eq: "tahoe-city"}) {
+      tahoeCity: strapiBranch(slug: {eq: "tahoe-city"}) {
         url
       }
 
@@ -97,7 +97,7 @@ const IndexPage = () => {
         }
       }
 
-      strapiTestimonial(local: {slug: {eq: "south-tahoe"}}) {
+      strapiTestimonial(branch: {slug: {eq: "south-tahoe"}}) {
           id
           testimonial
           customer
@@ -217,7 +217,7 @@ const IndexPage = () => {
           <PaddleTicket
             key={tour.id}
             peek={data.southLake.peek_tours}
-            strapiLocaleName={data.southLake.name}
+            strapiBranchName={data.southLake.name}
             tour_page="tours"
             {...tour}
           />

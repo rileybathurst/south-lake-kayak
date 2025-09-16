@@ -15,9 +15,9 @@ function FormatPhoneNumber({ phoneNumberString }: FormatPhoneNumberTypes) {
 
 const Phone = () => {
 
-  const { strapiLocale } = useStaticQuery(graphql`
+  const { strapiBranch } = useStaticQuery(graphql`
     query PhoneQuery {
-      strapiLocale(slug: {eq: "south-tahoe"}) {
+      strapiBranch(slug: {eq: "south-tahoe"}) {
         phone
       }
     }
@@ -25,11 +25,11 @@ const Phone = () => {
 
   return (
     <a
-      href={`tel:${strapiLocale.phone}`}
+      href={`tel:${strapiBranch.phone}`}
       rel="norel norefferer"
       className="button"
     >
-      Phone: <FormatPhoneNumber phoneNumberString={strapiLocale.phone} />
+      Phone: <FormatPhoneNumber phoneNumberString={strapiBranch.phone} />
     </a>
   )
 }

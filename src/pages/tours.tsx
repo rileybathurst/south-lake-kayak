@@ -18,7 +18,7 @@ const ToursPage = () => {
       kayak: allStrapiTour(
         filter: {
           sport: { eq: "kayak" },
-          local: {slug: {eq: "south-tahoe"}},
+          branch: {slug: {eq: "south-tahoe"}},
         },
         sort: {featured: ASC})
       {
@@ -30,7 +30,7 @@ const ToursPage = () => {
       sup: allStrapiTour(
         filter: {
           sport: { eq: "sup" },
-          local: {slug: {eq: "south-tahoe"}}
+          branch: {slug: {eq: "south-tahoe"}}
         },
         sort: {featured: ASC}
         )
@@ -51,7 +51,7 @@ const ToursPage = () => {
       allStrapiLocation: allStrapiLocation(
         filter: {
           name: {in: ["On Water Rental", "Parking"]}
-          local: {slug: {eq: "south-tahoe"}}
+          branch: {slug: {eq: "south-tahoe"}}
         }
       ) {
         nodes {
@@ -59,7 +59,7 @@ const ToursPage = () => {
         }
       }
 
-      strapiLocale(slug: {eq: "south-tahoe"}) {
+      strapiBranch(slug: {eq: "south-tahoe"}) {
         peek_tours
         name
         season_start
@@ -111,10 +111,10 @@ const ToursPage = () => {
 
           {/* // ! Book now component */}
           <a
-            href={query.strapiLocale.peek_tours}
+            href={query.strapiBranch.peek_tours}
             rel="noopener noreferrer"
             className="book-now"
-            title={`Book tours now with ${query.strapiLocale.name} kayak and paddleboard`}
+            title={`Book tours now with ${query.strapiBranch.name} kayak and paddleboard`}
           >
             BOOK TOURS NOW
           </a>
@@ -125,8 +125,8 @@ const ToursPage = () => {
         <section className="pelican">
           <PaddleLocationDeck
             background={false}
-            season_start={query.strapiLocale.season_start}
-            season_end={query.strapiLocale.season_end}
+            season_start={query.strapiBranch.season_start}
+            season_end={query.strapiBranch.season_end}
             {...query.allStrapiLocation}
           />
         </section>
@@ -147,8 +147,8 @@ const ToursPage = () => {
               <PaddleTicket
                 key={tour.id}
                 {...tour}
-                peek={query.strapiLocale.peek_tours}
-                strapiLocaleName={query.strapiLocale.name}
+                peek={query.strapiBranch.peek_tours}
+                strapiBranchName={query.strapiBranch.name}
                 tour_page="tours"
               />
             ))}

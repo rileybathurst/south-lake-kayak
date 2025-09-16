@@ -39,7 +39,7 @@ interface TourViewTypes {
       compositionImage: PaddleGatsbyImageType;
     }
 
-    local: {
+    branch: {
       name: string;
     }
 
@@ -58,7 +58,7 @@ interface TourViewTypes {
 
     allStrapiLocation: PaddleLocationCardTypes[];
 
-    strapiLocale: {
+    strapiBranch: {
       season_start: string;
       season_end: string;
       peek_tours: string;
@@ -71,7 +71,7 @@ export const data = graphql`
   query TourQuery($slug: String!) {
     strapiTour(
       slug: { eq: $slug },
-      local: {slug: {eq: "south-tahoe"}}
+      branch: {slug: {eq: "south-tahoe"}}
       ) {
       id
       name
@@ -111,7 +111,7 @@ export const data = graphql`
         alternativeText
       }
 
-      local {
+      branch {
         name
       }
     }
@@ -128,7 +128,7 @@ export const data = graphql`
     allStrapiTour(
         filter: {
           slug: {nin: [$slug] },
-          local: {slug: {eq: "south-tahoe"}}
+          branch: {slug: {eq: "south-tahoe"}}
           },
         sort: {featured: ASC},
       ) {
@@ -139,7 +139,7 @@ export const data = graphql`
 
     allStrapiLocation(
       filter: {
-        local: {slug: {eq: "south-tahoe"}},
+        branch: {slug: {eq: "south-tahoe"}},
         name: {in: ["On Water Rental", "Free Parking Lot"]}
       },
       sort: {order: ASC}
@@ -149,7 +149,7 @@ export const data = graphql`
       }
     }
 
-    strapiLocale(slug: {eq: "south-tahoe"}) {
+    strapiBranch(slug: {eq: "south-tahoe"}) {
       season_start
       season_end
       peek_tours
@@ -234,7 +234,7 @@ const TourView = ({ data }: TourViewTypes) => {
             key={tour.id}
             {...tour}
             tour_page="tours"
-            peek_tours_fall_back={data.strapiLocale.peek_tours}
+            peek_tours_fall_back={data.strapiBranch.peek_tours}
           />
         )}
       </section>

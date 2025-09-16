@@ -12,11 +12,9 @@ import PricingChart from "./pricing-chart";
 
 const Footer = () => {
 
-  // TODO: allStrapiLocale is pulling an additional result from somewhere I dont understand
-
   const data = useStaticQuery(graphql`
     query FooterQuery {
-      strapiLocale(slug: {eq: "south-tahoe"}) {
+      strapiBranch(slug: {eq: "south-tahoe"}) {
         name
         email
         instagram
@@ -26,7 +24,7 @@ const Footer = () => {
         season_end
       }
 
-      allStrapiLocale(filter: {slug: {ne: "south-tahoe"}}) {
+      allstrapiBranch(filter: {slug: {ne: "south-tahoe"}}) {
         nodes {
           name
           url
@@ -35,7 +33,7 @@ const Footer = () => {
 
       allStrapiLocation(
         filter: {
-          local: {slug: {eq: "south-tahoe"}}
+          branch: {slug: {eq: "south-tahoe"}}
         },
         sort: {order: ASC}
       ) {
@@ -46,7 +44,7 @@ const Footer = () => {
     }
   `)
 
-  interface LocaleTypes {
+  interface BranchTypes {
     name: string,
     url: string
   }
@@ -55,7 +53,7 @@ const Footer = () => {
     <footer>
       <section>
         <h3 className='sr-only'>
-          <Link to="/">{data.strapiLocale.name}</Link>
+          <Link to="/">{data.strapiBranch.name}</Link>
         </h3>
         <Link to="/" className="logo-link"><Logo /></Link>
         <p>&copy; {new Date().getFullYear()}</p>
@@ -67,29 +65,29 @@ const Footer = () => {
         <div className="footer__contact">
           <Phone />
           <a
-            href={`mailto:${data.strapiLocale.email}`}
+            href={`mailto:${data.strapiBranch.email}`}
             rel="norel norefferer"
             className="button"
           >
-            {data.strapiLocale.email}
+            {data.strapiBranch.email}
           </a>
           <PaddleSocials
-            instagram={data.strapiLocale.instagram}
-            facebook={data.strapiLocale.facebook}
-            tripadvisor={data.strapiLocale.tripadvisor}
+            instagram={data.strapiBranch.instagram}
+            facebook={data.strapiBranch.facebook}
+            tripadvisor={data.strapiBranch.tripadvisor}
           />
         </div>
         <hr />
         <div className="footer__locations">
           <h3>Our Partner Locations</h3>
           <ul>
-            {data.allStrapiLocale.nodes.map((locale: LocaleTypes) => (
-              <li key={locale.name}>
-                <a href={locale.url}
+            {data.allstrapiBranch.nodes.map((branch: BranchTypes) => (
+              <li key={branch.name}>
+                <a href={branch.url}
                   target="_blank"
                   rel='noopener noreferrer'
                 >
-                  {locale.name} Kayak & Paddleboard
+                  {branch.name} Kayak & Paddleboard
                 </a>
               </li>
             ))}
@@ -102,8 +100,8 @@ const Footer = () => {
 
         <PaddleLocationDeck
           background={false}
-          season_start={data.strapiLocale.season_start}
-          season_end={data.strapiLocale.season_end}
+          season_start={data.strapiBranch.season_start}
+          season_end={data.strapiBranch.season_end}
           {...data.allStrapiLocation}
         />
       </section>

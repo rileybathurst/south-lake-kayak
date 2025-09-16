@@ -9,10 +9,10 @@ import Composition from "../components/composition";
 
 const AboutPage = () => {
 
-  const { strapiLocale } = useStaticQuery(graphql`
+  const { strapiBranch } = useStaticQuery(graphql`
     query AboutQuery {
 
-      strapiLocale(slug: {eq: "south-tahoe"}) {
+      strapiBranch(slug: {eq: "south-tahoe"}) {
         about {
           data {
             about
@@ -31,7 +31,7 @@ const AboutPage = () => {
           <div className="condor">
             <h1>About Us</h1>
             <div className="react-markdown">
-              <Markdown>{strapiLocale.about.data.about}</Markdown>
+              <Markdown>{strapiBranch.about.data.about}</Markdown>
             </div>
             <ul>
               <li key="faq"><Link to="/about/faq">Frequently Asked Questions</Link></li>

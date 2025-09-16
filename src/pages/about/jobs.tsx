@@ -18,9 +18,9 @@ const JobsPage = () => {
   }
 
   // * this is weird and wont query the other way
-  const { strapiLocale } = useStaticQuery(graphql`
+  const { strapiBranch } = useStaticQuery(graphql`
     query JobsQuery {
-      strapiLocale(slug: {eq: "south-tahoe"}) {
+      strapiBranch(slug: {eq: "south-tahoe"}) {
         name
         email
         jobs {
@@ -43,7 +43,8 @@ const JobsPage = () => {
         <section>
           <h1>Jobs</h1>
           <hr />
-          <p>{strapiLocale.name} Kayak & Paddleboard is hiring for Summer <strong>May 1st to Oct 31</strong>.</p>
+          {/* TODO: query season */}
+          <p>{strapiBranch.name} Kayak & Paddleboard is hiring for Summer <strong>May 1st to Oct 31</strong>.</p>
 
           <p>Housing options available!</p>
 
@@ -52,7 +53,7 @@ const JobsPage = () => {
         </section>
 
         <section>
-          {strapiLocale.jobs.map((job: JobTypes) => {
+          {strapiBranch.jobs.map((job: JobTypes) => {
             return (
               <div key={job.id}>
                 <h2 className="">{job.title}</h2>
@@ -67,10 +68,10 @@ const JobsPage = () => {
         <h4>If Interested</h4>
         <p>please send a resume with references to</p>
         <a
-          href={`mailto:${strapiLocale.email}`}
+          href={`mailto:${strapiBranch.email}`}
           className="button"
         >
-          {strapiLocale.email}
+          {strapiBranch.email}
         </a>
       </main >
 

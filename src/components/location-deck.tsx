@@ -9,9 +9,9 @@ type locationDeckTypes = {
 };
 const LocationDeck = ({ allStrapiLocation }: locationDeckTypes) => {
 
-  const { strapiLocale } = useStaticQuery(graphql`
+  const { strapiBranch } = useStaticQuery(graphql`
     query locationDeckQuery {
-      strapiLocale(slug: {eq: "south-tahoe"}) {
+      strapiBranch(slug: {eq: "south-tahoe"}) {
         name
         season_start
         season_end
@@ -22,9 +22,9 @@ const LocationDeck = ({ allStrapiLocation }: locationDeckTypes) => {
 
   return (
     <PaddleLocationDeck
-      season_start={strapiLocale.season_start}
-      season_end={strapiLocale.season_end}
-      phone={strapiLocale.phone}
+      season_start={strapiBranch.season_start}
+      season_end={strapiBranch.season_end}
+      phone={strapiBranch.phone}
       nodes={allStrapiLocation.nodes}
     />
   );

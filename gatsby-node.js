@@ -36,7 +36,7 @@ exports.createPages = async ({ graphql, actions }) => {
 
   const getStrapiTour = await graphql(`
     query {
-      allStrapiTour(filter: { local: { slug: { eq: "south-tahoe" } } }) {
+      allStrapiTour(filter: { branch: { slug: { eq: "south-tahoe" } } }) {
         edges {
           node {
             slug
@@ -59,7 +59,7 @@ exports.createPages = async ({ graphql, actions }) => {
   const getStrapiTeam = await graphql(`
     query {
       allStrapiTeam(
-        filter: { local: { elemMatch: { slug: { eq: "south-tahoe" } } } }
+        filter: { branch: { elemMatch: { slug: { eq: "south-tahoe" } } } }
       ) {
         edges {
           node {

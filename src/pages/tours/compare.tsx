@@ -225,7 +225,7 @@ const ComparePage = () => {
   const { allStrapiTour } = useStaticQuery(graphql`
     query TourCompareQuery {
       allStrapiTour(
-        filter: {local: {slug: {eq: "south-tahoe"}}}
+        filter: {branch: {slug: {eq: "south-tahoe"}}}
         sort: {featured: ASC}
         ) {
         nodes {

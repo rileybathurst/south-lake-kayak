@@ -19,7 +19,7 @@ export const SEO = ({ title, description, ogImage, ogImageDescription, breadcrum
 
   const data = useStaticQuery(graphql`
     query SEOQuery {
-      strapiLocale(slug: {eq: "south-tahoe"}) {
+      strapiBranch(slug: {eq: "south-tahoe"}) {
         name
         url
         ogImage
@@ -40,7 +40,7 @@ export const SEO = ({ title, description, ogImage, ogImageDescription, breadcrum
       }
 
       strapiLocation(
-        local: {slug: {eq: "south-tahoe"}}
+        branch: {slug: {eq: "south-tahoe"}}
         name: {eq: "On Water Rental"}
       ) {
         opening_time
