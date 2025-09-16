@@ -25,7 +25,15 @@ const strapiConfig = {
     "topbar",
     "tour"
   ],
-  singleTypes: ["about", "experience", "protect", "shop", "rental", "invasive"],
+  singleTypes: [
+    "about",
+    "experience",
+    "membership",
+    "protect",
+    "shop",
+    "rental",
+    "invasive"
+  ],
 };
 
 const config: GatsbyConfig = {
