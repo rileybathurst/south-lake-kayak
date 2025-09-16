@@ -11,7 +11,7 @@ const LocationDeck = ({ allStrapiLocation }: locationDeckTypes) => {
 
   const { strapiLocale } = useStaticQuery(graphql`
     query locationDeckQuery {
-      strapiLocale(slug: {eq: "south-lake"}) {
+      strapiLocale(slug: {eq: "south-tahoe"}) {
         name
         season_start
         season_end

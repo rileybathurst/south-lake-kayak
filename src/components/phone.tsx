@@ -17,7 +17,7 @@ const Phone = () => {
 
   const { strapiLocale } = useStaticQuery(graphql`
     query PhoneQuery {
-      strapiLocale(slug: {eq: "south-lake"}) {
+      strapiLocale(slug: {eq: "south-tahoe"}) {
         phone
       }
     }

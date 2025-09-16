@@ -12,7 +12,7 @@ const AboutPage = () => {
   const { strapiLocale } = useStaticQuery(graphql`
     query AboutQuery {
 
-      strapiLocale(slug: {eq: "south-lake"}) {
+      strapiLocale(slug: {eq: "south-tahoe"}) {
         about {
           data {
             about

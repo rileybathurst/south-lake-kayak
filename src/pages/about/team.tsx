@@ -12,7 +12,7 @@ const TeamPage = () => {
 
   const data = useStaticQuery(graphql`
     query TeamQuery {
-      allStrapiTeam(filter: {local: {elemMatch: {slug: {eq: "south-lake"}}}}) {
+      allStrapiTeam(filter: {local: {elemMatch: {slug: {eq: "south-tahoe"}}}}) {
         nodes {
           id
           name
@@ -34,7 +34,7 @@ const TeamPage = () => {
         }
       }
 
-      strapiLocale(slug: {eq: "south-lake"}) {
+      strapiLocale(slug: {eq: "south-tahoe"}) {
         name
       }
     }

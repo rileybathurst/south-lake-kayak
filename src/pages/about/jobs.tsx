@@ -20,7 +20,7 @@ const JobsPage = () => {
   // * this is weird and wont query the other way
   const { strapiLocale } = useStaticQuery(graphql`
     query JobsQuery {
-      strapiLocale(slug: {eq: "south-lake"}) {
+      strapiLocale(slug: {eq: "south-tahoe"}) {
         name
         email
         jobs {

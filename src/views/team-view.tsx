@@ -10,7 +10,7 @@ export const { strapiTeam } = graphql`
   query TeamViewQuery($slug: String!) {
     strapiTeam(
       slug: { eq: $slug },
-      local: {elemMatch: {slug: {eq: "south-lake"}}}
+      local: {elemMatch: {slug: {eq: "south-tahoe"}}}
       ) {
       id
       name

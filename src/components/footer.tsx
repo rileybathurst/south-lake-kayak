@@ -16,7 +16,7 @@ const Footer = () => {
 
   const data = useStaticQuery(graphql`
     query FooterQuery {
-      strapiLocale(slug: {eq: "south-lake"}) {
+      strapiLocale(slug: {eq: "south-tahoe"}) {
         name
         email
         instagram
@@ -26,7 +26,7 @@ const Footer = () => {
         season_end
       }
 
-      allStrapiLocale(filter: {slug: {nin: ["south-lake", null]}}) {
+      allStrapiLocale(filter: {slug: {ne: "south-tahoe"}}) {
         nodes {
           name
           url
@@ -35,7 +35,7 @@ const Footer = () => {
 
       allStrapiLocation(
         filter: {
-          local: {slug: {eq: "south-lake"}}
+          local: {slug: {eq: "south-tahoe"}}
         },
         sort: {order: ASC}
       ) {

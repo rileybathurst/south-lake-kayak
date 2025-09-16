@@ -1,6 +1,7 @@
 import * as React from "react";
 import { Link, graphql } from "gatsby";
-import { PaddleTime, PaddleTicket, PaddleFeaturedSort, type PaddleTicketTypes, type PaddleLocationCardTypes, type PaddleGatsbyImageType, PaddleMoonlightDatesTimes } from "@rileybathurst/paddle";
+import { PaddleTime, PaddleTicket, PaddleFeaturedSort, 
+  type PaddleTicketTypes, type PaddleLocationCardTypes, type PaddleGatsbyImageType, PaddleMoonlightDatesTimes } from "@rileybathurst/paddle";
 
 import { SEO } from "../components/seo";
 import Markdown from "react-markdown";
@@ -70,7 +71,7 @@ export const data = graphql`
   query TourQuery($slug: String!) {
     strapiTour(
       slug: { eq: $slug },
-      local: {slug: {eq: "south-lake"}}
+      local: {slug: {eq: "south-tahoe"}}
       ) {
       id
       name
@@ -127,7 +128,7 @@ export const data = graphql`
     allStrapiTour(
         filter: {
           slug: {nin: [$slug] },
-          local: {slug: {eq: "south-lake"}}
+          local: {slug: {eq: "south-tahoe"}}
           },
         sort: {featured: ASC},
       ) {
@@ -138,7 +139,7 @@ export const data = graphql`
 
     allStrapiLocation(
       filter: {
-        local: {slug: {eq: "south-lake"}},
+        local: {slug: {eq: "south-tahoe"}},
         name: {in: ["On Water Rental", "Free Parking Lot"]}
       },
       sort: {order: ASC}
@@ -148,7 +149,7 @@ export const data = graphql`
       }
     }
 
-    strapiLocale(slug: {eq: "south-lake"}) {
+    strapiLocale(slug: {eq: "south-tahoe"}) {
       season_start
       season_end
       peek_tours

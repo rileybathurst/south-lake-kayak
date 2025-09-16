@@ -22,7 +22,7 @@ const IndexPage = () => {
 
       allStrapiLocation(
         filter: {
-          local: {slug: {eq: "south-lake"}}
+          local: {slug: {eq: "south-tahoe"}}
         },
         sort: {order: ASC}
       ) {
@@ -33,7 +33,7 @@ const IndexPage = () => {
 
       allStrapiTour(
         sort: {featured: ASC},
-        filter: {local: {slug: {eq: "south-lake"}}}
+        filter: {local: {slug: {eq: "south-tahoe"}}}
         ) {
         nodes {
           ...ticketFragment
@@ -57,7 +57,7 @@ const IndexPage = () => {
         }
       }
 
-      southLake: strapiLocale(slug: {eq: "south-lake"}) {
+      southLake: strapiLocale(slug: {eq: "south-tahoe"}) {
         name
         peek_rentals
         peek_tours
@@ -97,7 +97,7 @@ const IndexPage = () => {
         }
       }
 
-      strapiTestimonial(local: {slug: {eq: "south-lake"}}) {
+      strapiTestimonial(local: {slug: {eq: "south-tahoe"}}) {
           id
           testimonial
           customer

@@ -6,7 +6,7 @@ const BookNow = () => {
 
   const { strapiLocale } = useStaticQuery(graphql`
     query BookNowQuery {
-      strapiLocale(slug: {eq: "south-lake"}) {
+      strapiLocale(slug: {eq: "south-tahoe"}) {
         name
         peek_base
       }

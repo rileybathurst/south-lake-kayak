@@ -1,8 +1,8 @@
 {
-  "name": "south-lake-kayak",
+  "name": "south-tahoe-kayak",
   "version": "1.0.1",
   "private": true,
-  "description": "south-lake-kayak",
+  "description": "south-tahoe-kayak",
   "author": "Riley Bathurst <riley@rileybathurst.com> (https://rileybathurst.com)",
   "keywords": [
     "gatsby"
@@ -18,7 +18,7 @@
   "dependencies": {
     "@fontsource/barlow": "^5.2.6",
     "@fontsource/barlow-condensed": "^5.2.5",
-    "@rileybathurst/paddle": "^1.8.0",
+    "@rileybathurst/paddle": "^1.9.0",
     "gatsby": "^5.14.4",
     "gatsby-plugin-csp": "^1.1.4",
     "gatsby-plugin-image": "^3.14.0",

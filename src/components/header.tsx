@@ -118,9 +118,9 @@ function SmallMenu() {
 
 const Header = () => {
 
-  const data = useStaticQuery(graphql`
+  const {strapiBranch} = useStaticQuery(graphql`
     query TopBarQuery {
-      strapiLocale(slug: {eq: "south-lake"}) {
+      strapiBranch(slug: {eq: "south-tahoe"}) {
         name
 
         topbar {
@@ -128,20 +128,18 @@ const Header = () => {
             topbar
           }
         }
-        RainCheck
-        RainCheckReason
       }
     }
   `)
 
-  // console.log(strapiLocale.name);
+  // console.log(strapiBranch.name);
 
   return (
     <header>
 
-      <PaddleTopBar {...data} />
+      <PaddleTopBar {...strapiBranch} />
       <p className='sr-only'>
-        {data.strapiLocale.name} Kayak & Paddleboard rentals and tours
+        {strapiBranch.name} Kayak & Paddleboard rentals and tours
       </p>
 
       <div className="logo-container" >
@@ -153,7 +151,7 @@ const Header = () => {
         </Link>
         <h1 className='sr-only'>
           <Link to="/" className="link__subtle">
-            {data.strapiLocale.name} &amp; Paddleboard
+            {strapiBranch.name} &amp; Paddleboard
           </Link>
         </h1>
       </div>

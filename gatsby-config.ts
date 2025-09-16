@@ -9,11 +9,11 @@ const strapiConfig = {
   accessToken: process.env.STRAPI_TOKEN,
   collectionTypes: [
     "attribute",
+    "branch",
     "brand",
     "blog",
     "faq",
     "imagegrab",
-    "locale",
     "location",
     "moonlight-tour-date-time",
     "paddle-info",

@@ -18,7 +18,7 @@ const ToursPage = () => {
       kayak: allStrapiTour(
         filter: {
           sport: { eq: "kayak" },
-          local: {slug: {eq: "south-lake"}},
+          local: {slug: {eq: "south-tahoe"}},
         },
         sort: {featured: ASC})
       {
@@ -30,7 +30,7 @@ const ToursPage = () => {
       sup: allStrapiTour(
         filter: {
           sport: { eq: "sup" },
-          local: {slug: {eq: "south-lake"}}
+          local: {slug: {eq: "south-tahoe"}}
         },
         sort: {featured: ASC}
         )
@@ -51,7 +51,7 @@ const ToursPage = () => {
       allStrapiLocation: allStrapiLocation(
         filter: {
           name: {in: ["On Water Rental", "Parking"]}
-          local: {slug: {eq: "south-lake"}}
+          local: {slug: {eq: "south-tahoe"}}
         }
       ) {
         nodes {
@@ -59,7 +59,7 @@ const ToursPage = () => {
         }
       }
 
-      strapiLocale(slug: {eq: "south-lake"}) {
+      strapiLocale(slug: {eq: "south-tahoe"}) {
         peek_tours
         name
         season_start
