@@ -7,28 +7,28 @@ type SEOtypes = {
   title?: string,
   description?: string,
   url?: string,
-  ogImage?: string,
-  ogImageDescription?: string,
+  og_image?: string,
+  og_image_description?: string,
   breadcrumbs?: {
     name: string;
     item: string;
   }[],
   children?: React.ReactNode,
 };
-export const SEO = ({ title, description, ogImage, ogImageDescription, breadcrumbs, children }: SEOtypes) => {
+export const SEO = ({ title, description, og_image, og_image_description, breadcrumbs, children }: SEOtypes) => {
 
   const data = useStaticQuery(graphql`
     query SEOQuery {
       strapiBranch(slug: {eq: "south-tahoe"}) {
         name
         url
-        ogImage
-        ogImageDescription
+        og_image
+        og_image_description
         latitude
         longitude
-        geoRadius
-        themeColor
-        numberOfEmployees
+        geo_radius
+        theme_color
+        number_of_employees
         phone
         email
 
@@ -64,8 +64,8 @@ export const SEO = ({ title, description, ogImage, ogImageDescription, breadcrum
         title={title || null}
         description={description || null}
         breadcrumbs={breadcrumbs || null}
-        // ogImage={ogImage || null}
-        // ogimagedescription={ogImagedescription || null}
+        // og_image={og_image || null}
+        // og_image_description={og_image_description || null}
         {...data}
       >
         {children}

@@ -11,7 +11,6 @@ const strapiConfig = {
     "attribute",
     "branch",
     "brand",
-    "blog",
     "faq",
     "imagegrab",
     "location",
@@ -24,8 +23,7 @@ const strapiConfig = {
     "team",
     "testimonial",
     "topbar",
-    "tour",
-    "event",
+    "tour"
   ],
   singleTypes: ["about", "experience", "protect", "shop", "rental", "invasive"],
 };

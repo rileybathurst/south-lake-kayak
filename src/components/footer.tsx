@@ -24,7 +24,7 @@ const Footer = () => {
         season_end
       }
 
-      allstrapiBranch(filter: {slug: {ne: "south-tahoe"}}) {
+      allStrapiBranch(filter: {slug: {ne: "south-tahoe"}}) {
         nodes {
           name
           url
@@ -81,7 +81,7 @@ const Footer = () => {
         <div className="footer__locations">
           <h3>Our Partner Locations</h3>
           <ul>
-            {data.allstrapiBranch.nodes.map((branch: BranchTypes) => (
+            {data.allStrapiBranch.nodes.map((branch: BranchTypes) => (
               <li key={branch.name}>
                 <a href={branch.url}
                   target="_blank"
