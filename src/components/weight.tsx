@@ -1,4 +1,4 @@
-// ! I havent got this sorted Im not sure how often I need it in this format
+// TODO: I havent got this sorted Im not sure how often I need it in this format
 
 import * as React from "react"
 import { Link } from 'gatsby';
@@ -17,7 +17,7 @@ if we have neither
 
 */
 
-if (props.hullWeight && props.riggedWeight) {
+/* if (props.hullWeight && props.riggedWeight) {
   return (
     <>
       <h2>Hull Weight {props.hullWeight}
@@ -33,10 +33,12 @@ if (props.hullWeight && props.riggedWeight) {
 } else if (props.hullWeight) {
   return (
     <div className="spec">
+      )
+} */
       
 
 
-const Weight = (props) => {
+{/* const Weight = (props) => {
   return (
       <>
         <div className="spec">
@@ -54,6 +56,6 @@ const Weight = (props) => {
         </div>
       </>
       )
-}
+} */}
 
-      export default Weight
+      {/* export default Weight */}

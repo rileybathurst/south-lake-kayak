@@ -15,6 +15,10 @@ const PricingChart = () => {
           fullDay
           pedalAdd
 
+          branches {
+            slug
+          }
+
           retail {
             slug
             sport {
@@ -26,12 +30,17 @@ const PricingChart = () => {
           }
         }
       }
+
+      strapiBranch(slug: {eq: "south-tahoe"}) {
+        slug
+      }
     }
   `)
 
   return (
     <PaddlePricingChart
       rentalRates={data.allStrapiRentalRate}
+      branches={data.strapiBranch.slug}
     />
   )
 }

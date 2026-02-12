@@ -2,13 +2,12 @@ import * as React from "react"
 import { Link, useStaticQuery, graphql } from 'gatsby';
 
 // Paddle
-import { PaddleLocationDeck, PaddleFeaturedSort, PaddleTicketTypes, PaddleTicket } from "@rileybathurst/paddle";
+import { PaddleLocationDeck, PaddleFeaturedSort, type PaddleTicketTypes, PaddleTicket } from "@rileybathurst/paddle";
 
 import { SEO } from "../components/seo"
 import Markdown from "react-markdown";
 import Header from "../components/header"
 import Footer from "../components/footer"
-// import Ticket from "../components/ticket";
 import Sport from "../components/sport";
 
 const ToursPage = () => {

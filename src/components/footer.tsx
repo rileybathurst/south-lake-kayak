@@ -95,7 +95,7 @@ const Footer = () => {
         </div>
       </section>
       <section>
-        <PricingChart book={false} />
+        <PricingChart />
         <hr />
 
         <PaddleLocationDeck

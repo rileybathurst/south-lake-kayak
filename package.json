@@ -9,16 +9,18 @@
   ],
   "scripts": {
     "develop": "gatsby develop",
-    "start": "gatsby develop",
+    "start": "tsc --noEmit && stay-gold && gatsby develop",
+    "dirty": "gatsby develop",
     "build": "gatsby build",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "linkcheck": "blc https://southtahoekayak.com -ro"
   },
   "dependencies": {
     "@fontsource/barlow": "^5.2.6",
     "@fontsource/barlow-condensed": "^5.2.5",
-    "@rileybathurst/paddle": "^1.9.0",
+    "@rileybathurst/paddle": "^1.9.5",
     "gatsby": "^5.14.4",
     "gatsby-plugin-csp": "^1.1.4",
     "gatsby-plugin-image": "^3.14.0",
