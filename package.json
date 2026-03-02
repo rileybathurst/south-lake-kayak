@@ -11,7 +11,7 @@
     "develop": "gatsby develop",
     "start": "tsc --noEmit && stay-gold && gatsby develop",
     "dirty": "gatsby develop",
-    "build": "gatsby build",
+    "build": "tsc --noEmit && stay-gold && gatsby build",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
     "typecheck": "tsc --noEmit",

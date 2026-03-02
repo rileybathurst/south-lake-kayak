@@ -56,7 +56,9 @@ interface TourViewTypes {
       nodes: PaddleTicketTypes[];
     }
 
-    allStrapiLocation: PaddleLocationCardTypes[];
+    allStrapiLocation: {
+      nodes: PaddleLocationCardTypes[];
+    };
 
     strapiBranch: {
       season_start: string;
@@ -256,7 +258,7 @@ const TourView = ({ data }: TourViewTypes) => {
           />
 
           <LocationDeck
-            allStrapiLocation={{ nodes: data.allStrapiLocation }}
+            allStrapiLocation={{ ...data.allStrapiLocation }}
           />
         </aside>
 
