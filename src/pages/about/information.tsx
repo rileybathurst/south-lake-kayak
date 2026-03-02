@@ -49,9 +49,11 @@ const InformationPage = () => {
           {allStrapiPaddleInfo.nodes.map((info: InfoTypes) => (
             <li key={info.id}>
               <h2>{info.title}</h2>
-              <Markdown className='reeact-markdown'>
-                {info.info.data.info}
-              </Markdown>
+              <div className="react-markdown">
+                <Markdown>
+                  {info.info.data.info}
+                </Markdown>
+              </div>
             </li>
           ))
           }

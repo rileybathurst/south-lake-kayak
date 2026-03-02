@@ -38,7 +38,29 @@ const Footer = () => {
         sort: {order: ASC}
       ) {
         nodes {
-          ...locationCardFragment
+          id
+          name
+          link
+          svg
+          opening_time
+          closing_time
+
+          streetAddress
+          addressLocality
+          addressRegion
+          postalCode
+          commonName
+
+          description {
+            data {
+              description
+            }
+          }
+          
+          branch {
+            season_start(formatString: "MMMM DD, YYYY")
+            season_end(formatString: "MMMM DD, YYYY")
+          }
         }
       }
     }
@@ -52,11 +74,14 @@ const Footer = () => {
   return (
     <footer>
       <section>
+        <div className="logo-container logo-container_footer">
         <h3 className='sr-only'>
           <Link to="/">{data.strapiBranch.name}</Link>
         </h3>
+        
         <Link to="/" className="logo-link"><Logo /></Link>
         <p>&copy; {new Date().getFullYear()}</p>
+        </div>
         <hr />
         <nav>
           <MenuList />

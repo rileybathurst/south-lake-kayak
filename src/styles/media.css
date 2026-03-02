@@ -24,9 +24,9 @@ svg {
 /*------------------*/
 
 .logo-container {
-  margin: 0 auto;
-  display: flex;
-  justify-content: center;
+  /* justify-content: start !important; */
+
+
   z-index: var(--understory);
   position: relative;
   max-width: calc(100% - 2rem); /* guess and check */
@@ -58,6 +58,19 @@ svg {
     max-width: fit-content;
     /* the logo isnt symetrical */
     padding-inline-start: 2rem; /* guess and check number */
+  }
+}
+
+/* TODO: this whole piece is an overwrite paddle until I redo the footer */
+.logo-container_footer {
+  text-align: start;
+
+  a {
+    margin: 0;
+
+    svg {
+      padding: 0;
+    }
   }
 }
 

@@ -50,7 +50,7 @@ const RentalsPage = ({ data }: RentalsPageTypes) => {
 
             <BookNow />
 
-            {/* // ! where is the br? build it out in storybook */}
+            {/* // TODO: where is the br? build it out in storybook */}
             <br />
             <h3>{data.strapiMembership.title}</h3>
             <p>{data.strapiMembership.excerpt}</p>

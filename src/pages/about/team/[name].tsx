@@ -5,7 +5,7 @@ import { Breadcrumbs, Breadcrumb } from 'react-aria-components'
 import Header from "../../../components/header";
 import Footer from "../../../components/footer";
 
-function TeamCatchAll({ params }) {
+function TeamCatchAll({ params }: { params: { name: string } }) {
 
   const { allStrapiTeam } = useStaticQuery(graphql`
     query TeamCatchAllQuery {
@@ -33,7 +33,7 @@ function TeamCatchAll({ params }) {
         <h2 className="kilimanjaro">Check in with another team member</h2>
 
         <ul>
-          {allStrapiTeam.nodes.map((team) => (
+          {allStrapiTeam.nodes.map((team: { name: string; slug: string }) => (
             <li key={team.slug}>
               <Link to={`/team/${team.name}`}>{team.slug}</Link>
             </li>

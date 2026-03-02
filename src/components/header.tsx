@@ -32,15 +32,17 @@ function SmallMenu() {
   // first and closed are the same just loop them
   // ? why do I need first load cant I just use closed
   // * is the problem the ref?
-  // !: theres 2 levels of menu__small classes nested in each other surley this is weird
+  // TODO: theres 2 levels of menu__small classes nested in each other surley this is weird
 
   const [slide, setSlide] = useState('firstload');
   const [amount, setAmount] = useState(0);
-  const ref = useRef();
+  const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     // console.log(ref.current.clientHeight);
-    setAmount(ref.current.clientHeight);
+    if (ref.current) {
+      setAmount(ref.current.clientHeight);
+    }
   });
 
   if (slide === "firstload") {
@@ -122,7 +124,6 @@ const Header = () => {
     query TopBarQuery {
       strapiBranch(slug: {eq: "south-tahoe"}) {
         name
-
         topbar {
           data {
             topbar
@@ -131,10 +132,6 @@ const Header = () => {
       }
     }
   `)
-
-  // console.log('🦄');
-  // console.log(strapiBranch.topbar?.data?.topbar);
-  // console.log(...strapiBranch);
 
   return (
     <header>

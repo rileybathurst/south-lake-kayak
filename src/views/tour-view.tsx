@@ -133,7 +133,29 @@ export const data = graphql`
         sort: {featured: ASC},
       ) {
       nodes {
-        ...ticketFragment
+        id
+        name
+        slug
+        price
+        peek
+        excerpt
+        start
+        finish
+        duration
+        timeframe
+        fitness
+        sport
+
+        ogimage {
+          localFile {
+            childImageSharp {
+              gatsbyImageData
+            }
+          }
+          alternativeText
+        }
+
+        featured
       }
     }
 
@@ -145,7 +167,29 @@ export const data = graphql`
       sort: {order: ASC}
     ) {
       nodes {
-        ...locationCardFragment
+        id
+        name
+        link
+        svg
+        opening_time
+        closing_time
+
+        streetAddress
+        addressLocality
+        addressRegion
+        postalCode
+        commonName
+
+        description {
+          data {
+            description
+          }
+        }
+        
+        branch {
+          season_start(formatString: "MMMM DD, YYYY")
+          season_end(formatString: "MMMM DD, YYYY")
+        }
       }
     }
 
@@ -162,12 +206,13 @@ const TourView = ({ data }: TourViewTypes) => {
   const sortedTourNodes = data.allStrapiTour.nodes;
   PaddleFeaturedSort(sortedTourNodes);
 
-  const time = PaddleTime({
+  // TODO: work in progress
+  /* const time = PaddleTime({
     start: data.strapiTour.start,
     finish: data.strapiTour.finish,
     duration: data.strapiTour.duration,
     timeframe: data.strapiTour.timeframe,
-  });
+  }); */
 
   return (
     <>
@@ -181,12 +226,13 @@ const TourView = ({ data }: TourViewTypes) => {
             {data.strapiTour.minimum ? <p>* Prices based on a<br /> {data.strapiTour.minimum} person minimum</p> : null}
           </div>
 
+          {/* // TODO: time is still a work in progress */}
           <PaddleSpecs
             sport={data.strapiTour.sport}
             fitness={data.strapiTour.fitness}
             experience={data.strapiTour.experience}
             price={data.strapiTour.price}
-            time={time}
+            // time={time}
           />
 
           <div className="react-markdown single__description">
@@ -210,7 +256,7 @@ const TourView = ({ data }: TourViewTypes) => {
           />
 
           <LocationDeck
-            allStrapiLocation={data.allStrapiLocation}
+            allStrapiLocation={{ nodes: data.allStrapiLocation }}
           />
         </aside>
 

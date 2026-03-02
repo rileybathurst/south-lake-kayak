@@ -84,7 +84,7 @@ const TeamPage = () => {
               </Link>
             </h2>
             {/* // TODO: reviews about person */}
-            {team.bio ? <ReactMarkdown className='react-markdown'>{team.bio.data.bio}</ReactMarkdown> : null}
+            {team.bio ? <div className="react-markdown"><ReactMarkdown>{team.bio.data.bio}</ReactMarkdown></div> : null}
             <hr />
           </section >
 

@@ -6,7 +6,29 @@ import ReactMarkdown from "react-markdown";
 import { GatsbyImage } from "gatsby-plugin-image";
 import { Breadcrumbs, Breadcrumb } from 'react-aria-components';
 
-export const { strapiTeam } = graphql`
+type TeamViewTypes = {
+  data: {
+    strapiTeam: {
+      id: string;
+      name: string;
+      bio: {
+        data: {
+          bio: string;
+        };
+      };
+      profile: {
+        localFile: {
+          childImageSharp: {
+            gatsbyImageData: any;
+          };
+        };
+        alternativeText: string;
+      };
+    };
+  };
+};
+
+export const data = graphql`
   query TeamViewQuery($slug: String!) {
     strapiTeam(
       slug: { eq: $slug },
@@ -31,7 +53,7 @@ export const { strapiTeam } = graphql`
   }
 `
 
-const TeamView = ({ data }) => {
+const TeamView = ({ data }: TeamViewTypes) => {
 
   return (
     <>
@@ -45,7 +67,7 @@ const TeamView = ({ data }) => {
         /> : null}
 
         <h1>{data.strapiTeam.name}</h1>
-        {data.strapiTeam.bio ? <ReactMarkdown className='react-markdown'>{data.strapiTeam.bio.data.bio}</ReactMarkdown> : null}
+        {data.strapiTeam.bio ? <div className='react-markdown'><ReactMarkdown>{data.strapiTeam.bio.data.bio}</ReactMarkdown></div> : null}
       </main>
 
       <Breadcrumbs>

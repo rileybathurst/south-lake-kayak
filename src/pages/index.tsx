@@ -10,6 +10,7 @@ import Footer from "../components/footer"
 import PricingChart from "../components/pricing-chart"
 import WaterTexture from "../images/watertexture";
 import { PaddleLocationDeck, PaddleTestimonial, PaddleTicket, PaddleFeaturedSort, type PaddleTicketTypes } from "@rileybathurst/paddle";
+import Ticket from "../components/ticket";
 
 // ? 1.0.3 should find this?
 // import { PaddleBrandList } from "@rileybathurst/paddle";
@@ -27,7 +28,29 @@ const IndexPage = () => {
         sort: {order: ASC}
       ) {
         nodes {
-          ...locationCardFragment
+          id
+          name
+          link
+          svg
+          opening_time
+          closing_time
+
+          streetAddress
+          addressLocality
+          addressRegion
+          postalCode
+          commonName
+
+          description {
+            data {
+              description
+            }
+          }
+          
+          branch {
+            season_start(formatString: "MMMM DD, YYYY")
+            season_end(formatString: "MMMM DD, YYYY")
+          }
         }
       }
 
@@ -36,8 +59,29 @@ const IndexPage = () => {
         filter: {branch: {slug: {eq: "south-tahoe"}}}
         ) {
         nodes {
-          ...ticketFragment
           id
+          name
+          slug
+          price
+          peek
+          excerpt
+          start
+          finish
+          duration
+          timeframe
+          fitness
+          sport
+
+          ogimage {
+            localFile {
+              childImageSharp {
+                gatsbyImageData
+              }
+            }
+            alternativeText
+          }
+
+          featured
         }
       }
 
@@ -149,7 +193,7 @@ const IndexPage = () => {
               {...data.allStrapiLocation}
             />
 
-            {/* // ? is there any reason these are no PaddleBookNow components? */}
+            {/* // TODO move to component */}
             <div className="button__double">
               <a
                 href={data.southLake.peek_rentals}
@@ -194,7 +238,7 @@ const IndexPage = () => {
               />
             </div>
 
-            <PricingChart book={true} />
+            <PricingChart />
           </section>
         </div>
 
@@ -211,14 +255,10 @@ const IndexPage = () => {
         </h4>
       </section>
 
-      {/* // ! this is now wrong it should go through a component here and other places */}
       <div className="flight">
         {data.allStrapiTour.nodes.map((tour: PaddleTicketTypes) => (
-          <PaddleTicket
+          <Ticket
             key={tour.id}
-            peek={data.southLake.peek_tours}
-            strapiBranchName={data.southLake.name}
-            tour_page="tours"
             {...tour}
           />
         ))}
@@ -251,18 +291,13 @@ const IndexPage = () => {
         <hr className='aconcagua-margin-block-start aconcagua-margin-block-end' />
       </section> */}
 
-
-
-
-
-
-
-
-
-      {/* specifically using a single here */}
-      <ul className='pelican aconcagua-margin-block-end'>
-        <PaddleTestimonial {...data.strapiTestimonial} />
-      </ul>
+      {/* // * specifically using a single here */}
+      <section className="aurora denali-padding-block">
+        {/* <hr className="pelican" /> */}
+        <ul className='pelican aconcagua-margin-block-end'>
+          <PaddleTestimonial {...data.strapiTestimonial} />
+        </ul>
+      </section>
 
       <Footer />
     </>

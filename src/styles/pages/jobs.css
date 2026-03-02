@@ -2,24 +2,6 @@
 /* #JOBS */
 /*------------------*/
 
-/* ! wrong place and not working */
-
-.scroller {
-  display: flex;
-  flex-direction: row;
-
-  nav {
-    position: sticky;
-    top: 0;
-
-    /* this has to be wrapped I dont know why */
-    ul {
-      position: sticky;
-      top: 0;
-    }
-  }
-}
-
 .look-link {
   border: none;
   box-shadow: none;

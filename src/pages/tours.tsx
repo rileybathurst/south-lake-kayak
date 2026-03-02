@@ -2,13 +2,14 @@ import * as React from "react"
 import { Link, useStaticQuery, graphql } from 'gatsby';
 
 // Paddle
-import { PaddleLocationDeck, PaddleFeaturedSort, type PaddleTicketTypes, PaddleTicket } from "@rileybathurst/paddle";
+import { PaddleLocationDeck, PaddleFeaturedSort, type PaddleTicketTypes } from "@rileybathurst/paddle";
 
 import { SEO } from "../components/seo"
 import Markdown from "react-markdown";
 import Header from "../components/header"
 import Footer from "../components/footer"
 import Sport from "../components/sport";
+import Ticket from "../components/ticket";
 
 const ToursPage = () => {
 
@@ -22,7 +23,29 @@ const ToursPage = () => {
         sort: {featured: ASC})
       {
         nodes {
-          ...ticketFragment
+          id
+          name
+          slug
+          price
+          peek
+          excerpt
+          start
+          finish
+          duration
+          timeframe
+          fitness
+          sport
+
+          ogimage {
+            localFile {
+              childImageSharp {
+                gatsbyImageData
+              }
+            }
+            alternativeText
+          }
+
+          featured
         }
       }
   
@@ -35,7 +58,29 @@ const ToursPage = () => {
         )
       {
         nodes {
-          ...ticketFragment
+          id
+          name
+          slug
+          price
+          peek
+          excerpt
+          start
+          finish
+          duration
+          timeframe
+          fitness
+          sport
+
+          ogimage {
+            localFile {
+              childImageSharp {
+                gatsbyImageData
+              }
+            }
+            alternativeText
+          }
+
+          featured
         }
       }
 
@@ -54,7 +99,29 @@ const ToursPage = () => {
         }
       ) {
         nodes {
-          ...locationCardFragment
+          id
+          name
+          link
+          svg
+          opening_time
+          closing_time
+
+          streetAddress
+          addressLocality
+          addressRegion
+          postalCode
+          commonName
+
+          description {
+            data {
+              description
+            }
+          }
+          
+          branch {
+            season_start(formatString: "MMMM DD, YYYY")
+            season_end(formatString: "MMMM DD, YYYY")
+          }
         }
       }
 
@@ -108,7 +175,7 @@ const ToursPage = () => {
             <Link to="/tours/compare">Compare Tours</Link>
           </h2>
 
-          {/* // ! Book now component */}
+          {/* // TODO: Book now component */}
           <a
             href={query.strapiBranch.peek_tours}
             rel="noopener noreferrer"
@@ -140,15 +207,11 @@ const ToursPage = () => {
             <p className="aconcagua">Tours &amp; Lessions</p>
           </hgroup>
 
-          {/* // ! this is now wrong it should go through a component here and other places */}
           <div className="flight">
             {sport.map((tour: PaddleTicketTypes) => (
-              <PaddleTicket
+              <Ticket
                 key={tour.id}
                 {...tour}
-                peek={query.strapiBranch.peek_tours}
-                strapiBranchName={query.strapiBranch.name}
-                tour_page="tours"
               />
             ))}
           </div>

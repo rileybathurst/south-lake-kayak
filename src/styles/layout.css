@@ -2,7 +2,7 @@
 /* #LAYOUT */
 /*------------------*/
 
-/* ! conflict with paddle */
+/* TODO: conflict with paddle */
 header {
   max-width: none;
 }
@@ -11,7 +11,7 @@ header {
 /* #MAIN */
 /*------------------*/
 
-/* ! this should be in paddle */
+/* TODO: this should be in paddle */
 main {
   max-width: var(--condor);
   margin-inline: auto;
@@ -20,7 +20,7 @@ main {
   margin-block-end: var(--everest);
 }
 
-/* ! this should be in paddle */
+/* TODO: this should be in paddle */
 /* ? check this */
 .tour {
   max-width: var(--albatross);

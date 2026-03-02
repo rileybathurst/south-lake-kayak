@@ -6,13 +6,29 @@ import { Breadcrumbs, Breadcrumb } from 'react-aria-components';
 import Header from "../../components/header";
 import Footer from "../../components/footer";
 
-import Time from "../../components/time";
+import { PaddleTime, PaddleFeaturedSort } from "@rileybathurst/paddle";
 import BookNow from '../../components/peek/book-now';
-import { PaddleFeaturedSort } from "@rileybathurst/paddle/src/paddle-featured-sort";
 
-function Compare(props) {
+type CompareTypes = {
+  tours: {
+    id: string;
+    fitness: string;
+    slug: string;
+    start: string;
+    sport: string;
+    peek: string;
+    price: number;
+    name: string;
+    minimum: number;
+    finish: string;
+    excerpt: string;
+    duration: string;
+    location: string;
+  }[]
+}
+function Compare(props: CompareTypes) {
 
-  function Option(props) {
+  function Option(props: { name: string; current?: string; other?: string; key: string }) {
     if (props.name === props.current) {
       return (
         <option selected key={props.key}>{props.name}</option>
@@ -30,17 +46,17 @@ function Compare(props) {
     )
   }
 
-  function first(e) {
+  function first(e: React.ChangeEvent<HTMLSelectElement>) {
     setTour1(e.target.value);
     return null;
   }
 
-  function second(e) {
+  function second(e: React.ChangeEvent<HTMLSelectElement>) {
     setTour2(e.target.value);
     return null;
   }
 
-  function Details1(props) {
+  function Details1(props: { set: CompareTypes['tours']; show: string }) {
     props.set.forEach(element => {
       if (element.name === props.show) {
         setLink1(element.slug);
@@ -59,7 +75,7 @@ function Compare(props) {
     return null;
   }
 
-  function Details2(props) {
+  function Details2(props: { set: CompareTypes['tours']; show: string }) {
     props.set.forEach(element => {
       if (element.name === props.show) {
         setLink2(element.slug);
@@ -114,6 +130,15 @@ function Compare(props) {
   const [fitness1, setFitness1] = useState('fitness');
   const [fitness2, setFitness2] = useState('fitness');
 
+  /* const time1 = PaddleTime({
+    start: start1 || tours[0].start,
+    finish: finish1 || tours[0].finish
+  });
+  const time2 = PaddleTime({
+    start: start2 || tours[1].start,
+    finish: finish2 || tours[1].finish
+  }); */
+
   return (
     <>
       <div className='comparesheet'>
@@ -148,13 +173,14 @@ function Compare(props) {
           </h2>
           <Details1 show={tour1} set={props.tours} />
           <h4 className='grid__one--sport capitalize'>{sport1}</h4>
-          <div className='grid__one--time'>
-            <Time
+          {/* // TODO: removing the paddle time until we sort it on TCK first */}
+          {/* <div className='grid__one--time'>
+            <PaddleTime
               duration={duration1}
               start={start1}
               finish={finish1}
             />
-          </div>
+          </div> */}
           <p className='grid__one--fitness capitalize'>{fitness1}
             <span className='show-below__vulture'>&nbsp;fitness</span>
           </p>
@@ -190,13 +216,13 @@ function Compare(props) {
             </Link></h2>
           <Details2 show={tour2} set={props.tours} />
           <h4 className='grid__two--sport capitalize'>{sport2}</h4>
-          <div className='grid__two--time'>
-            <Time
+          {/* <div className='grid__two--time'>
+            <PaddleTime
               duration={duration2}
               start={start2}
               finish={finish2}
             />
-          </div>
+          </div> */}
           <p className='grid__two--fitness capitalize'>{fitness2}<span className='show-below__vulture'>&nbsp;fitness</span></p>
           <p className='grid__two--location'><span className='show-below__vulture'>Starts at&nbsp;</span>South Lake Tahoe</p>
           <p className='grid__two--about'>{excerpt2}</p>

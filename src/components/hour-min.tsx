@@ -7,13 +7,13 @@ const HourMin = ({ time }: HourMinTypes) => {
   if (time) {
     let hours = time.split(':')[0];
     const mins = time.split(':')[1];
-    const ampm = hours >= 12 ? 'pm' : 'am';
+    const ampm = parseInt(hours) >= 12 ? 'pm' : 'am';
 
-    if (hours < 10) {
+    if (parseInt(hours) < 10) {
       hours = hours.replace('0', '');
     } else if
-      (hours > 12) {
-      hours = hours - 12;
+      (parseInt(hours) > 12) {
+      hours = (parseInt(hours) - 12).toString();
     }
 
     return (

@@ -3,11 +3,11 @@
 import * as React from "react"
 
 import { graphql, useStaticQuery } from "gatsby"
-import { PaddleComposition, type GatsbyImageType } from "@rileybathurst/paddle";
+import { PaddleComposition, type PaddleGatsbyImageType } from "@rileybathurst/paddle";
 
 type compositionTypes = {
   sport?: string;
-  image?: GatsbyImageType;
+  image?: PaddleGatsbyImageType;
 }
 const Composition = ({ sport, image }: compositionTypes) => {
 
