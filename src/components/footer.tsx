@@ -2,13 +2,13 @@ import * as React from "react"
 import { Link, useStaticQuery, graphql } from "gatsby"
 
 // Paddle
-import { PaddleLocationDeck } from "@rileybathurst/paddle";
-import { PaddleSocials } from "@rileybathurst/paddle";
+import { PaddleLocationDeck, PaddleSocials } from "@rileybathurst/paddle";
 
-import MenuList from "./menu-list";
+import { MenuList } from "./menu-list";
 import Logo from "../images/logo";
 import Phone from "./phone";
 import PricingChart from "./pricing-chart";
+import BookNow from "./peek/book-now";
 
 const Footer = () => {
 
@@ -83,9 +83,20 @@ const Footer = () => {
         <p>&copy; {new Date().getFullYear()}</p>
         </div>
         <hr />
-        <nav>
-          <MenuList />
-        </nav>
+        <nav className="nav" aria-label="Footer navigation">
+            {/* // * is always open  */}
+            <ul className="menu-list is-open">
+              {MenuList.map((item) => (
+                  <li key={item.href}>
+                    <a href={item.href}>{item.label}</a>
+                  </li>
+                )
+              )}
+              <li key='book-now'>
+                <BookNow />
+              </li>
+            </ul>
+          </nav>
         <hr />
         <div className="footer__contact">
           <Phone />

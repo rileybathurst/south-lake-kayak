@@ -244,7 +244,7 @@ const IndexPage = () => {
 
       </main>
 
-      <section id="tours" className="pelican water">
+      <section id="tours" className="pelican">
         <h3><Link to="/tours">Tours</Link></h3>
 
         <div className="react-markdown">
@@ -292,7 +292,7 @@ const IndexPage = () => {
       </section> */}
 
       {/* // * specifically using a single here */}
-      <section className="aurora denali-padding-block">
+      <section className="panel denali-padding-block">
         {/* <hr className="pelican" /> */}
         <ul className='pelican aconcagua-margin-block-end'>
           <PaddleTestimonial {...data.strapiTestimonial} />
