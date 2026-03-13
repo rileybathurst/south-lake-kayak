@@ -20,7 +20,7 @@
   "dependencies": {
     "@fontsource/barlow": "^5.2.6",
     "@fontsource/barlow-condensed": "^5.2.5",
-    "@rileybathurst/paddle": "^1.9.7",
+    "@rileybathurst/paddle": "^1.9.26",
     "gatsby": "^5.14.4",
     "gatsby-plugin-csp": "^1.1.4",
     "gatsby-plugin-image": "^3.14.0",

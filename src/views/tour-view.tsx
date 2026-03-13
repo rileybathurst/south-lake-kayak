@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Link, graphql } from "gatsby";
 import { PaddleTime, PaddleTicket, PaddleFeaturedSort, 
-  type PaddleTicketTypes, type PaddleLocationCardTypes, type PaddleGatsbyImageType, PaddleMoonlightDatesTimes } from "@rileybathurst/paddle";
+  type PaddleTicketTypes, type PaddleLocationTypes, type PaddleGatsbyImageType, PaddleMoonlightDatesTimes } from "@rileybathurst/paddle";
 
 import { SEO } from "../components/seo";
 import Markdown from "react-markdown";
@@ -57,7 +57,7 @@ interface TourViewTypes {
     }
 
     allStrapiLocation: {
-      nodes: PaddleLocationCardTypes[];
+      nodes: PaddleLocationTypes[];
     };
 
     strapiBranch: {

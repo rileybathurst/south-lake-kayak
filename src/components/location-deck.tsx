@@ -1,10 +1,10 @@
 import * as React from "react";
-import { type PaddleLocationCardTypes, PaddleLocationDeck } from "@rileybathurst/paddle";
+import { type PaddleLocationTypes, PaddleLocationDeck } from "@rileybathurst/paddle";
 import { graphql, useStaticQuery } from "gatsby";
 
 type locationDeckTypes = {
   allStrapiLocation: {
-    nodes: PaddleLocationCardTypes[];
+    nodes: PaddleLocationTypes[];
   };
 };
 const LocationDeck = ({ allStrapiLocation }: locationDeckTypes) => {
