@@ -1,6 +1,6 @@
 import * as React from "react"
 import { graphql, useStaticQuery } from "gatsby"
-import { PaddleTicket, type PaddleTicketTypes } from "@rileybathurst/paddle";
+import { PaddleCard, type PaddleTicketTypes } from "@rileybathurst/paddle";
 
 const Ticket = (tour: PaddleTicketTypes) => {
 
@@ -14,7 +14,7 @@ const Ticket = (tour: PaddleTicketTypes) => {
   `);
 
   return (
-    <PaddleTicket
+    <PaddleCard
       key={tour.id}
       {...tour}
       peek={strapiBranch.peek_tours}

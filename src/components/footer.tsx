@@ -1,7 +1,6 @@
 import * as React from "react"
 import { Link, useStaticQuery, graphql } from "gatsby"
 
-// Paddle
 import { PaddleLocationDeck, PaddleSocials } from "@rileybathurst/paddle";
 
 import { MenuList } from "./menu-list";
@@ -9,6 +8,7 @@ import Logo from "../images/logo";
 import Phone from "./phone";
 import PricingChart from "./pricing-chart";
 import BookNow from "./peek/book-now";
+import Locales from "./locales";
 
 const Footer = () => {
 
@@ -75,28 +75,28 @@ const Footer = () => {
     <footer>
       <section>
         <div className="logo-container logo-container_footer">
-        <h3 className='sr-only'>
-          <Link to="/">{data.strapiBranch.name}</Link>
-        </h3>
-        
-        <Link to="/" className="logo-link"><Logo /></Link>
-        <p>&copy; {new Date().getFullYear()}</p>
+          <h3 className='sr-only'>
+            <Link to="/">{data.strapiBranch.name}</Link>
+          </h3>
+
+          <Link to="/" className="logo-link"><Logo /></Link>
+          <p>&copy; {new Date().getFullYear()}</p>
         </div>
         <hr />
         <nav className="nav" aria-label="Footer navigation">
-            {/* // * is always open  */}
-            <ul className="menu-list is-open">
-              {MenuList.map((item) => (
-                  <li key={item.href}>
-                    <a href={item.href}>{item.label}</a>
-                  </li>
-                )
-              )}
-              <li key='book-now'>
-                <BookNow />
+          {/* // * is always open  */}
+          <ul className="menu-list is-open">
+            {MenuList.map((item) => (
+              <li key={item.href}>
+                <a href={item.href}>{item.label}</a>
               </li>
-            </ul>
-          </nav>
+            )
+            )}
+            <li key='book-now'>
+              <BookNow />
+            </li>
+          </ul>
+        </nav>
         <hr />
         <div className="footer__contact">
           <Phone />
@@ -134,11 +134,8 @@ const Footer = () => {
         <PricingChart />
         <hr />
 
-        <PaddleLocationDeck
-          background={false}
-          season_start={data.strapiBranch.season_start}
-          season_end={data.strapiBranch.season_end}
-          {...data.allStrapiLocation}
+        <Locales
+          all={true}
         />
       </section>
 

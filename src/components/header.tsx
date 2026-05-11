@@ -35,22 +35,23 @@ const Header = () => {
       <div className="logo-container" >
         <Link
           to="/"
-          className="link__subtle"
         >
           <Logo />
         </Link>
         <h1 className='sr-only'>
-          <Link to="/" className="link__subtle">
+          <Link to="/">
             {data.strapiBranch.name} Kayak &amp; Paddleboard
           </Link>
         </h1>
       </div>
 
+      <hr />
       <PaddleMenu
         menu_items={MenuList}
         peek_base={data.strapiBranch.peek_base}
         strapiBranchName={data.strapiBranch.name}
       />
+      <hr />
 
     </header >
   )

@@ -9,8 +9,9 @@ import Header from "../components/header"
 import Footer from "../components/footer"
 import PricingChart from "../components/pricing-chart"
 import WaterTexture from "../images/watertexture";
-import { PaddleLocationDeck, PaddleTestimonial, PaddleTicket, PaddleFeaturedSort, type PaddleTicketTypes } from "@rileybathurst/paddle";
+import { PaddleTestimonial, PaddleCard, PaddleFeaturedSort, type PaddleTicketTypes } from "@rileybathurst/paddle";
 import Ticket from "../components/ticket";
+import Locales from "../components/locales";
 
 // ? 1.0.3 should find this?
 // import { PaddleBrandList } from "@rileybathurst/paddle";
@@ -18,70 +19,16 @@ import Ticket from "../components/ticket";
 
 const IndexPage = () => {
 
+  // ! fragment queries
   const data = useStaticQuery(graphql`
     query IndexQuery {
-
-      allStrapiLocation(
-        filter: {
-          branch: {slug: {eq: "south-tahoe"}}
-        },
-        sort: {order: ASC}
-      ) {
-        nodes {
-          id
-          name
-          link
-          svg
-          opening_time
-          closing_time
-
-          streetAddress
-          addressLocality
-          addressRegion
-          postalCode
-          commonName
-
-          description {
-            data {
-              description
-            }
-          }
-          
-          branch {
-            season_start(formatString: "MMMM DD, YYYY")
-            season_end(formatString: "MMMM DD, YYYY")
-          }
-        }
-      }
-
+      
       allStrapiTour(
-        sort: {featured: ASC},
+        sort: {order: ASC},
         filter: {branch: {slug: {eq: "south-tahoe"}}}
         ) {
         nodes {
-          id
-          name
-          slug
-          price
-          peek
-          excerpt
-          start
-          finish
-          duration
-          timeframe
-          fitness
-          sport
-
-          ogimage {
-            localFile {
-              childImageSharp {
-                gatsbyImageData
-              }
-            }
-            alternativeText
-          }
-
-          featured
+          ...CardTourFragment
         }
       }
 
@@ -103,6 +50,7 @@ const IndexPage = () => {
 
       southLake: strapiBranch(slug: {eq: "south-tahoe"}) {
         name
+        peek_base
         peek_rentals
         peek_tours
         about {
@@ -142,11 +90,11 @@ const IndexPage = () => {
       }
 
       strapiTestimonial(branch: {slug: {eq: "south-tahoe"}}) {
-          id
-          testimonial
-          customer
-          sign
-          location
+        id
+        testimonial
+        customer
+        sign
+        location
       }
 
       allStrapiBrand {
@@ -168,6 +116,7 @@ const IndexPage = () => {
     }
   `)
 
+  // ! old version I thnk can remove this and the maybe the PaddleFeaturedSort
   const sortedTourNodes = data.allStrapiTour.nodes;
   PaddleFeaturedSort(sortedTourNodes);
 
@@ -184,13 +133,8 @@ const IndexPage = () => {
               </div>
             </div>
 
-            <PaddleLocationDeck
-              background={false}
-              season_start={data.southLake.season_start}
-              season_end={data.southLake.season_end}
-              phone={data.southLake.phone}
-
-              {...data.allStrapiLocation}
+            <Locales
+              all={true}
             />
 
             {/* // TODO move to component */}
@@ -255,11 +199,17 @@ const IndexPage = () => {
         </h4>
       </section>
 
-      <div className="flight">
+      <div className="deck">
         {data.allStrapiTour.nodes.map((tour: PaddleTicketTypes) => (
-          <Ticket
+          <PaddleCard
             key={tour.id}
             {...tour}
+            link={`/tours/${tour.slug}`}
+            paddleBookNow={{
+              peek_base: data.southLake.peek_base,
+              strapiBranchName: data.southLake.name,
+              specificLink: tour.peek,
+            }}
           />
         ))}
       </div>

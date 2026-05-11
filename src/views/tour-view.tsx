@@ -1,7 +1,9 @@
 import * as React from "react";
 import { Link, graphql } from "gatsby";
-import { PaddleTime, PaddleTicket, PaddleFeaturedSort, 
-  type PaddleTicketTypes, type PaddleLocationTypes, type PaddleGatsbyImageType, PaddleMoonlightDatesTimes } from "@rileybathurst/paddle";
+import {
+  PaddleTime, PaddleCard, PaddleFeaturedSort,
+  type PaddleTicketTypes, type PaddleLocationTypes, type PaddleGatsbyImageType, PaddleMoonlightDatesTimes
+} from "@rileybathurst/paddle";
 
 import { SEO } from "../components/seo";
 import Markdown from "react-markdown";
@@ -132,32 +134,10 @@ export const data = graphql`
           slug: {nin: [$slug] },
           branch: {slug: {eq: "south-tahoe"}}
           },
-        sort: {featured: ASC},
+        sort: {order: ASC},
       ) {
       nodes {
-        id
-        name
-        slug
-        price
-        peek
-        excerpt
-        start
-        finish
-        duration
-        timeframe
-        fitness
-        sport
-
-        ogimage {
-          localFile {
-            childImageSharp {
-              gatsbyImageData
-            }
-          }
-          alternativeText
-        }
-
-        featured
+        ...CardTourFragment
       }
     }
 
@@ -234,7 +214,7 @@ const TourView = ({ data }: TourViewTypes) => {
             fitness={data.strapiTour.fitness}
             experience={data.strapiTour.experience}
             price={data.strapiTour.price}
-            // time={time}
+          // time={time}
           />
 
           <div className="react-markdown single__description">
@@ -244,10 +224,10 @@ const TourView = ({ data }: TourViewTypes) => {
           </div>
 
           {data.strapiTour.slug === "full-moon" ? (
-          <PaddleMoonlightDatesTimes
-            nodes={data.allStrapiMoonlightTourDateTime.nodes}
-          />
-          ): null}
+            <PaddleMoonlightDatesTimes
+              nodes={data.allStrapiMoonlightTourDateTime.nodes}
+            />
+          ) : null}
 
         </div>
 
@@ -278,7 +258,7 @@ const TourView = ({ data }: TourViewTypes) => {
 
       <section className="flight">
         {sortedTourNodes.map((tour: PaddleTicketTypes) =>
-          <PaddleTicket
+          <PaddleCard
             key={tour.id}
             {...tour}
             tour_page="tours"

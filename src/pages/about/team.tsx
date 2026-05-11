@@ -68,6 +68,7 @@ const TeamPage = () => {
         <p>Meet the team at {data.strapiBranch.name} Kayak & Paddleboard</p>
         <hr />
 
+{/* // ! this is supposed to be a card */}
         {data.allStrapiTeam.nodes.map((team: teamTypes) => (
           <section key={team.id}>
             {/* // TODO: stylize the iamge in Paddle */}

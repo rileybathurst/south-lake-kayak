@@ -20,32 +20,10 @@ const ToursPage = () => {
           sport: { eq: "kayak" },
           branch: {slug: {eq: "south-tahoe"}},
         },
-        sort: {featured: ASC})
-      {
+        sort: {order: ASC}
+      ) {
         nodes {
-          id
-          name
-          slug
-          price
-          peek
-          excerpt
-          start
-          finish
-          duration
-          timeframe
-          fitness
-          sport
-
-          ogimage {
-            localFile {
-              childImageSharp {
-                gatsbyImageData
-              }
-            }
-            alternativeText
-          }
-
-          featured
+          ...CardTourFragment
         }
       }
   
@@ -54,86 +32,21 @@ const ToursPage = () => {
           sport: { eq: "sup" },
           branch: {slug: {eq: "south-tahoe"}}
         },
-        sort: {featured: ASC}
+        sort: {order: ASC}
         )
       {
         nodes {
-          id
-          name
-          slug
-          price
-          peek
-          excerpt
-          start
-          finish
-          duration
-          timeframe
-          fitness
-          sport
-
-          ogimage {
-            localFile {
-              childImageSharp {
-                gatsbyImageData
-              }
-            }
-            alternativeText
-          }
-
-          featured
+          ...CardTourFragment
         }
       }
 
-      strapiExperience: strapiExperience {
+      strapiExperience {
         text {
           data {
             text
           }
         }
       }
-
-      allStrapiLocation: allStrapiLocation(
-        filter: {
-          name: {in: ["On Water Rental", "Parking"]}
-          branch: {slug: {eq: "south-tahoe"}}
-        }
-      ) {
-        nodes {
-          id
-          name
-          link
-          svg
-          opening_time
-          closing_time
-
-          streetAddress
-          addressLocality
-          addressRegion
-          postalCode
-          commonName
-
-          description {
-            data {
-              description
-            }
-          }
-          
-          branch {
-            season_start(formatString: "MMMM DD, YYYY")
-            season_end(formatString: "MMMM DD, YYYY")
-          }
-        }
-      }
-
-      strapiBranch(slug: {eq: "south-tahoe"}) {
-        peek_tours
-        name
-        season_start
-        season_end
-      }
-
-      
-
     }
   `)
 

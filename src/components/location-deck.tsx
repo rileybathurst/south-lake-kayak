@@ -10,7 +10,7 @@ type locationDeckTypes = {
 const LocationDeck = ({ allStrapiLocation }: locationDeckTypes) => {
 
   const { strapiBranch } = useStaticQuery(graphql`
-    query locationDeckQuery {
+    query LocationDeckBranchQuery {
       strapiBranch(slug: {eq: "south-tahoe"}) {
         name
         season_start

@@ -4,8 +4,7 @@ import { SEO } from "../components/seo";
 import Markdown from "react-markdown";
 import Header from "../components/header";
 import Footer from "../components/footer";
-
-import Composition from "../components/composition";
+import Hero from "../components/hero";
 
 const AboutPage = () => {
 
@@ -26,30 +25,23 @@ const AboutPage = () => {
   return (
     <>
       <Header />
-      <main className="albatross wrap">
-        <div>
-          <div className="condor">
-            <h1>About Us</h1>
-            <div className="react-markdown">
-              <Markdown>{strapiBranch.about.data.about}</Markdown>
-            </div>
-            <ul>
-              <li key="faq"><Link to="/about/faq">Frequently Asked Questions</Link></li>
-              <li key="info"><Link to="/about/information">Paddlesports Information</Link></li>
-              <li key="policies"><Link to="/about/policies">Store Policies</Link></li>
-              <li key="testimonials"><Link to="/about/testimonials">Testimonials</Link></li>
-              <li key="team"><Link to="/about/team">Team</Link></li>
-              <li key="jobs"><Link to="/about/jobs">Jobs</Link></li>
-              <li key="protect"><Link to="/about/protect">Protect Lake Tahoe</Link></li>
-            </ul>
-          </div>
-        </div>
 
-        <div>
-          <div className="condor">
-            <Composition />
-          </div>
+      <Hero />
+
+      <main>
+        <h1>About Us</h1>
+        <div className="react-markdown">
+          <Markdown>{strapiBranch.about.data.about}</Markdown>
         </div>
+        <ul>
+          <li key="faq"><Link to="/about/faq">Frequently Asked Questions</Link></li>
+          <li key="info"><Link to="/about/information">Paddlesports Information</Link></li>
+          <li key="policies"><Link to="/about/policies">Store Policies</Link></li>
+          <li key="testimonials"><Link to="/about/testimonials">Testimonials</Link></li>
+          <li key="team"><Link to="/about/team">Team</Link></li>
+          <li key="jobs"><Link to="/about/jobs">Jobs</Link></li>
+          <li key="protect"><Link to="/about/protect">Protect Lake Tahoe</Link></li>
+        </ul>
       </main>
       <Footer />
     </>

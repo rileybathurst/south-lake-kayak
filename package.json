@@ -15,12 +15,13 @@
     "serve": "gatsby serve",
     "clean": "gatsby clean",
     "typecheck": "tsc --noEmit",
-    "linkcheck": "blc https://southtahoekayak.com -ro"
+    "linkcheck": "blc https://southtahoekayak.com -ro",
+    "stay-gold": "stay-gold"
   },
   "dependencies": {
     "@fontsource/barlow": "^5.2.6",
     "@fontsource/barlow-condensed": "^5.2.5",
-    "@rileybathurst/paddle": "^1.9.27",
+    "@rileybathurst/paddle": "^1.10.13",
     "gatsby": "^5.14.4",
     "gatsby-plugin-csp": "^1.1.4",
     "gatsby-plugin-image": "^3.14.0",
@@ -39,7 +40,8 @@
     "react-aria-components": "^1.10.1",
     "react-dom": "^18.3.1",
     "react-leaflet": "^4.2.1",
-    "react-markdown": "^10.1.0"
+    "react-markdown": "^10.1.0",
+        "stay-gold": "^1.1.9"
   },
   "devDependencies": {
     "@biomejs/biome": "2.0.2",

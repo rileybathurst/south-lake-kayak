@@ -248,11 +248,12 @@ function Compare(props: CompareTypes) {
 
 const ComparePage = () => {
 
+  // ? how close to the card tour fragment can I use on this?
   const { allStrapiTour } = useStaticQuery(graphql`
     query TourCompareQuery {
       allStrapiTour(
         filter: {branch: {slug: {eq: "south-tahoe"}}}
-        sort: {featured: ASC}
+        sort: {order: ASC}
         ) {
         nodes {
           id
@@ -272,6 +273,7 @@ const ComparePage = () => {
   }
 `)
 
+  // ! remove the sort and do what index is
   const sortedTourNodes = allStrapiTour.nodes;
   PaddleFeaturedSort(sortedTourNodes);
 
