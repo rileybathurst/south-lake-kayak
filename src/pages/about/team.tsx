@@ -5,8 +5,9 @@ import { GatsbyImage, type IGatsbyImageData } from 'gatsby-plugin-image';
 import { SEO } from "../../components/seo"
 import Header from "../../components/header"
 import Footer from "../../components/footer"
-import ReactMarkdown from "react-markdown"
 import { Breadcrumbs, Breadcrumb } from 'react-aria-components'
+
+import { PaddleCard, type PaddleCardTypes } from "@rileybathurst/paddle";
 
 const TeamPage = () => {
 
@@ -15,15 +16,11 @@ const TeamPage = () => {
       allStrapiTeam(filter: {branches: {elemMatch: {slug: {eq: "south-tahoe"}}}}) {
         nodes {
           id
-          name
-          slug
-          bio {
-            data {
-              bio
-            }
-          }
+          title: name
+          link: slug
+          excerpt
 
-          profile {
+          image: profile {
             localFile {
               childImageSharp {
                 gatsbyImageData
@@ -68,28 +65,18 @@ const TeamPage = () => {
         <p>Meet the team at {data.strapiBranch.name} Kayak & Paddleboard</p>
         <hr />
 
-{/* // ! this is supposed to be a card */}
-        {data.allStrapiTeam.nodes.map((team: teamTypes) => (
-          <section key={team.id}>
-            {/* // TODO: stylize the iamge in Paddle */}
-            {team.profile ? <Link to={team.slug}>
-              <GatsbyImage
-                image={team.profile.localFile.childImageSharp.gatsbyImageData}
-                alt={team.profile.alternativeText}
-                className="img__wrapped"
-              />
-            </Link> : null}
-            <h2>
-              <Link to={team.slug}>
-                {team.name}
-              </Link>
-            </h2>
-            {/* // TODO: reviews about person */}
-            {team.bio ? <div className="react-markdown"><ReactMarkdown>{team.bio.data.bio}</ReactMarkdown></div> : null}
-            <hr />
-          </section >
-
-        ))}
+        <section className="deck">
+          {data.allStrapiTeam.nodes.map((team: PaddleCardTypes) => (
+            <PaddleCard
+              id={team.id}
+              key={team.id}
+              title={team.title}
+              link={`/about/team/${team.link}`}
+              image={team.image}
+              excerpt={team.excerpt}
+            />
+          ))}
+        </section>
 
       </main>
       <Breadcrumbs>

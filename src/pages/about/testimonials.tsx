@@ -14,11 +14,7 @@ const FaqPage = () => {
     query TestimonialsQuery {
       allStrapiTestimonial(filter: {branch: {slug: {eq: "south-tahoe"}}}) {
         nodes {
-          id
-          testimonial
-          customer
-          sign
-          location
+          ...TestimonialFragment
         }
       }
     }

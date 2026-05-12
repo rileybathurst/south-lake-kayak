@@ -2,14 +2,17 @@ import * as React from "react"
 import { Link, useStaticQuery, graphql } from 'gatsby';
 
 // Paddle
-import { PaddleLocationDeck, PaddleFeaturedSort, type PaddleTicketTypes } from "@rileybathurst/paddle";
+import { PaddleFeaturedSort, PaddleCard } from "@rileybathurst/paddle";
 
 import { SEO } from "../components/seo"
 import Markdown from "react-markdown";
 import Header from "../components/header"
 import Footer from "../components/footer"
 import Sport from "../components/sport";
-import Ticket from "../components/ticket";
+import Hero from "../components/hero";
+import BookNow from "../components/book-now";
+import Locales from "../components/locales";
+import type { TourCardTypes } from "../types/tour-card-types";
 
 const ToursPage = () => {
 
@@ -24,10 +27,11 @@ const ToursPage = () => {
       ) {
         nodes {
           ...CardTourFragment
+          sport
         }
       }
   
-      sup: allStrapiTour(
+      paddleboard: allStrapiTour(
         filter: {
           sport: { eq: "sup" },
           branch: {slug: {eq: "south-tahoe"}}
@@ -37,6 +41,7 @@ const ToursPage = () => {
       {
         nodes {
           ...CardTourFragment
+          sport
         }
       }
 
@@ -47,102 +52,85 @@ const ToursPage = () => {
           }
         }
       }
+
+      strapiBranch(slug: {eq: "south-tahoe"}) {
+        ...BookNowFragment
+      }
     }
   `)
 
-  /* // TODO: is this the same in south lake?
-  allStrapiSunsetTourTime {
-          nodes {
-        startDate
-        endDate
-        startTime
-        endTime
-      }
-    } */
-
-  // TODO: rename sup
-  const sortedKayakTourNodes = query.kayak.nodes;
-  PaddleFeaturedSort(sortedKayakTourNodes);
-
-  const sortedSupTourNodes = query.sup.nodes;
-  PaddleFeaturedSort(sortedSupTourNodes);
-
   const sports = [
-    sortedKayakTourNodes,
-    sortedSupTourNodes,
+    query.kayak.nodes,
+    query.paddleboard.nodes,
   ]
+
+  console.log(sports)
 
   return (
     <>
       <Header />
 
-      <div className="pelican wrap">
-        <main className="condor">
-          <h1>Tours</h1>
-          <div className="react-markdown">
-            <Markdown>
-              {query.strapiExperience.text.data.text}
-            </Markdown>
-          </div>
-          <h2>
-            <Link to="/tours/compare">Compare Tours</Link>
-          </h2>
+      <Hero
+        overlay={<Locales
+          water={true}
+          parking={true}
+        />}
+      />
 
-          {/* // TODO: Book now component */}
-          <a
-            href={query.strapiBranch.peek_tours}
-            rel="noopener noreferrer"
-            className="book-now"
-            title={`Book tours now with ${query.strapiBranch.name} kayak and paddleboard`}
-          >
-            BOOK TOURS NOW
-          </a>
+      <main>
+        <h1>Tours</h1>
+        <div className="react-markdown">
+          <Markdown>
+            {query.strapiExperience.text.data.text}
+          </Markdown>
+        </div>
+        <h2>
+          <Link to="/tours/compare">Compare Tours</Link>
+        </h2>
 
-          <hr />
-        </main>
+        <BookNow />
 
-        <section className="pelican">
-          <PaddleLocationDeck
-            background={false}
-            season_start={query.strapiBranch.season_start}
-            season_end={query.strapiBranch.season_end}
-            {...query.allStrapiLocation}
-          />
-        </section>
-      </div>
+        <hr />
+      </main>
 
       {sports.map((sport) => (
         <section key={sport[0].id}>
-          <hgroup className="pelican">
+          <hgroup className="condor">
             <h2 className="capitalize">
               <Sport sport={sport[0].sport} />
             </h2>
-            <p className="aconcagua">Tours &amp; Lessions</p>
+            <p className="aconcagua font-serif">Tours &amp; Lessions</p>
           </hgroup>
 
-          <div className="flight">
-            {sport.map((tour: PaddleTicketTypes) => (
-              <Ticket
+          <div className="deck">
+            {sport.map((tour: TourCardTypes) => (
+              <PaddleCard
                 key={tour.id}
                 {...tour}
+                link={`/tours/${tour.link}`}
+                paddleBookNow={{
+                  peek_base: query.strapiBranch.peek_base,
+                  strapiBranchName: query.strapiBranch.name,
+                  specificLink: tour.peek,
+                }}
               />
             ))}
           </div>
         </section>
       ))}
 
-      < Footer />
+      <Footer topHR />
     </>
   )
 }
 
 export default ToursPage
 
-// TODO: strapi description
 export const Head = () => {
   return (
     <SEO
       title='Tours'
+      // TODO: strapi description
       description="We have many different Kayak and Paddle board Tours to offer. From beginner to advanced, we have a tour for you. Book your tour today!"
     />
   )

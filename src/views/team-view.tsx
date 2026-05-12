@@ -5,12 +5,15 @@ import Footer from "../components/footer";
 import ReactMarkdown from "react-markdown";
 import { GatsbyImage } from "gatsby-plugin-image";
 import { Breadcrumbs, Breadcrumb } from 'react-aria-components';
+import { SEO } from "../components/seo";
+import Hero from "../components/hero";
 
 type TeamViewTypes = {
   data: {
     strapiTeam: {
       id: string;
       name: string;
+      slug: string;
       bio: {
         data: {
           bio: string;
@@ -36,6 +39,7 @@ export const data = graphql`
     ) {
       id
       name
+      slug
       bio {
         data {
           bio
@@ -59,12 +63,11 @@ const TeamView = ({ data }: TeamViewTypes) => {
     <>
       <Header />
 
+      <Hero
+        image={data.strapiTeam.profile}
+      />
+
       <main className="condor">
-        {data.strapiTeam.profile ? <GatsbyImage
-          image={data.strapiTeam.profile.localFile.childImageSharp.gatsbyImageData}
-          alt={data.strapiTeam.profile.alternativeText}
-          className="img__wrapped"
-        /> : null}
 
         <h1>{data.strapiTeam.name}</h1>
         {data.strapiTeam.bio ? <div className='react-markdown'><ReactMarkdown>{data.strapiTeam.bio.data.bio}</ReactMarkdown></div> : null}
@@ -81,3 +84,17 @@ const TeamView = ({ data }: TeamViewTypes) => {
 };
 
 export default TeamView;
+
+export const Head = ({ data }: TeamViewTypes) => {
+  return (
+    <SEO
+      title={data.strapiTeam.name}
+      // description="We have many different Kayak Tours to offer, as well as Stand Up Paddleboard Lessons. Our tours leave from multiple locations around the lake."
+      breadcrumbs={[
+        { name: 'About', item: 'about' },
+        { name: 'Team', item: 'about/team' },
+        { name: 'Team Member', item: `about/team/${data.strapiTeam.slug}` }
+      ]}
+    />
+  )
+}

@@ -1,17 +1,17 @@
 import React from "react"
 import { Link, useStaticQuery, graphql } from 'gatsby';
 
-import { GatsbyImage } from "gatsby-plugin-image"
 import { SEO } from "../components/seo";
 import Markdown from "react-markdown";
 
 import Header from "../components/header"
 import Footer from "../components/footer"
 import PricingChart from "../components/pricing-chart"
-import WaterTexture from "../images/watertexture";
-import { PaddleTestimonial, PaddleCard, PaddleFeaturedSort, type PaddleTicketTypes } from "@rileybathurst/paddle";
-import Ticket from "../components/ticket";
+import { PaddleTestimonial, PaddleCard } from "@rileybathurst/paddle";
 import Locales from "../components/locales";
+import Hero from "../components/hero";
+import { TourCardTypes } from "../types/tour-card-types";
+import BookNow from "../components/book-now";
 
 // ? 1.0.3 should find this?
 // import { PaddleBrandList } from "@rileybathurst/paddle";
@@ -19,7 +19,6 @@ import Locales from "../components/locales";
 
 const IndexPage = () => {
 
-  // ! fragment queries
   const data = useStaticQuery(graphql`
     query IndexQuery {
       
@@ -49,8 +48,7 @@ const IndexPage = () => {
       }
 
       southLake: strapiBranch(slug: {eq: "south-tahoe"}) {
-        name
-        peek_base
+        ...BookNowFragment
         peek_rentals
         peek_tours
         about {
@@ -67,129 +65,53 @@ const IndexPage = () => {
         url
       }
 
-      southlakefriends: strapiImagegrab(title: {eq: "south-lake-friends"}) {
-        title
-        image {
-          localFile {
-            childImageSharp {
-              gatsbyImageData
-            }
-          }
-        }
-      }
-
-      goldshed: strapiImagegrab(title: {eq: "gold-shed"}) {
-        title
-        image {
-          localFile {
-            childImageSharp {
-              gatsbyImageData
-            }
-          }
-        }
-      }
-
       strapiTestimonial(branch: {slug: {eq: "south-tahoe"}}) {
-        id
-        testimonial
-        customer
-        sign
-        location
+        ...TestimonialFragment
       }
 
       allStrapiBrand {
         nodes {
-          id
-          name
-          slug
-          svg
-          retail {
-            title
-            slug
-            sport {
-              slug
-            }
-          }
+          ...BrandListFragment
         }
       }
 
     }
   `)
 
-  // ! old version I thnk can remove this and the maybe the PaddleFeaturedSort
-  const sortedTourNodes = data.allStrapiTour.nodes;
-  PaddleFeaturedSort(sortedTourNodes);
-
   return (
-    <>
+    <React.Fragment>
       <Header />
-      <main className="albatross wrap home">
-        <div>
-          <section className="pelican">
+      <main className="albatross">
 
-            <div className="margin-block-end-aconcagua">
-              <div className="react-markdown">
-                <Markdown>{data.southLake.about.data.about}</Markdown>
-              </div>
-            </div>
+        <Hero
+          overlay={<Locales all={true} />}
+        />
 
-            <Locales
-              all={true}
-            />
+        <PricingChart />
 
-            {/* // TODO move to component */}
-            <div className="button__double">
-              <a
-                href={data.southLake.peek_rentals}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="book-now"
-                title={`book rental kayaks and paddleboards with ${data.southLake.name}`}
-              >
-                RENTALS<br />
-                BOOK NOW
-              </a>
-
-              <a
-                href={data.southLake.peek_tours}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="book-now"
-                title={`book rental kayaks and paddleboards with ${data.southLake.name}`}
-              >
-                TOURS<br />
-                BOOK NOW
-              </a>
-            </div>
-
-          </section>
+        <div className="pelican react-markdown">
+          <Markdown>{data.southLake.about.data.about}</Markdown>
         </div>
 
-        <div>
-          <section className="pelican">
-            <div className="home__photo-grid">
-              <GatsbyImage
-                image={data.southlakefriends.image.localFile.childImageSharp.gatsbyImageData}
-                alt={data.southlakefriends.title}
-                className='img__wrapped hero'
-              />
-              {/* // ? this seems like every time it would have that classname */}
-              <WaterTexture className="texture" />
-              <GatsbyImage
-                image={data.goldshed.image.localFile.childImageSharp.gatsbyImageData}
-                alt={data.southlakefriends.title}
-                className='img__wrapped inset'
-              />
-            </div>
 
-            <PricingChart />
-          </section>
+        <div className="pelican multi_button">
+          <BookNow
+            specificName="rentals"
+            specificLink={data.southLake.peek_rentals}
+          />
+
+          <BookNow
+            specificName="tours"
+            specificLink={data.southLake.peek_tours}
+          />
         </div>
 
       </main>
 
-      <section id="tours" className="pelican">
-        <h3><Link to="/tours">Tours</Link></h3>
+      <section id="tours" className="pelican panel">
+        <h3 className="font-serif">
+          <Link to="/tours">Tours</Link>
+        </h3>
 
         <div className="react-markdown">
           <Markdown>{data.strapiExperience.text.data.text}</Markdown>
@@ -199,12 +121,12 @@ const IndexPage = () => {
         </h4>
       </section>
 
-      <div className="deck">
-        {data.allStrapiTour.nodes.map((tour: PaddleTicketTypes) => (
+      <div className="deck panel">
+        {data.allStrapiTour.nodes.map((tour: TourCardTypes) => (
           <PaddleCard
             key={tour.id}
             {...tour}
-            link={`/tours/${tour.slug}`}
+            link={`/tours/${tour.link}`}
             paddleBookNow={{
               peek_base: data.southLake.peek_base,
               strapiBranchName: data.southLake.name,
@@ -216,24 +138,22 @@ const IndexPage = () => {
 
       {/* <section id="retail" className="pelican water">
         <article>
-            <h3>
-              <a
-                href={data.tahoeCity.url}
-                target="_blank"
-                rel='noopener noreferrer'
-              >
-                Retail Store
-              </a>
-            </h3>
-          </hgroup>
+          <h3>
+            <a
+              href={data.tahoeCity.url}
+              target="_blank"
+              rel='noopener noreferrer'
+            >
+              Retail Store
+            </a>
+          </h3>
 
           <div className="react-markdown">
             <Markdown>{data.strapiShop.text.data.text}</Markdown>
           </div>
-        </article> */}
+        </article>
 
-      {/* // TODO: v1.2 finish implementing */}
-      {/* <PaddleBrandList
+        <PaddleBrandList
           // * no sport throws empty results so for now we just use kayak
           sport='kayak'
           {...data.allStrapiBrand}
@@ -242,15 +162,14 @@ const IndexPage = () => {
       </section> */}
 
       {/* // * specifically using a single here */}
-      <section className="panel denali-padding-block">
-        {/* <hr className="pelican" /> */}
+      <section className="denali-padding-block">
         <ul className='pelican aconcagua-margin-block-end'>
           <PaddleTestimonial {...data.strapiTestimonial} />
         </ul>
       </section>
 
-      <Footer />
-    </>
+      <Footer topHR />
+    </React.Fragment >
   )
 }
 

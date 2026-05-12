@@ -8,26 +8,7 @@ const PricingChart = () => {
     query PricingChartQuery {
       allStrapiRentalRate(filter: {favorite: {eq: true}}) {
         nodes {
-          id
-          item
-          oneHour
-          threeHour
-          fullDay
-          pedalAdd
-
-          branches {
-            slug
-          }
-
-          retail {
-            slug
-            sport {
-              slug
-            }
-            brand {
-              slug
-            }
-          }
+          ...PricingChartFragment
         }
       }
 

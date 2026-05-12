@@ -6,9 +6,10 @@ import Markdown from "react-markdown";
 
 import Header from "../components/header";
 import Footer from "../components/footer";
-import Composition from "../components/composition";
 
-import BookNow from "../components/peek/book-now";
+import BookNow from "../components/book-now";
+import Hero from "../components/hero";
+import Locales from "../components/locales";
 
 type RentalsPageTypes = {
   data: {
@@ -33,40 +34,43 @@ const RentalsPage = ({ data }: RentalsPageTypes) => {
   return (
     <>
       <Header />
-      <main className="albatross wrap">
-        <article>
-          <div className="pelican">
-            <h1>Rentals</h1>
 
-            <div className="react-markdown">
-              <Markdown>{data.strapiBranch.rental.data.rental}</Markdown>
-            </div>
+      <Hero
+        overlay={
+          <Locales
+            water={true}
+            parking={true}
+          />
+        }
+      />
+      <main>
+        <h1>Rentals</h1>
 
+        <div className="react-markdown">
+          <Markdown>{data.strapiBranch.rental.data.rental}</Markdown>
+        </div>
 
-            <Link to="/about/faq">Frequently Asked Questions about getting out on the water</Link>
+        <p>
+          <Link to="/about/faq">Frequently Asked Questions about getting out on the water</Link>
+        </p>
 
-            {/* // * the book now button wants to get inline with the link */}
-            <br />
+        {/* // * the book now button wants to get inline with the link */}
+        <br />
 
-            <BookNow />
+        <BookNow />
 
-            {/* // TODO: where is the br? build it out in storybook */}
-            <br />
-            <h3>{data.strapiMembership.title}</h3>
-            <p>{data.strapiMembership.excerpt}</p>
-            <a href={data.strapiBranch.peek_membership}
-              target="_blank"
-              rel="noreferrer"
-              className="button"
-            >
-              JOIN NOW
-            </a>
+        {/* // TODO: where is the br? build it out in storybook */}
+        <br />
+        <h3>{data.strapiMembership.title}</h3>
+        <p>{data.strapiMembership.excerpt}</p>
 
-          </div>
-        </article>
-        <Composition />
+        <BookNow
+          specificName="Membership"
+          specificLink={data.strapiBranch.peek_membership}
+        />
+
       </main >
-      <Footer />
+      <Footer topHR />
     </>
   )
 }

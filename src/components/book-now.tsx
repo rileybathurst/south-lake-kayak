@@ -2,10 +2,11 @@ import * as React from "react"
 import { graphql, useStaticQuery } from "gatsby"
 import { PaddleBookNow } from "@rileybathurst/paddle";
 
-type BookNowTypes = {
-  specificLink?: string
+type BookNowSpecificTypes = {
+  specificName?: string;
+  specificLink?: string;
 }
-const BookNow = ({ specificLink }: BookNowTypes) => {
+const BookNow = ({ specificName, specificLink }: BookNowSpecificTypes) => {
 
   const { strapiBranch } = useStaticQuery(graphql`
     query BookNowQuery {
@@ -20,6 +21,7 @@ const BookNow = ({ specificLink }: BookNowTypes) => {
     <PaddleBookNow
       peek_base={strapiBranch.peek_base}
       strapiBranchName={strapiBranch.name}
+      specificName={specificName}
       specificLink={specificLink}
     />
   )

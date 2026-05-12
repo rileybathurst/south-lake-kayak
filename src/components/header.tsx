@@ -12,8 +12,7 @@ const Header = () => {
   const data = useStaticQuery(graphql`
     query TopBarQuery {
       strapiBranch(slug: {eq: "south-tahoe"}) {
-        name
-          peek_base
+        ...BookNowFragment
 
         topbar {
           data {

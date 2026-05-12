@@ -1,25 +1,25 @@
 import * as React from "react"
-import { Link, useStaticQuery, graphql } from "gatsby"
+import { useStaticQuery, graphql } from "gatsby"
 
-import { PaddleLocationDeck, PaddleSocials } from "@rileybathurst/paddle";
+import { PaddleFooter } from "@rileybathurst/paddle";
 
 import { MenuList } from "./menu-list";
 import Logo from "../images/logo";
-import Phone from "./phone";
-import PricingChart from "./pricing-chart";
-import BookNow from "./peek/book-now";
-import Locales from "./locales";
 
-const Footer = () => {
+const Footer = ({ topHR }: { topHR?: boolean }) => {
 
   const data = useStaticQuery(graphql`
     query FooterQuery {
       strapiBranch(slug: {eq: "south-tahoe"}) {
-        name
+        ...BookNowFragment
+        phone
         email
+        slug
+        
         instagram
         facebook
         tripadvisor
+
         season_start
         season_end
       }
@@ -38,108 +38,28 @@ const Footer = () => {
         sort: {order: ASC}
       ) {
         nodes {
-          id
-          name
-          link
-          svg
-          opening_time
-          closing_time
+          ...locationCardFragment
+        }
+      }
 
-          streetAddress
-          addressLocality
-          addressRegion
-          postalCode
-          commonName
-
-          description {
-            data {
-              description
-            }
-          }
-          
-          branch {
-            season_start(formatString: "MMMM DD, YYYY")
-            season_end(formatString: "MMMM DD, YYYY")
-          }
+      allStrapiRentalRate(filter: {favorite: {eq: true}}) {
+        nodes {
+          ...PricingChartFragment
         }
       }
     }
   `)
 
-  interface BranchTypes {
-    name: string,
-    url: string
-  }
-
   return (
-    <footer>
-      <section>
-        <div className="logo-container logo-container_footer">
-          <h3 className='sr-only'>
-            <Link to="/">{data.strapiBranch.name}</Link>
-          </h3>
-
-          <Link to="/" className="logo-link"><Logo /></Link>
-          <p>&copy; {new Date().getFullYear()}</p>
-        </div>
-        <hr />
-        <nav className="nav" aria-label="Footer navigation">
-          {/* // * is always open  */}
-          <ul className="menu-list is-open">
-            {MenuList.map((item) => (
-              <li key={item.href}>
-                <a href={item.href}>{item.label}</a>
-              </li>
-            )
-            )}
-            <li key='book-now'>
-              <BookNow />
-            </li>
-          </ul>
-        </nav>
-        <hr />
-        <div className="footer__contact">
-          <Phone />
-          <a
-            href={`mailto:${data.strapiBranch.email}`}
-            rel="norel norefferer"
-            className="button"
-          >
-            {data.strapiBranch.email}
-          </a>
-          <PaddleSocials
-            instagram={data.strapiBranch.instagram}
-            facebook={data.strapiBranch.facebook}
-            tripadvisor={data.strapiBranch.tripadvisor}
-          />
-        </div>
-        <hr />
-        <div className="footer__locations">
-          <h3>Our Partner Locations</h3>
-          <ul>
-            {data.allStrapiBranch.nodes.map((branch: BranchTypes) => (
-              <li key={branch.name}>
-                <a href={branch.url}
-                  target="_blank"
-                  rel='noopener noreferrer'
-                >
-                  {branch.name} Kayak & Paddleboard
-                </a>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </section>
-      <section>
-        <PricingChart />
-        <hr />
-
-        <Locales
-          all={true}
-        />
-      </section>
-
-    </footer >
+    <PaddleFooter
+      topHR={Boolean(topHR)}
+      strapiBranch={data.strapiBranch}
+      logo={<Logo />}
+      allStrapiBranch={data.allStrapiBranch}
+      allStrapiRentalRate={data.allStrapiRentalRate}
+      allStrapiLocation={data.allStrapiLocation}
+      MenuPlus={MenuList}
+    />
   )
 }
 

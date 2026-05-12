@@ -43,7 +43,7 @@ const AboutPage = () => {
           <li key="protect"><Link to="/about/protect">Protect Lake Tahoe</Link></li>
         </ul>
       </main>
-      <Footer />
+      <Footer topHR />
     </>
   )
 }

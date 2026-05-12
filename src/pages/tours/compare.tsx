@@ -6,276 +6,46 @@ import { Breadcrumbs, Breadcrumb } from 'react-aria-components';
 import Header from "../../components/header";
 import Footer from "../../components/footer";
 
-import { PaddleTime, PaddleFeaturedSort } from "@rileybathurst/paddle";
-import BookNow from '../../components/peek/book-now';
-
-type CompareTypes = {
-  tours: {
-    id: string;
-    fitness: string;
-    slug: string;
-    start: string;
-    sport: string;
-    peek: string;
-    price: number;
-    name: string;
-    minimum: number;
-    finish: string;
-    excerpt: string;
-    duration: string;
-    location: string;
-  }[]
-}
-function Compare(props: CompareTypes) {
-
-  function Option(props: { name: string; current?: string; other?: string; key: string }) {
-    if (props.name === props.current) {
-      return (
-        <option selected key={props.key}>{props.name}</option>
-      )
-    }
-
-    if (props.name === props.other) {
-      return (
-        <option disabled key={props.key}>{props.name}</option>
-      )
-    }
-
-    return (
-      <option key={props.key}>{props.name}</option>
-    )
-  }
-
-  function first(e: React.ChangeEvent<HTMLSelectElement>) {
-    setTour1(e.target.value);
-    return null;
-  }
-
-  function second(e: React.ChangeEvent<HTMLSelectElement>) {
-    setTour2(e.target.value);
-    return null;
-  }
-
-  function Details1(props: { set: CompareTypes['tours']; show: string }) {
-    props.set.forEach(element => {
-      if (element.name === props.show) {
-        setLink1(element.slug);
-        setSport1(element.sport);
-        setDuration1(element.duration);
-        setStart1(element.start);
-        setFinish1(element.finish);
-        setFitness1(element.fitness);
-        setLocation1(element.location);
-        setExcerpt1(element.excerpt);
-        setMinimum1(element.minimum);
-        setPrice1(element.price);
-        setPeeks1(element.peek);
-      }
-    });
-    return null;
-  }
-
-  function Details2(props: { set: CompareTypes['tours']; show: string }) {
-    props.set.forEach(element => {
-      if (element.name === props.show) {
-        setLink2(element.slug);
-        setSport2(element.sport);
-        setDuration2(element.duration);
-        setStart2(element.start);
-        setFinish2(element.finish);
-        setFitness2(element.fitness);
-        setLocation2(element.location);
-        setExcerpt2(element.excerpt);
-        setMinimum2(element.minimum);
-        setPrice2(element.price);
-        setPeeks2(element.peek);
-      }
-    });
-    return null;
-  }
-
-  const [tour1, setTour1] = useState('Discover Tour');
-  const [tour2, setTour2] = useState('Sunset Tour');
-
-  const [link1, setLink1] = useState('not set');
-  const [link2, setLink2] = useState('not set');
-
-  const [sport1, setSport1] = useState('not set');
-  const [sport2, setSport2] = useState('not set');
-
-  const [duration1, setDuration1] = useState('not set');
-  const [duration2, setDuration2] = useState('not set');
-
-  const [start1, setStart1] = useState('not set');
-  const [start2, setStart2] = useState('not set');
-
-  const [finish1, setFinish1] = useState('not set');
-  const [finish2, setFinish2] = useState('not set');
-
-  const [location1, setLocation1] = useState('not set');
-  const [location2, setLocation2] = useState('not set');
-
-  const [excerpt1, setExcerpt1] = useState('not set');
-  const [excerpt2, setExcerpt2] = useState('not set');
-
-  const [minimum1, setMinimum1] = useState(0);
-  const [minimum2, setMinimum2] = useState(0);
-
-  const [price1, setPrice1] = useState(0);
-  const [price2, setPrice2] = useState(0);
-
-  const [peeks1, setPeeks1] = useState('not set');
-  const [peeks2, setPeeks2] = useState('not set');
-
-  const [fitness1, setFitness1] = useState('fitness');
-  const [fitness2, setFitness2] = useState('fitness');
-
-  /* const time1 = PaddleTime({
-    start: start1 || tours[0].start,
-    finish: finish1 || tours[0].finish
-  });
-  const time2 = PaddleTime({
-    start: start2 || tours[1].start,
-    finish: finish2 || tours[1].finish
-  }); */
-
-  return (
-    <>
-      <div className='comparesheet'>
-        <div className='comparesheet_titles subgrid-passthrough'>
-
-          {/* // TODO: this is baseline I can remove a lot of it */}
-          <div className='grid__title--select comparesheet__transparent'>{/* stay gold */}</div>
-          <h3 className='grid__title--name h4 comparesheet_freeze'>Tour</h3>
-          <p className='grid__title--sport'>Sport</p>
-          <p className='grid__title--time'>Time</p>
-          <p className='grid__title--fitness'>Fitness</p>
-          <p className='grid__title--location'>Location</p>
-          <p className='grid__title--about'>About</p>
-          <p className='grid__title--minimum'>Minimum People</p>
-          <p className='grid__title--price'>Price</p>
-          <p className='grid__title--book button-drop'>Book Now</p>
-        </div>
-
-        {/* Tour 1 */}
-        <div className='subgrid-passthrough'>
-          {/* // ? why tour3? */}
-          <select name="tour3" id="tour1" onChange={first} className="grid__one--select comparesheet_select">
-            {props.tours.map((tour) => (
-              <Option key={tour.id} name={tour.name} current={tour1} other={tour2} />
-            ))}
-          </select>
-          <h2 className='grid__one--name h3 comparesheet__title1'>
-
-            <Link to={`/tours/${link1}`}>
-              {tour1}
-            </Link>
-          </h2>
-          <Details1 show={tour1} set={props.tours} />
-          <h4 className='grid__one--sport capitalize'>{sport1}</h4>
-          {/* // TODO: removing the paddle time until we sort it on TCK first */}
-          {/* <div className='grid__one--time'>
-            <PaddleTime
-              duration={duration1}
-              start={start1}
-              finish={finish1}
-            />
-          </div> */}
-          <p className='grid__one--fitness capitalize'>{fitness1}
-            <span className='show-below__vulture'>&nbsp;fitness</span>
-          </p>
-          <p className='grid__one--location'><span className='show-below__vulture'>Starts at&nbsp;</span>South Lake Tahoe</p>
-          <p className='grid__one--about'>{excerpt1}</p>
-          <p className='grid__one--minimum'>{minimum1}<span className='show-below__vulture'>&nbsp;people minimum</span></p>
-          <p className='grid__one--price'>${price1}</p>
-          <p className='grid__one--book'>
-            {peeks1 ?
-              <a href={peeks1}
-                rel="noopener noreferrer"
-                className="book-now"
-              >
-                BOOK NOW
-              </a>
-              :
-              <BookNow />
-            }
-          </p>
-
-        </div>
-
-        {/* Tour 2 */}
-        <div className='subgrid-passthrough'>
-          <select name="tour3" id="tour2" onChange={second} className="grid__two--select comparesheet_select">
-            {props.tours.map((tour) => (
-              <Option key={tour.id} name={tour.name} current={tour2} other={tour1} />
-            ))}
-          </select>
-          <h2 className='grid__two--name h3 comparesheet__title2'>
-            <Link to={`/tours/${link2}`}>
-              {tour2}
-            </Link></h2>
-          <Details2 show={tour2} set={props.tours} />
-          <h4 className='grid__two--sport capitalize'>{sport2}</h4>
-          {/* <div className='grid__two--time'>
-            <PaddleTime
-              duration={duration2}
-              start={start2}
-              finish={finish2}
-            />
-          </div> */}
-          <p className='grid__two--fitness capitalize'>{fitness2}<span className='show-below__vulture'>&nbsp;fitness</span></p>
-          <p className='grid__two--location'><span className='show-below__vulture'>Starts at&nbsp;</span>South Lake Tahoe</p>
-          <p className='grid__two--about'>{excerpt2}</p>
-          <p className='grid__two--minimum'>{minimum2}<span className='show-below__vulture'>&nbsp;people minimum</span></p>
-          <p className='grid__two--price'>${price2}</p>
-          <p className='grid__two--book'>
-            {peeks2 ?
-              <a href={peeks2}
-                rel="noopener noreferrer"
-                className="book-now"
-              >
-                BOOK NOW
-              </a>
-              :
-              <BookNow />
-            }
-          </p>
-        </div>
-      </div >
-    </>
-  )
-}
+import { PaddleCompare } from "@rileybathurst/paddle";
 
 const ComparePage = () => {
 
   // ? how close to the card tour fragment can I use on this?
-  const { allStrapiTour } = useStaticQuery(graphql`
+  const data = useStaticQuery(graphql`
     query TourCompareQuery {
       allStrapiTour(
-        filter: {branch: {slug: {eq: "south-tahoe"}}}
-        sort: {order: ASC}
-        ) {
-        nodes {
-          id
-          fitness
-          slug
-          start
-          sport
-          peek
-          price
-          name
-          minimum
-          finish
-          excerpt
-          duration
+      filter: {branch: {slug: {eq: "south-tahoe"}}}
+      sort: {order: ASC}
+      ) {
+      nodes {
+        id
+        fitness
+        slug
+        start
+        sport
+        peek
+        price
+        name
+        minimum
+        finish
+        excerpt
+        duration
+        ogimage {
+          localFile {
+            childImageSharp {
+              gatsbyImageData
+            }
+          }
+          alternativeText
         }
       }
+    }
+
+    strapiBranch(slug: {eq: "south-tahoe"}) {
+      ...BookNowFragment
+    }
   }
 `)
-
-  // ! remove the sort and do what index is
-  const sortedTourNodes = allStrapiTour.nodes;
-  PaddleFeaturedSort(sortedTourNodes);
 
   return (
     <>
@@ -283,12 +53,12 @@ const ComparePage = () => {
 
       <main className='pelican'>
         <h1>Compare</h1>
-        <Compare tours={sortedTourNodes} />
-
-        {/* // TODO: not ready yet
         <PaddleCompare
           tours={data.allStrapiTour.nodes}
-        /> */}
+          breadcrumb="tours-lessons"
+          strapiBranchName={data.strapiBranch.name}
+          peek_base={data.strapiBranch.peek_base}
+        />
       </main>
 
       <Breadcrumbs>

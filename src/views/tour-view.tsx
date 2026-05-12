@@ -1,19 +1,22 @@
 import * as React from "react";
 import { Link, graphql } from "gatsby";
 import {
-  PaddleTime, PaddleCard, PaddleFeaturedSort,
-  type PaddleTicketTypes, type PaddleLocationTypes, type PaddleGatsbyImageType, PaddleMoonlightDatesTimes
+  PaddleCard,
+  PaddleMoonlightDatesTimes,
+  type PaddleLocationTypes,
+  type PaddleGatsbyImageType,
 } from "@rileybathurst/paddle";
 
 import { SEO } from "../components/seo";
 import Markdown from "react-markdown";
 import Header from "../components/header"
 import Footer from "../components/footer";
-import Composition from "../components/composition";
 import { Breadcrumbs, Breadcrumb } from 'react-aria-components';
-import BookNow from "../components/peek/book-now";
+import BookNow from "../components/book-now";
 import { PaddleSpecs } from "@rileybathurst/paddle";
-import LocationDeck from "../components/location-deck";
+import Locales from "../components/locales";
+import Hero from "../components/hero";
+import { TourCardTypes } from "../types/tour-card-types";
 
 interface TourViewTypes {
   data: {
@@ -55,7 +58,7 @@ interface TourViewTypes {
     }
 
     allStrapiTour: {
-      nodes: PaddleTicketTypes[];
+      nodes: TourCardTypes[];
     }
 
     allStrapiLocation: {
@@ -63,6 +66,8 @@ interface TourViewTypes {
     };
 
     strapiBranch: {
+      name: string;
+      peek_base: string;
       season_start: string;
       season_end: string;
       peek_tours: string;
@@ -141,41 +146,8 @@ export const data = graphql`
       }
     }
 
-    allStrapiLocation(
-      filter: {
-        branch: {slug: {eq: "south-tahoe"}},
-        name: {in: ["On Water Rental", "Free Parking Lot"]}
-      },
-      sort: {order: ASC}
-    ) {
-      nodes {
-        id
-        name
-        link
-        svg
-        opening_time
-        closing_time
-
-        streetAddress
-        addressLocality
-        addressRegion
-        postalCode
-        commonName
-
-        description {
-          data {
-            description
-          }
-        }
-        
-        branch {
-          season_start(formatString: "MMMM DD, YYYY")
-          season_end(formatString: "MMMM DD, YYYY")
-        }
-      }
-    }
-
     strapiBranch(slug: {eq: "south-tahoe"}) {
+      ...BookNowFragment
       season_start
       season_end
       peek_tours
@@ -185,20 +157,21 @@ export const data = graphql`
 
 const TourView = ({ data }: TourViewTypes) => {
 
-  const sortedTourNodes = data.allStrapiTour.nodes;
-  PaddleFeaturedSort(sortedTourNodes);
-
-  // TODO: work in progress
-  /* const time = PaddleTime({
-    start: data.strapiTour.start,
-    finish: data.strapiTour.finish,
-    duration: data.strapiTour.duration,
-    timeframe: data.strapiTour.timeframe,
-  }); */
-
   return (
     <>
       <Header />
+
+      <Hero
+        image={data.strapiTour.ogimage}
+        overlay={<Locales
+          water={true}
+          parking={true}
+        />}
+      />
+      {/*       <Composition
+          sport={data.strapiTour.sport}
+          image={data.strapiTour?.compositionImage}
+        /> */}
 
       <main className="tour">
         <div>
@@ -217,7 +190,7 @@ const TourView = ({ data }: TourViewTypes) => {
           // time={time}
           />
 
-          <div className="react-markdown single__description">
+          <div className="react-markdown">
             <Markdown>
               {data.strapiTour.information?.data?.information}
             </Markdown>
@@ -230,18 +203,6 @@ const TourView = ({ data }: TourViewTypes) => {
           ) : null}
 
         </div>
-
-        <aside>
-          <Composition
-            sport={data.strapiTour.sport}
-            image={data.strapiTour?.compositionImage}
-          />
-
-          <LocationDeck
-            allStrapiLocation={{ ...data.allStrapiLocation }}
-          />
-        </aside>
-
       </main>
 
       <hr className="albatross" />
@@ -256,13 +217,17 @@ const TourView = ({ data }: TourViewTypes) => {
         <hr />
       </div>
 
-      <section className="flight">
-        {sortedTourNodes.map((tour: PaddleTicketTypes) =>
+      <section className="deck">
+        {data.allStrapiTour.nodes.map((tour: TourCardTypes) =>
           <PaddleCard
             key={tour.id}
             {...tour}
-            tour_page="tours"
-            peek_tours_fall_back={data.strapiBranch.peek_tours}
+            link={`/tours/${tour.link}`}
+            paddleBookNow={{
+              peek_base: data.strapiBranch.peek_base,
+              strapiBranchName: data.strapiBranch.name,
+              specificLink: tour.peek,
+            }}
           />
         )}
       </section>
