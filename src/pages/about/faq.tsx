@@ -1,19 +1,35 @@
 import * as React from "react"
-import { Link, Script } from 'gatsby';
+import { Link, Script, graphql } from 'gatsby';
 import { SEO } from "../../components/seo";
 import { Breadcrumbs, Breadcrumb } from 'react-aria-components';
-import { useStrapiFaq } from "../../hooks/use-strapi-faq";
 import Header from "../../components/header";
 import Footer from "../../components/footer";
 
-const FaqPage = () => {
-
-  interface FaqTypes {
-    id: string;
-    question: string;
-    answer: string;
+type allFaqTypes = {
+  data: {
+    allStrapiFaq: {
+      nodes: {
+        id: string;
+        question: string;
+        answer: string;
+      }[]
+    }
   }
+}
 
+export const data = graphql`
+  query useStrapiFaq {
+    allStrapiFaq {
+      nodes {
+        id
+        question
+        answer
+      }
+    }
+  }
+`;
+
+const FaqPage = ({ data }: allFaqTypes) => {
   return (
     <>
       <Header />
@@ -23,7 +39,7 @@ const FaqPage = () => {
 
         {/* // TODO links to delivery and demos */}
         <ul className="faq condor">
-          {useStrapiFaq().nodes.map((faq: FaqTypes) => (
+          {data.allStrapiFaq.nodes.map((faq) => (
             <li key={faq.id}>
               <h2>{faq.question}</h2>
               <p>{faq.answer}</p>
@@ -45,7 +61,7 @@ const FaqPage = () => {
 
 export default FaqPage
 
-export const Head = () => {
+export const Head = ({ data }: allFaqTypes) => {
 
   type FaqTypes = {
     question: string;
@@ -61,14 +77,13 @@ export const Head = () => {
       ]}
     >
 
-      {/* // TODO: move the types */}
       <Script type="application/ld+json">
         {`
           {
             "@context": "https://schema.org",
             "@type": "FAQPage",
             "mainEntity": [
-              ${useStrapiFaq().nodes.map((faq: FaqTypes) => (
+              ${data.allStrapiFaq.nodes.map((faq) => (
           `{
                   "@type": "Question",
                   "name": "${faq.question}",
