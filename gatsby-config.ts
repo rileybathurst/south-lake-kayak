@@ -100,7 +100,7 @@ const config: GatsbyConfig = {
           "frame-src": "'self' book.peek.com",
           "style-src":
             "'self' 'unsafe-inline' book12.freetls.fastly.net localhost:8000 use.typekit.net",
-          "font-src": "'self' data: 'unsafe-inline'",
+          "font-src": "'self' data: use.typekit.net 'unsafe-inline'",
           "img-src": "'self' https://www.google-analytics.com data: about: p.typekit.net", // ? I think  is a tracking pixel
           "connect-src": "'self' data:  https://www.google-analytics.com/",
           "media-src": "'self' data:",
