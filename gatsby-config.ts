@@ -96,8 +96,8 @@ const config: GatsbyConfig = {
         mergeStyleHashes: false,
         directives: {
           "script-src":
-            "'self' 'unsafe-inline'  www.google-analytics.com book.peek.com book12.freetls.fastly.net",
-          "frame-src": "'self' book.peek.com use.typekit.net",
+            "'self' 'unsafe-inline'  www.google-analytics.com book.peek.com book12.freetls.fastly.net use.typekit.net",
+          "frame-src": "'self' book.peek.com",
           "style-src":
             "'self' 'unsafe-inline' book12.freetls.fastly.net localhost:8000 use.typekit.net",
           "font-src": "'self' data: 'unsafe-inline'",
