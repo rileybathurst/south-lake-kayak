@@ -19,7 +19,7 @@ if we have neither
 
 /* if (props.hullWeight && props.riggedWeight) {
   return (
-    <>
+    <React.Fragment>
       <h2>Hull Weight {props.hullWeight}
         <span className="spec__unit">&thinsp;{props.unit}</span>
       </h3>
@@ -28,7 +28,7 @@ if we have neither
         <span className="spec__unit">&thinsp;{props.unit}</span>
       </h3>
     </div >
-    </>
+    </React.Fragment>
   )
 } else if (props.hullWeight) {
   return (
@@ -40,7 +40,7 @@ if we have neither
 
 {/* const Weight = (props) => {
   return (
-      <>
+      <React.Fragment>
         <div className="spec">
           <h2>Hull Weight</h2>
           <h3>
@@ -54,7 +54,7 @@ if we have neither
             <span className="spec__unit">&thinsp;{props.unit}</span>
           </h3>
         </div>
-      </>
+      </React.Fragment>
       )
 } */}
 

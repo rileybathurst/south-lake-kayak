@@ -23,7 +23,7 @@ const AboutPage = () => {
   `)
 
   return (
-    <>
+    <React.Fragment>
       <Header />
 
       <Hero />
@@ -44,7 +44,7 @@ const AboutPage = () => {
         </ul>
       </main>
       <Footer topHR />
-    </>
+    </React.Fragment>
   )
 }
 

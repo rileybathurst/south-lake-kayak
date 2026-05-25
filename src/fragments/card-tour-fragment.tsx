@@ -10,7 +10,7 @@ export const query = graphql`
     excerpt
     order
 
-    image: ogimage {
+    image: hero {
       localFile {
         childImageSharp {
           gatsbyImageData

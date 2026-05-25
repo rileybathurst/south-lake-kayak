@@ -9,7 +9,7 @@ function TourCatchAll({ params }: { params: { name: string } }) {
   // console.log(params);
 
   return (
-    <>
+    <React.Fragment>
       <Header />
       <main className="pelican">
         <h1>
@@ -22,7 +22,7 @@ function TourCatchAll({ params }: { params: { name: string } }) {
         {/* // TODO: this is a broken tour page add a set of tours it should be with cards */}
       </main>
       <Footer />
-    </>
+    </React.Fragment>
   )
 }
 

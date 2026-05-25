@@ -67,7 +67,7 @@ const ToursPage = () => {
   console.log(sports)
 
   return (
-    <>
+    <React.Fragment>
       <Header />
 
       <Hero
@@ -120,7 +120,7 @@ const ToursPage = () => {
       ))}
 
       <Footer topHR />
-    </>
+    </React.Fragment>
   )
 }
 

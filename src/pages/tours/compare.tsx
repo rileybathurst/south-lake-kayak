@@ -9,8 +9,6 @@ import Footer from "../../components/footer";
 import { PaddleCompare } from "@rileybathurst/paddle";
 
 const ComparePage = () => {
-
-  // ? how close to the card tour fragment can I use on this?
   const data = useStaticQuery(graphql`
     query TourCompareQuery {
       allStrapiTour(
@@ -18,19 +16,9 @@ const ComparePage = () => {
       sort: {order: ASC}
       ) {
       nodes {
-        id
-        fitness
+        ...CardTourFragment
         slug
-        start
-        sport
-        peek
-        price
-        name
-        minimum
-        finish
-        excerpt
-        duration
-        ogimage {
+        hero {
           localFile {
             childImageSharp {
               gatsbyImageData
@@ -38,6 +26,14 @@ const ComparePage = () => {
           }
           alternativeText
         }
+        fitness
+        start
+        sport
+        price
+        name
+        minimum
+        finish
+        duration
       }
     }
 
@@ -48,7 +44,7 @@ const ComparePage = () => {
 `)
 
   return (
-    <>
+    <React.Fragment>
       <Header />
 
       <main className='pelican'>
@@ -67,7 +63,7 @@ const ComparePage = () => {
       </Breadcrumbs>
 
       <Footer />
-    </>
+    </React.Fragment>
   )
 }
 

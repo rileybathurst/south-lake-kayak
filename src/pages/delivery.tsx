@@ -1,5 +1,5 @@
 import * as React from "react"
-import { useStaticQuery, graphql } from "gatsby"
+import { graphql } from "gatsby"
 import { SEO } from "../components/seo";
 
 import Header from "../components/header";
@@ -40,7 +40,7 @@ export const data = graphql`
   }
 `;
 
-const DeliveryPage = (data: deliveryTypes) => {
+const DeliveryPage = ({ data }: { data: deliveryTypes }) => {
 
   const phoneAndEmailLinks = data.strapiDelivery.text.data.text
     .replaceAll(
@@ -53,7 +53,7 @@ const DeliveryPage = (data: deliveryTypes) => {
     )
 
   return (
-    <>
+    <React.Fragment>
       <Header />
 
       <Hero />
@@ -72,13 +72,13 @@ const DeliveryPage = (data: deliveryTypes) => {
       </main >
 
       <Footer topHR />
-    </>
+    </React.Fragment>
   )
 }
 
 export default DeliveryPage
 
-export const Head = (data: deliveryTypes) => {
+export const Head = ({ data }: { data: deliveryTypes }) => {
   return (
     <SEO
       title='Delivery'

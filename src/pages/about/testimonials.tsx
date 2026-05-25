@@ -21,7 +21,7 @@ const FaqPage = () => {
   `)
 
   return (
-    <>
+    <React.Fragment>
       <Header />
 
       <main>
@@ -37,7 +37,7 @@ const FaqPage = () => {
       </Breadcrumbs>
 
       <Footer />
-    </>
+    </React.Fragment>
   );
 }
 

@@ -12,7 +12,7 @@ interface LocationTypes {
 }
 const NotFoundPage = ({ location }: LocationTypes) => {
   return (
-    <>
+    <React.Fragment>
       <Header />
       <main className="pelican">
         <h1 className="crest">404 - {location.pathname}</h1>
@@ -21,7 +21,7 @@ const NotFoundPage = ({ location }: LocationTypes) => {
         </p>
       </main>
       <Footer />
-    </>
+    </React.Fragment>
   )
 }
 

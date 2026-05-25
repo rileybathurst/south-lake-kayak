@@ -3,7 +3,9 @@ import { PaddleHero, type PaddleGatsbyImageType } from "@rileybathurst/paddle"
 import { graphql, useStaticQuery } from "gatsby"
 
 type heroDataTypes = {
-  strapiMedia: PaddleGatsbyImageType
+  strapiBranch: {
+    hero: PaddleGatsbyImageType
+  }
 }
 
 type HeroTypes = {
@@ -17,20 +19,22 @@ const Hero = ({ image, collage, overlay }: HeroTypes) => {
   const data: heroDataTypes = useStaticQuery(graphql`
     query HeroQuery {
 
-      strapiMedia(localFile: {name: {regex: "/South_Tahoe_Kayak_New_Location_00619_67ca700ad6/"}}) {
-        localFile {
-          childImageSharp {
-            gatsbyImageData
+      strapiBranch(slug: {eq: "south-tahoe"}) {
+        hero {
+          localFile {
+            childImageSharp {
+              gatsbyImageData
+            }
           }
+          alternativeText
         }
-        alternativeText
       }
     }
   `);
 
   return (
     <PaddleHero
-      image={image ? image : data.strapiMedia}
+      image={image ? image : data.strapiBranch.hero}
       collage={collage || undefined}
       overlay={overlay ? overlay : undefined}
     />

@@ -22,7 +22,7 @@ const ProtectPage = () => {
   `)
 
   return (
-    <>
+    <React.Fragment>
       <Header />
 
       <main className="pelican">
@@ -39,7 +39,7 @@ const ProtectPage = () => {
       </Breadcrumbs>
 
       <Footer />
-    </>
+    </React.Fragment>
   )
 }
 

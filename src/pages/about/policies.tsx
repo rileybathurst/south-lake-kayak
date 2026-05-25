@@ -38,7 +38,7 @@ const PoliciesPage = () => {
   }
 
   return (
-    <>
+    <React.Fragment>
       <Header />
       <main className="condor" >
         <h1>Store Policies</h1>
@@ -61,7 +61,7 @@ const PoliciesPage = () => {
       </Breadcrumbs>
 
       <Footer />
-    </>
+    </React.Fragment>
   )
 }
 

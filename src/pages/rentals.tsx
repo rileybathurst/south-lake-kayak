@@ -1,5 +1,5 @@
 import * as React from "react"
-import { graphql, Link, useStaticQuery } from 'gatsby';
+import { graphql, Link } from 'gatsby';
 
 import { SEO } from "../components/seo";
 import Markdown from "react-markdown";
@@ -9,39 +9,63 @@ import Footer from "../components/footer";
 
 import BookNow from "../components/book-now";
 import Hero from "../components/hero";
-import Locales from "../components/locales";
 
-type RentalsPageTypes = {
-  data: {
-    strapiBranch: {
-      rental_excerpt: string;
-      rental: {
-        data: {
-          rental: string;
-        };
-      };
-      peek_membership: string;
-    };
-    strapiMembership: {
-      title: string;
-      excerpt: string;
-    };
-  };
-};
+import { type PaddleRentalsPageTypes, PaddlePricingChart } from "@rileybathurst/paddle";
 
-const RentalsPage = ({ data }: RentalsPageTypes) => {
+export const data = graphql`
+  query {
+    strapiBranch(slug: {eq: "south-tahoe"}) {
+      rental_excerpt
+      rental {
+        data {
+          rental
+        }
+      }
+      peek_membership
+    }
+
+    strapiLocation(
+      name: {eq: "On Water Rental"}
+      branch: {slug: {eq: "south-tahoe"}}
+    ) {
+      hero {
+        localFile {
+          childImageSharp {
+            gatsbyImageData
+          }
+        }
+        alternativeText
+      }
+    }
+
+      allStrapiRentalRate(
+      sort: {order: ASC},
+      filter: {favorite: {eq: true}}
+      )  {
+        nodes {
+          ...PricingChartFragment
+        }
+      }
+
+      strapiMembership {
+        title
+        excerpt
+      }
+    }
+`;
+
+const RentalsPage = ({ data }: PaddleRentalsPageTypes) => {
 
   return (
-    <>
+    <React.Fragment>
       <Header />
 
       <Hero
+        image={data.strapiLocation.hero}
         overlay={
-          <Locales
-            water={true}
-            parking={true}
-          />
-        }
+          <PaddlePricingChart
+            rentalRates={data.allStrapiRentalRate}
+          />}
       />
       <main>
         <h1>Rentals</h1>
@@ -59,9 +83,8 @@ const RentalsPage = ({ data }: RentalsPageTypes) => {
 
         <BookNow />
 
-        {/* // TODO: where is the br? build it out in storybook */}
-        <br />
-        <h3>{data.strapiMembership.title}</h3>
+        <hr />
+        <h3 className="font-serif">{data.strapiMembership.title}</h3>
         <p>{data.strapiMembership.excerpt}</p>
 
         <BookNow
@@ -71,13 +94,13 @@ const RentalsPage = ({ data }: RentalsPageTypes) => {
 
       </main >
       <Footer topHR />
-    </>
+    </React.Fragment>
   )
 }
 
 export default RentalsPage
 
-export const Head = ({ data }: RentalsPageTypes) => {
+export const Head = ({ data }: PaddleRentalsPageTypes) => {
 
   return (
     <SEO
@@ -86,22 +109,3 @@ export const Head = ({ data }: RentalsPageTypes) => {
     />
   )
 }
-
-export const data = graphql`
-  query {
-    strapiBranch(slug: {eq: "south-tahoe"}) {
-      rental_excerpt
-      rental {
-          data {
-            rental
-          }
-        }
-        peek_membership
-      }
-
-      strapiMembership {
-        title
-        excerpt
-      }
-    }
-`;

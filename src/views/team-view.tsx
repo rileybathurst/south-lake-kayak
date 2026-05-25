@@ -60,7 +60,7 @@ export const data = graphql`
 const TeamView = ({ data }: TeamViewTypes) => {
 
   return (
-    <>
+    <React.Fragment>
       <Header />
 
       <Hero
@@ -79,7 +79,7 @@ const TeamView = ({ data }: TeamViewTypes) => {
         <Breadcrumb>{data.strapiTeam.name}</Breadcrumb>
       </Breadcrumbs>
       <Footer />
-    </>
+    </React.Fragment>
   );
 };
 

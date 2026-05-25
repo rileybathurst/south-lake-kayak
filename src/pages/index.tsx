@@ -13,10 +13,6 @@ import Hero from "../components/hero";
 import { TourCardTypes } from "../types/tour-card-types";
 import BookNow from "../components/book-now";
 
-// ? 1.0.3 should find this?
-// import { PaddleBrandList } from "@rileybathurst/paddle";
-// import PaddleBrandList from "@rileybathurst/paddle/src/PaddleBrandList";
-
 const IndexPage = () => {
 
   const data = useStaticQuery(graphql`
@@ -59,6 +55,11 @@ const IndexPage = () => {
         season_start
         season_end
         phone
+        rental {
+          data {
+            rental
+          }
+        }
       }
 
       tahoeCity: strapiBranch(slug: {eq: "tahoe-city"}) {
@@ -75,26 +76,40 @@ const IndexPage = () => {
         }
       }
 
+      strapiFaq {
+        question
+        answer
+      }
+
     }
   `)
 
   return (
     <React.Fragment>
       <Header />
-      <main className="albatross">
 
-        <Hero
-          overlay={<Locales all={true} />}
-        />
+      <Hero
+        overlay={<Locales all={true} />}
+      />
 
+      <section className="albatross everest-margin-block-end">
         <PricingChart />
+      </section>
 
-        <div className="pelican react-markdown">
+      <main>
+
+        <div className="react-markdown">
           <Markdown>{data.southLake.about.data.about}</Markdown>
         </div>
 
+        <h3 className="font-serif">Rentals</h3>
 
-        <div className="pelican multi_button">
+        <div className="react-markdown">
+          <Markdown>{data.southLake.rental.data.rental}</Markdown>
+        </div>
+
+
+        <div className="multi_button">
           <BookNow
             specificName="rentals"
             specificLink={data.southLake.peek_rentals}
@@ -108,7 +123,7 @@ const IndexPage = () => {
 
       </main>
 
-      <section id="tours" className="pelican panel">
+      <section id="tours" className="condor panel">
         <h3 className="font-serif">
           <Link to="/tours">Tours</Link>
         </h3>
@@ -166,6 +181,19 @@ const IndexPage = () => {
         <ul className='pelican aconcagua-margin-block-end'>
           <PaddleTestimonial {...data.strapiTestimonial} />
         </ul>
+
+        <h4 className="pelican">
+          <Link to="/about/testimonials">Why Paddlers Keep Coming Back</Link>
+        </h4>
+      </section>
+
+      <section className="pelican panel denali-padding-block">
+        <h3 className="font-serif">{data.strapiFaq.question}</h3>
+        <p>{data.strapiFaq.answer}</p>
+
+        <h4>
+          <Link to="/about/faq">Paddle through our FAQs</Link>
+        </h4>
       </section>
 
       <Footer topHR />

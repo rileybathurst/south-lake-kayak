@@ -25,7 +25,7 @@ const InvasivePage = () => {
   `)
 
   return (
-    <>
+    <React.Fragment>
       <Header />
 
       <main>
@@ -37,7 +37,7 @@ const InvasivePage = () => {
       </main >
 
       <Footer />
-    </>
+    </React.Fragment>
   )
 }
 

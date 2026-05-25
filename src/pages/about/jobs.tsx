@@ -35,7 +35,7 @@ const JobsPage = () => {
   `)
 
   return (
-    <>
+    <React.Fragment>
       <Header />
 
       <main className="condor">
@@ -81,7 +81,7 @@ const JobsPage = () => {
       </Breadcrumbs>
 
       <Footer />
-    </>
+    </React.Fragment>
   )
 }
 export default JobsPage

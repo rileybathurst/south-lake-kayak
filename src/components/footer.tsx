@@ -50,6 +50,10 @@ const Footer = ({ topHR }: { topHR?: boolean }) => {
     }
   `)
 
+  const MenuPlus = [...MenuList,
+  { href: "/group", label: "Group" },
+  ]
+
   return (
     <PaddleFooter
       topHR={Boolean(topHR)}
@@ -58,7 +62,7 @@ const Footer = ({ topHR }: { topHR?: boolean }) => {
       allStrapiBranch={data.allStrapiBranch}
       allStrapiRentalRate={data.allStrapiRentalRate}
       allStrapiLocation={data.allStrapiLocation}
-      MenuPlus={MenuList}
+      MenuPlus={MenuPlus}
     />
   )
 }

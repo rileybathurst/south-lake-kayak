@@ -3,8 +3,7 @@ import { Link, graphql } from "gatsby";
 import {
   PaddleCard,
   PaddleMoonlightDatesTimes,
-  type PaddleLocationTypes,
-  type PaddleGatsbyImageType,
+  type PaddleTourViewTypes,
 } from "@rileybathurst/paddle";
 
 import { SEO } from "../components/seo";
@@ -13,68 +12,9 @@ import Header from "../components/header"
 import Footer from "../components/footer";
 import { Breadcrumbs, Breadcrumb } from 'react-aria-components';
 import BookNow from "../components/book-now";
-import { PaddleSpecs } from "@rileybathurst/paddle";
+import { PaddleSpecs, type PaddleTourCardTypes } from "@rileybathurst/paddle";
 import Locales from "../components/locales";
 import Hero from "../components/hero";
-import { TourCardTypes } from "../types/tour-card-types";
-
-interface TourViewTypes {
-  data: {
-    strapiTour: {
-      id: React.Key;
-      name: string;
-      information: {
-        data: {
-          information: string;
-        }
-      };
-      start: string;
-      finish: string;
-      duration: number;
-      timeframe: string;
-      minimum: number;
-      fitness: string;
-      experience: string;
-      peek: string;
-      sport: string;
-      excerpt: string;
-      price: number;
-      slug: string;
-      ogimage: PaddleGatsbyImageType;
-      compositionImage: PaddleGatsbyImageType;
-    }
-
-    branch: {
-      name: string;
-    }
-
-    allStrapiMoonlightTourDateTime: {
-      nodes: {
-        id: React.Key;
-        date: string;
-        start: string;
-        finish: string;
-      }[];
-    }
-
-    allStrapiTour: {
-      nodes: TourCardTypes[];
-    }
-
-    allStrapiLocation: {
-      nodes: PaddleLocationTypes[];
-    };
-
-    strapiBranch: {
-      name: string;
-      peek_base: string;
-      season_start: string;
-      season_end: string;
-      peek_tours: string;
-    }
-  }
-}
-
 
 export const data = graphql`
   query TourQuery($slug: String!) {
@@ -102,26 +42,13 @@ export const data = graphql`
       price
       slug
 
-      ogimage {
+      hero {
         localFile {
           childImageSharp {
             gatsbyImageData
           }
         }
         alternativeText
-      }
-
-      compositionImage {
-        localFile {
-          childImageSharp {
-            gatsbyImageData(aspectRatio: 1, layout: CONSTRAINED)
-          }
-        }
-        alternativeText
-      }
-
-      branch {
-        name
       }
     }
 
@@ -155,23 +82,19 @@ export const data = graphql`
   }
 `
 
-const TourView = ({ data }: TourViewTypes) => {
+const TourView = ({ data }: PaddleTourViewTypes) => {
 
   return (
-    <>
+    <React.Fragment>
       <Header />
 
       <Hero
-        image={data.strapiTour.ogimage}
+        image={data.strapiTour.hero}
         overlay={<Locales
           water={true}
           parking={true}
         />}
       />
-      {/*       <Composition
-          sport={data.strapiTour.sport}
-          image={data.strapiTour?.compositionImage}
-        /> */}
 
       <main className="tour">
         <div>
@@ -218,7 +141,7 @@ const TourView = ({ data }: TourViewTypes) => {
       </div>
 
       <section className="deck">
-        {data.allStrapiTour.nodes.map((tour: TourCardTypes) =>
+        {data.allStrapiTour.nodes.map((tour) =>
           <PaddleCard
             key={tour.id}
             {...tour}
@@ -238,7 +161,7 @@ const TourView = ({ data }: TourViewTypes) => {
       </Breadcrumbs>
 
       <Footer />
-    </>
+    </React.Fragment>
   );
 };
 
@@ -257,6 +180,7 @@ export const Head = ({ data }: TourViewHeadTypes) => {
     <SEO
       title={data.strapiTour.name}
       description={data.strapiTour.excerpt}
+      // TODO: image 
       breadcrumbs={[
         { name: 'tours', item: 'tours' },
         { name: data.strapiTour.name, item: `tours/${data.strapiTour.name}` }

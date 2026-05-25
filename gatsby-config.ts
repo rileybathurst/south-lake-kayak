@@ -27,7 +27,9 @@ const strapiConfig = {
   ],
   singleTypes: [
     "about",
+    "delivery",
     "experience",
+    "group",
     "membership",
     "protect",
     "shop",

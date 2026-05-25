@@ -4,11 +4,11 @@ function Sport(props: { sport: string }) {
 
   if (props.sport === "sup" || props.sport === "sups") {
     return (
-      <>Paddleboard</>
+      <React.Fragment>Paddleboard</React.Fragment>
     )
   } else {
     return (
-      <>{props.sport}</>
+      <React.Fragment>{props.sport}</React.Fragment>
     )
   }
 }
