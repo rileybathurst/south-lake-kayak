@@ -81,6 +81,14 @@ const config: GatsbyConfig = {
       },
     },
     {
+      resolve: "gatsby-plugin-web-font-loader",
+      options: {
+        typekit: {
+          id: process.env.TYPEKIT_ID,
+        },
+      },
+    },
+    {
       resolve: "gatsby-plugin-csp",
       options: {
         mergeSecurityHeaders: true, // ? testing may 2024 csp issue
@@ -89,11 +97,11 @@ const config: GatsbyConfig = {
         directives: {
           "script-src":
             "'self' 'unsafe-inline'  www.google-analytics.com book.peek.com book12.freetls.fastly.net",
-          "frame-src": "'self' book.peek.com",
+          "frame-src": "'self' book.peek.com use.typekit.net",
           "style-src":
-            "'self' 'unsafe-inline' book12.freetls.fastly.net localhost:8000",
+            "'self' 'unsafe-inline' book12.freetls.fastly.net localhost:8000 use.typekit.net",
           "font-src": "'self' data: 'unsafe-inline'",
-          "img-src": "'self' https://www.google-analytics.com data: about:", // ? I think  is a tracking pixel
+          "img-src": "'self' https://www.google-analytics.com data: about: p.typekit.net", // ? I think  is a tracking pixel
           "connect-src": "'self' data:  https://www.google-analytics.com/",
           "media-src": "'self' data:",
         },
