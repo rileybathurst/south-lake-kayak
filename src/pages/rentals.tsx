@@ -11,6 +11,7 @@ import BookNow from "../components/book-now";
 import Hero from "../components/hero";
 
 import { type PaddleRentalsPageTypes, PaddlePricingChart } from "@rileybathurst/paddle";
+import PricingChart from "../components/pricing-chart";
 
 export const data = graphql`
   query {
@@ -38,15 +39,6 @@ export const data = graphql`
       }
     }
 
-      allStrapiRentalRate(
-      sort: {order: ASC},
-      filter: {favorite: {eq: true}}
-      )  {
-        nodes {
-          ...PricingChartFragment
-        }
-      }
-
       strapiMembership {
         title
         excerpt
@@ -63,9 +55,7 @@ const RentalsPage = ({ data }: PaddleRentalsPageTypes) => {
       <Hero
         image={data.strapiLocation.hero}
         overlay={
-          <PaddlePricingChart
-            rentalRates={data.allStrapiRentalRate}
-          />}
+          <PricingChart />}
       />
       <main>
         <h1>Rentals</h1>
@@ -93,6 +83,15 @@ const RentalsPage = ({ data }: PaddleRentalsPageTypes) => {
         />
 
       </main >
+
+      <section className="condor">
+        <hr />
+        <h3>
+          <Link to="/about/policies">
+            Store Policies
+          </Link>
+        </h3>
+      </section>
       <Footer topHR />
     </React.Fragment>
   )

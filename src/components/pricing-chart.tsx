@@ -6,7 +6,11 @@ const PricingChart = () => {
 
   const data = useStaticQuery(graphql`
     query PricingChartQuery {
-      allStrapiRentalRate(filter: {favorite: {eq: true}}) {
+      allStrapiRentalRate(
+        filter: {favorite: {eq: true},
+        branches: {elemMatch: {slug: {eq: "south-tahoe"}}}},
+        sort: {order: ASC}
+      ) {
         nodes {
           ...PricingChartFragment
         }

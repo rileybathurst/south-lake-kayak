@@ -128,9 +128,9 @@ const TourView = ({ data }: PaddleTourViewTypes) => {
         </div>
       </main>
 
-      <hr className="albatross" />
+      <hr className="condor" />
 
-      <div className="albatross">
+      <div className="condor">
         <h3>Other Tours</h3>
         <h4>
           <Link to={`/tours/compare/?${data.strapiTour.slug}`}>

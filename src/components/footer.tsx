@@ -30,6 +30,14 @@ const Footer = ({ topHR }: { topHR?: boolean }) => {
           url
         }
       }
+      
+      allStrapiConnection {
+        nodes {
+          name
+          excerpt
+          link
+        }
+      }
 
       allStrapiLocation(
         filter: {
@@ -42,7 +50,11 @@ const Footer = ({ topHR }: { topHR?: boolean }) => {
         }
       }
 
-      allStrapiRentalRate(filter: {favorite: {eq: true}}) {
+      allStrapiRentalRate(
+        filter: {favorite: {eq: true},
+        branches: {elemMatch: {slug: {eq: "south-tahoe"}}}},
+        sort: {order: ASC}
+      ) {
         nodes {
           ...PricingChartFragment
         }
@@ -62,6 +74,7 @@ const Footer = ({ topHR }: { topHR?: boolean }) => {
       allStrapiBranch={data.allStrapiBranch}
       allStrapiRentalRate={data.allStrapiRentalRate}
       allStrapiLocation={data.allStrapiLocation}
+      allStrapiConnection={data.allStrapiConnection}
       MenuPlus={MenuPlus}
     />
   )

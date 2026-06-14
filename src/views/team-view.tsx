@@ -3,7 +3,7 @@ import { Link, graphql } from "gatsby";
 import Header from "../components/header";
 import Footer from "../components/footer";
 import ReactMarkdown from "react-markdown";
-import { GatsbyImage } from "gatsby-plugin-image";
+import { GatsbyImage, type IGatsbyImageData } from "gatsby-plugin-image";
 import { Breadcrumbs, Breadcrumb } from 'react-aria-components';
 import { SEO } from "../components/seo";
 import Hero from "../components/hero";
@@ -22,7 +22,7 @@ type TeamViewTypes = {
       profile: {
         localFile: {
           childImageSharp: {
-            gatsbyImageData: any;
+            gatsbyImageData: IGatsbyImageData;
           };
         };
         alternativeText: string;

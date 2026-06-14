@@ -11,6 +11,7 @@ const strapiConfig = {
     "attribute",
     "branch",
     "brand",
+    "connection",
     "faq",
     "imagegrab",
     "location",
@@ -28,6 +29,7 @@ const strapiConfig = {
   singleTypes: [
     "about",
     "delivery",
+    "error",
     "experience",
     "group",
     "membership",
