@@ -12,6 +12,7 @@ import Hero from "../components/hero";
 
 import { type PaddleRentalsPageTypes, PaddlePricingChart } from "@rileybathurst/paddle";
 import PricingChart from "../components/pricing-chart";
+import { GatsbyImage } from "gatsby-plugin-image";
 
 export const data = graphql`
   query {
@@ -43,10 +44,39 @@ export const data = graphql`
         title
         excerpt
       }
+
+    allStrapiRentalRate(
+      filter: {
+        favorite: {eq: true},
+        branches: {elemMatch: {slug: {eq: "south-tahoe"}}}
+        excerpt: {ne: null}
+        },
+      sort: {order: ASC}
+    ) {
+      nodes {
+        id
+        item
+        excerpt
+        hero {
+          localFile {
+            childImageSharp {
+              gatsbyImageData
+            }
+          }
+          alternativeText
+        }
+      }
     }
+
+
+  }
+
+
 `;
 
 const RentalsPage = ({ data }: PaddleRentalsPageTypes) => {
+
+  console.log(data)
 
   return (
     <React.Fragment>
@@ -58,6 +88,7 @@ const RentalsPage = ({ data }: PaddleRentalsPageTypes) => {
           <PricingChart />}
       />
       <main>
+
         <h1>Rentals</h1>
 
         <div className="react-markdown">
@@ -71,6 +102,7 @@ const RentalsPage = ({ data }: PaddleRentalsPageTypes) => {
         {/* // * the book now button wants to get inline with the link */}
         <br />
 
+        {/* // TODO: the button hover color is sand the resting color is blue this needs love */}
         <BookNow />
 
         <hr />
@@ -82,10 +114,29 @@ const RentalsPage = ({ data }: PaddleRentalsPageTypes) => {
           specificLink={data.strapiBranch.peek_membership}
         />
 
+
+        {data.allStrapiRentalRate.nodes.length > 0 && (
+          <React.Fragment>
+            <hr />
+
+            {data.allStrapiRentalRate.nodes.map(rate => (
+              <div key={rate.id}>
+                <GatsbyImage
+                  image={rate.hero.localFile.childImageSharp.gatsbyImageData}
+                  alt={rate.hero.alternativeText}
+                  className="poster"
+                />
+                <h3>* {rate.item}</h3>
+                <p>{rate.excerpt}</p>
+                <hr />
+              </div>
+            ))}
+          </React.Fragment>
+        )}
+
       </main >
 
       <section className="condor">
-        <hr />
         <h3>
           <Link to="/about/policies">
             Store Policies
@@ -93,7 +144,7 @@ const RentalsPage = ({ data }: PaddleRentalsPageTypes) => {
         </h3>
       </section>
       <Footer topHR />
-    </React.Fragment>
+    </React.Fragment >
   )
 }
 
