@@ -31,7 +31,12 @@ const Footer = ({ topHR }: { topHR?: boolean }) => {
         }
       }
       
-      allStrapiConnection {
+      allStrapiConnection(
+        filter: {
+          branches: {elemMatch: {slug: {eq: "south-tahoe"}}},
+          favorite: {eq: true}
+        }
+      ) {
         nodes {
           name
           excerpt

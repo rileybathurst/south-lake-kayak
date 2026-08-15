@@ -49,6 +49,7 @@ const Header = () => {
         menu_items={MenuList}
         peek_base={data.strapiBranch.peek_base}
         strapiBranchName={data.strapiBranch.name}
+      // TODO: location so home small menu stays open
       />
       <hr />
 

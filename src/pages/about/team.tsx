@@ -1,13 +1,12 @@
 import * as React from "react"
 import { useStaticQuery, graphql, Link } from 'gatsby';
-import { GatsbyImage, type IGatsbyImageData } from 'gatsby-plugin-image';
+import { type IGatsbyImageData } from 'gatsby-plugin-image';
 
 import { SEO } from "../../components/seo"
 import Header from "../../components/header"
 import Footer from "../../components/footer"
 import { Breadcrumbs, Breadcrumb } from 'react-aria-components'
-
-import { PaddleCard, type PaddleCardTypes } from "@rileybathurst/paddle";
+import { TeamCards } from "../../components/team-cards";
 
 const TeamPage = () => {
 
@@ -63,22 +62,18 @@ const TeamPage = () => {
       <main className="pelican">
         <h1>Team</h1>
         <p>Meet the team at {data.strapiBranch.name} Kayak & Paddleboard</p>
+
+        {/* // * custom */}
+        <ul>
+          <li><a href="#guides">Guides</a></li>
+          <li><a href="#shop-dogs">Shop Dogs</a></li>
+        </ul>
+
         <hr />
-
-        <section className="deck">
-          {data.allStrapiTeam.nodes.map((team: PaddleCardTypes) => (
-            <PaddleCard
-              id={team.id}
-              key={team.id}
-              title={team.title}
-              link={`/about/team/${team.link}`}
-              image={team.image}
-              excerpt={team.excerpt}
-            />
-          ))}
-        </section>
-
       </main>
+
+      <TeamCards />
+
       <Breadcrumbs>
         <Breadcrumb><Link to="/about/">About</Link></Breadcrumb>
         <Breadcrumb>Team</Breadcrumb>
