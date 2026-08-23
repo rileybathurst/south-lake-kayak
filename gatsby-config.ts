@@ -73,16 +73,6 @@ const config: GatsbyConfig = {
       options: strapiConfig,
     },
     {
-      resolve: "gatsby-plugin-postcss",
-      options: {
-        postCssPlugins: [
-          require("postcss-import"),
-          require("autoprefixer"),
-          require("postcss-nested"),
-        ],
-      },
-    },
-    {
       resolve: "gatsby-plugin-web-font-loader",
       options: {
         typekit: {

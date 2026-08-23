@@ -1,27 +1,37 @@
 import * as React from "react"
-import { graphql, useStaticQuery } from 'gatsby';
+import { graphql } from 'gatsby';
 import { SEO } from "../components/seo";
 import Header from "../components/header";
 import Footer from "../components/footer";
 
-const FavoritesPage = ({ data }: { data: any }) => {
-  data = useStaticQuery(query);
+type FavoritesPageTypes = {
+  allStrapiConnection: {
+    nodes: {
+      id: string,
+      name: string,
+      excerpt: string,
+      website?: string
+    }[]
+  },
+  strapiBranch: {
+    name: string
+  }
+}
 
-  type favoriteConnections = {
-    id: string;
-    name: string;
-    excerpt: string;
-    website?: string;
-  };
+const FavoritesPage = ({ data }: { data: FavoritesPageTypes }) => {
+
+  console.log(data)
 
   const WebsiteLink = ({ url }: { url: string }) => {
-    url = url.includes('http') ? url.replace(/^https?:\/\//, '') : url;
-    url = url.includes('www.') ? url.replace(/^www\./, '') : url;
+    const href = url.includes('http') ? url : `https://${url}`;
+    const cleanedUrl = href.replace(/^https?:\/\//, '').replace(/^www\./, '');
 
     return (
-      <a href={url} target="_blank" rel="noopener noreferrer">{url}</a>
+      <a href={href} target="_blank" rel="noopener noreferrer">{cleanedUrl}</a>
     )
   }
+
+
 
   return (
     <React.Fragment>
@@ -33,7 +43,7 @@ const FavoritesPage = ({ data }: { data: any }) => {
         <hr />
         <ul className="">
 
-          {data.allStrapiConnection.nodes.map((connection: favoriteConnections) => (
+          {data.allStrapiConnection.nodes.map((connection) => (
             <li key={connection.id}>
               <h2>{connection.name}</h2>
               <p>{connection.excerpt}</p>
@@ -51,8 +61,7 @@ const FavoritesPage = ({ data }: { data: any }) => {
 
 export default FavoritesPage
 
-export const Head = (data: any) => {
-  data = useStaticQuery(query);
+export const Head = ({ data }: { data: FavoritesPageTypes }) => {
   return (
     <SEO
       title='Favorites'
@@ -61,7 +70,7 @@ export const Head = (data: any) => {
   )
 }
 
-const query = graphql`
+export const query = graphql`
   query strapiFavorites {
     allStrapiConnection(
       filter: {

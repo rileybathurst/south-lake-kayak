@@ -16,4 +16,8 @@ These technologies work together to create a robust and user-friendly web applic
 
 ## Paddle Framework Documentation
 
-The Paddle Framework is a custom framework developed for Tahoe City and South Lake Kayak. It provides a set of reusable components and utilities that help streamline the development process and maintain consistency across the application. The framework is built on top of popular libraries like React and Tailwind CSS, offering a modern and flexible foundation for building web applications.
+The Paddle Framework is a custom framework developed for Tahoe City and South Lake Kayak. It provides a set of reusable components and utilities that help streamline the development process and maintain consistency across the application. The framework is built on top of popular libraries like React, offering a modern and flexible foundation for building web applications.
+
+- CSS
+
+Everything comes from Paddle removing the need for anything complex
