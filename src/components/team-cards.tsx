@@ -79,6 +79,7 @@ export const TeamCards = () => {
               <PaddleCard
                 key={team.id}
                 {...team}
+                link={`/about/team/${team.link}`}
               />
             ))}
           </div>

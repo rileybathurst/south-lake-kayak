@@ -28,14 +28,29 @@ type TeamViewTypes = {
         alternativeText: string;
       };
     };
+    allStrapiConnection: {
+      edges: {
+        node: {
+          name: string;
+          excerpt: string;
+          website: string;
+          recommendation: {
+            reason: string;
+            team: {
+              name: string;
+              slug: string;
+            };
+          }[];
+        };
+      }[];
+    };
   };
 };
 
 export const data = graphql`
   query TeamViewQuery($slug: String!) {
     strapiTeam(
-      slug: { eq: $slug },
-      branches: {elemMatch: {slug: {eq: "south-tahoe"}}}
+      slug: { eq: $slug }
     ) {
       id
       name
@@ -54,23 +69,81 @@ export const data = graphql`
         alternativeText
       }
     }
+
+    allStrapiConnection(
+      filter: {recommendation: {elemMatch: {team: {slug: {eq: $slug}}}}}
+    ) {
+      edges {
+        node {
+          name
+          excerpt
+          website
+          recommendation {
+            reason
+            team {
+              name
+              slug
+            }
+          }
+        }
+      }
+    }
   }
 `
 
 const TeamView = ({ data }: TeamViewTypes) => {
+  const teamRecommendations = data.allStrapiConnection.edges.map(({ node }) => {
+    const recommendations = node.recommendation.filter(
+      (recommendation) => recommendation.team.name === data.strapiTeam.name
+
+    );
+
+    return {
+      name: node.name,
+      excerpt: node.excerpt,
+      website: node.website,
+      recommendations,
+      hasRecommendations: recommendations.length > 0,
+    };
+  });
 
   return (
     <React.Fragment>
       <Header />
 
       <Hero
-        image={data.strapiTeam.profile}
+        image={data.strapiTeam?.profile}
       />
 
       <main className="condor">
 
         <h1>{data.strapiTeam.name}</h1>
         {data.strapiTeam.bio ? <div className='react-markdown'><ReactMarkdown>{data.strapiTeam.bio.data.bio}</ReactMarkdown></div> : null}
+
+
+        {teamRecommendations.some(({ hasRecommendations }) => hasRecommendations) ? (
+          <div className="panel">
+            <h2>Favorites</h2>
+            <div className="deck">
+              {teamRecommendations.map(({ name, excerpt, website, recommendations, hasRecommendations }) => (
+                hasRecommendations ? (
+                  <div key={name} className="card">
+                    <h2>{name}</h2>
+                    {excerpt ? <p>{excerpt}</p> : null}
+                    {website ? <p><a href={website}>{website}</a></p> : null}
+                    {recommendations.map((recommendation, index) => (
+                      <div key={index}>
+                        <blockquote>
+                          {data.strapiTeam.name} says: "{recommendation.reason}"
+                        </blockquote>
+                      </div>
+                    ))}
+                  </div>
+                ) : null
+              ))}
+            </div>
+          </div>
+        ) : null}
       </main>
 
       <Breadcrumbs>

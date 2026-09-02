@@ -11,6 +11,13 @@ type FavoritesPageTypes = {
       name: string,
       excerpt: string,
       website?: string
+      recommendation?: {
+        reason: string,
+        team: {
+          name: string,
+          slug: string
+        }
+      }[]
     }[]
   },
   strapiBranch: {
@@ -19,8 +26,6 @@ type FavoritesPageTypes = {
 }
 
 const FavoritesPage = ({ data }: { data: FavoritesPageTypes }) => {
-
-  console.log(data)
 
   const WebsiteLink = ({ url }: { url: string }) => {
     const href = url.includes('http') ? url : `https://${url}`;
@@ -31,8 +36,6 @@ const FavoritesPage = ({ data }: { data: FavoritesPageTypes }) => {
     )
   }
 
-
-
   return (
     <React.Fragment>
       <Header />
@@ -40,15 +43,30 @@ const FavoritesPage = ({ data }: { data: FavoritesPageTypes }) => {
       <main className="pelican">
         <h1>Favorites</h1>
         <p>Explore some of our favorite things to do off the water in {data.strapiBranch.name}.</p>
-        <hr />
-        <ul className="">
+        <ul className="panel">
 
+          {/* // TODO: the card hover is an issue but it was used with the layering of links */}
           {data.allStrapiConnection.nodes.map((connection) => (
-            <li key={connection.id}>
+            <li key={connection.id} className="card">
               <h2>{connection.name}</h2>
               <p>{connection.excerpt}</p>
               {connection.website && <WebsiteLink url={connection.website} />}
-              <hr />
+
+              {connection.recommendation && connection.recommendation.length > 0 && (
+                <React.Fragment>
+
+                  <h3 style={{ marginBlockEnd: '0' }}>What our team say</h3>
+                  {connection.recommendation.map((recommendation) => (
+                    <div className="recommendation" key={recommendation.reason}>
+                      <hr />
+                      <p>"{recommendation.reason}"</p>
+
+                      <p><a href={`/about/team/${recommendation.team.slug}`}>{recommendation.team.name}</a></p>
+                    </div>
+                  ))}
+                </React.Fragment>
+              )}
+
             </li>
           ))}
         </ul>
@@ -83,6 +101,14 @@ export const query = graphql`
         name
         excerpt
         website
+
+        recommendation {
+          reason
+          team {
+            name
+            slug
+          }
+        }
       }
     }
 
@@ -91,3 +117,10 @@ export const query = graphql`
     }
   }
 `
+
+/* recommendation {
+          reason
+          team {
+            name
+          }
+        } */

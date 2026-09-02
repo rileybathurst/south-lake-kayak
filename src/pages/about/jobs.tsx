@@ -13,7 +13,9 @@ const JobsPage = () => {
     title: string;
     id: string;
     description: {
-      data: string;
+      data: {
+        description: string;
+      }
     }
   }
 
@@ -27,7 +29,9 @@ const JobsPage = () => {
           title
           id
           description {
-            data
+            data {
+              description
+            }
           }
         }
       }
@@ -57,7 +61,7 @@ const JobsPage = () => {
             return (
               <div key={job.id}>
                 <h2 className="">{job.title}</h2>
-                <p>{job.description.data}</p>
+                <p>{job.description.data.description}</p>
               </div>
             )
           })}

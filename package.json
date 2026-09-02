@@ -11,9 +11,8 @@
     "develop": "gatsby develop",
     "start": "tsc --noEmit && stay-gold && gatsby develop",
     "dirty": "gatsby develop",
-    "build": "tsc --noEmit && stay-gold && gatsby build",
+    "build": "blc https://southtahoekayak.com -ro && tsc --noEmit && stay-gold && gatsby build",
     "serve": "gatsby serve",
-    "clean": "gatsby clean",
     "typecheck": "tsc --noEmit",
     "linkcheck": "blc https://southtahoekayak.com -ro",
     "stay-gold": "stay-gold"
@@ -21,7 +20,7 @@
   "dependencies": {
     "@fontsource/barlow": "^5.2.6",
     "@fontsource/barlow-condensed": "^5.2.5",
-    "@rileybathurst/paddle": "^1.22.4",
+    "@rileybathurst/paddle": "^1.23.0",
     "gatsby": "^5.14.4",
     "gatsby-plugin-csp": "^1.1.4",
     "gatsby-plugin-image": "^3.14.0",
@@ -42,7 +41,6 @@
   },
   "devDependencies": {
     "@biomejs/biome": "2.0.2",
-    "@faker-js/faker": "^9.8.0",
     "@mdx-js/react": "^3.1.0",
     "@types/node": "^24.0.3",
     "@types/react": "^18.3.22",

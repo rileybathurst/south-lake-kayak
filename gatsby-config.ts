@@ -11,9 +11,20 @@ const strapiConfig = {
     "attribute",
     "branch",
     "brand",
-    "connection",
+    {
+      singularName: "connection",
+      queryParams: {
+        // Strapi REST equivalent: ?populate[0]=recommendation.team
+        populate: [
+          "branches",
+          "hero",
+          "recommendation.team",
+        ],
+      },
+    },
     "faq",
     "imagegrab",
+    "job",
     "location",
     "moonlight-tour-date-time",
     "paddle-info",

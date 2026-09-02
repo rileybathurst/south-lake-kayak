@@ -14,14 +14,17 @@ export const query = graphql`
       slug
     }
 
-    retail {
-      slug
-      sport {
-        slug
-      }
-      brand {
-        slug
-      }
-    }
+    
   }
 `;
+
+// TODO: I had the eclipse as a retail explaination but now we dont so its on the page but its not linked and less clear
+/* retail {
+  slug
+  sport {
+    slug
+  }
+  brand {
+    slug
+  }
+} */

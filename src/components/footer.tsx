@@ -81,6 +81,7 @@ const Footer = ({ topHR }: { topHR?: boolean }) => {
       allStrapiLocation={data.allStrapiLocation}
       allStrapiConnection={data.allStrapiConnection}
       MenuPlus={MenuPlus}
+      pricingChartLink="/rentals"
     />
   )
 }

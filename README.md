@@ -21,3 +21,11 @@ The Paddle Framework is a custom framework developed for Tahoe City and South La
 - CSS
 
 Everything comes from Paddle removing the need for anything complex
+
+<!-- TODO: -->
+
+-- @mdx-js/react — no .mdx content or Gatsby MDX plugin configured.
+-- react-aria-components — no imports found.
+-- react-leaflet — no imports found.
+-- gatsby-transformer-remark — not configured in gatsby-config.ts.
+-- gatsby-plugin-sitemap — explicitly commented out in gatsby-config.ts, so remove it unless you plan to re-enable sitemap generation.

@@ -35,9 +35,7 @@ exports.createPages = async ({ graphql, actions }) => {
 
   const getStrapiTeam = await graphql(`
     query {
-      allStrapiTeam(
-        filter: { branches: { elemMatch: { slug: { eq: "south-tahoe" } } } }
-      ) {
+      allStrapiTeam {
         edges {
           node {
             slug

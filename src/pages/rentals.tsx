@@ -107,27 +107,29 @@ const RentalsPage = ({ data }: RentalsPageTypes) => {
           specificLink={data.strapiBranch.peek_membership}
         />
 
-        {/* // * hobie eclipse has a photo etc */}
-        {data.describedRental.nodes.length > 0 && (
-          <React.Fragment>
-            <hr />
-
-            {data.describedRental.nodes.map(rate => (
-              <div key={rate.id}>
-                <GatsbyImage
-                  image={rate.hero.localFile.childImageSharp.gatsbyImageData}
-                  alt={rate.hero.alternativeText}
-                  className="poster"
-                />
-                <h3>* {rate.item}</h3>
-                <p>{rate.excerpt}</p>
-                <hr />
-              </div>
-            ))}
-          </React.Fragment>
-        )}
+        <div className="panel">
+          {/* // * hobie eclipse has a photo etc */}
+          {/* // TODO: this should be a card but needs work before that can happen */}
+          {data.describedRental.nodes.length > 0 && (
+            <React.Fragment>
+              {data.describedRental.nodes.map(rate => (
+                <div key={rate.id}>
+                  <GatsbyImage
+                    image={rate.hero.localFile.childImageSharp.gatsbyImageData}
+                    alt={rate.hero.alternativeText}
+                    className="poster"
+                  />
+                  <h3>* {rate.item}</h3>
+                  <p>{rate.excerpt}</p>
+                  <hr />
+                </div>
+              ))}
+            </React.Fragment>
+          )}
+        </div>
       </main >
 
+      {/* // TODO: this is in the wrong place or needs love */}
       <section className="condor">
         <h3>
           <Link to="/about/policies">
