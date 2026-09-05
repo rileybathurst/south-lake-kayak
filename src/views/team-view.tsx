@@ -3,7 +3,7 @@ import { Link, graphql } from "gatsby";
 import Header from "../components/header";
 import Footer from "../components/footer";
 import ReactMarkdown from "react-markdown";
-import { GatsbyImage, type IGatsbyImageData } from "gatsby-plugin-image";
+import type { PaddleGatsbyImageType } from "@rileybathurst/paddle";
 import { Breadcrumbs, Breadcrumb } from 'react-aria-components';
 import { SEO } from "../components/seo";
 import Hero from "../components/hero";
@@ -19,14 +19,13 @@ type TeamViewTypes = {
           bio: string;
         };
       };
-      profile: {
-        localFile: {
-          childImageSharp: {
-            gatsbyImageData: IGatsbyImageData;
-          };
-        };
-        alternativeText: string;
-      };
+      profile: PaddleGatsbyImageType;
+      questions?: {
+        order: number;
+        question: string;
+        answer: string;
+      }[];
+
     };
     allStrapiConnection: {
       edges: {
@@ -68,6 +67,11 @@ export const data = graphql`
         }
         alternativeText
       }
+      questions {
+        order
+        answer
+        question
+      }
     }
 
     allStrapiConnection(
@@ -91,6 +95,8 @@ export const data = graphql`
   }
 `
 
+// * currently running everyone at both locations
+// TODO: lets move more of this to paddle
 const TeamView = ({ data }: TeamViewTypes) => {
   const teamRecommendations = data.allStrapiConnection.edges.map(({ node }) => {
     const recommendations = node.recommendation.filter(
@@ -120,6 +126,17 @@ const TeamView = ({ data }: TeamViewTypes) => {
         <h1>{data.strapiTeam.name}</h1>
         {data.strapiTeam.bio ? <div className='react-markdown'><ReactMarkdown>{data.strapiTeam.bio.data.bio}</ReactMarkdown></div> : null}
 
+        {data.strapiTeam?.questions &&
+          <section className="questions">
+            {data.strapiTeam.questions.map((q) => (
+              <div key={q.question}>
+                <hr />
+                <h3>{q.question}</h3>
+                <p>{q.answer}</p>
+              </div>
+            ))}
+          </section>
+        }
 
         {teamRecommendations.some(({ hasRecommendations }) => hasRecommendations) ? (
           <div className="panel">
